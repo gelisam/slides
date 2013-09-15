@@ -1,16 +1,17 @@
+-- | http://codingdojo.org/cgi-bin/wiki.pl?KataBowling
+module Bowling where
 
 
-
-
----------------------------------
---                             --
---  Haskell has no callbacks.  --
---  Haskell has no objects.    --
---                             --
---    Haskell programs are     --
--- structured in unusual ways. --
---                             --
---            How?             --
----------------------------------
-
-
+-- | Our working example: the Bowling code kata
+-- 
+--
+-- Tests (doctest syntax):
+--
+-- >>> score "XXXXXXXXXXXX"
+-- 300
+-- 
+-- >>> score "9-9-9-9-9-9-9-9-9-9-"
+-- 90
+--
+-- >>> score "5/5/5/5/5/5/5/5/5/5/5"
+-- 150
