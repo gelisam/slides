@@ -35,15 +35,9 @@ throws Strike = [10]
 throws Spare  = [5,5]
 throws Miss   = [0,0]
 
-
-
-
-
-
-
-
-
-
+-- The next step is weird, so I'm going to
+-- do it using the familiar Java syntax.
+-- (see Frame.java)
 
 
 
