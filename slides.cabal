@@ -1,4 +1,4 @@
-Name:                slides
+Name:                bowling
 Version:             0.1
 
 -- A short (one-line) description of the package.
@@ -7,9 +7,8 @@ Synopsis:            A skeleton from which to start your own project.
 -- A longer description of the package.
 -- Description:         
 
-Homepage:            https://github.com/gelisam/slides#readme
+Homepage:            https://github.com/gelisam/bowling#readme
 License:             PublicDomain
-License-file:        LICENSE
 Author:              Samuel Gélineau
 Maintainer:          gelisam@gmail.com
 
@@ -45,8 +44,8 @@ Library
   
   Build-depends:       base >= 4 && < 5
 
-executable slides-demo
+executable bowling-demo
   build-depends:  base >= 4 && < 5,
-                  slides >= 0.1 && < 1
+                  bowling >= 0.1 && < 1
   main-is:        Main.hs
   hs-source-dirs: demo
