@@ -2,8 +2,8 @@
 module Bowling where
 
 
--- | Our working example: the Bowling code kata
--- 
+-- | Compare with Bowling.java
+--                                  
 --
 -- Tests (doctest syntax):
 --
