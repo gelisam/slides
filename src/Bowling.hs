@@ -23,7 +23,7 @@ score "5/5/5/5/5/5/5/5/5/5/5" = 150
 pins :: Char -> Int  -- imprecise types
 pins 'X' = 10
 pins '-' = 0
-pins  x  = read [x]
+pins  x  = read 42   -- silly type error
 
 
 
