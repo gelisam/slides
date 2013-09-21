@@ -30,8 +30,10 @@ pins  x  = read [x]
 --                "-" indicates a miss."
 data Frame = Strike | Spare | Miss
 
-
-
+throws :: Frame -> [Pins]
+throws Strike = [10]
+throws Spare  =
+throws Miss   = 
 
 
 
