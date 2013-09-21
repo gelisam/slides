@@ -1,9 +1,27 @@
-// POP QUIZ
-// 
-// The answer is... NullPointerException!
-// 
-// So common... yet so easy to avoid!
-// 
-// By... not using null?
-// 
-// But what to use instead of null?
+// data Maybe a = Nothing
+//              | Just a
+
+abstract class Maybe<A> {
+  private Maybe() {}
+  
+  
+  public static class Nothing extends Maybe {
+    public Nothing() {}
+  }
+  
+  public static class Just<A> extends Maybe<A> {
+    public Just(A a) {value = a;}
+    public A value;
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
