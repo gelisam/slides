@@ -24,6 +24,8 @@ pins :: Char -> Int  -- imprecise types
 pins 'X' = 10
 pins '-' = 0
 pins  x  = read 42   -- silly type error
+                     -- for a more interesting bug,
+                     -- see Carousel.java 
 
 
 
