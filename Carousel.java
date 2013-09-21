@@ -16,17 +16,17 @@ public class Carousel extends PagerAdapter {
   }
   
   public View getItem(int position) {
-    int i;
-    if (position == 0) {
-      i = pages.getCount() - 1;
-      setPosition(getCount() - 1);
-    } else if (position == pages.getCount() + 1) {
-      i = 0;
-      setPosition(0);
-    } else {
-      i = position - 1;
+    
+    
+    int page = getPage(position);
+    int idealPosition = canonicalPosition(page);
+    
+    if (position != idealPosition) {
+      setPosition(idealPosition);
     }
-    return pages.getItem(i);
+    
+    
+    return pages.getItem(page);
   }
   
   
@@ -38,6 +38,9 @@ public class Carousel extends PagerAdapter {
     return (position - 1) % pages.getCount();
   }
 }
+
+
+
 
 
 
