@@ -33,7 +33,7 @@ data Frame = Strike | Spare | Miss
 throws :: Frame -> [Pins]
 throws Strike = [10]
 throws Spare  = [5,5]
-throws Miss   = 
+throws Miss   = [0,0]
 
 
 
