@@ -1,24 +1,24 @@
-// data Maybe a = Nothing
-//              | Just a
 
-abstract class Maybe<A> {
-  private Maybe() {}
-  
-  
-  public static class Nothing extends Maybe {
-    public Nothing() {}
-  }
-  
-  public static class Just<A> extends Maybe<A> {
-    public Just(A a) {value = a;}
-    public A value;
-  }
+
+
+
+
+
+
+
+
+
+// a compromise:
+
+class Nullable<A> {
+  private Nullable(A a) {value = a;}
+  public A value;
 }
 
 class Example {
-  void process(String value) {
-    if (value != null) {  // but this was so much shorter...
-      
+  void process(Nullable<String> nullable_value) {
+    if (nullable_value.value != null) {
+      String value = nullable_value.value;
       
       
       // process value
