@@ -25,6 +25,10 @@ pins 'X' = 10
 pins '-' = 0
 pins  x  = read [x]
 
+-- "When scoring, "X" indicates a strike,
+--                "/" indicates a spare,
+--                "-" indicates a miss."
+data Frame = Strike | Spare | Miss
 
 
 
