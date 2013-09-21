@@ -4,6 +4,6 @@
 // 
 // So common... yet so easy to avoid!
 // 
-// 
+// By... not using null?
 // 
 // 
