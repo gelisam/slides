@@ -16,10 +16,10 @@ abstract class Maybe<A> {
 }
 
 class Example {
-  void process(Maybe<String> nullable_value) {
-    if (nullable_value instanceof Maybe.Just) {
-      Maybe.Just<String> just = (Maybe.Just<String>) nullable_value;
-      String value = just.value;
+  void process(String value) {
+    if (value != null) {  // but this was so much shorter...
+      
+      
       
       // process value
     }
