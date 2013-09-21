@@ -1,8 +1,8 @@
-// 
+//        page 0         1         2
 // *---*     *---*     *---*     *---*     *---*
 // |///| <-> | A | <-> | B | <-> | C | <-> |///|
 // *---*     *---*     *---*     *---*     *---*
-// 
+// pos 0         1         2         3         4
 public class Carousel extends PagerAdapter {
   private PagerAdapter pages;
   
@@ -28,16 +28,16 @@ public class Carousel extends PagerAdapter {
     }
     return pages.getItem(i);
   }
+  
+  
+  private int canonicalPosition(int page) {
+    return page + 1;
+  }
+  
+  private int pageAt(int position) {
+    return (position - 1) % pages.getCount();
+  }
 }
-
-
-
-
-
-
-
-
-
 
 
 
