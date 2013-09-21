@@ -1,6 +1,6 @@
 // POP QUIZ
 // 
-// The answer is...
+// The answer is... NullPointerException!
 // 
 // 
 // 
