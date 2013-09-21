@@ -20,12 +20,10 @@ score "5/5/5/5/5/5/5/5/5/5/5" = 150
 -- 9
 -- >>> pins '-'
 -- 0
-pins :: Char -> Int  -- imprecise types
+pins :: Char -> Int
 pins 'X' = 10
 pins '-' = 0
-pins  x  = read 42   -- silly type error
-                     -- for a more interesting bug,
-                     -- see Carousel.java 
+pins  x  = read [x]
 
 
 
