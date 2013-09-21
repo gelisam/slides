@@ -6,4 +6,4 @@
 // 
 // By... not using null?
 // 
-// 
+// But what to use instead of null?
