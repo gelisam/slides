@@ -15,13 +15,13 @@ abstract class Maybe<A> {
   }
 }
 
-
-
-
-
-
-
-
-
-
-
+class Example {
+  void process(String value) {
+    if (value != null) {  // easy to forget
+      
+      
+      
+      // process value
+    }
+  }
+}
