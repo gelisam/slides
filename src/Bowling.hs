@@ -50,10 +50,10 @@ frameScore :: Frame -> [Frame] -> [Pins] -> Score
 frameScore f fs b = sum (throws f)
                   + bonusScore f fs b
 
-
-
-
-
+totalScore :: [Frame] -> [Pins] -> Score
+totalScore [] _ = 0
+totalScore (f:fs) b = frameScore f fs b
+                    + totalScore fs b
 
 
 
