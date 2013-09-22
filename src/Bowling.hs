@@ -55,9 +55,9 @@ totalScore [] _ = 0
 totalScore (f:fs) b = frameScore f fs b
                     + totalScore fs b
 
-
-
-
+-- Another weird step, let's stick to
+-- familiar syntax. Python this time.
+-- (see Bowling.py)
 
 
 
