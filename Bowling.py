@@ -5,7 +5,7 @@ def totalScore(frames, bonusRolls):
   else:
     x,xs = frames[0],frames[1:]
     
-    return frameScore(x,     bonusRolls) + totalScore(xs, bonusRolls)
+    return frameScore(x, xs, bonusRolls) + totalScore(xs, bonusRolls)
 
 def map(f, list):
   if len(list) == 0:
