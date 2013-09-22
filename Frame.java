@@ -1,17 +1,17 @@
 /////////////////////////////////////////////////
 //                                             //
+//               Haskell tricks                //
+//         you can use in any language         //
 //                                             //
 //                                             //
+//     1. Write functions.                     //
 //                                             //
+//     2. Use precise types.                   //
 //                                             //
+//     3. Use Maybe instead of null.           //
 //                                             //
-//                    YES!                     //
-//                                             //
-//          You CAN use this in your           //
-//             favorite language!              //
-//                                             //
-//                                             //
-//                                             //
+//        Never forget a null-check,           //
+//        avoid NullPointerExceptions.         //
 //                                             //
 //                                             //
 //                                             //

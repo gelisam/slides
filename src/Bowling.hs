@@ -28,16 +28,16 @@ pins  x  = read [x]
 -- "When scoring, "X" indicates a strike,
 --                "/" indicates a spare,
 --                "-" indicates a miss."
-data Frame = Strike | Spare | Miss
+data Frame = Strike | Spare Pins | Miss Pins Pins
 
 throws :: Frame -> [Pins]
-throws Strike = [10]
-throws Spare  = [5,5]
-throws Miss   = [0,0]
+throws Strike     = [10]
+throws (Spare n)  = [n, 10-n]
+throws (Miss n m) = [n, m]
 
--- The next step is weird, so I'm going to
--- do it using the familiar Java syntax.
--- (see Frame.java)
+
+
+
 
 
 
