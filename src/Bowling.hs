@@ -64,8 +64,8 @@ parseFrames xs = take 10 (go xs)
     go (x:'/':xs) = Spare (pins x)          : go xs
     go (x:x' :xs) = Miss (pins x) (pins x') : go xs
 
-
-
+parseBonus :: String -> [Pins]
+parseBonus xs = map pins $ drop (length (parseFrames xs)) xs
 
 
 
