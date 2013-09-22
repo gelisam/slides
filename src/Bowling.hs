@@ -1,48 +1,19 @@
-frameScore :: [Pins] -> Frame -> [Frame] -> Score
-frameScore b f fs = sum (throws f)
-                  + bonusScore f fs b
-
-totalScore :: [Pins] -> [Frame] -> Score
-totalScore b = sum . mapcons (frameScore b)
-
--- Haskell oddity: argument order influences program length!
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+-------------------------------------------------
+--                                             --
+--            Haskell-only tricks              --
+--       which won't work anywhere else        --
+--                                             --
+--                                             --
+--     1. Laziness.                            --
+--                                             --
+--     2. Point-free syntax.                   --
+--                                             --
+--        Functions often pass most of their   --
+--        arguments, unmodified, to a helper   --
+--        function.                            --
+--                                             --
+--        Haskell has a shorter syntax for     --
+--        this common case.                    --
+--                                             --
+--                                             --
+-------------------------------------------------
