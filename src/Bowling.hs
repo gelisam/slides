@@ -13,14 +13,14 @@ score "XXXXXXXXXXXX"          = 300
 score "9-9-9-9-9-9-9-9-9-9-"  = 90
 score "5/5/5/5/5/5/5/5/5/5/5" = 150
 
--- |
--- >>> pins 'X'
--- 10
--- >>> pins '9'
--- 9
--- >>> pins '-'
--- 0
-pins :: Char -> Int
+
+
+
+type Pins  = Int  -- number of pins knocked
+type Balls = Int  -- number of balls thrown
+type Score = Int
+
+pins :: Char -> Pins
 pins 'X' = 10
 pins '-' = 0
 pins  x  = read [x]
