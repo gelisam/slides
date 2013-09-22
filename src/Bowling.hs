@@ -3,7 +3,7 @@ frameScore b f fs = sum (throws f)
                   + bonusScore f fs b
 
 totalScore :: [Pins] -> [Frame] -> Score
-totalScore b = sum . mapcons (\f -> frameScore b f)
+totalScore b = sum . mapcons (frameScore b)
 
 -- Haskell oddity: argument order influences program length!
 
