@@ -16,14 +16,14 @@ score "5/5/5/5/5/5/5/5/5/5/5" = 150
 
 
 
-type Pins  = Int  -- number of pins knocked
-type Balls = Int  -- number of balls thrown
-type Score = Int
+newtype Pins  = Pins  Int  -- number of pins knocked
+newtype Balls = Balls Int  -- number of balls thrown
+newtype Score = Score Int
 
 pins :: Char -> Pins
-pins 'X' = 10
-pins '-' = 0
-pins  x  = read [x]
+pins 'X' = Pins 10
+pins '-' = Pins 0
+pins  x  = Pins (read [x])
 
 
 
