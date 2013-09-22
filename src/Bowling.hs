@@ -2,16 +2,16 @@
 module Bowling where
 
 
--- |
--- >>> score "XXXXXXXXXXXX"
--- 300
--- >>> score "9-9-9-9-9-9-9-9-9-9-"
--- 90
--- >>> score "5/5/5/5/5/5/5/5/5/5/5"
--- 150
-score "XXXXXXXXXXXX"          = 300
-score "9-9-9-9-9-9-9-9-9-9-"  = 90
-score "5/5/5/5/5/5/5/5/5/5/5" = 150
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -67,15 +67,15 @@ parseFrames xs = take 10 (go xs)
 parseBonus :: String -> [Pins]
 parseBonus xs = map pins $ drop (length (parseFrames xs)) xs
 
-
-
-
-
-
-
-
-
-
+-- |
+-- >>> score "XXXXXXXXXXXX"
+-- 300
+-- >>> score "9-9-9-9-9-9-9-9-9-9-"
+-- 90
+-- >>> score "5/5/5/5/5/5/5/5/5/5/5"
+-- 150
+score :: String -> Score
+score xs = totalScore (parseFrames xs) (parseBonus xs)
 
 
 
