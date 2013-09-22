@@ -1,19 +1,48 @@
--------------------------------------------------
---                                             --
---            Haskell-only tricks              --
---       which won't work anywhere else        --
---                                             --
---                                             --
---     1. Laziness.                            --
---                                             --
---        Without language support, you would  --
---        need to wrap everything in a thunk.  --
---                                             --
---        This gets old real quick.            --
---                                             --
---                                             --
---                                             --
---                                             --
---                                             --
---                                             --
-------------------------------------------------
+frameScore :: Frame -> [Frame] -> [Pins] -> Score
+frameScore f fs b = sum (throws f)
+                  + bonusScore f fs b
+
+totalScore :: [Frame] -> [Pins] -> Score
+totalScore fs b = sum $ mapcons (\x xs -> frameScore x xs b) fs
+
+-- Haskell oddity: argument order influences program length!
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
