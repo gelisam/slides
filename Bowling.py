@@ -7,9 +7,9 @@ def totalScore(frames, bonusRolls):
     
     return frameScore(x, xs, bonusRolls) + totalScore(xs, bonusRolls)
 
-def map(f, list):
+def mapcons(f, list):
   if len(list) == 0:
     return []
   else:
     x,xs = list[0],list[1:]
-    return [f(x)] + map(f, xs)
+    return [f(x,xs)] + map(f, xs)
