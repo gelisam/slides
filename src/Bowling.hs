@@ -5,7 +5,7 @@ bonusScore f fs b = sum bonusThrows
     ts = concatMap throws fs ++ b  -- less expensive
                                    -- than it looks!
 
--- concat [[1,2],[3,4],[5],[6,7]] ++ [8,9]
+-- concat [[1,2],...] ++ ...
 -- [1,2] ++ ...
 -- take 2 [1,2,...]
 -- laziness!
