@@ -76,11 +76,11 @@ parseBonus xs = map pins $ drop (length (parseFrames xs)) xs
 -- 150
 score :: String -> Score
 score xs = totalScore (parseFrames xs) (parseBonus xs)
-
-
-
-
-
+--                          ^                ^
+--                          |                |
+--                ,---------+----------------'
+--                |      
+-- immediately convert String to more precise types
 
 
 
