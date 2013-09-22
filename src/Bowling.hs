@@ -41,7 +41,7 @@ bonusBalls (Spare _) = 1
 bonusBalls _         = 0
 
 bonusScore :: Frame -> [Frame] -> [Pins] -> Score
-bonusScore f fs b = 
+bonusScore f fs = sum . take (bonusBalls f) . (concatMap throws fs ++)
 
 
 
