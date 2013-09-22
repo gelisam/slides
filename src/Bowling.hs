@@ -35,10 +35,10 @@ throws Strike     = [10]
 throws (Spare n)  = [n, 10-n]
 throws (Miss n m) = [n, m]
 
-
-
-
-
+bonusBalls :: Frame -> Balls
+bonusBalls Strike    = 2
+bonusBalls (Spare _) = 1
+bonusBalls _         = 0
 
 
 
