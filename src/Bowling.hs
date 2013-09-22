@@ -40,8 +40,8 @@ bonusBalls Strike    = 2
 bonusBalls (Spare _) = 1
 bonusBalls _         = 0
 
-
-
+bonusScore :: Frame -> [Frame] -> [Pins] -> Score
+bonusScore f remainingFrames extraThrows = 
 
 
 
