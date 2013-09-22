@@ -46,9 +46,9 @@ bonusScore f fs b = sum bonusThrows
     bonusThrows = take (bonusBalls f) ts
     ts = concatMap throws fs ++ b
 
-
-
-
+frameScore :: Frame -> [Frame] -> [Pins] -> Score
+frameScore f fs b = sum (throws f)
+                  + bonusScore f fs b
 
 
 
