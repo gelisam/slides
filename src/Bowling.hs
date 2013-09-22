@@ -57,12 +57,12 @@ mapcons f (x:xs) = f x xs : mapcons f xs
 totalScore :: [Frame] -> [Pins] -> Score
 totalScore fs b = sum $ mapcons (\x xs -> frameScore x xs b) fs
 
-
-
-
-
-
-
+parseFrames :: String -> [Frame]
+parseFrames xs = take 10 (go xs)
+  where
+    go ('X'  :xs) = Strike                  : go xs
+    go (x:'/':xs) = Spare (pins x)          : go xs
+    go (x:x' :xs) = Miss (pins x) (pins x') : go xs
 
 
 
