@@ -1,19 +1,19 @@
 #################################################
 ##                                             ##
+##               Haskell tricks                ##
+##         you can use in any language         ##
 ##                                             ##
+##     1. Write functions.                     ##
 ##                                             ##
+##     2. Use precise types.                   ##
 ##                                             ##
+##     3. Use Maybe instead of null.           ##
 ##                                             ##
+##     4. Keep definitions very short.         ##
 ##                                             ##
-##                    YES!                     ##
+##     5. Solve the more general problem.      ##
 ##                                             ##
-##          You CAN use this in your           ##
-##             favorite language!              ##
-##                                             ##
-##                                             ##
-##                                             ##
-##                                             ##
-##                                             ##
+##        For simpler, more reusable code.     ##
 ##                                             ##
 ##                                             ##
 #################################################

@@ -50,14 +50,14 @@ frameScore :: Frame -> [Frame] -> [Pins] -> Score
 frameScore f fs b = sum (throws f)
                   + bonusScore f fs b
 
-totalScore :: [Frame] -> [Pins] -> Score
-totalScore [] _ = 0
-totalScore (f:fs) b = frameScore f fs b
-                    + totalScore fs b
+mapcons :: (a -> [a] -> b) -> [a] -> [b]
+mapcons f []     = []
+mapcons f (x:xs) = f x xs : mapcons f xs
 
--- Another weird step, let's stick to
--- familiar syntax. Python this time.
--- (see Bowling.py)
+totalScore :: [Frame] -> [Pins] -> Score
+totalScore fs b = sum $ mapcons (\x xs -> frameScore x xs b) fs
+
+
 
 
 
