@@ -3,11 +3,11 @@
 --                                             --
 --                                             --
 --                                             --
---                                             --
+--          Real Programmer can write          --
 --                                             --
 --                   HASKELL                   --
 --                                             --
---                                             --
+--           programs in any language          --
 --                                             --
 --                                             --
 --                                             --
