@@ -1,19 +1,19 @@
 -----------------------------------------------------
 --                                                 --
---          But of course, you still can't         --
---          use these, so do learn Haskell :)      --
 --                                                 --
---     1. advanced type system which guides you    --
---        towards the correct answer               --
 --                                                 --
---     2. simplifies failing test cases            --
---        ("X8-XX1326X9/X9-" to ------------X9-)   --
 --                                                 --
---     3. find library functions even if you       --
---        have no idea how they are named          --
 --                                                 --
---     4. no data races in concurrent programs     --
 --                                                 --
---     5. automatically skip unused computations   --
+--                                                 --
+--                                                 --
+--                   BONUS SLIDES                  --
+--                                                 --
+--                                                 --
+--                                                 --
+--                                                 --
+--                                                 --
+--                                                 --
+--                                                 --
 --                                                 --
 -----------------------------------------------------
