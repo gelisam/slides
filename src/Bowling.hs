@@ -1,19 +1,10 @@
--------------------------------------------------
---                                             --
---               Haskell tricks                --
---         you can use in any language         --
---                                             --
---                                             --
---     1. Immutability?                        --
---                                             --
---        Less bugs, but doesn't play well     --
---        with mutability-embracing libraries. --
---                                             --
---                                             --
---                                             --
---                                             --
---                                             --
---                                             --
---                                             --
---                                             --
--------------------------------------------------
+-- mutable array
+myArray.sort();
+
+
+
+
+
+
+-- immutable array
+mySortedArray = myArray.sorted();
