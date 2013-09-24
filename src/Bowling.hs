@@ -1,19 +1,19 @@
 -------------------------------------------------
 --                                             --
---             Haskell superpowers:            --
+--               Haskell tricks                --
+--         you can use in any language         --
 --                                             --
 --                                             --
---   1. advanced type system which guides you  --
---      towards the correct answer             --
+--     1. Immutability?                        --
 --                                             --
---   2. simplifies failing test cases          --
---      ("X8-XX1326X9/X9-" to ------------X9-) --
+--        Less bugs, but doesn't play well     --
+--        with mutability-embracing libraries. --
 --                                             --
---   3. find library functions even if you     --
---      have no idea how they are named        --
 --                                             --
---   4. no data races in concurrent programs   --
 --                                             --
---   5. automatically skip unused computations --
+--                                             --
+--                                             --
+--                                             --
+--                                             --
 --                                             --
 -------------------------------------------------
