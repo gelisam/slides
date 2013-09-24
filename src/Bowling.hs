@@ -10,7 +10,7 @@
 --    Haskell programs are     --
 -- structured in unusual ways. --
 --                             --
---                             --
+--            How?             --
 ---------------------------------
 
 
