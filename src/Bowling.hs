@@ -1,15 +1,16 @@
--- mutable callback
-$.ajax("http://google.com?q=haskell",
-  function(response) {
-    p = $("#results_pane");
-    setContents(p, response);
-  }
-);
 
--- immutable callback?
-$.ajax("http://google.com?q=haskell",
-  function(response) {
-    -- no way to affect the program
-    -- from here...
-  }
-);
+
+
+
+---------------------------------
+--                             --
+--  Haskell has no callbacks.  --
+--  Haskell has no objects.    --
+--                             --
+--    Haskell programs are     --
+-- structured in unusual ways. --
+--                             --
+--                             --
+---------------------------------
+
+
