@@ -4,19 +4,4 @@ Git vs Svn
 * Git is distributed (but we don't care about that)
 * Git is powerful (this slide system runs on git's history-rewriting magic)
 
-example:
-
-
-    void say_hello() {
-      printf("hello");
-    }
-    
-    int main(int argc, char** argv) {
-      int n = (argc) > 1
-            ? atoi(argv[1])
-            : 10;
-      for(int i=0; i<n; ++i) {
-        say_hello();
-      }
-      return 0;
-    }
+but...
