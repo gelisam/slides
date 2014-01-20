@@ -1,0 +1,11 @@
+My Favorite Advanced Git Features
+=================================
+
+      1) git bisect
+      2) git commit --amend
+      3) git add -p
+      4) git stash
+      5) git rebase -i
+
+
+              - Samuel Gélineau
