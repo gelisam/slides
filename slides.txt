@@ -7,5 +7,5 @@ Git vs Svn
 but...
 
 * Git is new (you will have to learn a new tool)
-* Git is distributed
+* Git is distributed (you will forget to push your changes)
 * Git is powerful
