@@ -8,4 +8,4 @@ but...
 
 * Git is new (you will have to learn a new tool)
 * Git is distributed (you will forget to push your changes)
-* Git is powerful
+* Git is powerful (and more complicated)
