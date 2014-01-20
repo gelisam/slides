@@ -1,4 +1,4 @@
 Git vs Svn
 
 * Git is new and popular (among developers and among our clients)
-* Git is distributed
+* Git is distributed (but we don't care about that)
