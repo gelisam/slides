@@ -6,4 +6,4 @@ Besides, it's not really that complicated:
 * `svn mv`     becomes `git mv`
 * `svn rm`     becomes `git rm`
 * `svn status` becomes `git status`
-* `svn commit` becomes `git commit`
+* `svn commit` becomes `git add ; git commit ; git push`
