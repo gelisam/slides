@@ -1,12 +1,9 @@
-Git vs Svn
+Besides, it's not really that complicated:
 
-      ____              _ _                       _      _ 
-     |  _ \  ___  _ __ ( ) |_   _ __   __ _ _ __ (_) ___| |
-     | | | |/ _ \| '_ \|/| __| | '_ \ / _` | '_ \| |/ __| |
-     | |_| | (_) | | | | | |_  | |_) | (_| | | | | | (__|_|
-     |____/ \___/|_| |_|  \__| | .__/ \__,_|_| |_|_|\___(_)
-                               |_|                         
-                               
-                      we're here to help.
-                your colleagues are here to help.
-                    Google is here to help.
+* `svn log`    becomes `git log`
+* `svn add`    becomes `git add`
+* `svn diff`   becomes `git diff`
+* `svn mv`     becomes `git mv`
+* `svn rm`     becomes `git rm`
+* `svn status` becomes `git status`
+* `svn commit` becomes `git commit`
