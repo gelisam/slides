@@ -5,3 +5,7 @@ Git vs Svn
 * Git is powerful (this slide system runs on git's history-rewriting magic)
 
 but...
+
+* Git is new
+* Git is distributed
+* Git is powerful
