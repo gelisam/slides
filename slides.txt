@@ -1,9 +1,21 @@
-Besides, it's not really that complicated:
+git add  ;  git commit  ;  git push
 
-* `svn log`    becomes `git log`
-* `svn add`    becomes `git add`
-* `svn diff`   becomes `git diff`
-* `svn mv`     becomes `git mv`
-* `svn rm`     becomes `git rm`
-* `svn status` becomes `git status`
-* `svn commit` becomes `git add ; git commit ; git push`
+
+Live example.
+
+    ls -A
+
+
+A simple "hello world"
+
+    make
+
+
+It works, but...
+
+    cat hello.c
+
+
+Let's fix this silly mistake.
+
+(edit example-repo/hello.c)
