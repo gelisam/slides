@@ -1,16 +1,16 @@
 git add  ;  git commit  ;  git push
-   ^
+                ^
 
-Status before the add:
+Status before the commit:
 
     git status
 
 
-Step 1: git add
+Step 2: git commit
 
-    git add hello.c
+    git commit -m "missing newline"
 
 
-Status after the add:
+Status after the commit:
 
     git status
