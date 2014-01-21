@@ -1,16 +1,16 @@
 git add  ;  git commit  ;  git push
-                              ^
 
-Status before the push:
+       ___                                        
+      / _ \ _ __   ___   _ __ ___   ___  _ __ ___ 
+     | | | | '_ \ / _ \ | '_ ` _ \ / _ \| '__/ _ \
+     | |_| | | | |  __/ | | | | | | (_) | | |  __/
+      \___/|_| |_|\___| |_| |_| |_|\___/|_|  \___|
+                _   _                _ 
+               | |_(_)_ __ ___   ___| |
+               | __| | '_ ` _ \ / _ \ |
+               | |_| | | | | | |  __/_|
+                \__|_|_| |_| |_|\___(_)
 
-    git status
 
 
-Step 3: git push
-
-    git push
-
-
-Status after the push:
-
-    git status
+Same steps, with Source Tree instead of the command line.
