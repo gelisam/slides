@@ -3,3 +3,15 @@ Git vs Svn
 * Git is new and popular (among developers and among our clients)
 * Git is distributed (but we don't care about that)
 * Git is powerful (this slide system runs on git's history-rewriting magic)
+
+example:
+
+
+    void say_hello() {
+      printf("hello");
+    }
+    
+    int main() {
+      say_hello();
+      return 0;
+    }
