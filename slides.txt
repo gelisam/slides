@@ -1,16 +1,11 @@
 git add  ;  git commit  ;  git push
                 ^
 
-Status before the commit:
+Our commits:
 
-    git status
-
-
-Step 2: git commit
-
-    git commit -m "missing newline"
+    git log --oneline
 
 
-Status after the commit:
+Upstream commits:
 
-    git status
+    git log --oneline origin/master
