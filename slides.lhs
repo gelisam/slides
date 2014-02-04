@@ -2,8 +2,9 @@
 
 
 
-        Gravity is now visible! Yay!   
-                                  :)
+           An exciting new direction for ghc:
+
+                  TYPE LEVEL NATURALS
 
 
 
