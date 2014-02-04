@@ -6,9 +6,9 @@ Type-level natural
 > import GHC.TypeLits
 > import List
 
-
-
-
+> snoc :: List a n -> a -> List a (n + 1)
+> snoc Nil y         = Cons y Nil
+> snoc (Cons x xs) y = Cons x (snoc xs y)
 
 > reverse :: List a n -> List a n
 > reverse Nil = Nil
