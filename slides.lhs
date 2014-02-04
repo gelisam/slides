@@ -7,7 +7,7 @@ Type-level natural
 
 > data List (a :: *) (n :: Nat) where
 >   Nil :: List a 0
->   Cons :: a -> List a n -> List a
+>   Cons :: a -> List a n -> List a (n + 1)
 
 
 
