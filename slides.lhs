@@ -10,4 +10,4 @@ safeHead :: List a -> Maybe a
 ...or request a more precise argument?
 
 > :t preciseHead
-preciseHead :: NonEmptyList a -> a
+preciseHead :: List a (n + 1) -> a
