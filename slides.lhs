@@ -1,13 +1,13 @@
 Type-level natural
 ---
 
+> {-# LANGUAGE GADTs #-}
 
 
 
-
-> data List a = Nil | Cons a (List a)
-
-
+> data List a where
+>   Nil :: List a
+>   Cons :: a -> List a   -> List a
 
 
 
