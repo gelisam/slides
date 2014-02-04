@@ -1,19 +1,9 @@
-Typed Holes
----
-
-Exercise: implement `liftMaybe`.
-
-> newtype Wrapper a = Wrapper {
->     runWrapper :: IO (Maybe a)
-> }
-
-> liftMaybe :: Maybe a -> Wrapper a
-> liftMaybe mx = Wrapper (return mx)
 
 
 
 
+        Gravity is now visible! Yay!   
+                                  :)
 
 
 
-> main = putStrLn "typechecks."
