@@ -7,3 +7,7 @@ Should `head` return a more precise type?
 safeHead :: List a -> Maybe a
 
 
+...or request a more precise argument?
+
+> :t preciseHead
+preciseHead :: NonEmptyList a -> a
