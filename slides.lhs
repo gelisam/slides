@@ -1,8 +1,8 @@
 Type-level natural
 ---
 
-> {-# LANGUAGE GADTs, KindSignatures #-}
-> {-# LANGUAGE DataKinds, TypeOperators #-}
+> {-# LANGUAGE DataKinds, TypeOperators, GADTs #-}
+> import Prelude hiding (reverse)
 > import GHC.TypeLits
 > import List
 
@@ -10,9 +10,9 @@ Type-level natural
 
 
 
-
-
-
+> reverse :: List a n -> List a n
+> reverse Nil = Nil
+> reverse (Cons x xs) = snoc (reverse xs) x
 
 
 
