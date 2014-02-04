@@ -1,8 +1,9 @@
 Type-level natural
 ---
 
-Don't believe the hype:
-even Haskell programs fail at runtime sometimes.
+Should `head` return a more precise type?
 
-> head []
-Prelude.head: empty list
+> :t safeHead
+safeHead :: List a -> Maybe a
+
+
