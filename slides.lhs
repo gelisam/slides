@@ -1,10 +1,8 @@
+Type-level natural
+---
 
+Don't believe the hype:
+even Haskell programs fail at runtime sometimes.
 
-
-
-           An exciting new direction for ghc:
-
-                  TYPE LEVEL NATURALS
-
-
-
+> head []
+Prelude.head: empty list
