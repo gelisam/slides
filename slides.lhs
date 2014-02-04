@@ -1,11 +1,11 @@
 Type-level natural
 ---
 
-> {-# LANGUAGE GADTs #-}
+> {-# LANGUAGE GADTs, KindSignatures #-}
 
 
 
-> data List a where
+> data List (a :: *) where
 >   Nil :: List a
 >   Cons :: a -> List a   -> List a
 
