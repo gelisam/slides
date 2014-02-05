@@ -16,8 +16,8 @@ Type-level natural
 
 
 
-> main = print $ preciseHead foo
-
-
+> main = do
+>     print $ preciseHead foo
+>     print $ preciseHead $ reverse foo
 
 
