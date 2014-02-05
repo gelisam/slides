@@ -1,14 +1,14 @@
-Introducing: Typed Holes!
+Typed Holes
 ---
 
-Example: what is the type of `_1`?
+Exercise: implement `liftMaybe`.
 
 > newtype Wrapper a = Wrapper {
 >     runWrapper :: IO (Maybe a)
 > }
 
 > liftMaybe :: Maybe a -> Wrapper a
-> liftMaybe mx = _1
+> liftMaybe mx = _
 
 
 
