@@ -3,8 +3,8 @@ Nullary Type Classes
 
 > {-# LANGUAGE NullaryTypeClasses #-}
 > import Unsafe.Coerce
-> class Coercible where
->   coerce :: a -> b
+
+
 
 > foo ::              Double -> Double -> Int
 > foo x y = coerce x + coerce y
@@ -13,8 +13,8 @@ Nullary Type Classes
 > main = print (foo 3.0 4.0)
 
 
-> instance Coercible where
->   coerce = unsafeCoerce
+> coerce :: a -> b
+> coerce = unsafeCoerce
 
 
 
