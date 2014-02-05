@@ -8,7 +8,7 @@ Exercise: implement `liftMaybe`.
 > }
 
 > liftMaybe :: Maybe a -> Wrapper a
-> liftMaybe mx = _
+> liftMaybe mx = Wrapper _
 
 
 
