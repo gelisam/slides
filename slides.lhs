@@ -1,10 +1,10 @@
 
 
 
-           My favorite ghc 7.8 features
-           
-                      
-                     by Samuel Gelineau
+
+          My most favorite ghc 7.8 feature:
+
+                     TYPED HOLES
 
 
 
