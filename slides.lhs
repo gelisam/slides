@@ -6,7 +6,7 @@ Type-level natural
 > import GHC.TypeLits
 
 > data List (a :: *) (n :: Nat) where
->   Nil :: List a
+>   Nil :: List a 0
 >   Cons :: a -> List a   -> List a
 
 
