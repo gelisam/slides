@@ -20,6 +20,6 @@ Type-level natural
 
 > main = do
 >     print $ preciseHead foo
->     print $ preciseHead $ reverse foo
+>     print $ defaultHead 0 $ reverse Nil
 
 
