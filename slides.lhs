@@ -12,8 +12,8 @@ Type-level natural
 > foo :: List Int 3
 > foo = 1 `Cons` (2 `Cons` (3 `Cons` Nil))
 
-ghc 7.6:
-Couldn't match type (0 + (1 + (1 + 1))) with 3
+
+
 
 
 
