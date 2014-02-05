@@ -14,10 +14,12 @@ Type-level natural
 > reverse Nil = Nil
 > reverse (Cons x xs) = snoc (reverse xs) x
 
+> defaultHead :: a -> List a n -> a
+> defaultHead x xs = preciseHead (snoc xs x)
 
 
 > main = do
 >     print $ preciseHead foo
->     print $ preciseHead $ reverse Nil  -- type error
+>     print $ preciseHead $ reverse foo
 
 
