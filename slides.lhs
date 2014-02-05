@@ -1,7 +1,11 @@
 
 
 
-<< I like to think of types as warping our gravity,
-   so that the direction we need to travel [to write
-   correct programs] becomes "downhill". >>
-                                     - Conor McBride
+From two "lectures" ago: implementing `liftMaybe`.
+
+> newtype Wrapper a = Wrapper {
+>     runWrapper :: IO (Maybe a)
+> }
+
+> liftMaybe :: Maybe a -> Wrapper a
+> liftMaybe mx = _
