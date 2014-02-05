@@ -16,7 +16,7 @@ Type-level natural
 > preciseHead Nil = error "cannot happen"
 > preciseHead (Cons x _) = x
 
-> main = print $ preciseHead foo
+> main = print $ preciseHead Nil  -- type error
 
 
 
