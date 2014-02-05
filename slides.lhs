@@ -18,6 +18,6 @@ Type-level natural
 
 > main = do
 >     print $ preciseHead foo
->     print $ preciseHead $ reverse foo
+>     print $ preciseHead $ reverse Nil  -- type error
 
 
