@@ -1,9 +1,9 @@
 Nullary Type Classes
 ---
 
+> {-# LANGUAGE MultiParamTypeClasses #-}
 
-
-> class Coercible a where
+> class Coercible a b where
 >   coerce :: a -> b
 
 
