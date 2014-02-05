@@ -8,4 +8,4 @@ From two "lectures" ago: implementing `liftMaybe`.
 > }
 
 > liftMaybe :: Maybe a -> Wrapper a
-> liftMaybe mx = _
+> liftMaybe mx = Wrapper _
