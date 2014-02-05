@@ -6,7 +6,8 @@ Nullary Type Classes
 > class Coercible where
 >   coerce :: a -> b
 
-
+> foo :: Coercible => Double -> Double -> Int
+> foo x y = coerce x + coerce y
 
 
 
