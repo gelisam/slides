@@ -1,25 +1,10 @@
 Nullary Type Classes
 ---
 
-> {-# LANGUAGE NullaryTypeClasses #-}
-> import Unsafe.Coerce
+> import Prelude hiding (log)
+> import System.IO.Unsafe
 
-
-
-> foo ::              Double -> Double -> Int
-> foo x y = coerce x + coerce y
-
-> main ::              IO ()
-> main = print (foo 3.0 4.0)
-
-
-> coerce :: a -> b
-> coerce = unsafeCoerce
-
-
-
-
-
-
-
-
+> log :: String -> a -> a
+> log msg x = unsafePerformIO $ do
+>     putStrLn msg
+>     return x
