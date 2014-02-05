@@ -1,10 +1,22 @@
+Nullary Type Classes
+---
 
 
 
-                   And the award for
-              "most useless new feature"
-                       goes to:
-
-                  NULLARY TYPE CLASSES
+> class Coercible a where
+>   coerce :: a -> b
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+> main = putStrLn "typechecks"
