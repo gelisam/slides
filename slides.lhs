@@ -28,5 +28,5 @@ Nullary Type Classes
 > test :: NeedsInit => Int
 > test = log "left" 2 + log "right" 3
 
-> -- typechecks!
-> main = print (initLog test)
+> -- No instance for NeedsInit
+> main = print test
