@@ -30,4 +30,4 @@ Nullary Type Classes
 > test = log "left" 2 + log "right" 3
 
 > -- No instance for YouHaventCalled
-> main = print (initLog test)
+> main = print test
