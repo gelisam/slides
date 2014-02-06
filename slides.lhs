@@ -1,32 +1,33 @@
 Nullary Type Classes
 ---
 
-> {-# LANGUAGE NullaryTypeClasses, Rank2Types #-}
+> {-# LANGUAGE NullaryTypeClasses, Rank2Types, FlexibleContexts #-}
 > import Prelude hiding (log)
 > import Unsafe.Coerce
 > import System.IO.Unsafe
 
 
-> class NeedsInit
+> data InitLog
+> class YouHaventCalled e
 
-> provideInit :: (NeedsInit => a) -> (() -> a)
+> provideInit :: (YouHaventCalled InitLog => a) -> (() -> a)
 > provideInit = unsafeCoerce
 
-> log :: NeedsInit => String -> a -> a
+> log :: YouHaventCalled InitLog => String -> a -> a
 > log msg x = unsafePerformIO $ do
 >     -- imagine this was an ffi call to some logging library
 >     putStrLn msg
 >     return x
 
-> initLog :: (NeedsInit => a) -> a
+> initLog :: (YouHaventCalled InitLog => a) -> a
 > initLog x = unsafePerformIO $ do
 >     -- imagine this was initializing the logging library
 >     putStrLn "init"
 >     return (provideInit x ())
 
 
-> test :: NeedsInit => Int
+> test :: YouHaventCalled InitLog => Int
 > test = log "left" 2 + log "right" 3
 
-> -- No instance for NeedsInit
-> main = print test
+> -- No instance for YouHaventCalled
+> main = print (initLog test)
