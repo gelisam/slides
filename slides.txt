@@ -4,3 +4,7 @@ So, yeah, we're switching to Git.
 
 Because many people already like git.
 Employees. Clients. Open source projects.
+
+S1 doesn't code anymore, so he lets us use
+whichever version-control system we want.
+And some of us told him we want Git! :)
