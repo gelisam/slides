@@ -3,4 +3,4 @@ So, yeah, we're switching to Git.
              Why git?
 
 Because many people already like git.
-Employees.
+Employees. Clients.
