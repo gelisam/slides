@@ -1,16 +1,21 @@
 git add  ;  git commit  ;  git pull  ;  git push
-                              ^
+                                           ^
 
-Our commits:
+Status before the push:
 
+    git status
+    
     git log --oneline
+    
+    git log --oneline origin/master
 
 
-Merge the upstream changes ("rebase" is a mode that is closer to svn's way):
+Second attempt: git push
 
-    git pull --rebase
+    git push
 
 
-The updated commits:
+Status after the push:
 
-    git log --oneline
+    git status
+    
