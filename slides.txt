@@ -1,3 +1,11 @@
-Of course, things don't always go that smoothly.
+git add  ;  git commit  ;  git pull  ;              git push
+                              ^
 
-What if your commit conflicts with someone else's?
+Our commits:
+
+    git log --oneline
+
+
+Merge the upstream changes:
+
+    git pull --rebase
