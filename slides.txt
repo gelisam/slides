@@ -1,3 +1,14 @@
-Of course, things don't always go that smoothly.
+git add  ;  git commit  ;               git push
+                                           ^
 
-What if your working copy is not up-to-date?
+Status before the push:
+
+    git status
+    
+    git log --oneline
+
+
+First attempt: git push
+
+    git push
+
