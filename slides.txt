@@ -1,11 +1,16 @@
 git add  ;  git commit  ;  git push
-                ^
+                              ^
 
-Our commits:
+Status before the push:
 
-    git log --oneline
+    git status
 
 
-Upstream commits:
+Step 3: git push
 
-    git log --oneline origin/master
+    git push
+
+
+Status after the push:
+
+    git status
