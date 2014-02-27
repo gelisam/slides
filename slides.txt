@@ -1,14 +1,16 @@
 git add  ;  git commit  ;  git push
-                ^
+                              ^
 
-Our commits:
+Status before the push:
 
-    git log --oneline
+    git status
 
 
-Upstream commits:
+Step 3: git push
 
-    git log --oneline origin/master
-21722a1 hello world, with a few intentional mistakes
-4d430e1 no files yet
-    
+    git push
+
+
+Status after the push:
+
+    git status
