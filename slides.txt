@@ -1,25 +1,16 @@
 git add  ;  git commit  ;  git push
+   ^
+
+Status before the add:
+
+    git status
 
 
-Live example.
+Step 1: git add
 
-    ls -A
-
-
-A simple "hello world"
-
-    make
+    git add hello.c
 
 
-It works, but...
+Status after the add:
 
-    cat hello.c
-int main() {
-  printf("hello world!");
-  return 0;
-}
-
-
-Let's fix this silly mistake.
-
-(edit example-repo/hello.c)
+    git status
