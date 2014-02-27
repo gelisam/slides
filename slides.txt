@@ -4,11 +4,11 @@ git add  ;  git commit  ;  git push
 Our commits:
 
     git log --oneline
-53fd141 missing newline
-21722a1 hello world, with a few intentional mistakes
-4d430e1 no files yet
 
 
 Upstream commits:
 
     git log --oneline origin/master
+21722a1 hello world, with a few intentional mistakes
+4d430e1 no files yet
+    
