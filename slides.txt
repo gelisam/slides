@@ -9,14 +9,15 @@ Live example.
 A simple "hello world"
 
     make
-gcc hello.c -o hello
-./hello
-hello world!
 
 
 It works, but...
 
     cat hello.c
+int main() {
+  printf("hello world!");
+  return 0;
+}
 
 
 Let's fix this silly mistake.
