@@ -4,6 +4,11 @@ git add  ;  git commit  ;  git push
 Status before the commit:
 
     git status
+# On branch master
+# Changes to be committed:
+#	modified:   hello.c
+#
+...
 
 
 Step 2: git commit
