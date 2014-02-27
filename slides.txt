@@ -4,16 +4,12 @@ git add  ;  git commit  ;  git push
 Status before the add:
 
     git status
-# On branch master
-# Changes not staged for commit:
-#	modified:   hello.c
-# 
-...
 
 
 Step 1: git add
 
     git add hello.c
+(no output)
 
 
 Status after the add:
