@@ -6,12 +6,11 @@ Status before the push:
     git status
     
     git log --oneline
-53fd141 missing newline
-21722a1 hello world, with a few intentional mistakes
-4d430e1 no files yet
 
 
 First attempt: git push
 
     git push
-
+To ../example-remote
+ ! [rejected]        master -> master (non-fast-forward)
+...
