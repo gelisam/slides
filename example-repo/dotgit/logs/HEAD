@@ -1,3 +1,4 @@
 0000000000000000000000000000000000000000 4d430e1156cf86bf6395beadc2ef6b492d17143c Samuel Gélineau <sgelineau@innobec.com> 1390317837 -0500	commit (initial): no files yet
 4d430e1156cf86bf6395beadc2ef6b492d17143c 21722a15d882bc8e95e1bbda737995a6426aa536 Samuel Gélineau <sgelineau@innobec.com> 1390317845 -0500	commit: hello world, with a few intentional mistakes
 21722a15d882bc8e95e1bbda737995a6426aa536 53fd1414747f154cd5db1c82adaf6a05a760c8f9 Samuel Gélineau <sgelineau@innobec.com> 1390327767 -0500	commit: missing newline
+53fd1414747f154cd5db1c82adaf6a05a760c8f9 a506fadc4423e4dbf1e411d3264b33d0bb8bf8e2 Samuel Gélineau <sgelineau@innobec.com> 1393515696 -0500	checkout: moving from master to a506fadc4423e4dbf1e411d3264b33d0bb8bf8e2^0

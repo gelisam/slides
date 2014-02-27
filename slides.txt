@@ -1,11 +1,17 @@
-git add  ;  git commit  ;  git pull  ;              git push
-                              ^
+git add  ;  git commit  ;  git pull  ;  resolve  ;  git push
+                                           ^
 
-Our commits:
+Status before resolving:
 
-    git log --oneline
+    git status
 
 
-Merge the upstream changes:
+Conflict markers:
 
-    git pull --rebase
+    cat hello.c
+
+
+Mark as resolved:
+
+    git add hello.c
+    
