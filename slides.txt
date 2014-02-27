@@ -9,9 +9,13 @@ Status before the add:
 Step 1: git add
 
     git add hello.c
-(no output)
 
 
 Status after the add:
 
     git status
+# On branch master
+# Changes to be committed:
+#	modified:   hello.c
+#
+...
