@@ -4,14 +4,14 @@ git add  ;  git commit  ;  git push
 Live example.
 
     ls -A
-.git
-hello.c
-Makefile
 
 
 A simple "hello world"
 
     make
+gcc hello.c -o hello
+./hello
+hello world!
 
 
 It works, but...
