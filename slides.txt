@@ -4,6 +4,9 @@ git add  ;  git commit  ;  git push
 Live example.
 
     ls -A
+.git
+hello.c
+Makefile
 
 
 A simple "hello world"
