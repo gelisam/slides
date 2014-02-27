@@ -9,10 +9,9 @@ Status before the push:
 Step 3: git push
 
     git push
-To ../example-remote
-   21722a1..53fd141  master -> master
 
 
 Status after the push:
 
     git status
+(no "ahead by 1 commit" message)
