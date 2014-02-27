@@ -1,21 +1,23 @@
 git add  ;  git commit  ;  git pull  ;  resolve  ;  git push
-                                           ^
+                                                       ^
 
-Status before continuing:
-
-    git status
-    
-    git log --oneline
-
-
-The command we were told to type after resolving:
-
-    git rebase --continue
-
-
-Status after continuing:
+Status before the push:
 
     git status
     
     git log --oneline
+    
+    git log --oneline origin/master
+
+
+Second attempt: git push
+
+    git push
+
+
+Status after the push:
+
+    git status
+    
+    git log --oneline origin/master
     
