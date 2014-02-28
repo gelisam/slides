@@ -4,15 +4,21 @@ git add  ;  git commit  ;  git pull  ;  resolve  ;  git push
 Status before resolving:
 
     git status
-# Not currently on any branch.
-# Unmerged paths:
-#	both modified:      hello.c
-...
 
 
 Conflict markers:
 
     cat hello.c
+int main() {
+<<<<<<< HEAD
+  printf("HELLO WORLD!");
+||||||| merged common ancestors
+  printf("hello world!");
+=======
+  printf("hello world!\n");
+>>>>>>> missing newline
+  return 0;
+}
 
 
 Mark as resolved:
