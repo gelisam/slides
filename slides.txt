@@ -15,11 +15,11 @@ It works, but...
 
     cat hello.c
 int main() {
-  printf("hello world!");
+  printf("hello world!\n");
   return 0;
 }
 
 
 Let's fix this silly mistake.
 
-(edit example-repo/hello.c)
+
