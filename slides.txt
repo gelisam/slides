@@ -16,9 +16,10 @@ The command we were told to type after resolving:
 Status after continuing:
 
     git status
-# On branch master
-# Your branch is ahead of 'origin/master' by 1 commit.
-...
     
     git log --oneline
+94fcd09 missing newline
+a506fad ALL CAPS!!
+21722a1 hello world, with a few intentional mistakes
+4d430e1 no files yet
     
