@@ -9,12 +9,13 @@ Our commits:
 Merge the upstream changes ("rebase" is a mode that is closer to svn's way):
 
     git pull --rebase
-From ../example-remote
-   21722a1..6bb51ae  master     -> origin/master
-...
-Auto-merging hello.c
 
 
 The updated commits:
 
     git log --oneline
+2d927f8 missing newline
+6bb51ae add a comment
+21722a1 hello world, with a few intentional mistakes
+4d430e1 no files yet
+    
