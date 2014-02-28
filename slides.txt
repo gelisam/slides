@@ -13,11 +13,9 @@ Status before the push:
 Second attempt: git push
 
     git push
-To ../example-remote
-   6bb51ae..c805c01  master -> master
 
 
 Status after the push:
 
     git status
-    
+(no "ahead by 1 commit" message)
