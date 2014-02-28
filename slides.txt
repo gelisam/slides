@@ -1,21 +1,3 @@
-git add  ;  git commit  ;  git pull  ;  git push
-                                           ^
+Of course, things don't always go that smoothly.
 
-Status before the push:
-
-    git status
-    
-    git log --oneline
-    
-    git log --oneline origin/master
-
-
-Second attempt: git push
-
-    git push
-
-
-Status after the push:
-
-    git status
-(no "ahead by 1 commit" message)
+What if your commit conflicts with someone else's?
