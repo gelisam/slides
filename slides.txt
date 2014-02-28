@@ -4,11 +4,17 @@ git add  ;  git commit  ;  git pull  ;              git push
 Our commits:
 
     git log --oneline
-53fd141 missing newline
-21722a1 hello world, with a few intentional mistakes
-4d430e1 no files yet
 
 
 Merge the upstream changes:
 
     git pull --rebase
+From ../example-remote
+   21722a1..a506fad  master     -> origin/master
+...
+Auto-merging hello.c
+CONFLICT (content): Merge conflict in hello.c
+
+When you have resolved this problem run "git rebase --continue".
+
+    

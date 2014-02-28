@@ -1,0 +1,17 @@
+---
+ hello.c |    2 +-
+ 1 files changed, 1 insertions(+), 1 deletions(-)
+
+diff --git a/hello.c b/hello.c
+index 8baf55aed8e5d6f1c4b06a01be451fda02e689b9..95fc44dbce48657886b75e5504e6e247f8da4cba 100644
+--- a/hello.c
++++ b/hello.c
+@@ -1,4 +1,4 @@
+ int main() {
+-  printf("hello world!");
++  printf("hello world!\n");
+   return 0;
+ }
+-- 
+1.7.9
+
