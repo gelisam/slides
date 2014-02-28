@@ -6,12 +6,11 @@ Status before the push:
     git status
     
     git log --oneline
-0e6fcb3 missing newline
+    
+    git log --oneline origin/master
 a506fad ALL CAPS!!
 21722a1 hello world, with a few intentional mistakes
 4d430e1 no files yet
-    
-    git log --oneline origin/master
 
 
 Second attempt: git push
