@@ -8,14 +8,13 @@ Status before the push:
     git log --oneline
     
     git log --oneline origin/master
-6bb51ae add a comment
-21722a1 hello world, with a few intentional mistakes
-4d430e1 no files yet
 
 
 Second attempt: git push
 
     git push
+To ../example-remote
+   6bb51ae..c805c01  master -> master
 
 
 Status after the push:
