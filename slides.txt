@@ -4,6 +4,10 @@ git add  ;  git commit  ;  git pull  ;  resolve  ;  git push
 Status before continuing:
 
     git status
+# Not currently on any branch.
+# Changes to be committed:
+#	modified:   hello.c
+...
     
     git log --oneline
 
