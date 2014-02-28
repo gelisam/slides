@@ -11,12 +11,14 @@ Status before continuing:
 The command we were told to type after resolving:
 
     git rebase --continue
-Applying: missing newline
 
 
 Status after continuing:
 
     git status
+# On branch master
+# Your branch is ahead of 'origin/master' by 1 commit.
+...
     
     git log --oneline
     
