@@ -1,18 +1,21 @@
 git add  ;  git commit  ;  git pull  ;  resolve  ;  git push
                                            ^
 
-Status before resolving:
+Status before continuing:
 
     git status
+    
+    git log --oneline
 
 
-Conflict markers:
+The command we were told to type after resolving:
 
-    cat hello.c
+    git rebase --continue
 
 
-Mark as resolved:
+Status after continuing:
 
-    git add hello.c
-(no output)
+    git status
+    
+    git log --oneline
     
