@@ -13,13 +13,12 @@ Status before the push:
 Second attempt: git push
 
     git push
-To ../example-remote
-   a506fad..0e6fcb3  master -> master
 
 
 Status after the push:
 
     git status
+(no "ahead by 1 commit" message)
     
     git log --oneline origin/master
     
