@@ -1,20 +1,17 @@
-git add  ;  git commit  ;  git pull  ;              git push
-                              ^
+git add  ;  git commit  ;  git pull  ;  resolve  ;  git push
+                                           ^
 
-Our commits:
+Status before resolving:
 
-    git log --oneline
+    git status
 
 
-Merge the upstream changes:
+Conflict markers:
 
-    git pull --rebase
-From ../example-remote
-   21722a1..a506fad  master     -> origin/master
-...
-Auto-merging hello.c
-CONFLICT (content): Merge conflict in hello.c
+    cat hello.c
 
-When you have resolved this problem run "git rebase --continue".
 
+Mark as resolved:
+
+    git add hello.c
     
