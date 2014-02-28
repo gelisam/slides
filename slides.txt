@@ -4,6 +4,9 @@ git add  ;  git commit  ;  git pull  ;  resolve  ;  git push
 Status before the push:
 
     git status
+# On branch master
+# Your branch is ahead of 'origin/master' by 1 commit.
+...
     
     git log --oneline
     
