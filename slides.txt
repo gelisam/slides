@@ -9,19 +9,10 @@ Status before resolving:
 Conflict markers:
 
     cat hello.c
-int main() {
-<<<<<<< HEAD
-  printf("HELLO WORLD!");
-||||||| merged common ancestors
-  printf("hello world!");
-=======
-  printf("hello world!\n");
->>>>>>> missing newline
-  return 0;
-}
 
 
 Mark as resolved:
 
     git add hello.c
+(no output)
     
