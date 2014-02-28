@@ -8,14 +8,13 @@ Status before the push:
     git log --oneline
     
     git log --oneline origin/master
-a506fad ALL CAPS!!
-21722a1 hello world, with a few intentional mistakes
-4d430e1 no files yet
 
 
 Second attempt: git push
 
     git push
+To ../example-remote
+   a506fad..0e6fcb3  master -> master
 
 
 Status after the push:
