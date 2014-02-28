@@ -4,6 +4,10 @@ git add  ;  git commit  ;  git pull  ;  resolve  ;  git push
 Status before resolving:
 
     git status
+# Not currently on any branch.
+# Unmerged paths:
+#	both modified:      hello.c
+...
 
 
 Conflict markers:
