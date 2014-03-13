@@ -1,10 +1,12 @@
+*------------------------*
+|   git commit --amend   |
+*------------------------*
 
+Rewrite the commit instead:
 
-
-
-
-     But wait! There is a better way.
-         We haven't pushed yet.
-  There is still time to rewrite history!
-
+  git add hello.*
+  
+  git commit --amend -am "refactor to hello.{h,c}"
+  
+  git log --stat
   
