@@ -1,12 +1,11 @@
-*------------------------*
-|   git commit --amend   |
-*------------------------*
 
-Rewrite the commit instead:
 
-  git add hello.*
-  
-  git commit --amend -am "refactor to hello.{h,c}"
-  
-  git log --stat
-  
+
+      1) 
+      2) 
+      3) git add -p
+      4) 
+      5) 
+
+
+
