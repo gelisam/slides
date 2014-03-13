@@ -2,7 +2,11 @@
 |   git commit --amend   |
 *------------------------*
 
-All right! What's next?
+Oops :(
 
-  git status
+  git add hello.*
+  
+  git commit -am "forgot to add the refactored files"
+  
+  git log --stat
   
