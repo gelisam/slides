@@ -2,13 +2,9 @@
 |   git commit --amend   |
 *------------------------*
 
-This time, instead of fixing a bug, let's refactor:
+git add, git commit...
 
-  cat main.cpp
- 
-  :!refactor-to-file hello
+  git add main.cpp
   
-  cat hello.h
-  
-  cat hello.cpp
+  git commit -m "refactor to file"
   
