@@ -1,10 +1,8 @@
-*------------------------*
-|        git stash       |
-*------------------------*
+ALERT - ALERT - ALERT - ALERT - ALERT
 
-Same example as before:
+  *******************************
+  *     Showstopper bug!!1!     *
+  * Drop everything and fix it! *
+  *******************************
 
-  cat main.cpp
- 
-  :!refactor-to-file hello
-  
+ALERT - ALERT - ALERT - ALERT - ALERT
