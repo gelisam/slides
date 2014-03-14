@@ -2,9 +2,9 @@
 |        git stash       |
 *------------------------*
 
-Save the day!
-
-  git commit -am "add exclamation mark, fixes showstopper"
+...then go back to work.
   
-  git push
+  git stash pop > /dev/null
+  
+  cat main.cpp
   
