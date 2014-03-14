@@ -2,9 +2,9 @@
 |        git stash       |
 *------------------------*
 
-We should have done this instead:
+This time we did stash everything.
 
-  git add .
+  ls
   
-  git stash
+  git status
   
