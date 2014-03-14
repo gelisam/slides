@@ -1,8 +1,10 @@
-ALERT - ALERT - ALERT - ALERT - ALERT
+*------------------------*
+|        git stash       |
+*------------------------*
 
-  *******************************
-  *     Showstopper bug!!1!     *
-  * Drop everything and fix it! *
-  *******************************
+But we're in the middle of something!
 
-ALERT - ALERT - ALERT - ALERT - ALERT
+  cat main.cpp
+ 
+  git status
+  
