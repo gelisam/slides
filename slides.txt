@@ -1,10 +1,8 @@
-*------------------------*
-|        git stash       |
-*------------------------*
 
-...then go back to work.
-  
-  git stash pop > /dev/null
-  
-  cat main.cpp
-  
+
+
+
+             Addendum               
+
+
+
