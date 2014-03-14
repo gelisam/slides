@@ -2,9 +2,9 @@
 |        git stash       |
 *------------------------*
 
-But we're in the middle of something!
+"git stash" to the rescue.
 
+  git stash
+  
   cat main.cpp
- 
-  git status
   
