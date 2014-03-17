@@ -1,12 +1,17 @@
+*------------------------*
+|        git merge       |
+*------------------------*
+
+How to create a spaghetti history:
+
+  git push
+  
+  git pull
+  
+  git push
 
 
+The result:
 
-    Merging the branch into master:
-        Two Schools of Thought         
-          
-          1) linear history
-          2) bubble history
-          
-        VS the default:
-          3) spaghetti history
+  git log --graph --oneline --all --decorate
 
