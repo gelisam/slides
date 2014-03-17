@@ -1,8 +1,12 @@
-*------------------------*
-|      git rebase -i     |
-*------------------------*
 
-The rewritten history is easier to read:
 
-  rm -rf ../sourcetree-repo && cp -r . ../sourcetree-repo
+
+    Merging the branch into master
+        
+          
+          
+          
+
+
+
 
