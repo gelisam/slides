@@ -87,3 +87,54 @@ ac2096fbf5f81e88bf3b9bb7eb541103bb73b600 6c3a5f89d3cecd7c464b6f88ce842269da24752
 cedde0f0083877d3a78a9b2647f5f647a36adc5e 9a4df275ff74e2a0da23ef3c9b4e0caee4722bf1 Samuel Gélineau <sgelineau@innobec.com> 1395069281 -0400	rebase -i (reword): WIP
 9a4df275ff74e2a0da23ef3c9b4e0caee4722bf1 0ede61ac6626c858b257241c6b0a182b16fc0192 Samuel Gélineau <sgelineau@innobec.com> 1395069282 -0400	rebase -i (reword): WIP add example
 0ede61ac6626c858b257241c6b0a182b16fc0192 0ede61ac6626c858b257241c6b0a182b16fc0192 Samuel Gélineau <sgelineau@innobec.com> 1395069285 -0400	rebase -i (finish): returning to refs/heads/mybranch
+0ede61ac6626c858b257241c6b0a182b16fc0192 0bc1f06ff216620e2bb72ff600b4a99a947163d7 Samuel Gélineau <sgelineau@innobec.com> 1395070984 -0400	checkout: moving from mybranch to 0bc1f06ff216620e2bb72ff600b4a99a947163d7
+0bc1f06ff216620e2bb72ff600b4a99a947163d7 41797556715423b9de82570566af02e01f8e009e Samuel Gélineau <sgelineau@innobec.com> 1395070984 -0400	rebase -i (pick): WIP add comment
+41797556715423b9de82570566af02e01f8e009e 0bc1f06ff216620e2bb72ff600b4a99a947163d7 Samuel Gélineau <sgelineau@innobec.com> 1395070985 -0400	rebase -i (fixup): updating HEAD
+0bc1f06ff216620e2bb72ff600b4a99a947163d7 1c294355504f1df5ed4e479deb6f8462757405ec Samuel Gélineau <sgelineau@innobec.com> 1395070985 -0400	rebase -i (fixup): # This is a combination of 2 commits.
+1c294355504f1df5ed4e479deb6f8462757405ec 0bc1f06ff216620e2bb72ff600b4a99a947163d7 Samuel Gélineau <sgelineau@innobec.com> 1395070985 -0400	rebase -i (fixup): updating HEAD
+0bc1f06ff216620e2bb72ff600b4a99a947163d7 9a76fd51b94e513ea189e1f73e5cd49b147d6809 Samuel Gélineau <sgelineau@innobec.com> 1395070985 -0400	rebase -i (fixup): # This is a combination of 3 commits.
+9a76fd51b94e513ea189e1f73e5cd49b147d6809 0bc1f06ff216620e2bb72ff600b4a99a947163d7 Samuel Gélineau <sgelineau@innobec.com> 1395070986 -0400	rebase -i (fixup): updating HEAD
+0bc1f06ff216620e2bb72ff600b4a99a947163d7 74d5d19484aee77124260466eaca1cbaa296b542 Samuel Gélineau <sgelineau@innobec.com> 1395070986 -0400	rebase -i (fixup): # This is a combination of 4 commits.
+74d5d19484aee77124260466eaca1cbaa296b542 0bc1f06ff216620e2bb72ff600b4a99a947163d7 Samuel Gélineau <sgelineau@innobec.com> 1395070986 -0400	rebase -i (fixup): updating HEAD
+0bc1f06ff216620e2bb72ff600b4a99a947163d7 9345cf079b7c11c01592c4c58d74904a20f9314a Samuel Gélineau <sgelineau@innobec.com> 1395070986 -0400	rebase -i (fixup): # This is a combination of 5 commits.
+9345cf079b7c11c01592c4c58d74904a20f9314a 0bc1f06ff216620e2bb72ff600b4a99a947163d7 Samuel Gélineau <sgelineau@innobec.com> 1395070987 -0400	rebase -i (fixup): updating HEAD
+0bc1f06ff216620e2bb72ff600b4a99a947163d7 32933ec40a4f98d98d254f9670a5f00c5306b8e5 Samuel Gélineau <sgelineau@innobec.com> 1395070987 -0400	rebase -i (fixup): # This is a combination of 6 commits.
+32933ec40a4f98d98d254f9670a5f00c5306b8e5 0bc1f06ff216620e2bb72ff600b4a99a947163d7 Samuel Gélineau <sgelineau@innobec.com> 1395070987 -0400	rebase -i (fixup): updating HEAD
+0bc1f06ff216620e2bb72ff600b4a99a947163d7 07e9c5bf9297ce2334e01ed3d177b65631310476 Samuel Gélineau <sgelineau@innobec.com> 1395070987 -0400	rebase -i (fixup): # This is a combination of 7 commits.
+07e9c5bf9297ce2334e01ed3d177b65631310476 0bc1f06ff216620e2bb72ff600b4a99a947163d7 Samuel Gélineau <sgelineau@innobec.com> 1395070987 -0400	rebase -i (fixup): updating HEAD
+0bc1f06ff216620e2bb72ff600b4a99a947163d7 e640559d3115a12d09cfc877e788efcf24da35a8 Samuel Gélineau <sgelineau@innobec.com> 1395070988 -0400	rebase -i (fixup): WIP add comment
+e640559d3115a12d09cfc877e788efcf24da35a8 9f404112acf2bbb17b363e906e9ee6f2e7153c0f Samuel Gélineau <sgelineau@innobec.com> 1395070988 -0400	rebase -i (pick): WIP add example
+9f404112acf2bbb17b363e906e9ee6f2e7153c0f e640559d3115a12d09cfc877e788efcf24da35a8 Samuel Gélineau <sgelineau@innobec.com> 1395070988 -0400	rebase -i (fixup): updating HEAD
+e640559d3115a12d09cfc877e788efcf24da35a8 733e3bab680bd87fd31221866fba3b426bcf7a65 Samuel Gélineau <sgelineau@innobec.com> 1395070988 -0400	rebase -i (fixup): # This is a combination of 2 commits.
+733e3bab680bd87fd31221866fba3b426bcf7a65 e640559d3115a12d09cfc877e788efcf24da35a8 Samuel Gélineau <sgelineau@innobec.com> 1395070989 -0400	rebase -i (fixup): updating HEAD
+e640559d3115a12d09cfc877e788efcf24da35a8 79d403de666e2f086c0db248013df8289c8d3117 Samuel Gélineau <sgelineau@innobec.com> 1395070989 -0400	rebase -i (fixup): # This is a combination of 3 commits.
+79d403de666e2f086c0db248013df8289c8d3117 e640559d3115a12d09cfc877e788efcf24da35a8 Samuel Gélineau <sgelineau@innobec.com> 1395070989 -0400	rebase -i (fixup): updating HEAD
+e640559d3115a12d09cfc877e788efcf24da35a8 8cc4826b7204e8202a5bbbab2c6694ec313534da Samuel Gélineau <sgelineau@innobec.com> 1395070989 -0400	rebase -i (fixup): # This is a combination of 4 commits.
+8cc4826b7204e8202a5bbbab2c6694ec313534da e640559d3115a12d09cfc877e788efcf24da35a8 Samuel Gélineau <sgelineau@innobec.com> 1395070990 -0400	rebase -i (fixup): updating HEAD
+e640559d3115a12d09cfc877e788efcf24da35a8 f1d826a1642dded3032e665d1e895ef2068ca2a6 Samuel Gélineau <sgelineau@innobec.com> 1395070990 -0400	rebase -i (fixup): # This is a combination of 5 commits.
+f1d826a1642dded3032e665d1e895ef2068ca2a6 e640559d3115a12d09cfc877e788efcf24da35a8 Samuel Gélineau <sgelineau@innobec.com> 1395070990 -0400	rebase -i (fixup): updating HEAD
+e640559d3115a12d09cfc877e788efcf24da35a8 f2efd7db6cbf634a63e135cdabc4683a84a220e6 Samuel Gélineau <sgelineau@innobec.com> 1395070990 -0400	rebase -i (fixup): # This is a combination of 6 commits.
+f2efd7db6cbf634a63e135cdabc4683a84a220e6 e640559d3115a12d09cfc877e788efcf24da35a8 Samuel Gélineau <sgelineau@innobec.com> 1395070990 -0400	rebase -i (fixup): updating HEAD
+e640559d3115a12d09cfc877e788efcf24da35a8 56d65a26e011c44381027a15267745b77f9b370f Samuel Gélineau <sgelineau@innobec.com> 1395070991 -0400	rebase -i (fixup): # This is a combination of 7 commits.
+56d65a26e011c44381027a15267745b77f9b370f e640559d3115a12d09cfc877e788efcf24da35a8 Samuel Gélineau <sgelineau@innobec.com> 1395070991 -0400	rebase -i (fixup): updating HEAD
+e640559d3115a12d09cfc877e788efcf24da35a8 74d918bd437e1a5478f94858bf5718dbcfe90da4 Samuel Gélineau <sgelineau@innobec.com> 1395070991 -0400	rebase -i (fixup): # This is a combination of 8 commits.
+74d918bd437e1a5478f94858bf5718dbcfe90da4 e640559d3115a12d09cfc877e788efcf24da35a8 Samuel Gélineau <sgelineau@innobec.com> 1395070991 -0400	rebase -i (fixup): updating HEAD
+e640559d3115a12d09cfc877e788efcf24da35a8 4a99bbb7146457d8bb0eea21c0ceeaf3c94dd67c Samuel Gélineau <sgelineau@innobec.com> 1395070991 -0400	rebase -i (fixup): # This is a combination of 9 commits.
+4a99bbb7146457d8bb0eea21c0ceeaf3c94dd67c e640559d3115a12d09cfc877e788efcf24da35a8 Samuel Gélineau <sgelineau@innobec.com> 1395070992 -0400	rebase -i (fixup): updating HEAD
+e640559d3115a12d09cfc877e788efcf24da35a8 270b558c1ec46ffa2b6c348bbf3c2e088f598625 Samuel Gélineau <sgelineau@innobec.com> 1395070992 -0400	rebase -i (fixup): WIP add example
+270b558c1ec46ffa2b6c348bbf3c2e088f598625 270b558c1ec46ffa2b6c348bbf3c2e088f598625 Samuel Gélineau <sgelineau@innobec.com> 1395070993 -0400	rebase -i (finish): returning to refs/heads/mybranch
+270b558c1ec46ffa2b6c348bbf3c2e088f598625 0bc1f06ff216620e2bb72ff600b4a99a947163d7 Samuel Gélineau <sgelineau@innobec.com> 1395071053 -0400	checkout: moving from mybranch to 0bc1f06ff216620e2bb72ff600b4a99a947163d7
+0bc1f06ff216620e2bb72ff600b4a99a947163d7 e640559d3115a12d09cfc877e788efcf24da35a8 Samuel Gélineau <sgelineau@innobec.com> 1395071053 -0400	cherry-pick
+e640559d3115a12d09cfc877e788efcf24da35a8 ff9292e062315fdb9d00fdf32b05fe39056418f8 Samuel Gélineau <sgelineau@innobec.com> 1395071053 -0400	rebase -i (reword): add comment
+ff9292e062315fdb9d00fdf32b05fe39056418f8 d88617291deeed2f0f021bbf684b87b560a494a9 Samuel Gélineau <sgelineau@innobec.com> 1395071055 -0400	rebase -i (reword): WIP add example
+d88617291deeed2f0f021bbf684b87b560a494a9 6f3653cc320c530cc1971e20655b5ad21a297a87 Samuel Gélineau <sgelineau@innobec.com> 1395071055 -0400	rebase -i (reword): add example
+6f3653cc320c530cc1971e20655b5ad21a297a87 6f3653cc320c530cc1971e20655b5ad21a297a87 Samuel Gélineau <sgelineau@innobec.com> 1395071058 -0400	rebase -i (finish): returning to refs/heads/mybranch
+6f3653cc320c530cc1971e20655b5ad21a297a87 6f3653cc320c530cc1971e20655b5ad21a297a87 Samuel Gélineau <sgelineau@innobec.com> 1395071863 -0400	checkout: moving from mybranch to mybranch
+6f3653cc320c530cc1971e20655b5ad21a297a87 50aa4fdf497e5826ab98da1c314c7493f1ce3ecc Samuel Gélineau <sgelineau@innobec.com> 1395071868 -0400	reset: moving to 50aa4fdf497e5826ab98da1c314c7493f1ce3ecc
+50aa4fdf497e5826ab98da1c314c7493f1ce3ecc 4e461dbd0f389113b50cf816d938ee404fd86ac2 Samuel Gélineau <sgelineau@innobec.com> 1395071871 -0400	cherry-pick: add comment
+4e461dbd0f389113b50cf816d938ee404fd86ac2 d159449fcceb8fb2bd6165890859427aa98c3c5d Samuel Gélineau <sgelineau@innobec.com> 1395071871 -0400	cherry-pick: add example
+d159449fcceb8fb2bd6165890859427aa98c3c5d 0bc1f06ff216620e2bb72ff600b4a99a947163d7 Samuel Gélineau <sgelineau@innobec.com> 1395072348 -0400	checkout: moving from mybranch to master
+0bc1f06ff216620e2bb72ff600b4a99a947163d7 50aa4fdf497e5826ab98da1c314c7493f1ce3ecc Samuel Gélineau <sgelineau@innobec.com> 1395072350 -0400	reset: moving to 50aa4fdf497e5826ab98da1c314c7493f1ce3ecc
+50aa4fdf497e5826ab98da1c314c7493f1ce3ecc 66c586a2e408ad59e8d1ff6bf5b46f4f55f96c37 Samuel Gélineau <sgelineau@innobec.com> 1395072357 -0400	commit (cherry-pick): master commit #1
+66c586a2e408ad59e8d1ff6bf5b46f4f55f96c37 f6c8d9c26f2143ac2056e45ef2675c28665b8a94 Samuel Gélineau <sgelineau@innobec.com> 1395072367 -0400	commit (cherry-pick): master commit #2
+f6c8d9c26f2143ac2056e45ef2675c28665b8a94 e723dbc5f12d30ba79b0d7c978e30118115fb7d2 Samuel Gélineau <sgelineau@innobec.com> 1395072370 -0400	commit (cherry-pick): master commit #3
