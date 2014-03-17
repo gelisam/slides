@@ -1,11 +1,11 @@
-*------------------------*
-|       git branch       |
-*------------------------*
 
-Branches are often local and temporary.
-Some of us commit each time we save!
 
-But now the history looks a bit silly:
 
-  rm -rf ../sourcetree-repo && cp -r . ../sourcetree-repo
-  
+      1) 
+      2) 
+      3) 
+      4) 
+      5) git rebase --interactive
+
+
+
