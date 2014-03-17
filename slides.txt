@@ -2,39 +2,7 @@
 |      git rebase -i     |
 *------------------------*
 
-It looks like this:
+The rewritten history is easier to read:
 
-  git rebase -i branching_point
+  git log --graph --oneline --all --decorate
 
-pick 191f7f1 WIP add comment
-pick f472b4c WIP add comment
-pick 166bf0f WIP add comment
-pick fd2d53e WIP add comment
-pick 03639a0 WIP add comment
-pick a4698d2 WIP add comment
-pick d8ea61e WIP add comment
-pick 732d475 WIP add comment
-pick e1d1bc8 WIP add example
-pick d24a955 WIP add example
-pick 0a95d99 WIP add example
-pick 77e5b57 WIP add example
-pick ac2096f WIP add example
-pick 4a121a9 WIP add example
-pick 3641626 WIP add example
-pick 3af17dd WIP add example
-pick cedde0f WIP add example
-pick 0ede61a WIP add example
-
-# Rebase 0bc1f06..0ede61a onto 0bc1f06
-#
-# Commands:
-#  p, pick = use commit
-#  r, reword = use commit, but edit the commit message
-#  e, edit = use commit, but stop for amending
-#  s, squash = use commit, but meld into previous commit
-#  f, fixup = like "squash", but discard this commit's log message
-#  x, exec = run command (the rest of the line) using shell
-#
-# If you remove a line here THAT COMMIT WILL BE LOST.
-# However, if you remove everything, the rebase will be aborted.
-#
