@@ -2,16 +2,10 @@
 |        git merge       |
 *------------------------*
 
-How to create a spaghetti history:
-
-  git push
-  
-  git pull
-  
-  git push
-
-
-The result:
+As you and your colleague pull then push,
+knit and purl,
+knit and purl,
+a complex tapestry is woven:
 
   rm -rf ../sourcetree-repo && cp -r . ../sourcetree-repo
 
