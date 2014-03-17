@@ -8,7 +8,7 @@ bcb064fb52ba9fd952d06b250e68492039ff089b 1444ea5c65d37e40c3ce56427376d197bd3fd3d
 50aa4fdf497e5826ab98da1c314c7493f1ce3ecc a88d51a7d98b10a8c26db7e36a8d7186a964b8e6 Samuel Gélineau <sgelineau@innobec.com> 1395066911 -0400	commit: master commit #1
 a88d51a7d98b10a8c26db7e36a8d7186a964b8e6 1a13cfcb01d2eaa08605a8ef2df3fae4936ab52f Samuel Gélineau <sgelineau@innobec.com> 1395066913 -0400	commit: master commit #2
 1a13cfcb01d2eaa08605a8ef2df3fae4936ab52f 0bc1f06ff216620e2bb72ff600b4a99a947163d7 Samuel Gélineau <sgelineau@innobec.com> 1395066915 -0400	commit: master commit #3
-0bc1f06ff216620e2bb72ff600b4a99a947163d7 50aa4fdf497e5826ab98da1c314c7493f1ce3ecc Samuel Gélineau <sgelineau@innobec.com> 1395072106 -0400	reset: moving to 50aa4fdf497e5826ab98da1c314c7493f1ce3ecc
-50aa4fdf497e5826ab98da1c314c7493f1ce3ecc 8b1d6b70cab92b08c7886707a776276a0ae06e06 Samuel Gélineau <sgelineau@innobec.com> 1395072123 -0400	commit (cherry-pick): master commit #1
-8b1d6b70cab92b08c7886707a776276a0ae06e06 556977b13ab0a0d25b08e5e54b5af2d457c5befb Samuel Gélineau <sgelineau@innobec.com> 1395072138 -0400	commit (cherry-pick): master commit #2
-556977b13ab0a0d25b08e5e54b5af2d457c5befb 6e16484aaf8bb34bbb67cf675274d58decf0d797 Samuel Gélineau <sgelineau@innobec.com> 1395072142 -0400	commit (cherry-pick): master commit #3
+0bc1f06ff216620e2bb72ff600b4a99a947163d7 50aa4fdf497e5826ab98da1c314c7493f1ce3ecc Samuel Gélineau <sgelineau@innobec.com> 1395072223 -0400	reset: moving to 50aa4fdf497e5826ab98da1c314c7493f1ce3ecc
+50aa4fdf497e5826ab98da1c314c7493f1ce3ecc c762807bd4a8aef5cc3f68ad36c46061704ad0e2 Samuel Gélineau <sgelineau@innobec.com> 1395072233 -0400	commit (cherry-pick): master commit #1
+c762807bd4a8aef5cc3f68ad36c46061704ad0e2 2b22dbd38b78b83fddec6e7af93e019ba1c62521 Samuel Gélineau <sgelineau@innobec.com> 1395072239 -0400	commit (cherry-pick): master commit #2
+2b22dbd38b78b83fddec6e7af93e019ba1c62521 b1a1b046c2efd9723842b2c09d034af09e784aa7 Samuel Gélineau <sgelineau@innobec.com> 1395072243 -0400	commit (cherry-pick): master commit #3

@@ -2,7 +2,10 @@
 |       git branch       |
 *------------------------*
 
-A few commits later, the branches diverge:
+Branches are often local and temporary.
+Some of us commit each time we save!
+
+But now the history looks a bit silly:
 
   rm -rf ../sourcetree-repo && cp -r . ../sourcetree-repo
   
