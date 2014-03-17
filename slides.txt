@@ -6,7 +6,7 @@
           
           1) linear history
           2) bubble history
-
-
-
+          
+        VS the default:
+          3) spaghetti history
 
