@@ -2,11 +2,7 @@
 |       git bisect       |
 *------------------------*
 
-But wait, was it crashing before?
+What has changed since?
 
-  git checkout v1.0
-  
-  make
+  rm -rf ../sourcetree-repo && cp -r . ../sourcetree-repo && open ../sourcetree-repo
 
-
-Didn't think so.
