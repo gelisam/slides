@@ -2,7 +2,11 @@
 |       git bisect       |
 *------------------------*
 
-What has changed since?
+"git bisect" to the rescue!
 
-  rm -rf ../sourcetree-repo && cp -r . ../sourcetree-repo && open ../sourcetree-repo
-
+                 now broken
+                     |   worked
+                     |      |
+                     v      v
+  git bisect start master v1.0
+  
