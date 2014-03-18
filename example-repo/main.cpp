@@ -1,6 +1,10 @@
 #include <stdio.h>
 
-// Greet the given person or entity
+/* Greet the given person or entity.
+ * 
+ * >>> say_hello("world")
+ * hello world
+ */
 void say_hello(char* to_whom) {
   printf("hello %s\n", to_whom);
 }
