@@ -1,13 +1,10 @@
-*------------------------*
-|       git bisect       |
-*------------------------*
 
-Sometimes you want to find the commit which *fixed* a crash.
 
-  # not crashing is "bad" (i.e., the commit you want is earlier)
-  git bisect bad
-  
-  # crashing is "good" (i.e., the commit you want is later)
-  git bisect good
 
-...
+
+        Three New Places              
+    
+       in addition to:
+       * your working copy
+       * the remote repo
+
