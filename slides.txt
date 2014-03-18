@@ -2,9 +2,12 @@
 |       git branch       |
 *------------------------*
 
-Each stash is a branch in disguise!
+Here is how to create a branch explicitly:
 
-Let's visualize the branching...
+  git checkout -b mybranch
+
+
+And here's what the new branching looks like:
 
   rm -rf ../sourcetree-repo && cp -r . ../sourcetree-repo
   
