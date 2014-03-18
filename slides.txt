@@ -1,11 +1,20 @@
+*------------------------*
+|   git merge --rebase   |
+*------------------------*
+
+Before the merge:
+
+  git log --graph --oneline --all --decorate
 
 
+Linearize the history:
 
-    Merging the branch into master:
-        Two Schools of Thought         
-          
-          1) linear history
-          2) 
+  git pull --rebase
+  
+  git push
 
 
+The result:
+
+  git log --graph --oneline --all --decorate
 

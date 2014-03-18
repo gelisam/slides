@@ -138,15 +138,6 @@ d159449fcceb8fb2bd6165890859427aa98c3c5d 0bc1f06ff216620e2bb72ff600b4a99a947163d
 50aa4fdf497e5826ab98da1c314c7493f1ce3ecc 66c586a2e408ad59e8d1ff6bf5b46f4f55f96c37 Samuel Gélineau <sgelineau@innobec.com> 1395072357 -0400	commit (cherry-pick): master commit #1
 66c586a2e408ad59e8d1ff6bf5b46f4f55f96c37 f6c8d9c26f2143ac2056e45ef2675c28665b8a94 Samuel Gélineau <sgelineau@innobec.com> 1395072367 -0400	commit (cherry-pick): master commit #2
 f6c8d9c26f2143ac2056e45ef2675c28665b8a94 e723dbc5f12d30ba79b0d7c978e30118115fb7d2 Samuel Gélineau <sgelineau@innobec.com> 1395072370 -0400	commit (cherry-pick): master commit #3
-e723dbc5f12d30ba79b0d7c978e30118115fb7d2 d159449fcceb8fb2bd6165890859427aa98c3c5d Samuel Gélineau <sgelineau@innobec.com> 1395078092 -0400	checkout: moving from master to mybranch
-d159449fcceb8fb2bd6165890859427aa98c3c5d e723dbc5f12d30ba79b0d7c978e30118115fb7d2 Samuel Gélineau <sgelineau@innobec.com> 1395078549 -0400	checkout: moving from mybranch to master
-e723dbc5f12d30ba79b0d7c978e30118115fb7d2 d159449fcceb8fb2bd6165890859427aa98c3c5d Samuel Gélineau <sgelineau@innobec.com> 1395078555 -0400	reset: moving to mybranch
-d159449fcceb8fb2bd6165890859427aa98c3c5d 4e461dbd0f389113b50cf816d938ee404fd86ac2 Samuel Gélineau <sgelineau@innobec.com> 1395085622 -0400	reset: moving to 4e461db
-4e461dbd0f389113b50cf816d938ee404fd86ac2 1ce57fd341301fcb72b9d7b0569420c02f8d3153 Samuel Gélineau <sgelineau@innobec.com> 1395086099 -0400	commit (amend): my commit #1
-1ce57fd341301fcb72b9d7b0569420c02f8d3153 1ab7fbcc0bfb5dd8c9296beb92dc4b2afab4884c Samuel Gélineau <sgelineau@innobec.com> 1395086267 -0400	reset: moving to 1ab7fbc
-1ab7fbcc0bfb5dd8c9296beb92dc4b2afab4884c 3da1271fc76d41be2115bb3751776089fee10907 Samuel Gélineau <sgelineau@innobec.com> 1395086289 -0400	cherry-pick: my commit #1
-3da1271fc76d41be2115bb3751776089fee10907 f4d137ca7027b18d7893a490ac1f3466628c018b Samuel Gélineau <sgelineau@innobec.com> 1395086330 -0400	pull: Merge made by the 'recursive' strategy.
-f4d137ca7027b18d7893a490ac1f3466628c018b 5ac4c30b1914ada8a6ba3d2d4fc27d232a000be2 Samuel Gélineau <sgelineau@innobec.com> 1395086834 -0400	commit: my commit #2
-5ac4c30b1914ada8a6ba3d2d4fc27d232a000be2 dd2b26fe94e890ef98115ec04571715f7283622e Samuel Gélineau <sgelineau@innobec.com> 1395086845 -0400	pull: Merge made by the 'recursive' strategy.
-dd2b26fe94e890ef98115ec04571715f7283622e 4599bfdbd42b57fb76ecbcbdca151f99dcac8dc6 Samuel Gélineau <sgelineau@innobec.com> 1395086898 -0400	commit: my commit #3
-4599bfdbd42b57fb76ecbcbdca151f99dcac8dc6 347f605869ebffc38de0cd0ea40bd134d6ba0083 Samuel Gélineau <sgelineau@innobec.com> 1395086906 -0400	pull: Merge made by the 'recursive' strategy.
+e723dbc5f12d30ba79b0d7c978e30118115fb7d2 e723dbc5f12d30ba79b0d7c978e30118115fb7d2 Samuel Gélineau <sgelineau@innobec.com> 1395168666 -0400	checkout: moving from master to master
+e723dbc5f12d30ba79b0d7c978e30118115fb7d2 d159449fcceb8fb2bd6165890859427aa98c3c5d Samuel Gélineau <sgelineau@innobec.com> 1395168685 -0400	checkout: moving from master to mybranch
+d159449fcceb8fb2bd6165890859427aa98c3c5d d159449fcceb8fb2bd6165890859427aa98c3c5d Samuel Gélineau <sgelineau@innobec.com> 1395168697 -0400	checkout: moving from mybranch to master
