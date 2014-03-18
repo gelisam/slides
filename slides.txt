@@ -1,11 +1,20 @@
+*------------------------*
+|   git merge --rebase   |
+*------------------------*
+
+Before the merge:
+
+  rm -rf ../sourcetree-repo && cp -r . ../sourcetree-repo
 
 
+Linearize the history:
 
-    Merging the branch into master:
-        Two Schools of Thought         
-          
-          1) linear history
-          2) 
+  git pull --rebase
+  
+  git push
 
 
+The result:
+
+  rm -rf ../sourcetree-repo && cp -r . ../sourcetree-repo
 
