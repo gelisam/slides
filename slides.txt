@@ -1,11 +1,11 @@
-*------------------------*
-|   git merge --rebase   |
-*------------------------*
 
-As you and your colleague rebase then push,
-detach and append,
-detach and append,
-the history remains linear:
 
-  rm -rf ../sourcetree-repo && cp -r . ../sourcetree-repo
+
+    Merging the branch into master:
+        Two Schools of Thought         
+          
+          1) 
+          2) bubble history
+
+
 
