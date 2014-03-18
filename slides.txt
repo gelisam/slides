@@ -2,19 +2,10 @@
 |   git merge --rebase   |
 *------------------------*
 
-Before the merge:
-
-  rm -rf ../sourcetree-repo && cp -r . ../sourcetree-repo
-
-
-Linearize the history:
-
-  git pull --rebase
-  
-  git push
-
-
-The result:
+As you and your colleague rebase then push,
+detach and append,
+detach and append,
+the history remains linear:
 
   rm -rf ../sourcetree-repo && cp -r . ../sourcetree-repo
 

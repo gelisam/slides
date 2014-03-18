@@ -1,15 +1,6 @@
-0000000000000000000000000000000000000000 e3802229a9406c0572f0b069de6524ce93f06326 Samuel Gélineau <sgelineau@innobec.com> 1394741811 -0400	commit (initial): simple hello world
-e3802229a9406c0572f0b069de6524ce93f06326 bcb064fb52ba9fd952d06b250e68492039ff089b Samuel Gélineau <sgelineau@innobec.com> 1394741840 -0400	commit (amend): simple hello world
-bcb064fb52ba9fd952d06b250e68492039ff089b 1444ea5c65d37e40c3ce56427376d197bd3fd3d0 Samuel Gélineau <sgelineau@innobec.com> 1394744939 -0400	commit (amend): simple hello world
-1444ea5c65d37e40c3ce56427376d197bd3fd3d0 2162987536fe2aa55a9f2b7fcd56f672184b26a0 Samuel Gélineau <sgelineau@innobec.com> 1394834150 -0400	commit: add exclamation mark, fixes showstopper
-2162987536fe2aa55a9f2b7fcd56f672184b26a0 25d90bc9311d81338b6d7f574f34226d9c927585 Samuel Gélineau <sgelineau@innobec.com> 1394834286 -0400	commit (amend): refactor to hello.{h,c}
-25d90bc9311d81338b6d7f574f34226d9c927585 1444ea5c65d37e40c3ce56427376d197bd3fd3d0 Samuel Gélineau <sgelineau@innobec.com> 1394834459 -0400	reset: moving to HEAD^
-1444ea5c65d37e40c3ce56427376d197bd3fd3d0 50aa4fdf497e5826ab98da1c314c7493f1ce3ecc Samuel Gélineau <sgelineau@innobec.com> 1394834583 -0400	commit: add exclamation mark, fixes showstopper
-50aa4fdf497e5826ab98da1c314c7493f1ce3ecc a88d51a7d98b10a8c26db7e36a8d7186a964b8e6 Samuel Gélineau <sgelineau@innobec.com> 1395066911 -0400	commit: master commit #1
-a88d51a7d98b10a8c26db7e36a8d7186a964b8e6 1a13cfcb01d2eaa08605a8ef2df3fae4936ab52f Samuel Gélineau <sgelineau@innobec.com> 1395066913 -0400	commit: master commit #2
-1a13cfcb01d2eaa08605a8ef2df3fae4936ab52f 0bc1f06ff216620e2bb72ff600b4a99a947163d7 Samuel Gélineau <sgelineau@innobec.com> 1395066915 -0400	commit: master commit #3
-0bc1f06ff216620e2bb72ff600b4a99a947163d7 50aa4fdf497e5826ab98da1c314c7493f1ce3ecc Samuel Gélineau <sgelineau@innobec.com> 1395072350 -0400	reset: moving to 50aa4fdf497e5826ab98da1c314c7493f1ce3ecc
-50aa4fdf497e5826ab98da1c314c7493f1ce3ecc 66c586a2e408ad59e8d1ff6bf5b46f4f55f96c37 Samuel Gélineau <sgelineau@innobec.com> 1395072357 -0400	commit (cherry-pick): master commit #1
-66c586a2e408ad59e8d1ff6bf5b46f4f55f96c37 f6c8d9c26f2143ac2056e45ef2675c28665b8a94 Samuel Gélineau <sgelineau@innobec.com> 1395072367 -0400	commit (cherry-pick): master commit #2
-f6c8d9c26f2143ac2056e45ef2675c28665b8a94 e723dbc5f12d30ba79b0d7c978e30118115fb7d2 Samuel Gélineau <sgelineau@innobec.com> 1395072370 -0400	commit (cherry-pick): master commit #3
-e723dbc5f12d30ba79b0d7c978e30118115fb7d2 d159449fcceb8fb2bd6165890859427aa98c3c5d Samuel Gélineau <sgelineau@innobec.com> 1395168692 -0400	branch: Reset to mybranch
+0000000000000000000000000000000000000000 bfdfa29b45e414b35c7a2f98ed9a89e99dc5d0a4 Samuel Gélineau <sgelineau@innobec.com> 1395166194 -0400	clone: from /home/Samuel/working/torvalds/slides/example-remote/
+bfdfa29b45e414b35c7a2f98ed9a89e99dc5d0a4 601ac019ef72a28bd42da55f09c9af24403e7036 Samuel Gélineau <sgelineau@innobec.com> 1395166583 -0400	reset: moving to HEAD^
+601ac019ef72a28bd42da55f09c9af24403e7036 3a0aa8f159dd7abef48a7e5e3a848811175d61a2 Samuel Gélineau <sgelineau@innobec.com> 1395166596 -0400	commit: my commit #2
+3a0aa8f159dd7abef48a7e5e3a848811175d61a2 4f82e5eead9975ace3555efd6198e9a7e7ed6f30 Samuel Gélineau <sgelineau@innobec.com> 1395167075 -0400	commit: my commit #3
+4f82e5eead9975ace3555efd6198e9a7e7ed6f30 cb23350d4444b8d2a5950b9cb5e9b7b956a8ed8b Samuel Gélineau <sgelineau@innobec.com> 1395168829 -0400	rebase finished: refs/heads/master onto cb23350d4444b8d2a5950b9cb5e9b7b956a8ed8b
+cb23350d4444b8d2a5950b9cb5e9b7b956a8ed8b 5ee335233b2bdf38e13a0fa973836f6a7b45c15b Samuel Gélineau <sgelineau@innobec.com> 1395172979 -0400	commit: my commit #3
