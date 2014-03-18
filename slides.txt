@@ -1,11 +1,20 @@
+*------------------------*
+|   git merge --no-ff    |
+*------------------------*
+
+Always work on a branch:
+
+  git log --graph --oneline --all --decorate
 
 
+Create a feature bubble:
 
-    Merging the branch into master:
-        Two Schools of Thought         
-          
-          1) 
-          2) bubble history
+  git merge --no-ff topic/myfeature
+  
+  git push
+  
 
+The result:
 
+  git log --graph --oneline --all --decorate
 
