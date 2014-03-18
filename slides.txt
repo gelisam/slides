@@ -2,19 +2,10 @@
 |   git merge --no-ff    |
 *------------------------*
 
-Always work on a branch:
-
-  rm -rf ../sourcetree-repo && cp -r . ../sourcetree-repo
-
-
-Create a feature bubble:
-
-  git merge --no-ff topic/myfeature
-  
-  git push
-  
-
-The result:
+As you and your colleague
+branch then merge,
+branch then merge,
+the history remains linear, with one bubble per feature:
 
   rm -rf ../sourcetree-repo && cp -r . ../sourcetree-repo
 
