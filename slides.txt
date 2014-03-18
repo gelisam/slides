@@ -2,11 +2,31 @@
 |       git bisect       |
 *------------------------*
 
-"git bisect" to the rescue!
+It's just binary search.
 
-                 now broken
-                     |   worked
-                     |      |
-                     v      v
   git bisect start master v1.0
+Bisecting: 14 revisions left to test after this (roughly 4 steps)
+[13c8e33af1371e62b7b4142d188f9e2ab12d8f5a] my commit #15
+  
+  make
+  
+  git bisect bad
+  
+  make
+  
+  git bisect good
+  
+  make
+  
+  git bisect bad
+  
+  make
+  
+  git bisect bad
+  
+  make
+  
+  git bisect good
+  
+  git show 4206a791a2f2ebc2e6e02953bb1711d094357940
   
