@@ -1,11 +1,8 @@
+*------------------------*
+|       git bisect       |
+*------------------------*
 
+Suppose you need to debug a crash.
 
-
-      1) git bisect
-      2) 
-      3) 
-      4) 
-      5) 
-
-
-
+  make
+  
