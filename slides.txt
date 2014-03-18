@@ -2,7 +2,11 @@
 |       git bisect       |
 *------------------------*
 
-Suppose you need to debug a crash.
+But wait, was it crashing before?
 
-  make
+  git checkout v1.0
   
+  make
+
+
+Didn't think so.
