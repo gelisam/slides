@@ -5,6 +5,12 @@
 But we're in the middle of something!
 
   cat main.cpp
+#include "hello.h"
+
+int main() {
+  say_hello("world");
+  return 0;
+}
  
   git status
   
