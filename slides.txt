@@ -2,21 +2,9 @@
 |        git stash       |
 *------------------------*
 
-"git stash" to the rescue.
+Save the day!
 
-  git stash
-Saved working directory and index state WIP on master: 1444ea5 simple hello world
-HEAD is now at 1444ea5 simple hello world
+  git commit -am "add exclamation mark, fixes showstopper"
   
-  cat main.cpp
-#include <stdio.h>
-
-void say_hello(char* to_whom) {
-  printf("hello %s\n", to_whom);
-}
-
-int main() {
-  say_hello("world!");
-  return 0;
-}
+  git push
   
