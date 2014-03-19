@@ -33,4 +33,4 @@ Split into 2 hunks.
 +#include "hello.h"
 
  int main() {
-Stage this hunk [y,n,q,a,d,/,j,J,g,e,?]? 
+Stage this hunk [y,n,q,a,d,/,j,J,g,e,?]? n
