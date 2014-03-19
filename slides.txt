@@ -5,11 +5,13 @@
 This time, instead of fixing a bug, let's refactor:
 
   cat main.cpp
+[[
 #include <stdio.h>
 
 void say_hello(char* to_whom) {
   printf("hello %s\n", to_whom);
 }
+]]:!refactor-to-file hello
 
 int main() {
   say_hello("world");
