@@ -2,9 +2,7 @@
 |       git add -p       |
 *------------------------*
 
-Same example as before:
+Only add the typo:
 
-  cat main.cpp
- 
-  :!refactor-to-file hello
-  
+  git add -p
+...
