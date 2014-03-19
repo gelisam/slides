@@ -41,4 +41,4 @@ Stage this hunk [y,n,q,a,d,/,j,J,g,e,?]? n
 +  say_hello("world");
    return 0;
  }
-Stage this hunk [y,n,q,a,d,/,K,g,e,?]? 
+Stage this hunk [y,n,q,a,d,/,K,g,e,?]? y
