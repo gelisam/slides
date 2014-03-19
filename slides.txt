@@ -1,11 +1,14 @@
+*------------------------*
+|       git add -p       |
+*------------------------*
 
+If you know "git add",
+you know the second of the new places:
 
-
-      1) 
-      2) 
-      3) git add -p
-      4) 
-      5) 
-
-
-
+       in addition to:
+       
+       * your working copy
+       
+       * your local repo
+       
+       * the remote repo
