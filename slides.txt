@@ -2,16 +2,7 @@
 |       git bisect       |
 *------------------------*
 
-But wait, was it crashing before?
+What has changed since?
 
-  git checkout v1.0
-Note: checking out 'v1.0'.
-HEAD is now at bcb064f... simple hello world
-  
-  make
-gcc -W -Wall -o a.out hello.c
-./a.out
-hello world
+  git log --oneline v1.0..master
 
-
-Didn't think so.
