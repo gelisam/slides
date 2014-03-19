@@ -8,7 +8,7 @@ you know the second of the new places:
        in addition to:
        
        * your working copy
-       
+       * the staging area
        * your local repo
        
        * the remote repo
