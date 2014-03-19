@@ -5,6 +5,8 @@
 Same example as usual:
 
   ls
+main.cpp
+Makefile
   
   make
   
