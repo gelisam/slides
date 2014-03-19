@@ -14,4 +14,20 @@ Rewrite the commit instead:
  create mode 100644 hello.h
   
   git log --stat
-  
+commit 1402c4f09b7b30129f7249c77c3c379f2cbda033
+Author: Samuel Gélineau <sgelineau@innobec.com>
+Date:   Thu Mar 13 17:31:00 2014 -0400
+
+    refactor to hello.{h,c}
+
+ hello.cpp |    8 ++++++++
+ hello.h   |    8 ++++++++
+ main.cpp  |    6 +-----
+ 3 files changed, 17 insertions(+), 5 deletions(-)
+
+commit 1444ea5c65d37e40c3ce56427376d197bd3fd3d0
+Author: Samuel Gélineau <sgelineau@innobec.com>
+Date:   Thu Mar 13 16:16:51 2014 -0400
+
+    simple hello world
+
