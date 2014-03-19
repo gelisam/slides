@@ -2,29 +2,9 @@
 |   git commit --amend   |
 *------------------------*
 
-This time, instead of fixing a bug, let's refactor:
+git add, git commit...
 
-  cat main.cpp
-#include "hello.h"
-
-int main() {
-  say_hello("world");
-  return 0;
-}
- 
-  cat hello.h
-#ifndef HELLO_H
-#define HELLO_H
-
-void say_hello(char* to_whom);
-
-#endif
+  git add main.cpp
   
-  cat hello.cpp
-#include "hello.h"
-#include <stdio.h>
-
-void say_hello(char* to_whom) {
-  printf("hello %s\n", to_whom);
-}
+  git commit -m "refactor to file"
   
