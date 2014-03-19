@@ -1,85 +1,8 @@
-*------------------------*
-|       git bisect       |
-*------------------------*
 
-It's just binary search.
 
-  git bisect start master v1.0
-Bisecting: 14 revisions left to test after this (roughly 4 steps)
-[13c8e33af1371e62b7b4142d188f9e2ab12d8f5a] my commit #15
-  
-  make
-gcc -o a.out hello.c
-./a.out
-Makefile:5: recipe for target `test' failed
-make: *** [test] Segmentation fault (core dumped)
-  
-  git bisect bad
-Bisecting: 7 revisions left to test after this (roughly 3 steps)
-[bbfec2911b3b14a6eb1aa0a4776411a79f10ed21] my commit #7
-  
-  make
-gcc -o a.out hello.c
-./a.out
-hello world
-  
-  git bisect good
-Bisecting: 3 revisions left to test after this (roughly 2 steps)
-[784979017329026ab026f8dfa354e9f4b7c7cae9] my commit #11
-  
-  make
-gcc -o a.out hello.c
-./a.out
-Makefile:5: recipe for target `test' failed
-make: *** [test] Segmentation fault (core dumped)
-  
-  git bisect bad
-Bisecting: 1 revision left to test after this (roughly 1 step)
-[4206a791a2f2ebc2e6e02953bb1711d094357940] my commit #9
-  
-  make
-gcc -o a.out hello.c
-./a.out
-Makefile:5: recipe for target `test' failed
-make: *** [test] Segmentation fault (core dumped)
-  
-  git bisect bad
-Bisecting: 0 revisions left to test after this (roughly 0 steps)
-[d3c71832584f38b3aa85b24f2106d438e30a90f5] my commit #8
-  
-  make
-gcc -o a.out hello.c
-./a.out
-hello world
-  
-  git bisect good
-4206a791a2f2ebc2e6e02953bb1711d094357940 is the first bad commit
-commit 4206a791a2f2ebc2e6e02953bb1711d094357940
-Author: Samuel Gélineau <sgelineau@innobec.com>
-Date:   Tue Mar 18 17:14:30 2014 -0400
 
-    my commit #9
 
-:100644 100644 920b26cabe5e8ae160351454fdb27d93162e2f70 9b0f1e9c4e07670469bf5faeaa12d36012c81623 M	hello.c
-  
-  git show 4206a791a2f2ebc2e6e02953bb1711d094357940
-commit 4206a791a2f2ebc2e6e02953bb1711d094357940
-Author: Samuel Gélineau <sgelineau@innobec.com>
-Date:   Tue Mar 18 17:14:30 2014 -0400
+             Addendum               
 
-    my commit #9
 
-diff --git a/hello.c b/hello.c
-index 920b26c..9b0f1e9 100644
---- a/hello.c
-+++ b/hello.c
-@@ -1,7 +1,7 @@
- #include <stdio.h>
- 
- void say_hello(char* to_whom) {
--  printf("hello %s\n", to_whom);
-+  printf("hello %s\n", *to_whom);
- }
- 
- int main() {
-  
+
