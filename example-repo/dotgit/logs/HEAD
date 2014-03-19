@@ -81,3 +81,4 @@ f133427d26b24be0387aa68d42f74d92f330b5c3 f7e5658792f7ec74e6b0c8687b1f8cc19571e5b
 f7e5658792f7ec74e6b0c8687b1f8cc19571e5bc 645581b8e7da92452867af310c0e5990b8242193 Samuel Gélineau <sgelineau@innobec.com> 1395178041 -0400	commit (cherry-pick): my commit #30
 645581b8e7da92452867af310c0e5990b8242193 645581b8e7da92452867af310c0e5990b8242193 Samuel Gélineau <sgelineau@innobec.com> 1395178045 -0400	rebase -i (finish): returning to refs/heads/master
 645581b8e7da92452867af310c0e5990b8242193 13c8e33af1371e62b7b4142d188f9e2ab12d8f5a Samuel Gélineau <sgelineau@innobec.com> 1395179967 -0400	checkout: moving from master to 13c8e33af1371e62b7b4142d188f9e2ab12d8f5a
+13c8e33af1371e62b7b4142d188f9e2ab12d8f5a bbfec2911b3b14a6eb1aa0a4776411a79f10ed21 Samuel Gélineau <sgelineau@innobec.com> 1395262595 -0400	checkout: moving from 13c8e33af1371e62b7b4142d188f9e2ab12d8f5a to bbfec2911b3b14a6eb1aa0a4776411a79f10ed21

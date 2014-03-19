@@ -15,6 +15,8 @@ Makefile:5: recipe for target `test' failed
 make: *** [test] Segmentation fault (core dumped)
   
   git bisect bad
+Bisecting: 7 revisions left to test after this (roughly 3 steps)
+[bbfec2911b3b14a6eb1aa0a4776411a79f10ed21] my commit #7
   
   make
   
