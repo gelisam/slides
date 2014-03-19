@@ -8,5 +8,5 @@ you know one of the new places:
        in addition to:
        
        * your working copy
-       
+       * your local repo
        * the remote repo
