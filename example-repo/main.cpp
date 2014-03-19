@@ -5,6 +5,6 @@ void say_hello(char* to_whom) {
 }
 
 int main() {
-  say_hello("world!");
+  say_hello("world");
   return 0;
 }
