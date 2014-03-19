@@ -14,4 +14,20 @@ Oops :(
  create mode 100644 hello.h
   
   git log --stat
-  
+commit dafd96b13bb67c32edf76101902e2aef0556ce5a
+Author: Samuel Gélineau <sgelineau@innobec.com>
+Date:   Wed Mar 19 17:31:34 2014 -0400
+
+    forgot to add the refactored files
+
+ hello.cpp |    8 ++++++++
+ hello.h   |    8 ++++++++
+ 2 files changed, 16 insertions(+), 0 deletions(-)
+
+commit 1f53d7e0a4e42675c4b2c75ee3067430878199fb
+Author: Samuel Gélineau <sgelineau@innobec.com>
+Date:   Thu Mar 13 17:31:00 2014 -0400
+
+    refactor to file
+
+ main.cpp |    6 +-----
