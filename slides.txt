@@ -9,4 +9,6 @@ Save the day!
  1 files changed, 1 insertions(+), 1 deletions(-)
   
   git push
+To ../example-remote
+   1444ea5..a37a39e  master -> master
   
