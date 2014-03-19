@@ -1,11 +1,11 @@
-*------------------------*
-|   git merge --no-ff    |
-*------------------------*
 
-As you and your colleague
-branch then merge,
-branch then merge,
-the history remains linear, with one bubble per feature:
+Those were my favorite advanced git features:
 
-  rm -rf ../sourcetree-repo && cp -r . ../sourcetree-repo
+      1) git bisect
+      2) git commit --amend
+      3) git add -p
+      4) git stash
+      5) git rebase -i
+
+Questions? Other tricks to share?
 
