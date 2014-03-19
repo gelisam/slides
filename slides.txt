@@ -22,4 +22,4 @@ index 39e58d2..9a6d7cf 100644
 +  say_hello("world");
    return 0;
  }
-Stage this hunk [y,n,q,a,d,/,s,e,?]? 
+Stage this hunk [y,n,q,a,d,/,s,e,?]? s
