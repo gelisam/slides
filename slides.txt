@@ -34,3 +34,11 @@ Split into 2 hunks.
 
  int main() {
 Stage this hunk [y,n,q,a,d,/,j,J,g,e,?]? n
+@@ -6,5 +2,5 @@
+
+ int main() {
+-  say_hello("worlp");
++  say_hello("world");
+   return 0;
+ }
+Stage this hunk [y,n,q,a,d,/,K,g,e,?]? 
