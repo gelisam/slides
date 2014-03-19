@@ -9,4 +9,7 @@ main.cpp
 Makefile
   
   make
+g++ -W -Wall -o a.out main.cpp
+./a.out
+hello world
   
