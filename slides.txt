@@ -2,11 +2,11 @@
 |       git bisect       |
 *------------------------*
 
-Suppose you need to debug a crash.
+But wait, was it crashing before?
 
-  make
-gcc -o a.out hello.c
-./a.out
-Makefile:5: recipe for target `test' failed
-make: *** [test] Segmentation fault (core dumped)
+  git checkout v1.0
   
+  make
+
+
+Didn't think so.
