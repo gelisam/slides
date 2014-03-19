@@ -5,4 +5,21 @@
 Only add the typo:
 
   git add -p
-
+diff --git a/main.cpp b/main.cpp
+index 39e58d2..9a6d7cf 100644
+--- a/main.cpp
++++ b/main.cpp
+@@ -1,10 +1,6 @@
+-#include <stdio.h>
+-
+-void say_hello(char* to_whom) {
+-  printf("hello %s\n", to_whom);
+-}
++#include "hello.h"
+ 
+ int main() {
+-  say_hello("worlp");
++  say_hello("world");
+   return 0;
+ }
+Stage this hunk [y,n,q,a,d,/,s,e,?]? 
