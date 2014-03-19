@@ -2,17 +2,9 @@
 |        git stash       |
 *------------------------*
 
-We forgot the two new files.
+We should have done this instead:
 
-  ls
-hello.cpp
-hello.h
-main.cpp
-Makefile
+  git add .
   
-  git status
-# Untracked files:
-#
-#	hello.cpp
-#	hello.h
+  git stash
   
