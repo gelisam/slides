@@ -5,7 +5,7 @@
 The last place is less glamorous:
 
        in addition to:
-       
+       * the stash
        * your working copy    |
        * the staging area     |  more perfect
        * your local repo      |
