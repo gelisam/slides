@@ -5,6 +5,7 @@
 git add, git commit...
 
   git add main.cpp
+(no output)
   
   git commit -m "refactor to file"
   
