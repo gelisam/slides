@@ -2,13 +2,9 @@
 |        git stash       |
 *------------------------*
 
-Save the day!
-
-  git commit -am "add exclamation mark, fixes showstopper"
-[master a37a39e] add exclamation mark, fixes showstopper
- 1 files changed, 1 insertions(+), 1 deletions(-)
+...then go back to work.
   
-  git push
-To ../example-remote
-   1444ea5..a37a39e  master -> master
+  git stash pop > /dev/null
+  
+  cat main.cpp
   
