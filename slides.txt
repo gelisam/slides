@@ -5,6 +5,7 @@
 We should have done this instead:
 
   git add .
+(no output)
   
   git stash
   
