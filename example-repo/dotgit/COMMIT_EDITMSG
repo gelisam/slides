@@ -1,16 +1,18 @@
-my commit #30
-#
-# It looks like you may be committing a cherry-pick.
-# If this is not correct, please remove the file
-#	.git/CHERRY_PICK_HEAD
-# and try again.
-
+simple hello world
 
 # Please enter the commit message for your changes. Lines starting
 # with '#' will be ignored, and an empty message aborts the commit.
-# Not currently on any branch.
+# On branch master
+#
+# Initial commit
+#
+# Changes to be committed:
+#   (use "git rm --cached <file>..." to unstage)
+#
+#	new file:   Makefile
+#	new file:   hello.c
+#
 # Untracked files:
 #   (use "git add <file>..." to include in what will be committed)
 #
 #	a.out
-#	a.out.stackdump

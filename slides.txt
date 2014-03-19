@@ -1,10 +1,11 @@
 
+Each new place corresponds to a new trick:
+
+      1) 
+      2) git commit --amend
+      3) git add -p
+      4) git stash
+      5) 
 
 
-
-        Three New Places              
-    
-       in addition to:
-       * your working copy
-       * the remote repo
 
