@@ -1,11 +1,12 @@
+*------------------------*
+|        git stash       |
+*------------------------*
 
+The last place is less glamorous:
 
-
-      1) 
-      2) 
-      3) 
-      4) git stash
-      5) 
-
-
-
+       in addition to:
+       
+       * your working copy
+       * the staging area
+       * your local repo
+       * the remote repo
