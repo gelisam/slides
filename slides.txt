@@ -63,4 +63,23 @@ Date:   Tue Mar 18 17:14:30 2014 -0400
 :100644 100644 920b26cabe5e8ae160351454fdb27d93162e2f70 9b0f1e9c4e07670469bf5faeaa12d36012c81623 M	hello.c
   
   git show 4206a791a2f2ebc2e6e02953bb1711d094357940
+commit 4206a791a2f2ebc2e6e02953bb1711d094357940
+Author: Samuel Gélineau <sgelineau@innobec.com>
+Date:   Tue Mar 18 17:14:30 2014 -0400
+
+    my commit #9
+
+diff --git a/hello.c b/hello.c
+index 920b26c..9b0f1e9 100644
+--- a/hello.c
++++ b/hello.c
+@@ -1,7 +1,7 @@
+ #include <stdio.h>
+ 
+ void say_hello(char* to_whom) {
+-  printf("hello %s\n", to_whom);
++  printf("hello %s\n", *to_whom);
+ }
+ 
+ int main() {
   
