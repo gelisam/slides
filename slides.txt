@@ -5,6 +5,7 @@
 Rewrite the commit instead:
 
   git add hello.*
+(no output)
   
   git commit --amend -am "refactor to hello.{h,c}"
   
