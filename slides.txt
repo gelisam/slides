@@ -48,6 +48,9 @@ Bisecting: 0 revisions left to test after this (roughly 0 steps)
 [d3c71832584f38b3aa85b24f2106d438e30a90f5] my commit #8
   
   make
+gcc -o a.out hello.c
+./a.out
+hello world
   
   git bisect good
   
