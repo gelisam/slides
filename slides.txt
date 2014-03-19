@@ -13,6 +13,12 @@ int main() {
 }
  
   cat hello.h
+#ifndef HELLO_H
+#define HELLO_H
+
+void say_hello(char* to_whom);
+
+#endif
   
   cat hello.cpp
   
