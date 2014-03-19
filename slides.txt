@@ -2,12 +2,9 @@
 |   git commit --amend   |
 *------------------------*
 
-git add, git commit...
+Or, equivalently:
 
-  git add main.cpp
-(no output)
   
-  git commit -m "refactor to file"
-[master 3478ad7] refactor to file
- 1 files changed, 1 insertions(+), 5 deletions(-)
+  
+  git commit -am "refactor to file"
   
