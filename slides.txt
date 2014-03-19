@@ -24,6 +24,8 @@ gcc -o a.out hello.c
 hello world
   
   git bisect good
+Bisecting: 3 revisions left to test after this (roughly 2 steps)
+[784979017329026ab026f8dfa354e9f4b7c7cae9] my commit #11
   
   make
   
