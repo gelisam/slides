@@ -1,11 +1,12 @@
+*------------------------*
+|   git commit --amend   |
+*------------------------*
 
-Each new place corresponds to a new trick:
+If you know "git push",
+you know one of the new places:
 
-      1) 
-      2) git commit --amend
-      3) git add -p
-      4) git stash
-      5) 
-
-
-
+       in addition to:
+       
+       * your working copy
+       
+       * the remote repo

@@ -4,8 +4,8 @@ all: test
 test: a.out
 	./$<
 
-a.out: hello.c
-	gcc -W -Wall -o $@ $<
+a.out: main.cpp
+	g++ -W -Wall -o $@ $<
 
 
 clean:

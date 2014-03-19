@@ -10,9 +10,5 @@ simple hello world
 #   (use "git rm --cached <file>..." to unstage)
 #
 #	new file:   Makefile
-#	new file:   hello.c
+#	new file:   main.cpp
 #
-# Untracked files:
-#   (use "git add <file>..." to include in what will be committed)
-#
-#	a.out
