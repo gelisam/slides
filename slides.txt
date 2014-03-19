@@ -5,6 +5,10 @@
 We forgot the two new files.
 
   ls
+hello.cpp
+hello.h
+main.cpp
+Makefile
   
   git status
   
