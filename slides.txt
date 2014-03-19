@@ -6,7 +6,7 @@ The last place is less glamorous:
 
        in addition to:
        
-       * your working copy
-       * the staging area
-       * your local repo
-       * the remote repo
+       * your working copy    |
+       * the staging area     |  more perfect
+       * your local repo      |
+       * the remote repo      V
