@@ -1,14 +1,8 @@
-*------------------------*
-|        git stash       |
-*------------------------*
+ALERT - ALERT - ALERT - ALERT - ALERT
 
-Same example as before:
+  *******************************
+  *     Showstopper bug!!1!     *
+  * Drop everything and fix it! *
+  *******************************
 
-  cat main.cpp
-#include "hello.h"
-
-int main() {
-  say_hello("world");
-  return 0;
-}
-  
+ALERT - ALERT - ALERT - ALERT - ALERT
