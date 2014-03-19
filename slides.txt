@@ -1,11 +1,9 @@
+*------------------------*
+|      git rebase -i     |
+*------------------------*
 
+It looks like this:
 
+  git rebase -i branching_point
 
-      1) 
-      2) 
-      3) 
-      4) 
-      5) git rebase --interactive
-
-
-
+...
