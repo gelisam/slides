@@ -1,8 +1,10 @@
+*------------------------*
+|       git branch       |
+*------------------------*
 
+Each stash is a branch in disguise!
 
+Let's visualize the branching...
 
-
-             Branches               
-
-
-
+  git log --graph --oneline --all --decorate
+  
