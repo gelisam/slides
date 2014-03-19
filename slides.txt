@@ -1,10 +1,8 @@
-*------------------------*
-|        git stash       |
-*------------------------*
 
-This time we did stash everything.
 
-  ls
-  
-  git status
-  
+
+
+             Branches               
+
+
+
