@@ -1,0 +1,3 @@
+# bad: [645581b8e7da92452867af310c0e5990b8242193] my commit #30
+# good: [90b35f880001232068d943d87630390de5253b49] Turn off warnings
+git bisect start 'master' 'v1.0'
