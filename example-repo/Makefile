@@ -5,7 +5,7 @@ test: a.out
 	./$<
 
 a.out: hello.c
-	gcc -o $@ $<
+	gcc -W -Wall -o $@ $<
 
 
 clean:

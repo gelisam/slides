@@ -5,6 +5,8 @@
 But wait, was it crashing before?
 
   git checkout v1.0
+Note: checking out 'v1.0'.
+HEAD is now at bcb064f... simple hello world
   
   make
 
