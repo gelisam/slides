@@ -1,3 +1,4 @@
 0000000000000000000000000000000000000000 e3802229a9406c0572f0b069de6524ce93f06326 Samuel Gélineau <sgelineau@innobec.com> 1394741811 -0400	commit (initial): simple hello world
 e3802229a9406c0572f0b069de6524ce93f06326 bcb064fb52ba9fd952d06b250e68492039ff089b Samuel Gélineau <sgelineau@innobec.com> 1394741840 -0400	commit (amend): simple hello world
 bcb064fb52ba9fd952d06b250e68492039ff089b 1444ea5c65d37e40c3ce56427376d197bd3fd3d0 Samuel Gélineau <sgelineau@innobec.com> 1394744939 -0400	commit (amend): simple hello world
+1444ea5c65d37e40c3ce56427376d197bd3fd3d0 988ed974572231e0753b6e2c3f95ebdc8adce32e Samuel Gélineau <sgelineau@innobec.com> 1395264428 -0400	commit: refactor to file
