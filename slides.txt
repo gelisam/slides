@@ -2,13 +2,9 @@
 |       git add -p       |
 *------------------------*
 
-If you know "git add",
-you know the second of the new places:
+Same example as before:
 
-       in addition to:
-       
-       * your working copy
-       * the staging area
-       * your local repo
-       
-       * the remote repo
+  cat main.cpp
+ 
+  :!refactor-to-file hello
+  
