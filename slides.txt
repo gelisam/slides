@@ -2,18 +2,9 @@
 |        git stash       |
 *------------------------*
 
-But we're in the middle of something!
+"git stash" to the rescue.
 
+  git stash
+  
   cat main.cpp
-#include "hello.h"
-
-int main() {
-  say_hello("world");
-  return 0;
-}
- 
-  git status
-# Untracked files:
-#
-#	hello.cpp
-#	hello.h
+  
