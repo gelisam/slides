@@ -13,4 +13,7 @@ int main() {
 }
  
   git status
-  
+# Untracked files:
+#
+#	hello.cpp
+#	hello.h
