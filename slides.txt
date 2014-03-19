@@ -38,6 +38,10 @@ Bisecting: 1 revision left to test after this (roughly 1 step)
 [4206a791a2f2ebc2e6e02953bb1711d094357940] my commit #9
   
   make
+gcc -o a.out hello.c
+./a.out
+Makefile:5: recipe for target `test' failed
+make: *** [test] Segmentation fault (core dumped)
   
   git bisect bad
   
