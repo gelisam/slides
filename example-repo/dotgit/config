@@ -4,3 +4,6 @@
 	bare = false
 	logallrefupdates = true
 	ignorecase = true
+[remote "origin"]
+	url = ../example-remote
+	fetch = +refs/heads/*:refs/remotes/origin/*
