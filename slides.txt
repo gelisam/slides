@@ -5,4 +5,8 @@
 All right! What's next?
 
   git status
+# Untracked files:
+#
+#	hello.cpp
+#	hello.h
   
