@@ -8,6 +8,10 @@ Oops :(
 (no output)
   
   git commit -am "forgot to add the refactored files"
+[master dafd96b] forgot to add the refactored files
+ 2 files changed, 16 insertions(+), 0 deletions(-)
+ create mode 100644 hello.cpp
+ create mode 100644 hello.h
   
   git log --stat
   
