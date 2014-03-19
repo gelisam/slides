@@ -8,6 +8,10 @@ Rewrite the commit instead:
 (no output)
   
   git commit --amend -am "refactor to hello.{h,c}"
+[master 1402c4f] refactor to hello.{h,c}
+ 3 files changed, 17 insertions(+), 5 deletions(-)
+ create mode 100644 hello.cpp
+ create mode 100644 hello.h
   
   git log --stat
   
