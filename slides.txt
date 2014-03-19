@@ -5,13 +5,7 @@
 Same example as before:
 
   cat main.cpp
-[[
-#include <stdio.h>
-
-void say_hello(char* to_whom) {
-  printf("hello %s\n", to_whom);
-}
-]]:!refactor-to-file hello
+#include "hello.h"
 
 int main() {
   say_hello("world");
