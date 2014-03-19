@@ -1,11 +1,11 @@
 
 
 
-    Merging the branch into master
-        
+    Merging the branch into master:
+        Two Schools of Thought         
           
-          
-          
+          1) linear history
+          2) bubble history
 
 
 
