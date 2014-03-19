@@ -5,6 +5,7 @@
 Oops :(
 
   git add hello.*
+(no output)
   
   git commit -am "forgot to add the refactored files"
   
