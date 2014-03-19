@@ -16,8 +16,8 @@ void say_hello(char* to_whom) {
 }
 
 int main() {
-  say_hello("world");
+  say_hello("world!");
   return 0;
 }
   
-  (we're back to the a clean state)
+  (unlike "git add -p", we can *test* our fix)
