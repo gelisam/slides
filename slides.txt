@@ -2,11 +2,9 @@
 |        git stash       |
 *------------------------*
 
-The last place is less glamorous:
+Same example as before:
 
-       in addition to:
-       * the stash
-       * your working copy    |
-       * the staging area     |  more perfect
-       * your local repo      |
-       * the remote repo      V
+  cat main.cpp
+ 
+  :!refactor-to-file hello
+  
