@@ -5,4 +5,8 @@
 Suppose you need to debug a crash.
 
   make
+gcc -o a.out hello.c
+./a.out
+Makefile:5: recipe for target `test' failed
+make: *** [test] Segmentation fault (core dumped)
   
