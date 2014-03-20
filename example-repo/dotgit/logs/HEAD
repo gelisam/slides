@@ -2,4 +2,3 @@
 e3802229a9406c0572f0b069de6524ce93f06326 bcb064fb52ba9fd952d06b250e68492039ff089b Samuel Gélineau <sgelineau@innobec.com> 1394741840 -0400	commit (amend): simple hello world
 bcb064fb52ba9fd952d06b250e68492039ff089b 1444ea5c65d37e40c3ce56427376d197bd3fd3d0 Samuel Gélineau <sgelineau@innobec.com> 1394744939 -0400	commit (amend): simple hello world
 1444ea5c65d37e40c3ce56427376d197bd3fd3d0 1f53d7e0a4e42675c4b2c75ee3067430878199fb Samuel Gélineau <sgelineau@innobec.com> 1394746260 -0400	commit: refactor to file
-1f53d7e0a4e42675c4b2c75ee3067430878199fb dafd96b13bb67c32edf76101902e2aef0556ce5a Samuel Gélineau <sgelineau@innobec.com> 1395264694 -0400	commit: forgot to add the refactored files
