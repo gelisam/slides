@@ -7,4 +7,8 @@ Each stash is a branch in disguise!
 Let's visualize the branching...
 
   git log --graph --oneline --all --decorate
+* 50aa4fd (HEAD, master) add exclamation mark, fixes showstopper
+| * 25d90bc (stash) refactor to hello.{h,c}
+|/  
+* 1444ea5 simple hello world
   
