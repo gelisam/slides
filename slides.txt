@@ -5,6 +5,8 @@
 This time we did stash everything.
 
   ls
+main.cpp
+Makefile
   
   git status
   
