@@ -7,3 +7,5 @@ git bisect bad 13c8e33af1371e62b7b4142d188f9e2ab12d8f5a
 git bisect good bbfec2911b3b14a6eb1aa0a4776411a79f10ed21
 # bad: [784979017329026ab026f8dfa354e9f4b7c7cae9] my commit #11
 git bisect bad 784979017329026ab026f8dfa354e9f4b7c7cae9
+# bad: [4206a791a2f2ebc2e6e02953bb1711d094357940] my commit #9
+git bisect bad 4206a791a2f2ebc2e6e02953bb1711d094357940
