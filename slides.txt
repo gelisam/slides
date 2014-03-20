@@ -1,5 +1,3 @@
-
-  git log --graph --oneline --all --decorate
 *   b9c9437 (HEAD, origin/master, master) Merge branch 'topic/myfeature3'
 |\  
 | * f76bc70 (topic/myfeature3) my commit #3
@@ -31,3 +29,5 @@
 |/  
 * 50aa4fd (tag: branching_point) add exclamation mark, fixes showstopper
 * 1444ea5 simple hello world
+
+  (notice how the trunk only contains merges)
