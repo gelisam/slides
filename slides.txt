@@ -23,6 +23,8 @@ Merge made by the 'recursive' strategy.
  1 files changed, 5 insertions(+), 0 deletions(-)
   
   git push
+To ../example-remote
+   e723dbc..5e08a39  master -> master
   
 
 The result:
