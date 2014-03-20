@@ -144,4 +144,21 @@ d159449fcceb8fb2bd6165890859427aa98c3c5d d159449fcceb8fb2bd6165890859427aa98c3c5
 d159449fcceb8fb2bd6165890859427aa98c3c5d d159449fcceb8fb2bd6165890859427aa98c3c5d Samuel Gélineau <sgelineau@innobec.com> 1395170519 -0400	checkout: moving from master to topic/myfeature
 d159449fcceb8fb2bd6165890859427aa98c3c5d d159449fcceb8fb2bd6165890859427aa98c3c5d Samuel Gélineau <sgelineau@innobec.com> 1395170717 -0400	checkout: moving from topic/myfeature to master
 d159449fcceb8fb2bd6165890859427aa98c3c5d e723dbc5f12d30ba79b0d7c978e30118115fb7d2 Samuel Gélineau <sgelineau@innobec.com> 1395171111 -0400	reset: moving to origin/master
-e723dbc5f12d30ba79b0d7c978e30118115fb7d2 5e08a39c49f6c9319c9c1656aa78595e80a09167 Samuel Gélineau <sgelineau@innobec.com> 1395345905 -0400	merge topic/myfeature: Merge made by the 'recursive' strategy.
+e723dbc5f12d30ba79b0d7c978e30118115fb7d2 50aa4fdf497e5826ab98da1c314c7493f1ce3ecc Samuel Gélineau <sgelineau@innobec.com> 1395172097 -0400	reset: moving to HEAD^^^
+50aa4fdf497e5826ab98da1c314c7493f1ce3ecc 50aa4fdf497e5826ab98da1c314c7493f1ce3ecc Samuel Gélineau <sgelineau@innobec.com> 1395172128 -0400	checkout: moving from master to topic/myfeature1
+50aa4fdf497e5826ab98da1c314c7493f1ce3ecc b6eb7b1635f3f06c2d44b8b55953ec40bd170431 Samuel Gélineau <sgelineau@innobec.com> 1395172143 -0400	commit: my commit #1
+b6eb7b1635f3f06c2d44b8b55953ec40bd170431 50aa4fdf497e5826ab98da1c314c7493f1ce3ecc Samuel Gélineau <sgelineau@innobec.com> 1395172153 -0400	checkout: moving from topic/myfeature1 to master
+50aa4fdf497e5826ab98da1c314c7493f1ce3ecc a582e9140d65910a2e7bbff59929423e021b30dd Samuel Gélineau <sgelineau@innobec.com> 1395172301 -0400	pull --ff-only: Fast-forward
+a582e9140d65910a2e7bbff59929423e021b30dd 6c56996e058c03a6072c628b3c6ccc615f1229fe Samuel Gélineau <sgelineau@innobec.com> 1395172308 -0400	merge topic/myfeature1: Merge made by the 'recursive' strategy.
+6c56996e058c03a6072c628b3c6ccc615f1229fe c1e8b78083184213f6d4d95f77000ca574b66e68 Samuel Gélineau <sgelineau@innobec.com> 1395172321 -0400	commit: my commit #2
+c1e8b78083184213f6d4d95f77000ca574b66e68 6c56996e058c03a6072c628b3c6ccc615f1229fe Samuel Gélineau <sgelineau@innobec.com> 1395172325 -0400	reset: moving to HEAD^
+6c56996e058c03a6072c628b3c6ccc615f1229fe 6c56996e058c03a6072c628b3c6ccc615f1229fe Samuel Gélineau <sgelineau@innobec.com> 1395172333 -0400	checkout: moving from master to topic/myfeature2
+6c56996e058c03a6072c628b3c6ccc615f1229fe 811c4002b957726ea465fb02f8d106fe4d145192 Samuel Gélineau <sgelineau@innobec.com> 1395172336 -0400	commit: my commit #2
+811c4002b957726ea465fb02f8d106fe4d145192 6c56996e058c03a6072c628b3c6ccc615f1229fe Samuel Gélineau <sgelineau@innobec.com> 1395172339 -0400	checkout: moving from topic/myfeature2 to master
+6c56996e058c03a6072c628b3c6ccc615f1229fe 5e063e9196e6cd4aee490b870429db48c8ee195c Samuel Gélineau <sgelineau@innobec.com> 1395172380 -0400	pull --ff-only: Fast-forward
+5e063e9196e6cd4aee490b870429db48c8ee195c 61045c8662b0f80d245e5e65bb1ac9efae527b02 Samuel Gélineau <sgelineau@innobec.com> 1395172384 -0400	merge topic/myfeature2: Merge made by the 'recursive' strategy.
+61045c8662b0f80d245e5e65bb1ac9efae527b02 61045c8662b0f80d245e5e65bb1ac9efae527b02 Samuel Gélineau <sgelineau@innobec.com> 1395172485 -0400	checkout: moving from master to topic/myfeature3
+61045c8662b0f80d245e5e65bb1ac9efae527b02 f76bc70fef43689d8cc00962997a767da1aceaa7 Samuel Gélineau <sgelineau@innobec.com> 1395172493 -0400	commit: my commit #3
+f76bc70fef43689d8cc00962997a767da1aceaa7 61045c8662b0f80d245e5e65bb1ac9efae527b02 Samuel Gélineau <sgelineau@innobec.com> 1395172499 -0400	checkout: moving from topic/myfeature3 to master
+61045c8662b0f80d245e5e65bb1ac9efae527b02 39bc001054d2cacc4715be13650cd30aacaf42b0 Samuel Gélineau <sgelineau@innobec.com> 1395172561 -0400	pull --ff-only: Fast-forward
+39bc001054d2cacc4715be13650cd30aacaf42b0 b9c9437e3f6caee165a484840666f0ed77371135 Samuel Gélineau <sgelineau@innobec.com> 1395172575 -0400	merge topic/myfeature3: Merge made by the 'recursive' strategy.
