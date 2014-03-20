@@ -18,6 +18,9 @@ Always work on a branch:
 Create a feature bubble:
 
   git merge --no-ff topic/myfeature
+Merge made by the 'recursive' strategy.
+ main.cpp |    5 +++++
+ 1 files changed, 5 insertions(+), 0 deletions(-)
   
   git push
   
