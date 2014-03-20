@@ -13,3 +13,4 @@ a88d51a7d98b10a8c26db7e36a8d7186a964b8e6 1a13cfcb01d2eaa08605a8ef2df3fae4936ab52
 66c586a2e408ad59e8d1ff6bf5b46f4f55f96c37 f6c8d9c26f2143ac2056e45ef2675c28665b8a94 Samuel Gélineau <sgelineau@innobec.com> 1395072367 -0400	commit (cherry-pick): master commit #2
 f6c8d9c26f2143ac2056e45ef2675c28665b8a94 e723dbc5f12d30ba79b0d7c978e30118115fb7d2 Samuel Gélineau <sgelineau@innobec.com> 1395072370 -0400	commit (cherry-pick): master commit #3
 e723dbc5f12d30ba79b0d7c978e30118115fb7d2 d159449fcceb8fb2bd6165890859427aa98c3c5d Samuel Gélineau <sgelineau@innobec.com> 1395168692 -0400	branch: Reset to mybranch
+d159449fcceb8fb2bd6165890859427aa98c3c5d 7928fedb3c6cf9556ae0be3a80ab3c3460f0beb0 Samuel Gélineau <sgelineau@innobec.com> 1395345715 -0400	rebase finished: refs/heads/master onto e723dbc5f12d30ba79b0d7c978e30118115fb7d2

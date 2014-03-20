@@ -18,6 +18,9 @@ Before the merge:
 Linearize the history:
 
   git pull --rebase
+First, rewinding head to replay your work on top of it...
+Applying: add comment
+Applying: add example
   
   git push
 
