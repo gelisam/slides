@@ -2,33 +2,10 @@
 |        git merge       |
 *------------------------*
 
-How to create a spaghetti history:
-
-  git push
-To ../example-remote
- ! [rejected]        master -> master (non-fast-forward)
-error: failed to push some refs to '../example-remote'
-To prevent you from losing history, non-fast-forward updates were rejected
-Merge the remote changes (e.g. 'git pull') before pushing again.  See the
-'Note about fast-forwards' section of 'git push --help' for details.
-  
-  git pull
-Already up-to-date!
-Merge made by the 'recursive' strategy.
-  
-  git push
-To ../example-remote
-   cd11f27..acbdf11  master -> master
-
-
-The result:
+As you and your colleague pull then push,
+knit and purl,
+knit and purl,
+a complex tapestry is woven:
 
   git log --graph --oneline --all --decorate
-*   acbdf11 (HEAD, origin/master, master) Merge branch 'master' of ../example-remote
-|\  
-| * cd11f27 colleague's commit #1
-* | 3da1271 my commit #1
-|/  
-* 1ab7fbc add exclamation mark, fixes showstopper
-* 1444ea5 simple hello world
 
