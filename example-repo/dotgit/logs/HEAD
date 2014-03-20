@@ -5,3 +5,6 @@ bcb064fb52ba9fd952d06b250e68492039ff089b 1444ea5c65d37e40c3ce56427376d197bd3fd3d
 2162987536fe2aa55a9f2b7fcd56f672184b26a0 25d90bc9311d81338b6d7f574f34226d9c927585 Samuel Gélineau <sgelineau@innobec.com> 1394834286 -0400	commit (amend): refactor to hello.{h,c}
 25d90bc9311d81338b6d7f574f34226d9c927585 1444ea5c65d37e40c3ce56427376d197bd3fd3d0 Samuel Gélineau <sgelineau@innobec.com> 1394834459 -0400	reset: moving to HEAD^
 1444ea5c65d37e40c3ce56427376d197bd3fd3d0 50aa4fdf497e5826ab98da1c314c7493f1ce3ecc Samuel Gélineau <sgelineau@innobec.com> 1394834583 -0400	commit: add exclamation mark, fixes showstopper
+50aa4fdf497e5826ab98da1c314c7493f1ce3ecc 50aa4fdf497e5826ab98da1c314c7493f1ce3ecc Samuel Gélineau <sgelineau@innobec.com> 1395066431 -0400	checkout: moving from master to mybranch
+50aa4fdf497e5826ab98da1c314c7493f1ce3ecc 50aa4fdf497e5826ab98da1c314c7493f1ce3ecc Samuel Gélineau <sgelineau@innobec.com> 1395330742 -0400	checkout: moving from mybranch to master
+50aa4fdf497e5826ab98da1c314c7493f1ce3ecc 50aa4fdf497e5826ab98da1c314c7493f1ce3ecc Samuel Gélineau <sgelineau@innobec.com> 1395330762 -0400	checkout: moving from master to master

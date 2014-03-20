@@ -2,13 +2,12 @@
 |       git branch       |
 *------------------------*
 
-Each stash is a branch in disguise!
+Here is how to create a branch explicitly:
 
-Let's visualize the branching...
+  git checkout -b mybranch
+
+
+And here's what the new branching looks like:
 
   git log --graph --oneline --all --decorate
-* 50aa4fd (HEAD, master) add exclamation mark, fixes showstopper
-| * 25d90bc (stash) refactor to hello.{h,c}
-|/  
-* 1444ea5 simple hello world
   
