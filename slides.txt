@@ -15,3 +15,4 @@ And here's what the new branching looks like:
 * 1444ea5 simple hello world
   
   ("mybranch" and "master" point to the same commit!)
+  (in svn, creating a branch would have required a folder-copying commit)
