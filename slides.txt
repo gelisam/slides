@@ -5,4 +5,13 @@
 A few commits later, the branches diverge:
 
   git log --graph --oneline --all --decorate
+* 6e16484 (HEAD, master) master commit #3
+* 556977b master commit #2
+* 8b1d6b7 master commit #1
+| * 9d569fe (mybranch) mybranch commit #3
+| * 1418975 mybranch commit #2
+| * 67e9927 mybranch commit #1
+|/  
+* 50aa4fd (tag: branching_point) add exclamation mark, fixes showstopper
+* 1444ea5 simple hello world
   
