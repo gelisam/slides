@@ -1,6 +1,6 @@
 Exception: STATUS_ACCESS_VIOLATION at eip=6112A971
 eax=00000077 ebx=00000077 ecx=00000077 edx=00000077 esi=00000000 edi=00000077
-ebp=0028A978 esp=0028A974 program=C:\cygwin\home\Samuel\working\torvalds\slides\example-repo\a.out, pid 5608, thread main
+ebp=0028A978 esp=0028A974 program=C:\cygwin\home\Samuel\working\torvalds\slides\example-repo\a.out, pid 6244, thread main
 cs=0023 ds=002B es=002B fs=0053 gs=002B ss=002B
 Stack trace:
 Frame     Function  Args
