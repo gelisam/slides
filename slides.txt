@@ -17,6 +17,8 @@ Already up-to-date!
 Merge made by the 'recursive' strategy.
   
   git push
+To ../example-remote
+   cd11f27..acbdf11  master -> master
 
 
 The result:
