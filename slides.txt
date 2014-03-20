@@ -5,6 +5,15 @@
 ...then go back to work.
   
   git stash pop
+# Changes not staged for commit:
+#
+#	  modified:   main.cpp
+#
+# Untracked files:
+#
+#	  hello.cpp
+#	  hello.h
+Dropped refs/stash@{0} (5207fcdedcc03cd299c82c79cb2529120a7cc3b7)
   
   cat main.cpp
   
