@@ -14,7 +14,7 @@ void say_hello(char* to_whom) {
 ]]:!refactor-to-file hello
 
 int main() {
-  say_hello("worlp");
+  say_hello("world");
   return 0;
 }
   
