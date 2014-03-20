@@ -8,4 +8,6 @@ We should have done this instead:
 (no output)
   
   git stash
+Saved working directory and index state WIP on master: 1444ea5 simple hello world
+HEAD is now at 1444ea5 simple hello world
   
