@@ -13,6 +13,8 @@ Merge the remote changes (e.g. 'git pull') before pushing again.  See the
 'Note about fast-forwards' section of 'git push --help' for details.
   
   git pull
+Already up-to-date!
+Merge made by the 'recursive' strategy.
   
   git push
 
