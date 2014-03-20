@@ -2,17 +2,7 @@
 |       git branch       |
 *------------------------*
 
-Here is how to create a branch explicitly:
-
-  git checkout -b mybranch
-Switched to a new branch 'mybranch'
-
-
-And here's what the new branching looks like:
+A few commits later, the branches diverge:
 
   git log --graph --oneline --all --decorate
-* 50aa4fd (HEAD, mybranch, master) add exclamation mark, fixes showstopper
-* 1444ea5 simple hello world
   
-  ("mybranch" and "master" point to the same commit!)
-  (in svn, creating a branch would have required a folder-copying commit)
