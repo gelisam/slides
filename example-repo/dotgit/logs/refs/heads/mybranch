@@ -23,3 +23,8 @@ c5f0f5d6a85dead1f9139c4a31604e59e573fe2e 0cb0988fc116f5736c1a22a2317146704fcd3b8
 0cb0988fc116f5736c1a22a2317146704fcd3b82 dd4370c8eb76e6e084703611c7b51d2effe920f4 Samuel Gélineau <sgelineau@innobec.com> 1395068312 -0400	commit: WIP
 dd4370c8eb76e6e084703611c7b51d2effe920f4 5ea7342c2c493ffd079e7b016419ed5156eefe08 Samuel Gélineau <sgelineau@innobec.com> 1395069236 -0400	rebase -i (finish): refs/heads/mybranch onto 50aa4fd
 5ea7342c2c493ffd079e7b016419ed5156eefe08 0ede61ac6626c858b257241c6b0a182b16fc0192 Samuel Gélineau <sgelineau@innobec.com> 1395069285 -0400	rebase -i (finish): refs/heads/mybranch onto 732d475
+0ede61ac6626c858b257241c6b0a182b16fc0192 270b558c1ec46ffa2b6c348bbf3c2e088f598625 Samuel Gélineau <sgelineau@innobec.com> 1395070993 -0400	rebase -i (finish): refs/heads/mybranch onto 0bc1f06
+270b558c1ec46ffa2b6c348bbf3c2e088f598625 6f3653cc320c530cc1971e20655b5ad21a297a87 Samuel Gélineau <sgelineau@innobec.com> 1395071058 -0400	rebase -i (finish): refs/heads/mybranch onto 0bc1f06
+6f3653cc320c530cc1971e20655b5ad21a297a87 50aa4fdf497e5826ab98da1c314c7493f1ce3ecc Samuel Gélineau <sgelineau@innobec.com> 1395071868 -0400	reset: moving to 50aa4fdf497e5826ab98da1c314c7493f1ce3ecc
+50aa4fdf497e5826ab98da1c314c7493f1ce3ecc 4e461dbd0f389113b50cf816d938ee404fd86ac2 Samuel Gélineau <sgelineau@innobec.com> 1395071871 -0400	cherry-pick: add comment
+4e461dbd0f389113b50cf816d938ee404fd86ac2 d159449fcceb8fb2bd6165890859427aa98c3c5d Samuel Gélineau <sgelineau@innobec.com> 1395071871 -0400	cherry-pick: add example
