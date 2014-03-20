@@ -1,5 +1,3 @@
--}
-+#include "hello.h"
  
  int main() {
 -  say_hello("worlp");
@@ -28,6 +26,8 @@ Stage this hunk [y,n,q,a,d,/,j,J,g,e,?]? n
 Stage this hunk [y,n,q,a,d,/,K,g,e,?]? y
 
   git commit -m "typo"
+[master a213819] typo
+ 1 files changed, 1 insertions(+), 1 deletions(-)
   
   git push
   
