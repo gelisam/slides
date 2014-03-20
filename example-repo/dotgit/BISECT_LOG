@@ -3,3 +3,5 @@
 git bisect start 'master' 'v1.0'
 # bad: [13c8e33af1371e62b7b4142d188f9e2ab12d8f5a] my commit #15
 git bisect bad 13c8e33af1371e62b7b4142d188f9e2ab12d8f5a
+# good: [bbfec2911b3b14a6eb1aa0a4776411a79f10ed21] my commit #7
+git bisect good bbfec2911b3b14a6eb1aa0a4776411a79f10ed21
