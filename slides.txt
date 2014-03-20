@@ -1,33 +1,11 @@
-| * d159449 (topic/myfeature) add example
-| * 4e461db add comment
-|/  
-* 50aa4fd (tag: branching_point) add exclamation mark, fixes showstopper
-* 1444ea5 simple hello world
+*------------------------*
+|   git merge --no-ff    |
+*------------------------*
 
-
-Create a feature bubble:
-
-  git merge --no-ff topic/myfeature
-Merge made by the 'recursive' strategy.
- main.cpp |    5 +++++
- 1 files changed, 5 insertions(+), 0 deletions(-)
-  
-  git push
-To ../example-remote
-   e723dbc..5e08a39  master -> master
-  
-
-The result:
+As you and your colleague
+branch then merge,
+branch then merge,
+the history remains linear, with one bubble per feature:
 
   git log --graph --oneline --all --decorate
-*   5e08a39 (HEAD, origin/master, master) Merge branch 'topic/myfeature'
-|\  
-| * d159449 (topic/myfeature) add example
-| * 4e461db add comment
-* | e723dbc master commit #3
-* | f6c8d9c master commit #2
-* | 66c586a master commit #1
-|/  
-* 50aa4fd (tag: branching_point) add exclamation mark, fixes showstopper
-* 1444ea5 simple hello world
 
