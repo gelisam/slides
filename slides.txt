@@ -1,22 +1,22 @@
 
 pick 191f7f1 WIP add comment
-pick f472b4c WIP add comment
-pick 166bf0f WIP add comment
-pick fd2d53e WIP add comment
-pick 03639a0 WIP add comment
-pick a4698d2 WIP add comment
-pick d8ea61e WIP add comment
-pick 732d475 WIP add comment
+s f472b4c WIP add comment
+s 166bf0f WIP add comment
+s fd2d53e WIP add comment
+s 03639a0 WIP add comment
+s a4698d2 WIP add comment
+s d8ea61e WIP add comment
+s 732d475 WIP add comment
 pick e1d1bc8 WIP add example
-pick d24a955 WIP add example
-pick 0a95d99 WIP add example
-pick 77e5b57 WIP add example
-pick ac2096f WIP add example
-pick 4a121a9 WIP add example
-pick 3641626 WIP add example
-pick 3af17dd WIP add example
-pick cedde0f WIP add example
-pick 0ede61a WIP add example
+s d24a955 WIP add example
+s 0a95d99 WIP add example
+s 77e5b57 WIP add example
+s ac2096f WIP add example
+s 4a121a9 WIP add example
+s 3641626 WIP add example
+s 3af17dd WIP add example
+s cedde0f WIP add example
+s 0ede61a WIP add example
 
 # Rebase 0bc1f06..0ede61a onto 0bc1f06
 #
