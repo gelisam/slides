@@ -1,8 +1,3 @@
-@@ -1,10 +1,6 @@
--#include <stdio.h>
--
--void say_hello(char* to_whom) {
--  printf("hello %s\n", to_whom);
 -}
 +#include "hello.h"
  
@@ -31,3 +26,8 @@ Stage this hunk [y,n,q,a,d,/,j,J,g,e,?]? n
    return 0;
  }
 Stage this hunk [y,n,q,a,d,/,K,g,e,?]? y
+
+  git commit -m "typo"
+  
+  git push
+  
