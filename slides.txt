@@ -1,33 +1,11 @@
- int main() {
--  say_hello("worlp");
-+  say_hello("world");
-   return 0;
- }
-Stage this hunk [y,n,q,a,d,/,s,e,?]? s
-Split into 2 hunks.
-@@ -1,7 +1,3 @@
--#include <stdio.h>
--
--void say_hello(char* to_whom) {
--  printf("hello %s\n", to_whom);
--}
-+#include "hello.h"
 
- int main() {
-Stage this hunk [y,n,q,a,d,/,j,J,g,e,?]? n
-@@ -6,5 +2,5 @@
 
- int main() {
--  say_hello("worlp");
-+  say_hello("world");
-   return 0;
- }
-Stage this hunk [y,n,q,a,d,/,K,g,e,?]? y
 
-  git commit -m "typo"
-[master a213819] typo
- 1 files changed, 1 insertions(+), 1 deletions(-)
-  
-  git push
-To ../example-remote
-   0b7a22f..a213819  master -> master
+      1) 
+      2) 
+      3) 
+      4) git stash
+      5) 
+
+
+
