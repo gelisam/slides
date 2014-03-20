@@ -41,3 +41,4 @@ the history remains linear, with one bubble per feature:
 * 1444ea5 simple hello world
 
   (notice how the trunk only contains merges)
+  (and each feature is a "bubble", starting and ending on the trunk)
