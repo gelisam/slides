@@ -1,4 +1,3 @@
- 
  int main() {
 -  say_hello("worlp");
 +  say_hello("world");
@@ -30,4 +29,5 @@ Stage this hunk [y,n,q,a,d,/,K,g,e,?]? y
  1 files changed, 1 insertions(+), 1 deletions(-)
   
   git push
-  
+To ../example-remote
+   0b7a22f..a213819  master -> master
