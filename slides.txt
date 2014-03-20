@@ -1,6 +1,3 @@
-
-  git bisect start master v1.0
-Bisecting: 14 revisions left to test after this (roughly 4 steps)
 [13c8e33af1371e62b7b4142d188f9e2ab12d8f5a] my commit #15
   
   make
@@ -14,6 +11,9 @@ Bisecting: 7 revisions left to test after this (roughly 3 steps)
 [bbfec2911b3b14a6eb1aa0a4776411a79f10ed21] my commit #7
   
   make
+gcc -o a.out hello.c
+./a.out
+hello world
   
   git bisect good
   
