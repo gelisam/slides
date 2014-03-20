@@ -24,4 +24,11 @@ To ../example-remote
 The result:
 
   git log --graph --oneline --all --decorate
+*   acbdf11 (HEAD, origin/master, master) Merge branch 'master' of ../example-remote
+|\  
+| * cd11f27 colleague's commit #1
+* | 3da1271 my commit #1
+|/  
+* 1ab7fbc add exclamation mark, fixes showstopper
+* 1444ea5 simple hello world
 
