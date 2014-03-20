@@ -5,4 +5,12 @@
 The rewritten history is easier to read:
 
   git log --graph --oneline --all --decorate
+* e723dbc (HEAD, master) master commit #3
+* f6c8d9c master commit #2
+* 66c586a master commit #1
+| * d159449 (mybranch) add example
+| * 4e461db add comment
+|/  
+* 50aa4fd (tag: branching_point) add exclamation mark, fixes showstopper
+* 1444ea5 simple hello world
 
