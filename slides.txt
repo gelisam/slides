@@ -23,6 +23,8 @@ Applying: add comment
 Applying: add example
   
   git push
+To ../example-remote
+   e723dbc..7928fed  master -> master
 
 
 The result:
