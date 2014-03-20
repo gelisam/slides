@@ -17,3 +17,4 @@ d159449fcceb8fb2bd6165890859427aa98c3c5d 4e461dbd0f389113b50cf816d938ee404fd86ac
 4e461dbd0f389113b50cf816d938ee404fd86ac2 1ce57fd341301fcb72b9d7b0569420c02f8d3153 Samuel Gélineau <sgelineau@innobec.com> 1395086099 -0400	commit (amend): my commit #1
 1ce57fd341301fcb72b9d7b0569420c02f8d3153 1ab7fbcc0bfb5dd8c9296beb92dc4b2afab4884c Samuel Gélineau <sgelineau@innobec.com> 1395086267 -0400	reset: moving to 1ab7fbc
 1ab7fbcc0bfb5dd8c9296beb92dc4b2afab4884c 3da1271fc76d41be2115bb3751776089fee10907 Samuel Gélineau <sgelineau@innobec.com> 1395086289 -0400	cherry-pick: my commit #1
+3da1271fc76d41be2115bb3751776089fee10907 acbdf11a688f6fb7843237c2be8eab67ea281762 Samuel Gélineau <sgelineau@innobec.com> 1395345359 -0400	pull: Merge made by the 'recursive' strategy.
