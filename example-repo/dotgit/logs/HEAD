@@ -141,3 +141,7 @@ f6c8d9c26f2143ac2056e45ef2675c28665b8a94 e723dbc5f12d30ba79b0d7c978e30118115fb7d
 e723dbc5f12d30ba79b0d7c978e30118115fb7d2 e723dbc5f12d30ba79b0d7c978e30118115fb7d2 Samuel Gélineau <sgelineau@innobec.com> 1395168666 -0400	checkout: moving from master to master
 e723dbc5f12d30ba79b0d7c978e30118115fb7d2 d159449fcceb8fb2bd6165890859427aa98c3c5d Samuel Gélineau <sgelineau@innobec.com> 1395168685 -0400	checkout: moving from master to mybranch
 d159449fcceb8fb2bd6165890859427aa98c3c5d d159449fcceb8fb2bd6165890859427aa98c3c5d Samuel Gélineau <sgelineau@innobec.com> 1395168697 -0400	checkout: moving from mybranch to master
+d159449fcceb8fb2bd6165890859427aa98c3c5d e723dbc5f12d30ba79b0d7c978e30118115fb7d2 Samuel Gélineau <sgelineau@innobec.com> 1395345714 -0400	checkout: moving from master to e723dbc5f12d30ba79b0d7c978e30118115fb7d2^0
+e723dbc5f12d30ba79b0d7c978e30118115fb7d2 d05159fa862dd3f88b80397c23cb19f5bafcb455 Samuel Gélineau <sgelineau@innobec.com> 1395345715 -0400	pull --rebase: add comment
+d05159fa862dd3f88b80397c23cb19f5bafcb455 7928fedb3c6cf9556ae0be3a80ab3c3460f0beb0 Samuel Gélineau <sgelineau@innobec.com> 1395345715 -0400	pull --rebase: add example
+7928fedb3c6cf9556ae0be3a80ab3c3460f0beb0 7928fedb3c6cf9556ae0be3a80ab3c3460f0beb0 Samuel Gélineau <sgelineau@innobec.com> 1395345715 -0400	rebase finished: returning to refs/heads/master
