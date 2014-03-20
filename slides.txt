@@ -39,3 +39,5 @@ the history remains linear, with one bubble per feature:
 |/  
 * 50aa4fd (tag: branching_point) add exclamation mark, fixes showstopper
 * 1444ea5 simple hello world
+
+  (notice how the trunk only contains merges)
