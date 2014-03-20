@@ -2,3 +2,24 @@
 50aa4fdf497e5826ab98da1c314c7493f1ce3ecc 67e9927fe5e88f608714d70c7bcb835f796e4a1e Samuel Gélineau <sgelineau@innobec.com> 1395066889 -0400	commit: mybranch commit #1
 67e9927fe5e88f608714d70c7bcb835f796e4a1e 14189752bb344d81feb10f1a526ea1e3f7fbc02e Samuel Gélineau <sgelineau@innobec.com> 1395066891 -0400	commit: mybranch commit #2
 14189752bb344d81feb10f1a526ea1e3f7fbc02e 9d569fea104bada4c5bafd0e4f21988aa6a614ab Samuel Gélineau <sgelineau@innobec.com> 1395066894 -0400	commit: mybranch commit #3
+9d569fea104bada4c5bafd0e4f21988aa6a614ab 50aa4fdf497e5826ab98da1c314c7493f1ce3ecc Samuel Gélineau <sgelineau@innobec.com> 1395067865 -0400	reset: moving to HEAD^^^
+50aa4fdf497e5826ab98da1c314c7493f1ce3ecc 0c98f01be9bcb59f41a8a652c0c783baf195d9a6 Samuel Gélineau <sgelineau@innobec.com> 1395068064 -0400	commit: WIP
+0c98f01be9bcb59f41a8a652c0c783baf195d9a6 8f4ab952115d814512e62ce1d553e97914f17835 Samuel Gélineau <sgelineau@innobec.com> 1395068074 -0400	commit: WIP
+8f4ab952115d814512e62ce1d553e97914f17835 1d35b47e843c1df659fba129943703a24745818d Samuel Gélineau <sgelineau@innobec.com> 1395068086 -0400	commit: WIP
+1d35b47e843c1df659fba129943703a24745818d 98efd227aecdb53028816fd2363e9ea69727941c Samuel Gélineau <sgelineau@innobec.com> 1395068092 -0400	commit: WIP
+98efd227aecdb53028816fd2363e9ea69727941c 1f7412ef6a88038dfd810ef79d6cb8e8b44a080c Samuel Gélineau <sgelineau@innobec.com> 1395068102 -0400	commit: WIP
+1f7412ef6a88038dfd810ef79d6cb8e8b44a080c 3d6b309b1388bc5c87634445d96b2dde6a26f4c8 Samuel Gélineau <sgelineau@innobec.com> 1395068114 -0400	commit: WIP
+3d6b309b1388bc5c87634445d96b2dde6a26f4c8 f547c604d055ec4e2c95d088a7628a6dbd7e2404 Samuel Gélineau <sgelineau@innobec.com> 1395068126 -0400	commit: WIP
+f547c604d055ec4e2c95d088a7628a6dbd7e2404 c716e178427dffc0b62e8df5f5e36a3dcbda3c0b Samuel Gélineau <sgelineau@innobec.com> 1395068151 -0400	commit: WIP
+c716e178427dffc0b62e8df5f5e36a3dcbda3c0b 86a9dd1c56355a278aee5f74d94f083397f252ec Samuel Gélineau <sgelineau@innobec.com> 1395068196 -0400	commit: WIP
+86a9dd1c56355a278aee5f74d94f083397f252ec edd8a3dd1c1514125cd1be0f82b9fbd734b39765 Samuel Gélineau <sgelineau@innobec.com> 1395068206 -0400	commit: WIP
+edd8a3dd1c1514125cd1be0f82b9fbd734b39765 80ba17a3297588d475e6fb5080ff58bec2005764 Samuel Gélineau <sgelineau@innobec.com> 1395068212 -0400	commit: WIP
+80ba17a3297588d475e6fb5080ff58bec2005764 9685aca9e82d93be26d32e728044e14879683b5f Samuel Gélineau <sgelineau@innobec.com> 1395068215 -0400	commit: WIP
+9685aca9e82d93be26d32e728044e14879683b5f 24de7b6e3ba55e629745baa6c1098d8ed9b13e41 Samuel Gélineau <sgelineau@innobec.com> 1395068219 -0400	commit: WIP
+24de7b6e3ba55e629745baa6c1098d8ed9b13e41 66c177fcb1fc84916a0e1e9c4d6df3860f9836bb Samuel Gélineau <sgelineau@innobec.com> 1395068230 -0400	commit: WIP
+66c177fcb1fc84916a0e1e9c4d6df3860f9836bb df08b375aee60d87e847540169a29ebc3d79e25a Samuel Gélineau <sgelineau@innobec.com> 1395068287 -0400	commit: WIP
+df08b375aee60d87e847540169a29ebc3d79e25a c5f0f5d6a85dead1f9139c4a31604e59e573fe2e Samuel Gélineau <sgelineau@innobec.com> 1395068294 -0400	commit: WIP
+c5f0f5d6a85dead1f9139c4a31604e59e573fe2e 0cb0988fc116f5736c1a22a2317146704fcd3b82 Samuel Gélineau <sgelineau@innobec.com> 1395068305 -0400	commit: WIP
+0cb0988fc116f5736c1a22a2317146704fcd3b82 dd4370c8eb76e6e084703611c7b51d2effe920f4 Samuel Gélineau <sgelineau@innobec.com> 1395068312 -0400	commit: WIP
+dd4370c8eb76e6e084703611c7b51d2effe920f4 5ea7342c2c493ffd079e7b016419ed5156eefe08 Samuel Gélineau <sgelineau@innobec.com> 1395069236 -0400	rebase -i (finish): refs/heads/mybranch onto 50aa4fd
+5ea7342c2c493ffd079e7b016419ed5156eefe08 0ede61ac6626c858b257241c6b0a182b16fc0192 Samuel Gélineau <sgelineau@innobec.com> 1395069285 -0400	rebase -i (finish): refs/heads/mybranch onto 732d475
