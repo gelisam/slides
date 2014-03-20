@@ -87,5 +87,3 @@ ac2096fbf5f81e88bf3b9bb7eb541103bb73b600 6c3a5f89d3cecd7c464b6f88ce842269da24752
 cedde0f0083877d3a78a9b2647f5f647a36adc5e 9a4df275ff74e2a0da23ef3c9b4e0caee4722bf1 Samuel Gélineau <sgelineau@innobec.com> 1395069281 -0400	rebase -i (reword): WIP
 9a4df275ff74e2a0da23ef3c9b4e0caee4722bf1 0ede61ac6626c858b257241c6b0a182b16fc0192 Samuel Gélineau <sgelineau@innobec.com> 1395069282 -0400	rebase -i (reword): WIP add example
 0ede61ac6626c858b257241c6b0a182b16fc0192 0ede61ac6626c858b257241c6b0a182b16fc0192 Samuel Gélineau <sgelineau@innobec.com> 1395069285 -0400	rebase -i (finish): returning to refs/heads/mybranch
-0ede61ac6626c858b257241c6b0a182b16fc0192 0ede61ac6626c858b257241c6b0a182b16fc0192 Samuel Gélineau <sgelineau@innobec.com> 1395352153 -0400	checkout: moving from mybranch to 0ede61a
-0ede61ac6626c858b257241c6b0a182b16fc0192 0ede61ac6626c858b257241c6b0a182b16fc0192 Samuel Gélineau <sgelineau@innobec.com> 1395352153 -0400	rebase -i (finish): returning to refs/heads/mybranch
