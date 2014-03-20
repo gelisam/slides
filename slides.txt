@@ -8,4 +8,12 @@ detach and append,
 the history remains linear:
 
   git log --graph --oneline --all --decorate
+* 5ee3352 (HEAD, origin/master, origin/HEAD, master) my commit #3
+* cb23350 colleague's commit #3
+* 3a0aa8f my commit #2
+* 601ac01 colleague's commit #2
+* 7f20f9f my commit #1
+* 1cd3e95 colleague's commit #1
+* 1ab7fbc add exclamation mark, fixes showstopper
+* 1444ea5 simple hello world
 
