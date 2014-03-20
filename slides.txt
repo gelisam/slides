@@ -5,6 +5,7 @@
 Here is how to create a branch explicitly:
 
   git checkout -b mybranch
+Switched to a new branch 'mybranch'
 
 
 And here's what the new branching looks like:
