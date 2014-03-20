@@ -2,32 +2,11 @@
 |       git bisect       |
 *------------------------*
 
-What has changed since?
+"git bisect" to the rescue!
 
-  git log --oneline v1.0..master
-645581b my commit #30
-f7e5658 my commit #29
-f133427 my commit #28
-4736c17 my commit #27
-6cc2629 my commit #26
-1e8afd8 my commit #25
-8a73009 my commit #24
-d7dcfef my commit #23
-ce11172 my commit #22
-5359641 my commit #21
-3fd939c my commit #20
-b22eb43 my commit #19
-cb94352 my commit #18
-c399993 my commit #17
-65afaea my commit #16
-13c8e33 my commit #15
-8b1d5b7 my commit #14
-c9a9943 my commit #13
-3ad4eaf my commit #12
-7849790 my commit #11
-306649c my commit #10
-4206a79 my commit #9
-d3c7183 my commit #8
-bbfec29 my commit #7
-b5dfaed my commit #6
-225c011 my commit #5
+                 now broken
+                     |   worked
+                     |      |
+                     v      v
+  git bisect start master v1.0
+  
