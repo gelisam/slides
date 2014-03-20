@@ -8,4 +8,26 @@ Some of us commit each time we save!
 But now the history looks a bit silly:
 
   git log --graph --oneline --all --decorate
+* b1a1b04 (HEAD, master) master commit #3
+* 2b22dbd master commit #2
+* c762807 master commit #1
+| * 0ede61a (mybranch) WIP add example
+| * cedde0f WIP add example
+| * 3af17dd WIP add example
+| * 3641626 WIP add example
+| * 4a121a9 WIP add example
+| * ac2096f WIP add example
+| * 77e5b57 WIP add example
+| * d24a955 WIP add example
+| * e1d1bc8 WIP add example
+| * 732d475 WIP add comment
+| * a4698d2 WIP add comment
+| * 03639a0 WIP add comment
+| * fd2d53e WIP add comment
+| * 166bf0f WIP add comment
+| * f472b4c WIP add comment
+| * 191f7f1 WIP add comment
+|/  
+* 50aa4fd (tag: branching_point) add exclamation mark, fixes showstopper
+* 1444ea5 simple hello world
   
