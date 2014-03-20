@@ -1,33 +1,11 @@
-* e723dbc (origin/master) master commit #3
-* f6c8d9c master commit #2
-* 66c586a master commit #1
-| * d159449 (HEAD, master) add example
-| * 4e461db add comment
-|/  
-* 50aa4fd (tag: branching_point) add exclamation mark, fixes showstopper
-* 1444ea5 simple hello world
+*------------------------*
+|   git merge --rebase   |
+*------------------------*
 
-
-Linearize the history:
-
-  git pull --rebase
-First, rewinding head to replay your work on top of it...
-Applying: add comment
-Applying: add example
-  
-  git push
-To ../example-remote
-   e723dbc..7928fed  master -> master
-
-
-The result:
+As you and your colleague rebase then push,
+detach and append,
+detach and append,
+the history remains linear:
 
   git log --graph --oneline --all --decorate
-* 7928fed (HEAD, origin/master, master) add example
-* d05159f add comment
-* e723dbc master commit #3
-* f6c8d9c master commit #2
-* 66c586a master commit #1
-* 50aa4fd (tag: branching_point) add exclamation mark, fixes showstopper
-* 1444ea5 simple hello world
 
