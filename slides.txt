@@ -1,44 +1,11 @@
-*------------------------*
-|   git merge --no-ff    |
-*------------------------*
 
-As you and your colleague
-branch then merge,
-branch then merge,
-the history remains linear, with one bubble per feature:
+Those were my favorite advanced git features:
 
-  git log --graph --oneline --all --decorate
-*   b9c9437 (HEAD, origin/master, master) Merge branch 'topic/myfeature3'
-|\  
-| * f76bc70 (topic/myfeature3) my commit #3
-* |   39bc001 Merge branch 'topic/otherfeature3'
-|\ \  
-| |/  
-|/|   
-| * 0d4c002 colleague's commit #3
-* |   61045c8 Merge branch 'topic/myfeature2'
-|\ \  
-| |/  
-|/|   
-| * 811c400 (topic/myfeature2) my commit #2
-* |   5e063e9 Merge branch 'topic/otherfeature2'
-|\ \  
-| |/  
-|/|   
-| * d3cf62c colleague's commit #2
-* |   6c56996 Merge branch 'topic/myfeature1'
-|\ \  
-| |/  
-|/|   
-| * b6eb7b1 (topic/myfeature1) my commit #1
-* |   a582e91 Merge branch 'topic/otherfeature1'
-|\ \  
-| |/  
-|/|   
-| * b1af0d6 colleague's commit #1
-|/  
-* 50aa4fd (tag: branching_point) add exclamation mark, fixes showstopper
-* 1444ea5 simple hello world
+      1) git bisect
+      2) git commit --amend
+      3) git add -p
+      4) git stash
+      5) git rebase -i
 
-  (notice how the trunk only contains merges)
-  (and each feature is a "bubble", starting and ending on the trunk)
+Questions? Other tricks to share?
+
