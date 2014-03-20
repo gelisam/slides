@@ -2,12 +2,9 @@
 |        git stash       |
 *------------------------*
 
-We should have done this instead:
+This time we did stash everything.
 
-  git add .
-(no output)
+  ls
   
-  git stash
-Saved working directory and index state WIP on master: 1444ea5 simple hello world
-HEAD is now at 1444ea5 simple hello world
+  git status
   
