@@ -2,12 +2,7 @@
 |       git branch       |
 *------------------------*
 
-Here is how to create a branch explicitly:
-
-  git checkout -b mybranch
-
-
-And here's what the new branching looks like:
+A few commits later, the branches diverge:
 
   rm -rf ../sourcetree-repo && cp -r . ../sourcetree-repo
   

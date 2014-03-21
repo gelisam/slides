@@ -6,4 +6,17 @@ bcb064fb52ba9fd952d06b250e68492039ff089b 1444ea5c65d37e40c3ce56427376d197bd3fd3d
 25d90bc9311d81338b6d7f574f34226d9c927585 1444ea5c65d37e40c3ce56427376d197bd3fd3d0 Samuel Gélineau <sgelineau@innobec.com> 1394834459 -0400	reset: moving to HEAD^
 1444ea5c65d37e40c3ce56427376d197bd3fd3d0 50aa4fdf497e5826ab98da1c314c7493f1ce3ecc Samuel Gélineau <sgelineau@innobec.com> 1394834583 -0400	commit: add exclamation mark, fixes showstopper
 50aa4fdf497e5826ab98da1c314c7493f1ce3ecc 50aa4fdf497e5826ab98da1c314c7493f1ce3ecc Samuel Gélineau <sgelineau@innobec.com> 1395066431 -0400	checkout: moving from master to mybranch
-50aa4fdf497e5826ab98da1c314c7493f1ce3ecc 50aa4fdf497e5826ab98da1c314c7493f1ce3ecc Samuel Gélineau <sgelineau@innobec.com> 1395436338 -0400	checkout: moving from mybranch to master
+50aa4fdf497e5826ab98da1c314c7493f1ce3ecc 67e9927fe5e88f608714d70c7bcb835f796e4a1e Samuel Gélineau <sgelineau@innobec.com> 1395066889 -0400	commit: mybranch commit #1
+67e9927fe5e88f608714d70c7bcb835f796e4a1e 14189752bb344d81feb10f1a526ea1e3f7fbc02e Samuel Gélineau <sgelineau@innobec.com> 1395066891 -0400	commit: mybranch commit #2
+14189752bb344d81feb10f1a526ea1e3f7fbc02e 9d569fea104bada4c5bafd0e4f21988aa6a614ab Samuel Gélineau <sgelineau@innobec.com> 1395066894 -0400	commit: mybranch commit #3
+9d569fea104bada4c5bafd0e4f21988aa6a614ab 50aa4fdf497e5826ab98da1c314c7493f1ce3ecc Samuel Gélineau <sgelineau@innobec.com> 1395066904 -0400	checkout: moving from mybranch to master
+50aa4fdf497e5826ab98da1c314c7493f1ce3ecc a88d51a7d98b10a8c26db7e36a8d7186a964b8e6 Samuel Gélineau <sgelineau@innobec.com> 1395066911 -0400	commit: master commit #1
+a88d51a7d98b10a8c26db7e36a8d7186a964b8e6 1a13cfcb01d2eaa08605a8ef2df3fae4936ab52f Samuel Gélineau <sgelineau@innobec.com> 1395066913 -0400	commit: master commit #2
+1a13cfcb01d2eaa08605a8ef2df3fae4936ab52f 0bc1f06ff216620e2bb72ff600b4a99a947163d7 Samuel Gélineau <sgelineau@innobec.com> 1395066915 -0400	commit: master commit #3
+0bc1f06ff216620e2bb72ff600b4a99a947163d7 50aa4fdf497e5826ab98da1c314c7493f1ce3ecc Samuel Gélineau <sgelineau@innobec.com> 1395071535 -0400	checkout: moving from master to master^^^
+50aa4fdf497e5826ab98da1c314c7493f1ce3ecc 9d569fea104bada4c5bafd0e4f21988aa6a614ab Samuel Gélineau <sgelineau@innobec.com> 1395071565 -0400	checkout: moving from 50aa4fdf497e5826ab98da1c314c7493f1ce3ecc to mybranch
+9d569fea104bada4c5bafd0e4f21988aa6a614ab 0bc1f06ff216620e2bb72ff600b4a99a947163d7 Samuel Gélineau <sgelineau@innobec.com> 1395071582 -0400	checkout: moving from mybranch to master
+0bc1f06ff216620e2bb72ff600b4a99a947163d7 50aa4fdf497e5826ab98da1c314c7493f1ce3ecc Samuel Gélineau <sgelineau@innobec.com> 1395072106 -0400	reset: moving to 50aa4fdf497e5826ab98da1c314c7493f1ce3ecc
+50aa4fdf497e5826ab98da1c314c7493f1ce3ecc 8b1d6b70cab92b08c7886707a776276a0ae06e06 Samuel Gélineau <sgelineau@innobec.com> 1395072123 -0400	commit (cherry-pick): master commit #1
+8b1d6b70cab92b08c7886707a776276a0ae06e06 556977b13ab0a0d25b08e5e54b5af2d457c5befb Samuel Gélineau <sgelineau@innobec.com> 1395072138 -0400	commit (cherry-pick): master commit #2
+556977b13ab0a0d25b08e5e54b5af2d457c5befb 6e16484aaf8bb34bbb67cf675274d58decf0d797 Samuel Gélineau <sgelineau@innobec.com> 1395072142 -0400	commit (cherry-pick): master commit #3
