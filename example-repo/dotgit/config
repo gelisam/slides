@@ -4,9 +4,3 @@
 	bare = false
 	logallrefupdates = true
 	ignorecase = true
-[remote "origin"]
-	url = ../example-repo
-	fetch = +refs/heads/*:refs/remotes/origin/*
-[branch "master"]
-	remote = origin
-	merge = refs/heads/master
