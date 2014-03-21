@@ -2,9 +2,7 @@
 |   git commit --amend   |
 *------------------------*
 
-Or, equivalently:
+All right! What's next?
 
-  
-  
-  git commit -am "refactor to file"
+  git status
   
