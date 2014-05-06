@@ -1,4 +1,4 @@
-a tiny calculator language
+a sample expression
 ===
 
 > data Exp
@@ -6,7 +6,9 @@ a tiny calculator language
 >   | Add Exp Exp
 >   | Mul Exp Exp
 
-
+> -- 2 + (3 * 5)
+> ex :: Exp
+> ex = Lit 2 `Add` (Lit 3 `Mul` Lit 5)
 
 
 
