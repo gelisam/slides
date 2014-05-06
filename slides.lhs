@@ -1,4 +1,4 @@
-a sample expression
+a simple evaluator
 ===
 
 > data Exp
@@ -10,13 +10,13 @@ a sample expression
 > ex :: Exp
 > ex = Lit 2 `Add` (Lit 3 `Mul` Lit 5)
 
-
-
-
-
-
-
-
+> -- |
+> -- >>> eval ex
+> -- 17
+> eval :: Exp -> Int
+> eval (Lit i) = i
+> eval (Add x y) = eval x + eval y
+> eval (Mul x y) = eval x * eval y
 
 
 
