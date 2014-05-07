@@ -1,17 +1,10 @@
+a tiny calculator language
+===
 
-
-
-
-
-
-          the Bound library
-
-
-               a library by Edward Kmett
-               presented by Samuel Gélineau
-
-
-
+> data Exp
+>   = Lit Int
+>   | Add Exp Exp
+>   | Mul Exp Exp
 
 
 
@@ -50,3 +43,10 @@
 
 
 
+
+
+
+
+
+
+> main = putStrLn "typechecks."
