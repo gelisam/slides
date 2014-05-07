@@ -1,10 +1,10 @@
-demonstrating abstract1
+demonstrating instantiate1
 ===
 
 > {-# LANGUAGE DeriveFunctor, DeriveFoldable, DeriveTraversable, ScopedTypeVariables #-}
-> import Bound.Scope.Simple
-> import Bound.Term
-> import Bound.Var
+> import Bound
+> import Control.Applicative (Applicative(..), (<$>))
+> import Control.Monad
 > import Data.Foldable
 > import Data.Traversable
 
@@ -35,26 +35,29 @@ demonstrating abstract1
 > eval e (Lit i) = i
 > eval e (Add x y) = eval e x + eval e y
 > eval e (Mul x y) = eval e x * eval e y
-> eval e (Let {-    B () -} x body) = eval e' body'
+> eval e (Let {-    B () -} x body) = eval e  body'
 >   where
 >     value = eval e x
 >     
->     -- data Var b a = B b | F a
->     body' :: Exp (Var () a)
->     body' = fromScope body
 >     
->     e' :: Var () a -> Int
->     e' (B ())   = value
->     e' (F v)    = e v
+>     body' :: Exp a
+>     body' = instantiate1 (Lit value) body
+>     
+>     
+>     
+>     
 > eval e (Var var) = e var
 
-
-
-
-
-
-
-
+> instance Monad Exp where
+>   return = Var
+>   Lit i      >>= f = Lit i
+>   Add x y    >>= f = Add (x >>= f) (y >>= f)
+>   Mul x y    >>= f = Mul (x >>= f) (y >>= f)
+>   Let x body >>= f = Let (x >>= f) (body >>>= f)
+>   Var v      >>= f = f v
+> instance Applicative Exp where
+>   pure = return
+>   (<*>) = ap
 
 
 
