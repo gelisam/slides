@@ -1,4 +1,4 @@
-(indenting to match the next slide)
+demonstrating let_
 ===
 
 > {-# LANGUAGE                                                   ScopedTypeVariables #-}
@@ -18,10 +18,10 @@
 
 > -- let x = (3 * 5)
 > --  in 2 + x
-> ex :: Exp Void
-> ex = Let      (Lit 3 `Mul` Lit 5) (toScope
->               (Lit 2 `Add` Var (   B ()))
->        )
+> ex :: Exp String
+> ex = let_ "x" (Lit 3 `Mul` Lit 5)
+>               (Lit 2 `Add` Var "x")
+
 
 
 
@@ -47,9 +47,6 @@
 >     e' (B ())   = value
 >     e' (F v)    = e v
 > eval e (Var var) = e var
-
-
-
 
 
 
