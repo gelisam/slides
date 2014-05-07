@@ -1,4 +1,4 @@
-an assoc-list as the environment
+a function as the environment
 ===
 
 > data Exp
@@ -15,17 +15,18 @@ an assoc-list as the environment
 >              (Lit 2 `Add` Var "x")
 
 > -- |
-> -- >>> eval [] ex
+> -- >>> eval (const Nothing) ex
 > -- 17
-> eval :: [(String, Int)] -> Exp -> Int
+> eval :: (String -> Maybe Int) -> Exp -> Int
 > eval e (Lit i) = i
 > eval e (Add x y) = eval e x + eval e y
 > eval e (Mul x y) = eval e x * eval e y
 > eval e (Let var x body) = eval e' body
 >   where
 >     value = eval e x
->     e' = (var, value) : e
-> eval e (Var var) = case lookup var e of
+>     e' v | v == var  = Just value
+>     e' v | otherwise = e v
+> eval e (Var var) = case e var of
 >                      Just x -> x
 >                      Nothing -> error "variable out of scope"
 
