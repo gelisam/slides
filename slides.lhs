@@ -1,12 +1,12 @@
-demonstrating let_
+demonstrating closed
 ===
 
-> {-# LANGUAGE                                                   ScopedTypeVariables #-}
+> {-# LANGUAGE DeriveFunctor, DeriveFoldable, DeriveTraversable, ScopedTypeVariables #-}
 > import Bound.Scope.Simple
-
+> import Bound.Term
 > import Bound.Var
-
-
+> import Data.Foldable
+> import Data.Traversable
 
 > data Exp a
 >   = Lit Int
@@ -14,7 +14,7 @@ demonstrating let_
 >   | Mul (Exp a) (Exp a)
 >   | Let {-    B () = -} (Exp a) {- in -} (Scope () Exp a)
 >   | Var a
-
+>   deriving (Functor, Foldable, Traversable)
 
 > -- let x = (3 * 5)
 > --  in 2 + x
@@ -25,11 +25,11 @@ demonstrating let_
 
 
 
-
-
+> closed_ex :: Exp Void
+> Just closed_ex = closed ex
 
 > -- |
-> -- >>> eval empty ex
+> -- >>> eval empty closed_ex
 > -- 17
 > eval :: forall a. (a -> Int) -> Exp a -> Int
 > eval e (Lit i) = i
