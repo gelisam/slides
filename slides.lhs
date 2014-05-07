@@ -4,8 +4,18 @@
 
 
 
-         Kmett's solution: a hoist function
+         hoist functions
              
+             coined by Edward Kmett
+             popularized by Gabriel Gonzalez
+             
+> class MFunctor t where
+>   hoist :: (forall a. Monad m => m a -> n a) -> t m b -> t n b
+
+
+
+
+
 
 
 
