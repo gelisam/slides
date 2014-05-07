@@ -1,4 +1,4 @@
-demonstrating closed
+demonstrating abstract1
 ===
 
 > {-# LANGUAGE DeriveFunctor, DeriveFoldable, DeriveTraversable, ScopedTypeVariables #-}
@@ -22,8 +22,8 @@ demonstrating closed
 > ex = let_ "x" (Lit 3 `Mul` Lit 5)
 >               (Lit 2 `Add` Var "x")
 
-
-
+> let_ :: Eq a => a -> Exp a -> Exp a -> Exp a
+> let_ var x body = Let x (abstract1 var body)
 
 > closed_ex :: Exp Void
 > Just closed_ex = closed ex
