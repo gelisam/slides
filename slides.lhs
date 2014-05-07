@@ -1,9 +1,12 @@
-the Bound library
+(indenting to match the next slide)
 ===
 
-> {-# LANGUAGE ScopedTypeVariables #-}
+> {-# LANGUAGE                                                   ScopedTypeVariables #-}
 > import Bound.Scope.Simple
+
 > import Bound.Var
+
+
 
 > data Exp a
 >   = Lit Int
@@ -12,12 +15,18 @@ the Bound library
 >   | Let {-    B () = -} (Exp a) {- in -} (Scope () Exp a)
 >   | Var a
 
+
 > -- let x = (3 * 5)
 > --  in 2 + x
 > ex :: Exp Void
-> ex = Let (Lit 3 `Mul` Lit 5) (toScope
->          (Lit 2 `Add` Var (   B ()))
+> ex = Let      (Lit 3 `Mul` Lit 5) (toScope
+>               (Lit 2 `Add` Var (   B ()))
 >        )
+
+
+
+
+
 
 > -- |
 > -- >>> eval empty ex
@@ -35,8 +44,8 @@ the Bound library
 >     body' = fromScope body
 >     
 >     e' :: Var () a -> Int
->     e' (B ())    = value
->     e' (F v)     = e v
+>     e' (B ())   = value
+>     e' (F v)    = e v
 > eval e (Var var) = e var
 
 
