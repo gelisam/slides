@@ -1,4 +1,4 @@
-demonstrating instantiate1
+look ma, no environment!
 ===
 
 > {-# LANGUAGE DeriveFunctor, DeriveFoldable, DeriveTraversable, ScopedTypeVariables #-}
@@ -29,24 +29,24 @@ demonstrating instantiate1
 > Just closed_ex = closed ex
 
 > -- |
-> -- >>> eval empty closed_ex
+> -- >>> eval closed_ex
 > -- 17
-> eval :: forall a. (a -> Int) -> Exp a -> Int
-> eval e (Lit i) = i
-> eval e (Add x y) = eval e x + eval e y
-> eval e (Mul x y) = eval e x * eval e y
-> eval e (Let {-    B () -} x body) = eval e  body'
+> eval :: Exp Void -> Int
+> eval (Lit i) = i
+> eval (Add x y) = eval x + eval y
+> eval (Mul x y) = eval x * eval y
+> eval (Let {- B () -} x body) = eval body'
 >   where
->     value = eval e x
+>     value = eval x
 >     
 >     
->     body' :: Exp a
+>     body' :: Exp Void
 >     body' = instantiate1 (Lit value) body
 >     
 >     
 >     
 >     
-> eval e (Var var) = e var
+> eval (Var var) = empty var
 
 > instance Monad Exp where
 >   return = Var
