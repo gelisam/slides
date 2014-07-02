@@ -1,4 +1,4 @@
-a toy imperative language
+instantiate1 doesn't work
 ===
 
 > {-# LANGUAGE DeriveFunctor, DeriveFoldable, DeriveTraversable, ScopedTypeVariables #-}
@@ -38,32 +38,32 @@ a toy imperative language
 > Just closed_ex = closed ex
 
 > -- |
-> -- >>> interpret empty closed_ex
+> -- >>> interpret closed_ex
 > -- 15
 > -- 17
-> interpret :: forall a. (a -> Int) -> Term a -> IO ()
-> interpret e (Print x) = print (eval e x)
-> interpret e (Seq x y) = interpret e x >> interpret e y
-> interpret e (Let {- B () -} x body) = interpret e' body'
+> interpret :: Term Void -> IO ()
+> interpret (Print x) = print (eval x)
+> interpret (Seq x y) = interpret x >> interpret y
+> interpret (Let {- B () -} x body) = interpret body'
 >   where
->     value = eval e x
+>     value = eval x
 >     
->     -- data Var b a = B b | F a
->     body' :: Term (Var () a)
->     body' = fromScope body
+>     -- (Lit value) has type (Exp Void), expected (Term Void)
+>     body' :: Term Void
+>     body' = instantiate1 (Lit value) body
 >     
->     e' :: Var () a -> Int
->     e' (B ())   = value
->     e' (F v)    = e v
+>     -- instantiate1 :: Monad f => f a -> Scope () f a -> f a
+>     
+>     
 
 > -- |
-> -- >>> eval empty (Lit 2 `Add` Lit 5)
+> -- >>> eval (Lit 2 `Add` Lit 5)
 > -- 7
-> eval :: (a -> Int) -> Exp a -> Int
-> eval e (Lit i) = i
-> eval e (Add x y) = eval e x + eval e y
-> eval e (Mul x y) = eval e x * eval e y
-> eval e (Var var) = e var
+> eval :: Exp Void -> Int
+> eval (Lit i) = i
+> eval (Add x y) = eval x + eval y
+> eval (Mul x y) = eval x * eval y
+> eval (Var var) = empty var
 
 > instance Monad Exp where
 >   return = Var
