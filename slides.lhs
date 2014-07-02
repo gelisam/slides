@@ -1,4 +1,4 @@
-my solution
+Kmett's solution
 ===
 
 > {-# LANGUAGE DeriveFunctor, DeriveFoldable, DeriveTraversable, RankNTypes, ScopedTypeVariables #-}
@@ -87,27 +87,51 @@ my solution
 > --           => a -> e a -> Scope () e a
 > myAbstract1 :: forall e a. (Functor e, Eq a)
 >             => a -> Term e a -> Term (Scope () e) a
-> myAbstract1 var (Print x) = Print (abstract1 var x)
-> myAbstract1 var (Seq x y) = Seq (myAbstract1 var x)
->                                 (myAbstract1 var y)
-> myAbstract1 var (Let x body) = Let (abstract1 var x)
->                                    (myAbstract1 var body)
+> myAbstract1 var = hoist (abstract go)
+>   where
+>     go :: Var b a -> Maybe ()
+>     go (F v) | var == v = Just ()
+>     go _ = Nothing
 
 > -- instantiate1 :: Monad e
 > --              => e a -> Scope () e a -> e a
 > myInstantiate1 :: forall e a. (Functor e, Monad e)
 >                => e a -> Term (Scope () e) a -> Term e a
-> myInstantiate1 e (Print x) = Print (instantiate1 e x)
-> myInstantiate1 e (Seq x y) = Seq (myInstantiate1 e x)
->                                  (myInstantiate1 e y)
-> myInstantiate1 e (Let x body) = Let (instantiate1 e x)
->                                     (myInstantiate1 e' body)
->   where
->     e' :: Scope () e a
->     e' = weaken e
->     
->     weaken :: e a -> Scope () e a
->     weaken = abstract (const Nothing)
+> myInstantiate1 e = hoist (instantiate (\() -> fmap F e))
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+
+> hoist :: (Functor e, Functor f)
+>       => (forall x. e (Var x a) -> f (Var x a))
+>       -> Term e a -> Term f a
+> hoist f (Print x) = Print (fmap (\(F x) -> x) $ f $ fmap F x)
+> hoist f (Seq x1 x2) = Seq (hoist f x1)
+>                           (hoist f x2)
+> hoist f (Let x1 x2) = Let (fmap (\(F x) -> x) $ f $ fmap F x1)
+>                           (hoist (doubleHoist f) x2)
+> 
+> doubleHoist :: (Functor e, Functor f)
+>             => (forall x. e (Var x a) -> f (Var x a))
+>             -> Scope () e (Var x a) -> Scope () f (Var x a)
+> doubleHoist f = Scope . fmap assocR . f . fmap assocL . unscope
+> 
+> assocL :: Var a (Var b c) -> Var (Var a b) c
+> assocL (B a) = B (B a)
+> assocL (F (B b)) = B (F b)
+> assocL (F (F c)) = F c
+> 
+> assocR :: Var (Var a b) c -> Var a (Var b c)
+> assocR (B (B a)) = B a
+> assocR (B (F b)) = F (B b)
+> assocR (F c) = F (F c)
 
 
 
@@ -127,9 +151,8 @@ my solution
 
 
 
-
-
-
+> data Compose f g a = Compose { runCompose :: f (g a) }
+>   deriving Functor
 
 > data Void
 
