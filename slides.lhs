@@ -4,7 +4,7 @@
       | o .               |
       |-------------------|  * display splash screen
       |                   |  * imagesLoaded := Background { load images }
-      |                   |
+      |                   |  * splashDone := Either(imagesLoaded, Timeout(3))
       |                   |
       |                   |
       |    SPLASH         |
