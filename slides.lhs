@@ -3,7 +3,7 @@
        -------------------   Implementation
       | o .               |
       |-------------------|  * display splash screen
-      |                   |
+      |                   |  * imagesLoaded := Background { load images }
       |                   |
       |                   |
       |                   |
