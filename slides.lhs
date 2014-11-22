@@ -7,15 +7,15 @@
       |                   |      load all images
       |                   |      notify main thread
       |                   |    }
-      |    SPLASH         |
-      |    S C R E E N    |
-      |                   |
-      |                   |
-      |                   |
-      |                   |
-      |    please wait... |
-      |                   |
-      |___________________|
+      |    SPLASH         |  * images callback {
+      |    S C R E E N    |      displayAdScreen();
+      |                   |    }   
+      |                   |    
+      |                   |    
+      |                   |      
+      |    please wait... |      
+      |                   |      
+      |___________________|  
       |        ( )        |
        -------------------
 
