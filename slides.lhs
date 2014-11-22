@@ -8,6 +8,8 @@
                 (abstract stuff:
                  categories, monads)
           more parallelizable
+                (no assignments,
+                 no race conditions)
 
 
 
