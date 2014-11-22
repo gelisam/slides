@@ -1,7 +1,8 @@
 
           Why Haskell?                  Why not Haskell?
 
-          shorter
+          shorter (implicit code)
+          
 
 
 
