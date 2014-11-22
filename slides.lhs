@@ -4,7 +4,7 @@
       | o .               |
       |-------------------|  * preload images
       | +---+ +---+ +---+ |  * display splash screen
-      | |   | |   | |   | |  * display ad :(
+      | |   | |   | |   | |  * display ad (for at least 3 seconds)
       | +---+ +---+ +---+ |  * display images
       | +---+ +---+ +---+ |
       | |   | |   | |   | |
