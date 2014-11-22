@@ -7,15 +7,15 @@
       |                   |      load all images
       |                   |      notify main thread
       |                   |    }
-      |    SPLASH         |  * images callback {
+      |    SPLASH / AD    |  * images callback {
       |    S C R E E N    |      if (showingSplashScreen) {
       |                   |        displayAdScreen();
+      |                   |      } else {
+      |                   |        displayImages();
       |                   |      }
-      |                   |    }
-      |                   |      
-      |    please wait... |      
-      |                   |      
-      |___________________|  
+      |    please wait... |    }
+      |                   |    
+      |___________________|    
       |        ( )        |
        -------------------
 
