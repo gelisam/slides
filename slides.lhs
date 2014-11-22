@@ -7,6 +7,7 @@
           more reusable
                 (abstract stuff:
                  categories, monads)
+          more parallelizable
 
 
 
