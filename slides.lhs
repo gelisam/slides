@@ -11,6 +11,9 @@
                 (no assignments,
                  no race conditions)
           has few bugs
+                (no null pointers,
+                 no aliasing issues,
+                 precise types)
 
 
 
