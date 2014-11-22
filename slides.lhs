@@ -9,6 +9,7 @@ Primitives:
 Combinators:
 
   * combined event occurs when the last event from a list has occurred
+  * combined event occurs when the first event from a list occurs
 
 
 
