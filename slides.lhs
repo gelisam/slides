@@ -10,12 +10,12 @@
       |    SPLASH / AD    |  * images callback {
       |    S C R E E N    |      if (showingSplashScreen) {
       |                   |        displayAdScreen();
-      |                   |      } else {
-      |                   |        displayImages();
+      |                   |      } else if (
+      |                   |        currentTime() > adStartTime + 3 seconds
+      |                   |      ) {
+      |    please wait... |        displayImages();
       |                   |      }
-      |    please wait... |    }
-      |                   |    
-      |___________________|    
+      |___________________|    }
       |        ( )        |
        -------------------
 
