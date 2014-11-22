@@ -5,6 +5,8 @@
           more maintainable
                 (equational reasoning)
           more reusable
+                (abstract stuff:
+                 categories, monads)
 
 
 
