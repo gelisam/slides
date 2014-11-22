@@ -4,7 +4,7 @@
           shorter (implicit code)
           more maintainable
                 (equational reasoning)
-          
+          more reusable
 
 
 
