@@ -1,7 +1,7 @@
 
           Why Haskell?                  Why not Haskell?
 
-
+          shorter
 
 
 
