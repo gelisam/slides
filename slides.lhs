@@ -8,7 +8,7 @@
       |                   |  * on splashDone {
       |                   |      displayAdScreen();
       |    AD             |    }
-      |    S C R E E N    |
+      |    S C R E E N    |  * adDone := Last(imagesLoaded, Timeout(3))
       |                   |
       |                   |
       |                   |
