@@ -16,9 +16,13 @@
       |    please wait... |        displayImages();
       |                   |      }
       |___________________|    }
-      |        ( )        |
-       -------------------
-
+      |        ( )        |  * timeout callback {
+       -------------------       if (showingSplashScreen) {
+                                   displayAdScreen();
+                                 } else if (imagesAreLoaded) {
+                                   displayImages();
+                                 }
+                               }
 
 
 
