@@ -1,0 +1,28 @@
+name:                slides
+version:             0.1.0.0
+-- synopsis:
+-- description:
+homepage:            https://github.com/gelisam/slides
+license:             PublicDomain
+author:              Samuel Gélineau
+maintainer:          gelisam@gmail.com
+category:            Slides
+build-type:          Simple
+cabal-version:       >=1.10
+
+executable slides
+  hs-source-dirs:      .
+  main-is:             slides.lhs
+  default-language:    Haskell2010
+  ghc-options: -W -Wall
+  build-depends:       base >= 4.7 && < 5
+                     , attoparsec
+                     , boomerang
+                     , extra
+                     , megaparsec
+                     , parsec
+                     , parser-combinators
+                     , parsers
+                     , process
+                     , text
+                     , trifecta
