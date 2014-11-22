@@ -4,16 +4,16 @@
       | o .               |
       |-------------------|  * preload images
       |                   |  * display splash screen
+      |                   |  * display ad :(
       |                   |
       |                   |
-      |                   |
-      |    SPLASH         |
+      |    AD             |
       |    S C R E E N    |
       |                   |
       |                   |
       |                   |
       |                   |
-      |    please wait... |
+      |    please click!  |
       |                   |
       |___________________|
       |        ( )        |
