@@ -8,12 +8,12 @@
     * inheritance
 
 
-  Haskell                        
+  Haskell                          Haskell-style design 
 
     * higher-order functions
-    * algebraic datatypes        
-    * type classes               
-    * laziness                   
+    * algebraic datatypes            * make illegal states unrepresentable
+    * type classes               =>  * combinator libraries
+    * laziness                       * list fusion for performance
     * parametricity
 
 
