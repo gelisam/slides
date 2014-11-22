@@ -10,6 +10,7 @@
           more parallelizable
                 (no assignments,
                  no race conditions)
+          has few bugs
 
 
 
