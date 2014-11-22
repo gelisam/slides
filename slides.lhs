@@ -23,6 +23,9 @@
                                    displayImages();
                                  }
                                }
+                             * ad click callback {
+                                 ???
+                               }
 
 
 
