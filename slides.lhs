@@ -13,7 +13,7 @@
       |                   |      } else if (
       |                   |        currentTime() > adStartTime + 3 seconds
       |                   |      ) {
-      |    please wait... |        displayImages();
+      |    please click?  |        displayImages();
       |                   |      }
       |___________________|    }
       |        ( )        |  * timeout callback {
@@ -22,6 +22,9 @@
                                  } else if (imagesAreLoaded) {
                                    displayImages();
                                  }
+                               }
+                             * ad click callback {
+                                 ???
                                }
 
 
