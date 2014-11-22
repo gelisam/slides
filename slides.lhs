@@ -8,10 +8,10 @@
       |                   |      notify main thread
       |                   |    }
       |    SPLASH         |  * images callback {
-      |    S C R E E N    |      displayAdScreen();
-      |                   |    }   
-      |                   |    
-      |                   |    
+      |    S C R E E N    |      if (showingSplashScreen) {
+      |                   |        displayAdScreen();
+      |                   |      }
+      |                   |    }
       |                   |      
       |    please wait... |      
       |                   |      
