@@ -1,18 +1,13 @@
 
+          Why Haskell?
 
 
 
 
 
-                  Combinator Libraries   
-
-         (a design-pattern inspired by Haskell)
 
 
 
-
-                                   a presentation by
-                                     Samuel Gélineau
 
 
 
