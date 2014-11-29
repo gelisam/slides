@@ -18,6 +18,9 @@
   if (mario_touches(hammer)) {
     mario_wins = false;
   }
+  if (mario_touches(fire_projectile)) {
+    mario_wins = false;
+  }
   
   
   
