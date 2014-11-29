@@ -8,6 +8,7 @@ Combinators:
 
   * x && y
   * x || y
+  * !x
 
 
 
