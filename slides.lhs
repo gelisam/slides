@@ -8,8 +8,8 @@
       | +---+ +---+ +---+ |  * on splashDone {
       | +---+ +---+ +---+ |      displayAdScreen();
       | |   | |   | |   | |    }
-      | +---+ +---+ +---+ |  
-      | +---+ +---+       |  * adDone := Both(imagesLoaded, Timeout(3))
+      | +---+ +---+ +---+ |  * adSeen := Timeout(3)
+      | +---+ +---+       |  * adDone := Both(imagesLoaded, adSeen)
       | |   | |   |  ...  |  * on adDone {
       | +---+ +---+       |      displayImages();
       |                   |    }
