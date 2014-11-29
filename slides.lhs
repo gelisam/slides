@@ -15,6 +15,11 @@
     mario_wins = true;
   }
   
+  if (mario_touches(hammer)) {
+    mario_wins = false;
+  }
+  
+  
   
 
 
