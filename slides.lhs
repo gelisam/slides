@@ -11,6 +11,11 @@
   if (fireball_hit_count >= 5) {
     mario_wins = true;
   }
+  if (mario_touches(axe)) {
+    mario_wins = true;
+  }
+  
+  
 
 
 
