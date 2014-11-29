@@ -1,14 +1,15 @@
 
+Primitives:
+
+  * is a number greater than another?
+  * is mario touching this sprite?
 
 
 
 
 
 
-                     Primitives
-                   + Combinators
-                   -------------
-                 Combinator library
+
 
 
 
