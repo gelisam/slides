@@ -15,8 +15,8 @@ Bonus: monadic composition
 
   * sequence two systems. that is:
      - run the first system until its event occurs.
-
-
+     - if needed, use a value computed by the first system
+       to determine what the second system should be.
      - run the second system.
      - combined event occurs when the second event occurs.
 
