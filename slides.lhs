@@ -8,11 +8,11 @@
       | +---+ +---+ +---+ |  * on splashDone {
       | +---+ +---+ +---+ |      displayAdScreen();
       | |   | |   | |   | |    }
-      | +---+ +---+ +---+ |  * adDone := Last(imagesLoaded, Timeout(3))
-      | +---+ +---+       |  * on adDone {
-      | |   | |   |  ...  |      displayImages();
-      | +---+ +---+       |    }
-      |                   |
+      | +---+ +---+ +---+ |  
+      | +---+ +---+       |  * adDone := Last(imagesLoaded, Timeout(3))
+      | |   | |   |  ...  |  * on adDone {
+      | +---+ +---+       |      displayImages();
+      |                   |    }
       |                   |
       |                   |
       |___________________|
