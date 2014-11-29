@@ -7,6 +7,10 @@
   // or if bowser touches him.
   
   bool mario_wins = false;
+  
+  if (fireball_hit_count >= 5) {
+    mario_wins = true;
+  }
 
 
 
