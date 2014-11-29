@@ -13,10 +13,10 @@ Combinators:
 
 Bonus: monadic composition
 
-  * sequence two systems.
-
-
-
+  * sequence two systems. that is:
+     - run the first system until its event occurs.
+     - run the second system.
+     - combined event occurs when the second event occurs.
 
 
 
