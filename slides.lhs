@@ -8,7 +8,7 @@
       | +---+ +---+ +---+ |  * on splashDone {
       | +---+ +---+ +---+ |      displayAdScreen();
       | |   | |   | |   | |    }
-      | +---+ +---+ +---+ |  * adSeen := Timeout(3)
+      | +---+ +---+ +---+ |  * adSeen :=       Timeout(3)
       | +---+ +---+       |  * adDone := Last(imagesLoaded, adSeen)
       | |   | |   |  ...  |  * on adDone {
       | +---+ +---+       |      displayImages();
