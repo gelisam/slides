@@ -21,6 +21,9 @@
   if (mario_touches(fire_projectile)) {
     mario_wins = false;
   }
+  if (mario_touches(bowser)) {
+    mario_wins = false;
+  }
   
   
   
