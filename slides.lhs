@@ -5,6 +5,7 @@
 
         * Shorter                     
           (work hidden in combinators)
+        * More self-documenting       
 
 
 
