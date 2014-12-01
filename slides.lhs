@@ -8,8 +8,8 @@
   
   bool mario_wins = false;                  bool bowser_dies = (fireball_hit_count >= 5)
                                                             || mario_touches(axe);
-  if (fireball_hit_count >= 5) {            bool mario_dies = mario_touches(hammer)
-    mario_wins = true;                                     || mario_touches(fire_projectile)
+  if (fireball_hit_count >= 5) {            bool mario_dies = any(mario_touches, hammers)
+    mario_wins = true;                                     || any(mario_touches, fire_projectiles);
   }                                                        || mario_touches(bowser);
   if (mario_touches(axe)) {                 
     mario_wins = true;                      bool mario_wins = bowser_dies && !mario_dies;
