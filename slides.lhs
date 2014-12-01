@@ -8,6 +8,7 @@
         * More self-documenting
           (intermediate names)
         * Fewer mistakes
+          (each system is consistent)
 
 
 
