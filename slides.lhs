@@ -1,15 +1,32 @@
 
-                   Combinator libraries
+Primitives:
 
-          Benefits                      Costs
+  * event occurs after n seconds
+  * run function in a separate thread,
+    event occurs when the function completes
+  * event occurs when the user clicks
 
-        * Shorter                     * Need some up-front design to find
-          (work hidden in combinators)  the proper primitives and combinators
-        * More self-documenting       * Combinators are more abstract
-          (intermediate names)        
-        * Fewer mistakes
-          (each system is consistent) 
-        * Easier to change
+Combinators:
+
+  * combined event occurs when the last event from a list has occurred
+  * combined event occurs when the first event from a list occurs
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
