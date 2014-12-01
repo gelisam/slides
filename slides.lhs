@@ -1,36 +1,15 @@
 
+                   Combinator libraries
 
-       -------------------   Implementation
-      | o .               |
-      |-------------------|  * display splash screen
-      | +---+ +---+ +---+ |  * imagesLoaded := Background { load images }
-      | |   | |   | |   | |  * splashDone := First(imagesLoaded, Timeout(3))
-      | +---+ +---+ +---+ |  * on splashDone {
-      | +---+ +---+ +---+ |      displayAdScreen();
-      | |   | |   | |   | |    }
-      | +---+ +---+ +---+ |  * adSeen := First(Timeout(3), Click())
-      | +---+ +---+       |  * adDone := Last(imagesLoaded, adSeen)
-      | |   | |   |  ...  |  * on adDone {
-      | +---+ +---+       |      displayImages();
-      |                   |    }
-      |                   |
-      |                   |
-      |___________________|
-      |        ( )        |
-       -------------------
+          Benefits                      Costs
 
-
-
-
-
-
-
-
-
-
-
-
-
+        * Shorter                     * Need some up-front design to find
+          (work hidden in combinators)  the proper primitives and combinators
+        * More self-documenting
+          (intermediate names)
+        * Fewer mistakes
+          (each system is consistent)
+        * Easier to change
 
 
 
