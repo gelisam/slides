@@ -15,16 +15,19 @@
     mario_wins = true;                      bool mario_wins = bowser_dies && !mario_dies;
   }
   
-  if (mario_touches(hammer)) {
-    mario_wins = false;
-  }
-  if (mario_touches(fire_projectile)) {
-    mario_wins = false;
-  }
+  
+    if (mario_touches(hammer)) {
+      mario_wins = false;
+    }
+  
+  
+    if (mario_touches(fire_projectile)) {
+      mario_wins = false;
+    }
+  
   if (mario_touches(bowser)) {
     mario_wins = false;
   }
-  
   
   
 
