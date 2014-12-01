@@ -6,14 +6,14 @@
   // by one of bowser's fire projectiles,
   // or if bowser touches him.
   
-  bool mario_wins = false;                  bool mario_wins = (
-                                                                fireball_hit_count >= 5 ||
-  if (fireball_hit_count >= 5) {                                mario_touches(axe)
-    mario_wins = true;                                        ) && !(
-  }                                                             mario_touches(hammer) ||
-  if (mario_touches(axe)) {                                     mario_touches(fire_projectile)
-    mario_wins = true;                                          mario_touches(bowser)
-  }                                                           );
+  bool mario_wins = false;                  bool bowser_dies = (fireball_hit_count >= 5)
+                                                            || mario_touches(axe);
+  if (fireball_hit_count >= 5) {            bool mario_dies = mario_touches(hammer)
+    mario_wins = true;                                     || mario_touches(fire_projectile)
+  }                                                        || mario_touches(bowser);
+  if (mario_touches(axe)) {                 
+    mario_wins = true;                      bool mario_wins = bowser_dies && !mario_dies;
+  }
   
   if (mario_touches(hammer)) {
     mario_wins = false;
