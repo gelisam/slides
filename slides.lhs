@@ -9,6 +9,7 @@
           (intermediate names)
         * Fewer mistakes
           (each system is consistent)
+        * Easier to change
 
 
 
