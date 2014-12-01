@@ -5,10 +5,10 @@
 
         * Shorter                     * Need some up-front design to find
           (work hidden in combinators)  the proper primitives and combinators
-        * More self-documenting
-          (intermediate names)
+        * More self-documenting       * Combinators are more abstract
+          (intermediate names)        
         * Fewer mistakes
-          (each system is consistent)
+          (each system is consistent) 
         * Easier to change
 
 
