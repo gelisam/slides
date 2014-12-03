@@ -13,7 +13,7 @@ Combinators:
 Bonus: monadic composition
 
   * sequence two systems. that is:
-     - run the first system until
+     - run the first system until         :: m a        (system)
        it produces a value.
      - if needed, use the value
        computed by the first
