@@ -1,8 +1,8 @@
 
 
->  <xmlExp> ::= "<" IDENTIFIER <attribute>* ">"
+>  <xmlExp> ::= "<" (x:IDENTIFIER) <attribute>* ">"
 >                 <xmlExp>*
->               "</" IDENTIFIER ">"
+>               "</" x ">"
 > 
 > <attribute> ::= IDENTIFIER "=" STRING
 
