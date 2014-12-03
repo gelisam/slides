@@ -24,6 +24,15 @@ Bonus: monadic composition
        combined system is the value
        produced by the second system.
 
+Extra bonus: comonadic extension
+
+  * parallel update. that is:
+     - the system consists                :: w a        (system)
+       of many similar parts.             
+     - focus on a single part             :: w a -> b
+       and transform it.                     (function which
+     - all the parts get transformed               receives a system)
+       in the same way.                   :: w b        (system)
 
 
 
