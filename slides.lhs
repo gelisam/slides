@@ -31,11 +31,11 @@ Extra bonus: comonadic extension
        of many similar parts.             
      - focus on a single part             :: w a -> b
        and transform it.                     (function which
-                                                   receives a system)
-       
-       
-       
-       
+     - if needed, use the value of                 receives a system)
+       neighbouring parts or the shape
+       of the local neighbourhood to
+       determine what the transformed
+       value should be.
      - all the parts get transformed
        in the same way.                   :: w b        (system)
 
