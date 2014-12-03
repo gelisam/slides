@@ -31,7 +31,12 @@ Extra bonus: comonadic extension
        of many similar parts.             
      - focus on a single part             :: w a -> b
        and transform it.                     (function which
-     - all the parts get transformed               receives a system)
+                                                   receives a system)
+       
+       
+       
+       
+     - all the parts get transformed
        in the same way.                   :: w b        (system)
 
 
