@@ -1,13 +1,13 @@
 
 
->  <xmlExp> ::= "<" (x:IDENTIFIER) <attribute>* ">"
->                 <xmlExp>*
->               "</" x ">"
-> 
-> <attribute> ::= IDENTIFIER "=" STRING
 
 
 
+
+
+                         Bonus slides
+
+                           Comonads
 
 
 
