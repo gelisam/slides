@@ -20,7 +20,7 @@ Bonus: monadic composition
        system to determine what
        the second system should be.
      - run the second system.
-     - the value produced by the
+     - the value produced by the          :: m b        (system)
        combined system is the value
        produced by the second system.
 
