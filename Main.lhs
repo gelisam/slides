@@ -8,6 +8,7 @@
    * SML
    * Agda
    * Idris
+   * Elm
 
 
 
