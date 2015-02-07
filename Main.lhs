@@ -1,6 +1,15 @@
+
 > import Prelude hiding ((!!))
 
   Unsafe (!!):
+
+
+
+
+
+
+
+
 
 > (!!) :: [a] -> Int -> a
 > []     !! _ = error "index too large"
