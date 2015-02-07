@@ -1,20 +1,20 @@
-
+> {-# LANGUAGE GADTs #-}
 > import Prelude hiding ((!!))
 
   Unsafe (!!):
 
+> data Nat where
+>   Z :: Nat
+>   S :: Nat -> Nat
 
+> data List a where
+>   Nil  :: List a
+>   Cons :: a -> List a -> List a
 
-
-
-
-
-
-
-> (!!) :: [a] -> Int -> a
-> []     !! _ = error "index too large"
-> (x:_ ) !! 0 = x
-> (_:xs) !! i = xs !! (i-1)
+> (!!) :: List a -> Nat -> a
+> Nil         !! _     = error "index too large"
+> (Cons x _ ) !! Z     = x
+> (Cons _ xs) !! (S i) = xs !! i
 
 
 
