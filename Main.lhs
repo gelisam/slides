@@ -2,6 +2,7 @@
   Anthony Cowley: Robots on Haskell
 
     * Bondage and discipline: who's wearing the chains?
+    * Compiling Conal Elliott's Pan DSL to OpenCL
 
 
 
