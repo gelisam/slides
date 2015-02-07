@@ -1,8 +1,8 @@
 
 
-  The Compose Conference (2015, NYC):
+  The Compose Conference (2015, NYC):         This talk (in Montréal):
 
-   * Haskell
+   * Haskell                                   * Haskell
    * F#
    * OCaml
    * SML
