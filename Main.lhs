@@ -1,8 +1,11 @@
 
 
-  The Hac NYC (2014):
+  The Compose Conference (2015, NYC):
 
    * Haskell
+   * F#
+   * OCaml
+   * SML
 
 
 
