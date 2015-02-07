@@ -3,6 +3,7 @@
 
     * pi-forall, a simple dependently-typed language
     * how to use dependent types
+    * how to implement a dependently-typed language
 
 
 
