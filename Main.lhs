@@ -2,7 +2,7 @@
 > import Prelude hiding ((!!))
 > import GHC.Conc
 
-  Safe (!!):
+  Agda version of (!!): (see Main.agda for details)
 
 > data Nat where
 >   Z :: Nat
@@ -17,7 +17,7 @@
 >   Cons :: a -> Vec a n -> Vec a (S n)
 
 > (!!) :: Vec a n -> Fin n -> a
-> Nil         !! i        = i `pseq` error "never happens"
+> Nil         !! ()
 > (Cons x _ ) !! FinZ     = x
 > (Cons _ xs) !! (FinS i) = xs !! i
 
