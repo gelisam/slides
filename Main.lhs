@@ -1,18 +1,14 @@
-
+> import Prelude hiding ((!!))
 
   Unsafe (!!):
 
-> ['a','b','c'] !! 0
-'a'
+> (!!) :: [a] -> Int -> a
+> []     !! _ = error "index too large"
+> (x:_ ) !! 0 = x
+> (_:xs) !! i = xs !! (i-1)
 
-> ['a','b','c'] !! 1
-'b'
 
-> ['a','b','c'] !! 2
-'c'
 
-> ['a','b','c'] !! 3
-Prelude.(!!): index too large
 
 
 
@@ -78,9 +74,5 @@ Prelude.(!!): index too large
 
 
 
-
-
-
-
-
-
+> main :: IO ()
+> main = putStrLn "typechecks."
