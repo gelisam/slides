@@ -1,6 +1,7 @@
 
   Anthony Cowley: Robots on Haskell
 
+    * Bondage and discipline: who's wearing the chains?
 
 
 
