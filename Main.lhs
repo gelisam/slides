@@ -1,6 +1,6 @@
-> {-# LANGUAGE GADTs #-}
+> {-# LANGUAGE DataKinds, GADTs, KindSignatures #-}
 > import Prelude hiding ((!!))
-
+> import GHC.Conc
 
   Safe (!!):
 
@@ -8,19 +8,18 @@
 >   Z :: Nat
 >   S :: Nat -> Nat
 
+> data Fin (n :: Nat) where
+>   FinZ :: Fin (S n)
+>   FinS :: Fin n -> Fin (S n)
 
+> data Vec a (n :: Nat) where
+>   Nil  :: Vec a Z
+>   Cons :: a -> Vec a n -> Vec a (S n)
 
-
-
-> data List a           where
->   Nil  :: List a
->   Cons :: a -> List a  -> List a
-
-> (!!) :: [a]     -> Int   -> a
-> Nil         !! _        = ?
-> (Cons x _ ) !! Z        = x
-> (Cons _ xs) !! (S i)    = xs !! i
-
+> (!!) :: Vec a n -> Fin n -> a
+> Nil         !! i        = i `pseq` error "never happens"
+> (Cons x _ ) !! FinZ     = x
+> (Cons _ xs) !! (FinS i) = xs !! i
 
 
 
