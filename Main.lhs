@@ -1,15 +1,18 @@
 
-  Stephanie Weirich: Fundamentals of dependent type theory
 
-    * pi-forall, a simple dependently-typed language
-    * how to use dependent types
-    * how to implement a dependently-typed language
+  Unsafe (!!):
 
-  This talk:
+> ['a','b','c'] !! 0
+'a'
 
-    * a safer (!!), in Haskell
-    * a safer (!!), in Agda
+> ['a','b','c'] !! 1
+'b'
 
+> ['a','b','c'] !! 2
+'c'
+
+> ['a','b','c'] !! 3
+Prelude.(!!): index too large
 
 
 
