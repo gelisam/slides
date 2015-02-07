@@ -3,6 +3,7 @@
 
     * Bondage and discipline: who's wearing the chains?
     * Compiling Conal Elliott's Pan DSL to OpenCL
+    * A tiny quatcopter crashing against the walls and ceilings
 
 
 
