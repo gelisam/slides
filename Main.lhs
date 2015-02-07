@@ -11,9 +11,9 @@
 >   Nil  :: List a
 >   Cons :: a -> List a -> List a
 
-> (!!) :: List a -> Nat -> a
-> Nil         !! _     = ?
-> (Cons x _ ) !! Z     = x
+> (!!) :: List a -> Nat -> Maybe a
+> Nil         !! _     = Nothing
+> (Cons x _ ) !! Z     = Just x
 > (Cons _ xs) !! (S i) = xs !! i
 
 
