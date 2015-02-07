@@ -1,7 +1,7 @@
 > {-# LANGUAGE GADTs #-}
 > import Prelude hiding ((!!))
 
-  Unsafe (!!):
+  Safe (!!):
 
 > data Nat where
 >   Z :: Nat
@@ -12,7 +12,7 @@
 >   Cons :: a -> List a -> List a
 
 > (!!) :: List a -> Nat -> a
-> Nil         !! _     = error "index too large"
+> Nil         !! _     = ?
 > (Cons x _ ) !! Z     = x
 > (Cons _ xs) !! (S i) = xs !! i
 
