@@ -6,7 +6,7 @@
    * F#
    * OCaml
    * SML
-   * Agda
+   * Agda                                      * Agda
    * Idris
    * Elm
 
