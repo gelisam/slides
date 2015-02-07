@@ -5,6 +5,10 @@
     * how to use dependent types
     * how to implement a dependently-typed language
 
+  This talk:
+
+    * a safer (!!), in Haskell
+    * a safer (!!), in Agda
 
 
 
