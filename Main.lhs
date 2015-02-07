@@ -1,25 +1,25 @@
-> renderPan $ X
-OOOOOOoooooooooo..........++++++++++*****
-OOOOOOoooooooooo..........++++++++++*****
-OOOOOOoooooooooo..........++++++++++*****
-OOOOOOoooooooooo..........++++++++++*****
-OOOOOOoooooooooo..........++++++++++*****
-OOOOOOoooooooooo..........++++++++++*****
-OOOOOOoooooooooo..........++++++++++*****
-OOOOOOoooooooooo..........++++++++++*****
-OOOOOOoooooooooo..........++++++++++*****
-OOOOOOoooooooooo..........++++++++++*****
-OOOOOOoooooooooo..........++++++++++*****
-OOOOOOoooooooooo..........++++++++++*****
-OOOOOOoooooooooo..........++++++++++*****
-OOOOOOoooooooooo..........++++++++++*****
-OOOOOOoooooooooo..........++++++++++*****
-OOOOOOoooooooooo..........++++++++++*****
-OOOOOOoooooooooo..........++++++++++*****
-OOOOOOoooooooooo..........++++++++++*****
-OOOOOOoooooooooo..........++++++++++*****
-OOOOOOoooooooooo..........++++++++++*****
-OOOOOOoooooooooo..........++++++++++*****
+> renderPan $ Y
+*****************************************
+*****************************************
+*****************************************
++++++++++++++++++++++++++++++++++++++++++
++++++++++++++++++++++++++++++++++++++++++
++++++++++++++++++++++++++++++++++++++++++
++++++++++++++++++++++++++++++++++++++++++
++++++++++++++++++++++++++++++++++++++++++
+.........................................
+.........................................
+.........................................
+.........................................
+.........................................
+ooooooooooooooooooooooooooooooooooooooooo
+ooooooooooooooooooooooooooooooooooooooooo
+ooooooooooooooooooooooooooooooooooooooooo
+ooooooooooooooooooooooooooooooooooooooooo
+ooooooooooooooooooooooooooooooooooooooooo
+OOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO
+OOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO
+OOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO
 
 
 
