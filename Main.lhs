@@ -29,9 +29,9 @@ $ gcc -O3 --std=c99 -W -Wall mustache.c -o mustache
 $ time ./mustache > /dev/null
 40% faster than the Haskell version!
 
+even though the code generation is dumb as rocks!
 
-
-
+> compile R   (x,y) = printf "sqrt(%s*%s + %s*%s)" x x y y
 
 
 
