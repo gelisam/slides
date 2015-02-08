@@ -7,6 +7,13 @@
                  freezing, and
                  quasi-determinism
 
+  This talk:
+
+    * LVish 2.0: freezing, and
+                 quasi-determinism
+    * LVars: restricting concurrent reads and writes
+             to guarantee determinism
+
 
 
 
