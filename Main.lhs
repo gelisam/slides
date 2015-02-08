@@ -1,16 +1,25 @@
-
-  Anthony Cowley: Robots on Haskell
-
-    * Bondage and discipline: who's wearing the chains?
-    * Compiling Conal Elliott's Pan DSL to OpenCL
-    * A tiny quatcopter crashing against the walls and ceilings
-
-  This talk:
-
-    * Compiling a Pan-like DSL to C
-
-
-
+> renderPan $ X
+OOOOOOoooooooooo..........++++++++++*****
+OOOOOOoooooooooo..........++++++++++*****
+OOOOOOoooooooooo..........++++++++++*****
+OOOOOOoooooooooo..........++++++++++*****
+OOOOOOoooooooooo..........++++++++++*****
+OOOOOOoooooooooo..........++++++++++*****
+OOOOOOoooooooooo..........++++++++++*****
+OOOOOOoooooooooo..........++++++++++*****
+OOOOOOoooooooooo..........++++++++++*****
+OOOOOOoooooooooo..........++++++++++*****
+OOOOOOoooooooooo..........++++++++++*****
+OOOOOOoooooooooo..........++++++++++*****
+OOOOOOoooooooooo..........++++++++++*****
+OOOOOOoooooooooo..........++++++++++*****
+OOOOOOoooooooooo..........++++++++++*****
+OOOOOOoooooooooo..........++++++++++*****
+OOOOOOoooooooooo..........++++++++++*****
+OOOOOOoooooooooo..........++++++++++*****
+OOOOOOoooooooooo..........++++++++++*****
+OOOOOOoooooooooo..........++++++++++*****
+OOOOOOoooooooooo..........++++++++++*****
 
 
 
