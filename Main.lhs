@@ -1,17 +1,19 @@
 
-
-  Conal Elliott's composable representation:
+  A compilable representation (Anthony Cowley was using a
+  tagless-final representation, but you get the idea):
 
 > type Color = Float
 
-> newtype Image a = Image {
->   runImage :: (Float,Float) -> a
-> }
+> data Image = Const Color
+>            | X | Y
+>            | Phi | R
+>            | Plus Image Image
+>            | Minus Image Image
+>            | Times Image Image
+             | ...
 
-> instance Num a => Num (Image a) where
->   Image xs + Image ys = Image zs
->     where
->       zs ij = xs ij + ys ij
+> instance Num Image where
+>   (+) = Plus
 
 
 
