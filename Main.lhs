@@ -3,6 +3,9 @@
 
     * LVars: restricting concurrent reads and writes
              to guarantee determinism
+    * LVish 2.0: queiescence,
+                 freezing, and
+                 quasi-determinism
 
 
 
