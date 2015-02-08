@@ -1,6 +1,6 @@
+> import Text.Printf
 
-  A compilable representation (Anthony Cowley was using a
-  tagless-final representation, but you get the idea):
+  A compilable representation:
 
 > type Color = Float
 
@@ -25,7 +25,17 @@
 > eval (Minus p1 p2) xy = eval p1 xy - eval p2 xy
 > eval (Times p1 p2) xy = eval p1 xy * eval p2 xy
 
+> type CExpr = String
 
+> compile :: Image -> (CExpr,CExpr) -> CExpr
+> compile X   (x,y) = x
+> compile Y   (x,y) = y
+> compile Phi (x,y) = printf "(atan2(%s,%s) / M_PI)" y x
+> compile R   (x,y) = printf "sqrt(%s*%s + %s*%s)" x x y y
+> compile (Const v)     xy = show v
+> compile (Plus  p1 p2) xy = printf "(%s + %s)" (compile p1 xy) (compile p2 xy)
+> compile (Minus p1 p2) xy = printf "(%s - %s)" (compile p1 xy) (compile p2 xy)
+> compile (Times p1 p2) xy = printf "(%s * %s)" (compile p1 xy) (compile p2 xy)
 
 
 

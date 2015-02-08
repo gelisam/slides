@@ -1,7 +1,9 @@
-> {-# LANGUAGE GADTs #-}
+> {-# LANGUAGE FlexibleInstances, GADTs, TypeSynonymInstances #-}
 > module MiniPan where
 
 > import Control.Monad
+> import Language.C
+> import Text.Printf
 
 
 > data MiniPan where
@@ -80,6 +82,93 @@
 > renderPan = render (40,20) . eval
 
 
+> cVar :: String -> CExpr
+> cVar s = CVar (builtinIdent s) undefNode
+
+> cPi :: CExpr
+> cPi = cVar "M_PI"
+
+
+> cCall :: String -> [CExpr] -> CExpr
+> cCall funcName args = CCall (cVar funcName) args undefNode
+
+> cAtan2 :: CExpr -> CExpr -> CExpr
+> cAtan2 x y = cCall "atan2" [x,y]
+
+> cSqrt :: CExpr -> CExpr
+> cSqrt x = cCall "sqrt" [x]
+
+
+> cOp :: CBinaryOp -> CExpr -> CExpr -> CExpr
+> cOp op x y = CBinary op x y undefNode
+
+> cGt, cGeq, cLt, cLeq :: CExpr -> CExpr -> CExpr
+> cGt  = cOp CGrOp
+> cGeq = cOp CGeqOp
+> cLt  = cOp CLeOp
+> cLeq = cOp CLeqOp
+
+
+> fromFloat :: Float -> CExpr
+> fromFloat n = CConst $ CFloatConst (cFloat n) undefNode
+
+> instance Num CExpr where
+>   (+) = cOp CAddOp
+>   (-) = cOp CSubOp
+>   (*) = cOp CMulOp
+>   signum p = 1 * (p `cGt` 0)
+>            - 1 * (p `cLt` 0)
+>   abs p = p * (p `cGt` 0)
+>         - p * (p `cLt` 0)
+>   fromInteger = fromFloat . fromInteger
+
+> instance Fractional CExpr where
+>   (/) = cOp CDivOp
+>   fromRational = fromFloat . fromRational
+
+> compile :: MiniPan -> CExpr -> CExpr -> CExpr
+> compile X              x _ = x
+> compile Y              _ y = y
+> compile Phi            x y = cAtan2 y x / cPi
+> compile R              x y = cSqrt (x*x + y*y)
+> compile (Const v)      _ _ = fromFloat v
+> compile (Plus  p1 p2)  x y = compile p1 x y + compile p2 x y
+> compile (Minus p1 p2)  x y = compile p1 x y - compile p2 x y
+> compile (Times p1 p2)  x y = compile p1 x y * compile p2 x y
+> compile (Div   p1 p2)  x y = compile p1 x y / compile p2 x y
+> compile (Gt  p1 p2)    x y = compile p1 x y `cGt`  compile p2 x y
+> compile (Geq p1 p2)    x y = compile p1 x y `cGeq` compile p2 x y
+> compile (Lt  p1 p2)    x y = compile p1 x y `cLt`  compile p2 x y
+> compile (Leq p1 p2)    x y = compile p1 x y `cLeq` compile p2 x y
+> compile (At p (pX,pY)) x y = compile p (compile pX x y) (compile pY x y)
+
+> compilePan :: MiniPan -> IO ()
+> compilePan p = do
+>     putStrLn "#include <math.h>"
+>     putStrLn "#include <stdio.h>"
+>     putStrLn ""
+>     putStrLn "int main() {"
+>     putStrLn "  int w = 40;"
+>     putStrLn "  int h = 20;"
+>     putStrLn "  for(int j=0; j<h; ++j) {"
+>     putStrLn "    for(int i=0; i<w; ++i) {"
+>     putStrLn "      float x = 2 * ((float)i / (float)w - 0.5);"
+>     putStrLn "      float y = 2 * (0.5 - (float)j / (float)h);"
+>     printf   "      float v = %s;\n" (show (pretty (compile p x y)))
+>     putStrLn "      if      (v <= -0.75) printf(\"O\");"
+>     putStrLn "      else if (v <= -0.25) printf(\"o\");"
+>     putStrLn "      else if (v <=  0.25) printf(\".\");"
+>     putStrLn "      else if (v <=  0.75) printf(\"+\");"
+>     putStrLn "      else                 printf(\"*\");"
+>     putStrLn "    }"
+>     putStrLn "    printf(\"\\n\");"
+>     putStrLn "  }"
+>     putStrLn "  "
+>     putStrLn "  return 0;"
+>     putStrLn "}"
+>   where
+>     x = CVar (builtinIdent "x") undefNode
+>     y = CVar (builtinIdent "y") undefNode
 
 
 
@@ -140,5 +229,5 @@
 
 
 
-
-
+> main :: IO ()
+> main = putStrLn "typechecks."
