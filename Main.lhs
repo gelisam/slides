@@ -1,20 +1,17 @@
-> import Data.Array
 
-  Non-composable representation:
+
+  Conal Elliott's composable representation:
 
 > type Color = Float
 
 > newtype Image = Image {
->   runImage :: Array (Int,Int) Color
+>   runImage :: (Float,Float) -> Color
 > }
 
 > instance Num Image where
 >   Image xs + Image ys = Image zs
 >     where
->       colorAt ij = (xs ! ij)
->                  + (ys ! ij)
->       wh = bounds xs
->       zs = array wh [(ij, colorAt ij) | ij <- range wh]
+>       zs ij = xs ij + ys ij
 
 
 
