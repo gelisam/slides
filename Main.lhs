@@ -4,11 +4,11 @@
 
 > type Color = Float
 
-> newtype Image = Image {
->   runImage :: (Float,Float) -> Color
+> newtype Image a = Image {
+>   runImage :: (Float,Float) -> a
 > }
 
-> instance Num Image where
+> instance Num a => Num (Image a) where
 >   Image xs + Image ys = Image zs
 >     where
 >       zs ij = xs ij + ys ij
