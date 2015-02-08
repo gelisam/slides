@@ -26,7 +26,7 @@ int main() {
 }
 
 $ gcc -O3 --std=c99 -W -Wall mustache.c -o mustache
-
+$ ./mustache
 
 
 
