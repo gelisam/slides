@@ -1,9 +1,0 @@
-c                     c -O3
-real    0m13.544s     real    0m9.089s
-user    0m13.272s     user    0m8.999s
-sys     0m0.031s      sys     0m0.030s
-
-haskell               haskell -O3
-real    0m48.179s     real    0m14.860s
-user    0m47.578s     user    0m14.641s
-sys     0m0.401s      sys     0m0.119s
