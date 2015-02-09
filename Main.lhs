@@ -1,16 +1,16 @@
 
-  An alternate view: freezing
+  Who freezes?
 
 > import MyIVars
 > import MyThreads
 
 > main = do
 >     var <- newIVar
->     threadA <- forkIO $ blockThenReadIVar var >>= print
->     threadB <- forkIO $ writeThenFreezeIVar var 41
->     threadC <- forkIO $ writeThenFreezeIVar var 42
+>     threadA <- forkIO $ freezeThenReadIVar var >>= print
+>     threadB <- forkIO $ writeIVar var 41
+>     threadC <- forkIO $ writeIVar var 42
 >     
->     finalValue <- blockThenReadIVar var
+>     finalValue <- freezeThenReadIVar var
 >     print finalValue  -- ERROR: write after freeze
 
 
