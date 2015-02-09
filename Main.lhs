@@ -1,17 +1,17 @@
 
-  Who freezes?
+  Freezing and commutativity
 
-> import MyIVars
+> import MyLVars
 > import MyThreads
 
 > main = do
->     var <- newIVar
->     threadA <- forkIO $ freezeThenReadIVar var >>= print
->     threadB <- forkIO $ writeIVar var 41
->     threadC <- forkIO $ writeIVar var 42
+>     var <- newLVar 0
+>     threadA <- forkIO $ freezeThenReadLVar var >>= print
+>     threadB <- forkIO $ atomicallyModify var (subtract 5)
+>     threadC <- forkIO $ atomicallyModify var (+10)
 >     
->     finalValue <- freezeThenReadIVar var
->     print finalValue  -- ERROR: write after freeze
+>     finalValue <- freezeThenReadLVar var
+>     print finalValue  -- 5?
 
 
 

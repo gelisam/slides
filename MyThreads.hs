@@ -21,6 +21,3 @@ wait threadId = do
     case r of
       Left e -> throwIO e
       Right () -> return ()
-
-atomicallyModify :: IORef a -> (a -> a) -> IO ()
-atomicallyModify ref f = atomicModifyIORef' ref (\x -> (f x, ()))
