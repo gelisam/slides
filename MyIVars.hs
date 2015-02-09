@@ -12,7 +12,7 @@ newIVar = newEmptyMVar
 blockThenReadIVar :: IVar a -> IO a
 blockThenReadIVar = readMVar
 
-writeIVar :: IVar a -> a -> IO ()
-writeIVar var x = do
+writeThenFreezeIVar :: IVar a -> a -> IO ()
+writeThenFreezeIVar var x = do
     wasEmpty <- tryPutMVar var x
-    unless wasEmpty $ fail "double-write"
+    unless wasEmpty $ fail "write after freeze"
