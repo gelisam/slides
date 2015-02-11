@@ -7,8 +7,8 @@
 > main = do
 >     var <- newLVar 0
 >     threadA <- forkIO $ blockThenFreezeThenReadLVar var >>= print
->     threadB <- forkIO $ atomicallyModify var (subtract 5)
->     threadC <- forkIO $ atomicallyModify var (+10)
+>     threadB <- forkIO $ atomicallyModify var (join 1)
+>     threadC <- forkIO $ atomicallyModify var (join 2)
 >     
 >     finalValue <- blockThenFreezeThenReadLVar var
 >     print finalValue  -- Always 5?
