@@ -1,17 +1,17 @@
 
-  Not deterministic:
+  Associativity and Commutativity
 
 > import Data.IORef
 > import MyThreads
 
 > main = do
 >     ref <- newIORef 0
->     threadA <- forkIO $ writeIORef ref 1
->     threadB <- forkIO $ writeIORef ref 2
->     threadC <- forkIO $ writeIORef ref 3
+>     threadA <- forkIO $ atomicallyModify ref (+1)
+>     threadB <- forkIO $ atomicallyModify ref (subtract 5)
+>     threadC <- forkIO $ atomicallyModify ref (+10)
 >     
 >     finalValue <- readIORef ref
->     print finalValue  -- 0, 1, 2, or 3?
+>     print finalValue
 
 
 
