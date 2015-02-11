@@ -13,7 +13,7 @@
 >     mapM_ wait [threadA, threadB, threadC]
 >     
 >     finalValue <- readIORef ref
->     print finalValue
+>     print finalValue  -- always 6
 
 
 
