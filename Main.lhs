@@ -1,19 +1,9 @@
 
 
+  The Hac NYC (2014):
 
+   * Haskell
 
-
-
-
-                             Excerpts
-                             from the
-                        Compose Conference
-                              (2015)
-
-
-
-                                                     a talk by
-                                               Samuel Gélineau
 
 
 
