@@ -1,5 +1,5 @@
 
-  The lattice enforces commutative writes
+  To avoid errors, block until... when?
 
 > import MyLVars
 > import MyThreads
