@@ -13,10 +13,10 @@
 >     finalValue <- readIORef ref
 >     print finalValue
 
-
-
-
-
+0+1-5+10 = 6 or
+0-5+1+10 = 6 or
+0+10-5+1 = 6 or
+...
 
 
 
