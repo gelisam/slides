@@ -1,5 +1,5 @@
 
-  Freezing and commutativity
+  Freezing and quasi-determinism
 
 > import MyLVars
 > import MyThreads
@@ -11,7 +11,7 @@
 >     threadC <- forkIO $ atomicallyModify var (+10)
 >     
 >     finalValue <- freezeThenReadLVar var
->     print finalValue  -- 5?
+>     print finalValue  -- 5 or ERROR: write after freeze
 
 
 
