@@ -10,8 +10,14 @@
 >     threadB <- forkIO $ atomicallyModify ref (subtract 5)
 >     threadC <- forkIO $ atomicallyModify ref (+10)
 >     
+>     
+>     
 >     finalValue <- readIORef ref
 >     print finalValue
+
+
+
+
 
 
 
