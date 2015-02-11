@@ -11,12 +11,8 @@
 >     threadC <- forkIO $ atomicallyModify ref (+10)
 >     
 >     finalValue <- readIORef ref
->     print finalValue  -- 1 or -5 or 10 or ... or 6
+>     print finalValue
 
-0+1-5+10 = 6 or
-0-5+1+10 = 6 or
-0+10-5+1 = 6 or
-...
 
 
 
