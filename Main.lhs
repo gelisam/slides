@@ -1,5 +1,5 @@
 
-  Wait until all writes are done
+  Deterministic, but no interaction between threads :(
 
 > import Data.IORef
 > import MyThreads
