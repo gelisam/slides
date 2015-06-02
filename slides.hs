@@ -39,7 +39,7 @@ minimax algorithm (review)
 --         +---+     +---+     +---+
 --         |X==|     |==X|     |=X=|
 --         |XX.|     |XX.|     |XX.|
---         |OO.|     |.OO|     |O.O|
+--         |OOO|     |OOO|     |OOO|
 --         +---+     +---+     +---+
 
 
