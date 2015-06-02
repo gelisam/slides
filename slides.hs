@@ -22,9 +22,9 @@ minimax algorithm (review)
 -- |    |   /     |   /     |   /|
 --      v  v      v  v      v  v
 --    +---+     +---+     +---+ 
---    |===|     |===|     |===| 
---    |XX=|     |XX=|     |XX=| 
---    |OO.|     |.OO|     |O.O| 
+--    |   |     |===|     |===| 
+--    |+80|     |XX=|     |XX=| 
+--    |   |     |.OO|     |O.O| 
 --    +---+     +---+     +---+ 
 --   Player to play (maximizer)  
 --      |   \     |   \     |   \   
