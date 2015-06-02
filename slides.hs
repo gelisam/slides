@@ -30,7 +30,7 @@ minimax algorithm (review)
 --      v         v         v       
 --    +---+     +---+     +---+     
 --    |...|     |...|     |...|     
---    |XXX|     |XXX|     |XXX|     
+--    |XX.|     |XX.|     |XX.|     
 --    |OO.|     |.OO|     |O.O|     
 --    +---+     +---+     +---+     
 
