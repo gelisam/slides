@@ -21,6 +21,7 @@ minimax algorithm (review)
 -- |/ +---+  /  +---+  /  +---+  |
 -- |    |   /     |   /     |   /|
 --      v  v      v  v      v  v
+-- Shared subproblems (dynamic programming)
 --    +---+     +---+     +---+ 
 --    |   |     |===|     |===| 
 --    |+80|     |XX=|     |XX=| 
