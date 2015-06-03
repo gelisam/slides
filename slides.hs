@@ -80,6 +80,8 @@ threeInAColumn b c = flip any [1..3] $ \i ->
 
 threeInADiagonal :: Board -> Cell -> Bool
 
+
+
 -- isOWin :: Board -> Bool
 -- isDraw :: Board -> Bool
 
