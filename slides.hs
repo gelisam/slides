@@ -110,9 +110,9 @@ data GameState = GameState
 values :: Array GameState Double
 values = array (minBound, maxBound)
                [(gameState, value gameState) | gameState <- allGameStates]
-
-
-
+  where
+    allGameStates :: [GameState]
+    allGameStates = range (minBound, maxBound)
 
 
 
