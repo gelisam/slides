@@ -30,6 +30,9 @@ xWins = 1000
 oWins :: Double
 oWins = -1000
 
+draw :: Double
+draw = 0
+
 -- values :: Array GameState Double
 
 
