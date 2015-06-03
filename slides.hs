@@ -68,6 +68,10 @@ isXWin b = threeInARow b O
         || threeInAColumn b X
         || threeInADiagonal b X
 
+-- isOWin :: Board -> Bool
+-- isDraw :: Board -> Bool
+
+
 threeInARow :: Board -> Cell -> Bool
 threeInARow b c = flip any [1..3] $ \j ->
                   flip all [1..3] $ \i ->
@@ -82,8 +86,6 @@ threeInADiagonal :: Board -> Cell -> Bool
 threeInADiagonal b c = flip all [1..3] (\i -> b ! (i,  i) == c)
                     || flip all [1..3] (\i -> b ! (i,4-i) == c)
 
--- isOWin :: Board -> Bool
--- isDraw :: Board -> Bool
 
 -- values :: Array GameState Double
 
