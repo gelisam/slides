@@ -62,7 +62,12 @@ printBoard b = do
 emptyBoard :: Board
 emptyBoard = listArray ((1,1), (3,3)) (repeat Empty)
 
+
 -- isXWin :: Board -> Bool
+
+
+
+
 -- isOWin :: Board -> Bool
 -- isDraw :: Board -> Bool
 
