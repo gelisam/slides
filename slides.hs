@@ -8,19 +8,17 @@ noisyAdd x y = trace (printf "adding %d %d" x y)
                      (x + y)
 
 
-fibs :: [Integer]
-fibs = 1:1:zipWith noisyAdd fibs (tail fibs)
-
 fib :: Int -> Integer
-fib 0 = 1
-fib 1 = 1
-fib n = fib (n-1) `noisyAdd` fib (n-2)
+fib n = fibs !! n
+  where
+    fibs :: [Integer]
+    fibs = 1:1:zipWith noisyAdd fibs (tail fibs)
 
 
 main :: IO ()
 main = do
-    print $ fibs !! 9
-    print $ fibs !! 10
+    print $ fib 9
+    print $ fib 10
 
 
 
