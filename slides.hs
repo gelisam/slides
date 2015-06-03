@@ -33,6 +33,9 @@ oWins = -1000
 draw :: Double
 draw = 0
 
+
+type Board = Array (Int,Int) Cell
+
 -- isXWin :: Board -> Bool
 -- isOWin :: Board -> Bool
 -- isDraw :: Board -> Bool
