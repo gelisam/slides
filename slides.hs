@@ -69,9 +69,9 @@ isXWin b = threeInARow b O
         || threeInADiagonal b X
 
 threeInARow :: Board -> Cell -> Bool
-threeInARow b c = flip any [1..3] (\j ->
-                        flip all [1..3] (\i ->
-                              b ! (i,j) == c))
+threeInARow b c = flip any [1..3] $ \j ->
+                  flip all [1..3] $ \i ->
+                  b ! (i,j) == c
 
 threeInAColumn :: Board -> Cell -> Bool
 threeInADiagonal :: Board -> Cell -> Bool
