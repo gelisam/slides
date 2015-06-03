@@ -1,11 +1,11 @@
 -- laziness-based caching
 
+import Debug.Trace
+import Text.Printf
 
-
-
-
-
-
+noisyAdd :: Integer -> Integer -> Integer
+noisyAdd x y = trace (printf "adding %d %d" x y)
+                     (x + y)
 
 
 fibs :: [Integer]
@@ -17,13 +17,8 @@ fib 1 = 1
 fib n = fib (n-1) `noisyAdd` fib (n-2)
 
 
---  +--+    +--+    +--+    +--+    +--+    +--+    +--+    
---  | 1| -> | 1| -> | 2| -> | 3| -> | 5| -> | 8| -> |..| -> ...
---  +--+    +--+    +--+    +--+    +--+    +--+    +--+    
-
-
-
-
+main :: IO ()
+main = print $ fib 10
 
 
 
