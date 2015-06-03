@@ -69,9 +69,9 @@ isXWin b = threeInARow b O
         || threeInADiagonal b X
 
 isOWin :: Board -> Bool
-isOWin b = _
-
-
+isOWin b = threeInARow b O
+        || threeInAColumn b X
+        || threeInADiagonal b X
 
 -- isDraw :: Board -> Bool
 
