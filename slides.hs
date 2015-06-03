@@ -64,9 +64,9 @@ emptyBoard = listArray ((1,1), (3,3)) (repeat Empty)
 
 
 isXWin :: Board -> Bool
-isXWin b = _
-
-
+isXWin b = threeInARow b X
+        || threeInAColumn b X
+        || threeInADiagonal b X
 
 -- isOWin :: Board -> Bool
 -- isDraw :: Board -> Bool
