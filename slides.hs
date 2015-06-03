@@ -52,13 +52,13 @@ printBoard b = do
 
 -- |
 -- >>> printBoard emptyBoard
--- (Empty,Empty,Empty)
--- (Empty,Empty,Empty)
--- (Empty,Empty,Empty)
+-- ( , , )
+-- ( , , )
+-- ( , , )
 -- >>> printBoard $ emptyBoard // [((1,1), X)]
--- (X,Empty,Empty)
--- (Empty,Empty,Empty)
--- (Empty,Empty,Empty)
+-- (X, , )
+-- ( , , )
+-- ( , , )
 emptyBoard :: Board
 emptyBoard = listArray ((1,1), (3,3)) (repeat Empty)
 
