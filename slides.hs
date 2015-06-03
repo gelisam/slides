@@ -74,7 +74,7 @@ isOWin b = threeInARow b X
         || threeInADiagonal b O
 
 isDraw :: Board -> Bool
-
+isDraw b = _
 
 
 
