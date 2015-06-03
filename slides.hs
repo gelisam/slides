@@ -1,8 +1,8 @@
 -- Haskell array access syntax
 
-arr :: Array Int Double
+arr :: Array (Int, Int) Double
 
-state = arr ! i
+state = arr ! (i, j)
 
 
 
