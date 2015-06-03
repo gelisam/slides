@@ -35,6 +35,7 @@ draw = 0
 
 
 type Board = Array (Int,Int) Cell
+data Cell = X | O | Empty
 
 -- isXWin :: Board -> Bool
 -- isOWin :: Board -> Bool
