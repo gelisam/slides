@@ -113,6 +113,9 @@ values = array (minBound, maxBound)
   where
     allGameStates :: [GameState]
     allGameStates = range (minBound, maxBound)
+    
+    cachedValue :: GameState -> Double
+    cachedValue = (values !)
 
 
 
