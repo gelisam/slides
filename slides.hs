@@ -102,7 +102,7 @@ threeInADiagonal b c = flip all [1..3] (\i -> b ! (i,  i) == c)
 data GameState = GameState
   { gameBoard       :: Board
   , activePlayer    :: Bool  -- True for X
-  , ...
+  , nbAvailableRows :: Int
   }
 
 -- values :: Array GameState Double
