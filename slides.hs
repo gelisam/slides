@@ -40,10 +40,10 @@ data Cell = X | O | Empty
   deriving (Show, Eq)
 
 printBoard :: Board -> IO ()
-printBoard b = _
-
-
-
+printBoard b = do
+    print (b ! (1,1), b ! (2,1), b ! (3,1))
+    print (b ! (1,2), b ! (2,2), b ! (3,2))
+    print (b ! (1,3), b ! (2,3), b ! (3,3))
 
 -- |
 -- >>> emptyBoard
