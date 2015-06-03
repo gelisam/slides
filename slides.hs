@@ -74,8 +74,8 @@ threeInARow b c = flip any [1..3] $ \j ->
                   b ! (i,j) == c
 
 threeInAColumn :: Board -> Cell -> Bool
-threeInAColumn b c = flip any [1..3] $ \j ->
-                     flip all [1..3] $ \i ->
+threeInAColumn b c = flip any [1..3] $ \i ->
+                     flip all [1..3] $ \j ->
                      b ! (i,j) == c
 
 threeInADiagonal :: Board -> Cell -> Bool
