@@ -99,7 +99,7 @@ threeInADiagonal b c = flip all [1..3] (\i -> b ! (i,  i) == c)
                     || flip all [1..3] (\i -> b ! (i,4-i) == c)
 
 
-
+data GameState = GameState {...}
 
 
 
