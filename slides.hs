@@ -74,6 +74,10 @@ threeInARow b c = flip any [1..3] $ \j ->
                   b ! (i,j) == c
 
 threeInAColumn :: Board -> Cell -> Bool
+
+
+
+
 threeInADiagonal :: Board -> Cell -> Bool
 
 -- isOWin :: Board -> Bool
