@@ -107,7 +107,7 @@ data GameState = GameState
   , nbAvailableRows :: Int
   } deriving (Eq, Ord, Bounded, Ix)
 
--- values :: Array GameState Double
+values :: Array GameState Double
 
 
 
