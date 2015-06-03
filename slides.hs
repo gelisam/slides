@@ -18,6 +18,7 @@ minimax value nextMoves maximizer currentState = nextState
     
     best :: [gameState] -> gameState
     best | maximizer = maximumBy (comparing value)
+         | otherwise = minimumBy (comparing value)
     
     availableStates :: [gameState]
     availableStates = nextMoves currentState
