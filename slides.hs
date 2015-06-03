@@ -37,7 +37,7 @@ draw = 0
 
 type Board = Array (Int,Int) Cell
 data Cell = X | O | Empty
-  deriving (Eq)
+  deriving (Eq, Ord, Ix)
 
 instance Show Cell where
     show X = "X"
@@ -197,3 +197,9 @@ threeInADiagonal b c = flip all [1..3] (\i -> b ! (i,  i) == c)
 
 main :: IO ()
 main = putStrLn "typechecks."
+
+
+instance (Ix i, Ix a) => Ix (Array i a) where
+    range (xs0, xsZ) = undefined
+    index (xs0, xsZ) xs = undefined
+    inRange (xs0, xsZ) xs = undefined
