@@ -108,8 +108,8 @@ data GameState = GameState
   } deriving (Eq, Ord, Bounded, Ix)
 
 values :: Array GameState Double
-values = array (minBound, maxBound) [...]
-
+values = array (minBound, maxBound)
+               [(gameState, value gameState) | gameState <- allGameStates]
 
 
 
