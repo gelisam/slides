@@ -11,7 +11,7 @@ state = arr ! ( c1, c2, c3
               , c7, c8, c9
               , player, rows)
 
-(!) ::         Array i e -> i -> e
+(!) :: Ix i => Array i e -> i -> e
 
 
 
