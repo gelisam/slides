@@ -103,7 +103,7 @@ data GameState = GameState
   { gameBoard       :: Board
   , activePlayer    :: Bool  -- True for X
   , nbAvailableRows :: Int
-  }
+  } deriving (Eq, Ord, Ix)
 
 -- values :: Array GameState Double
 
