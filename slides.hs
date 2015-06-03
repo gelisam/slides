@@ -63,7 +63,7 @@ emptyBoard :: Board
 emptyBoard = listArray ((1,1), (3,3)) (repeat Empty)
 
 
--- isXWin :: Board -> Bool
+isXWin :: Board -> Bool
 
 
 
