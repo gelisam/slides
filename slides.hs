@@ -76,6 +76,9 @@ isOWin b = threeInARow b X
 -- isDraw :: Board -> Bool
 
 
+
+
+
 threeInARow :: Board -> Cell -> Bool
 threeInARow b c = flip any [1..3] $ \j ->
                   flip all [1..3] $ \i ->
