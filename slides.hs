@@ -1,7 +1,7 @@
 -- minimax
 {-# LANGUAGE ScopedTypeVariables #-}
 
-
+import Data.Array
 import Data.List
 import Data.Ord
 
@@ -38,8 +38,8 @@ draw = 0
 type Board = Array (Int,Int) Cell
 data Cell = X | O | Empty
 
-
-
+emptyBoard :: Board
+emptyBoard = listArray ((1,1), (3,3)) (repeat Empty)
 
 -- isXWin :: Board -> Bool
 -- isOWin :: Board -> Bool
