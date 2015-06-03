@@ -9,6 +9,8 @@ instance Ix Int where
 
 instance Ix (Int, Int) where
     index (i,j) = j * w + i
+      where
+        w = ?
 
 
 
