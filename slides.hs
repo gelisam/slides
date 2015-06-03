@@ -24,7 +24,7 @@ minimax value nextMoves maximizer currentState = nextState
     availableStates = nextMoves currentState
 
 
-values :: Array GameState Double
+-- values :: Array GameState Double
 
 
 
