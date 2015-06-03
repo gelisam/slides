@@ -2,6 +2,9 @@
 {-# LANGUAGE ScopedTypeVariables #-}
 
 
+
+
+
 minimax :: forall gameState.
            (gameState -> Double)
         -> (gameState -> [gameState])
