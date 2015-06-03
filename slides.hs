@@ -18,7 +18,7 @@ fib n = fib (n-1) `noisyAdd` fib (n-2)
 
 
 main :: IO ()
-main = print $ fib 10
+main = print $ fibs !! 10
 
 
 
