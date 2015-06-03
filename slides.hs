@@ -1,22 +1,17 @@
--- Ix
-{-# LANGUAGE FlexibleInstances #-}
-
-class Ord a => Ix a where
-    index     :: (a,a) -> a -> Int
-    rangeSize :: (a,a) -> Int
-
-data Pair a = Pair a a
-  deriving (Eq, Ord, Ix)
+-- matrix multiplication
 
 
-bounds :: (Pair Int, Pair Int)
-bounds = (Pair 0 0, Pair 9 9)
+                      +---+---+
+    +---+---+---+     |  7|  8|     +---+---+
+    | 1 | 2 | 3 |     +---+---+     | 58| 64|
+    +---+---+---+  *  |  9| 10|  =  +---+---+
+    | 4 | 5 | 6 |     +---+---+     |139|154|
+    +---+---+---+     | 11| 12|     +---+---+
+                      +---+---+
+                   
 
--- |
--- >>> main
--- 52
-main :: IO ()
-main = print $ index bounds (Pair 2 5)
+
+
 
 
 
