@@ -116,6 +116,12 @@ values = array (minBound, maxBound)
     
     cachedValue :: GameState -> Double
     cachedValue = (values !)
+    
+    value :: GameState -> Double
+    value g = cachedValue $ minimax cachedValue
+                                    nextMoves
+                                    (activePlayer g)
+                                    g
 
 
 
