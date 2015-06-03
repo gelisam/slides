@@ -159,7 +159,11 @@ nextMoves (GameState {..}) = [gameState ij | ij <- validPositions]
     remainingRows 2 = 1
     remainingRows 3 = 3
 
-
+ai :: GameState -> GameState
+ai g = minimax (values !)
+               nextMoves
+               (activePlayer g)
+               g
 
 
 
