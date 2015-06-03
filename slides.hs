@@ -6,7 +6,9 @@ minimax :: (gameState -> Double)
         -> Bool
         -> gameState
         -> gameState
-minimax value nextMoves maximizer currentState = _
+minimax value nextMoves maximizer currentState = nextState
+  where
+    nextState = _
 
 
 
