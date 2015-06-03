@@ -79,8 +79,8 @@ isDraw b = allCellsFull b
         && not (isOWin b)
 
 
-
-
+allCellsFull :: Board -> Bool
+allCellsFull b = _
                  
                  
 
