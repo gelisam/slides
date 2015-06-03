@@ -2,17 +2,24 @@
 {-# LANGUAGE FlexibleInstances #-}
 
 class Ord a => Ix a where
-    index :: a -> a -> Int
+    index     :: (a,a) -> a -> Int
+    rangeSize :: (a,a) -> Int
 
 instance Ix Int where
-    index n i = i
+    index (i0, n) i = i - i0
+    rangeSize (i0, n) = n - i0 + 1
 
 instance Ix (Int, Int) where
-    index (w,h) (i,j) = j * w + i
+    index ((i0,j0), (n,m)) (i,j) = (j - j0) * w
+                                 + (i - i0)
+      where
+        w = rangeSize (i0, n)
+    rangeSize ((i0,j0), (n,m)) = rangeSize (i0, n)
+                               * rangeSize (j0, m)
 
 
-bounds :: (Int, Int)
-bounds = (10,10)
+bounds :: ((Int,Int), (Int, Int))
+bounds = ((0,0), (9,9))
 
 -- |
 -- >>> main
