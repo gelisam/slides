@@ -2,7 +2,7 @@
 {-# LANGUAGE ScopedTypeVariables #-}
 
 
-minimax ::                  
+minimax :: forall gameState.
            (gameState -> Double)
         -> (gameState -> [gameState])
         -> Bool
@@ -10,7 +10,7 @@ minimax ::
         -> gameState
 minimax value nextMoves maximizer currentState = nextState
   where
-
+    nextState :: gameState
     nextState = _
 
 
