@@ -80,9 +80,9 @@ isDraw b = allCellsFull b
 
 
 allCellsFull :: Board -> Bool
-allCellsFull b = _
-                 
-                 
+allCellsFull b = flip all [1..3] $ \i ->
+                 flip all [1..3] $ \j ->
+                 b ! (i,j) /= Empty
 
 threeInARow :: Board -> Cell -> Bool
 threeInARow b c = flip any [1..3] $ \j ->
