@@ -5,27 +5,18 @@ class Ord a => Ix a where
     index     :: (a,a) -> a -> Int
     rangeSize :: (a,a) -> Int
 
-instance Ix Int where
-    index (i0, n) i = i - i0
-    rangeSize (i0, n) = n - i0 + 1
-
-instance Ix (Int, Int) where
-    index ((i0,j0), (n,m)) (i,j) = (j - j0) * w
-                                 + (i - i0)
-      where
-        w = rangeSize (i0, n)
-    rangeSize ((i0,j0), (n,m)) = rangeSize (i0, n)
-                               * rangeSize (j0, m)
+data Pair a = Pair a a
+  deriving (Eq, Ord, Ix)
 
 
-bounds :: ((Int,Int), (Int, Int))
-bounds = ((0,0), (9,9))
+bounds :: (Pair Int, Pair Int)
+bounds = (Pair 0 0, Pair 9 9)
 
 -- |
 -- >>> main
 -- 52
 main :: IO ()
-main = print $ index bounds (2,5)
+main = print $ index bounds (Pair 2 5)
 
 
 
