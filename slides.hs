@@ -47,7 +47,9 @@ printBoard b = do
 
 -- |
 -- >>> printBoard emptyBoard
--- 
+-- (Empty,Empty,Empty)
+-- (Empty,Empty,Empty)
+-- (Empty,Empty,Empty)
 emptyBoard :: Board
 emptyBoard = listArray ((1,1), (3,3)) (repeat Empty)
 
