@@ -13,6 +13,7 @@ minimax value nextMoves maximizer currentState = nextState
     nextState :: gameState
     nextState = best availableStates
     
+    
     best = _
     
     availableStates :: [gameState]
