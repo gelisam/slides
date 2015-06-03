@@ -39,6 +39,11 @@ type Board = Array (Int,Int) Cell
 data Cell = X | O | Empty
   deriving (Show, Eq)
 
+
+
+
+
+
 printBoard :: Board -> IO ()
 printBoard b = do
     print (b ! (1,1), b ! (2,1), b ! (3,1))
