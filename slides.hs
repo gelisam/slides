@@ -1,8 +1,8 @@
 -- minimax
 {-# LANGUAGE ScopedTypeVariables #-}
 
-
-
+import Data.List
+import Data.Ord
 
 
 minimax :: forall gameState.
