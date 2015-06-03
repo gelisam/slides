@@ -37,6 +37,7 @@ draw = 0
 
 type Board = Array (Int,Int) Cell
 data Cell = X | O | Empty
+  deriving (Show, Eq)
 
 -- |
 -- >>> emptyBoard
