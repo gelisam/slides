@@ -75,8 +75,8 @@ isOWin b = threeInARow b X
 
 isDraw :: Board -> Bool
 isDraw b = allCellsFull b
-
-
+        && not (isXWin b)
+        && not (isOWin b)
 
 
 threeInARow :: Board -> Cell -> Bool
