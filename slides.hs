@@ -72,7 +72,7 @@ threeInARow :: Board -> Cell -> Bool
 threeInARow b c = any (\j ->
                         all (\i ->
                               b ! (i,j) == c)
-
+                            [1..3])
 
 
 threeInAColumn :: Board -> Cell -> Bool
