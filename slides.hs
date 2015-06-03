@@ -33,9 +33,9 @@ oWins = -1000
 draw :: Double
 draw = 0
 
-isXWin :: Board -> Bool
-isOWin :: Board -> Bool
-isDraw :: Board -> Bool
+-- isXWin :: Board -> Bool
+-- isOWin :: Board -> Bool
+-- isDraw :: Board -> Bool
 
 -- values :: Array GameState Double
 
