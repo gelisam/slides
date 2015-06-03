@@ -118,9 +118,9 @@ values = array (minBound, maxBound)
     cachedValue = (values !)
     
     value :: GameState -> Double
-    
-    
-    
+    value g | isXWin (gameBoard g) = xWins
+    value g | isOWin (gameBoard g) = oWins
+    value g | isDraw (gameBoard g) = draw
     value g = cachedValue $ minimax cachedValue
                                     nextMoves
                                     (activePlayer g)
