@@ -3,10 +3,10 @@
 
 minimax :: (gameState -> Double)
         -> (gameState -> [gameState])
-        -> ...
+        -> Bool
         -> gameState
         -> gameState
-minimax value nextMoves ... currentState = _
+minimax value nextMoves maximizer currentState = _
 
 
 
