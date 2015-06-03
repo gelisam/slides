@@ -69,7 +69,7 @@ isXWin b = threeInARow b O
         || threeInADiagonal b X
 
 isOWin :: Board -> Bool
-
+isOWin b = _
 
 
 
