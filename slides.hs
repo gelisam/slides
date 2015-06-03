@@ -70,7 +70,7 @@ isXWin b = threeInARow b O
 
 threeInARow :: Board -> Cell -> Bool
 threeInARow b c = any (\j ->
-
+                        all (\i ->
 
 
 
