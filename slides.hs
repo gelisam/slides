@@ -39,6 +39,12 @@ type Board = Array (Int,Int) Cell
 data Cell = X | O | Empty
   deriving (Show, Eq)
 
+
+
+
+
+
+
 -- |
 -- >>> emptyBoard
 -- array ((1,1),(3,3)) [((1,1),Empty),((1,2),Empty),((1,3),Empty),((2,1),Empty),((2,2),Empty),((2,3),Empty),((3,1),Empty),((3,2),Empty),((3,3),Empty)]
