@@ -50,6 +50,7 @@ printBoard b = do
 -- (Empty,Empty,Empty)
 -- (Empty,Empty,Empty)
 -- (Empty,Empty,Empty)
+-- >>> printBoard $ emptyBoard // [((1,1), X)]
 emptyBoard :: Board
 emptyBoard = listArray ((1,1), (3,3)) (repeat Empty)
 
