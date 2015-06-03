@@ -1,5 +1,6 @@
 -- Ix
 
+
 class Ord a => Ix a where
     index :: a -> Int
 
