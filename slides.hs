@@ -165,7 +165,8 @@ ai g = minimax (values !)
                (activePlayer g)
                g
 
-
+initialState :: GameState
+initialState = GameState emptyBoard True 3
 
 
 
