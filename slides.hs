@@ -1,8 +1,10 @@
 -- minimax
 {-# LANGUAGE ScopedTypeVariables #-}
 
+import Control.Monad
 import Data.Array
 import Data.List
+import Data.Monoid
 import Data.Ord
 
 
@@ -37,7 +39,7 @@ draw = 0
 
 type Board = Array (Int,Int) Cell
 data Cell = X | O | Empty
-  deriving (Eq, Ord, Ix)
+  deriving (Eq, Ord, Bounded, Ix)
 
 instance Show Cell where
     show X = "X"
@@ -103,7 +105,7 @@ data GameState = GameState
   { gameBoard       :: Board
   , activePlayer    :: Bool  -- True for X
   , nbAvailableRows :: Int
-  } deriving (Eq, Ord, Ix)
+  } deriving (Eq, Ord, Bounded, Ix)
 
 -- values :: Array GameState Double
 
@@ -205,7 +207,53 @@ main :: IO ()
 main = putStrLn "typechecks."
 
 
+instance (Ix i, Bounded i, Bounded a) => Bounded (Array i a) where
+    minBound = listArray (minBound, maxBound) (repeat minBound)
+    maxBound = listArray (minBound, maxBound) (repeat maxBound)
+
+fromEq :: Eq a => a -> a -> a
+fromEq x1 x2 = if x1 == x2 then x1 else error "not equal"
+
+-- A sequence of boxes, one of which is selected.
+data SelectedBox = SelectedBox
+  { boxCount :: Int
+  , selectionIndex :: Int
+  }
+
+instance Monoid SelectedBox where
+    -- There is only one box, and that box is selected.
+    mempty = SelectedBox 1 0
+    
+    -- Replace all the boxes from the left sequence with a copy of the box
+    -- sequence from the right. The box which was selected on the left is
+    -- now a sequence of boxes, one of which is selected.
+    SelectedBox m i `mappend` SelectedBox n j = SelectedBox (m*n) (i*n+j)
+
+selectBox :: Ix a => (a,a) -> a -> SelectedBox
+selectBox b i = SelectedBox (rangeSize b) (index b i)
+
+nestedSelectionIndex :: [SelectedBox] -> Int
+nestedSelectionIndex = selectionIndex . mconcat
+
 instance (Ix i, Ix a) => Ix (Array i a) where
-    range (xs0, xsZ) = undefined
-    index (xs0, xsZ) xs = undefined
-    inRange (xs0, xsZ) xs = undefined
+    range (xs0, xsZ) = array b <$> do
+        forM (range b) $ \i -> do
+          x <- range (xs0 ! i, xsZ ! i)
+          return (i, x)
+      where
+        b = fromEq (bounds xs0) (bounds xsZ)
+    
+    index (xs0, xsZ) xs = nestedSelectionIndex (selectBoxAt <$> range b)
+      where
+        b = fromEq (bounds xs0) (bounds xsZ)
+        selectBoxAt i = selectBox (xs0 ! i, xsZ ! i) (xs ! i)
+    
+    inRange (xs0, xsZ) xs = all inRangeAt (range b)
+      where
+        b = fromEq (bounds xs0) (bounds xsZ)
+        inRangeAt i = inRange (xs0 ! i, xsZ ! i) (xs ! i)
+    
+    rangeSize (xs0, xsZ) = product (rangeSizeAt <$> range b)
+      where
+        b = fromEq (bounds xs0) (bounds xsZ)
+        rangeSizeAt i = rangeSize (xs0 ! i, xsZ ! i)
