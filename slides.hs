@@ -3,6 +3,8 @@
 class Ord a => Ix a where
     index :: a -> Int
 
+instance Ix Int where
+    index i = i
 
 
 
