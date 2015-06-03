@@ -79,8 +79,8 @@ threeInAColumn b c = flip any [1..3] $ \i ->
                      b ! (i,j) == c
 
 threeInADiagonal :: Board -> Cell -> Bool
-
-
+threeInADiagonal b c = flip all [1..3] (\i -> b ! (i,  i) == c)
+                    || flip all [1..3] (\i -> b ! (i,4-i) == c)
 
 -- isOWin :: Board -> Bool
 -- isDraw :: Board -> Bool
