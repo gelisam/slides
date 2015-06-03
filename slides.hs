@@ -2,10 +2,11 @@
 
 
 minimax :: (gameState -> Double)
+        -> (gameState -> [gameState])
         -> ...
         -> gameState
         -> gameState
-minimax value ... currentState = _
+minimax value nextMoves ... currentState = _
 
 
 
