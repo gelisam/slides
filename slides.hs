@@ -39,8 +39,8 @@ type Board = Array (Int,Int) Cell
 data Cell = X | O | Empty
   deriving (Show, Eq)
 
-
-
+printBoard :: Board -> IO ()
+printBoard b = _
 
 
 
