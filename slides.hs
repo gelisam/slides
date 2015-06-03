@@ -12,6 +12,8 @@ minimax value nextMoves maximizer currentState = nextState
   where
     nextState :: gameState
     nextState = best availableStates
+    
+    best = _
 
 
 
