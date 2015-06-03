@@ -2,15 +2,23 @@
 {-# LANGUAGE FlexibleInstances #-}
 
 class Ord a => Ix a where
-    index :: a -> Int
+    index :: a -> a -> Int
 
 instance Ix Int where
-    index i = i
+    index n i = i
 
 instance Ix (Int, Int) where
-    index (i,j) = j * w + i
-      where
-        w = ?
+    index (w,h) (i,j) = j * w + i
+
+
+bounds :: (Int, Int)
+bounds = (10,10)
+
+-- |
+-- >>> main
+-- 52
+main :: IO ()
+main = print $ index bounds (2,5)
 
 
 
