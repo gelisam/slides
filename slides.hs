@@ -1,5 +1,5 @@
 -- minimax
-{-# LANGUAGE ScopedTypeVariables #-}
+{-# LANGUAGE RecordWildCards, ScopedTypeVariables #-}
 
 import Control.Monad
 import Data.Array
@@ -127,10 +127,37 @@ values = array (minBound, maxBound)
                                     g
 
 nextMoves :: GameState -> [GameState]
-
-
-
-
+nextMoves (GameState {..}) = [gameState ij | ij <- validPositions]
+  where
+    emptyPositions :: [(Int,Int)]
+    emptyPositions = [(i,j) | i <- [1..3]
+                            , j <- [1..3]
+                            , gameBoard ! (i,j) == Empty
+                            ]
+    
+    availablePositions :: [(Int,Int)]
+    availablePositions = filter (\(i,j) -> j >= minJ) emptyPositions
+    
+    validPositions :: [(Int,Int)]
+    validPositions = if null availablePositions
+                     then emptyPositions
+                     else availablePositions
+    
+    minJ :: Int
+    minJ = 4 - nbAvailableRows
+    
+    gameState :: (Int,Int) -> GameState
+    gameState (i,j) = GameState (gameBoard // [((i,j), activeToken)])
+                                (not activePlayer)
+                                (remainingRows j)
+    
+    activeToken :: Cell
+    activeToken = if activePlayer then X else O
+    
+    remainingRows :: Int -> Int
+    remainingRows 1 = 2
+    remainingRows 2 = 1
+    remainingRows 3 = 3
 
 
 
