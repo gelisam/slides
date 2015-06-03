@@ -21,6 +21,20 @@ ys = array ((1,1), (3,2)) [ ((1,1),  7.0) , ((1,2),  8.0)
                           , ((3,1), 11.0) , ((3,2), 12.0)
                           ]
 
+zs :: Array (Int, Int) Double
+zs = array ((1,1), (2,2)) [pair i k | i <- [1,2]
+                                    , k <- [1,2]
+                                    ]
+  where
+    pair i k = ((i,k), value i k)
+    value i k = sum [term i j k | j <- [1,2,3]]
+    term i j k = xs ! (i,j)
+               * ys ! (j,k)
+
+
+main :: IO ()
+main = print zs
+
 
 
 
