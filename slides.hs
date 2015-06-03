@@ -1,21 +1,14 @@
--- 11D array?!
--- 
--- 
---           +---+
---           |...|
---           |.9.|   10     11
---           |...|  who's  which
---           +---+  turn?  rows?
+-- Traditional array access syntax
 
-total =       3^9  *  2  *  3
+double arr[3][3][3]
+          [3][3][3]
+          [3][3][3]
+          [2][3];
 
-
-
--- |
--- >>> main
--- 118098
-main :: IO ()
-main = print total
+state = arr[c1][c2][c3]
+           [c4][c5][c6]
+           [c7][c8][c9]
+           [player][rows];
 
 
 
