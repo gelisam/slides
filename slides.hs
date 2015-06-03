@@ -1,17 +1,17 @@
 -- laziness-based caching
-
+{-# LANGUAGE ScopedTypeVariables #-}
 import Debug.Trace
 import Text.Printf
 
-noisyAdd :: Integer -> Integer -> Integer
-noisyAdd x y = trace (printf "adding %d %d" x y)
+noisyAdd :: Num a => a -> a -> a
+noisyAdd x y = trace "adding things"
                      (x + y)
 
 
-fib :: Int -> Integer
+fib :: forall a. Num a => Int -> a
 fib = (fibs !!)
   where
-    fibs :: [Integer]
+    fibs :: [a]
     fibs = 1:1:zipWith noisyAdd fibs (tail fibs)
 
 
