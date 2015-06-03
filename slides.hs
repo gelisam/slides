@@ -38,6 +38,8 @@ draw = 0
 type Board = Array (Int,Int) Cell
 data Cell = X | O | Empty
 
+-- |
+-- >>> emptyBoard
 emptyBoard :: Board
 emptyBoard = listArray ((1,1), (3,3)) (repeat Empty)
 
