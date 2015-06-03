@@ -1,6 +1,9 @@
 -- minimax
 
 
+minimax :: (gameState -> Double)
+        -> ...
+minimax value = _
 
 
 
