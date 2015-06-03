@@ -126,7 +126,7 @@ values = array (minBound, maxBound)
                                     (activePlayer g)
                                     g
 
-
+nextMoves :: GameState -> [GameState]
 
 
 
