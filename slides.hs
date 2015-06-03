@@ -8,17 +8,17 @@ noisyAdd x y = trace "adding things"
                      (x + y)
 
 
-fib :: forall a. Num a => Int -> a
-fib = (fibs !!)
+fib :: forall a. Int -> a -> (Integer, a)
+fib = (\n x -> (fibs !! n, x))
   where
-    fibs :: [a]
+    fibs :: [Integer]
     fibs = 1:1:zipWith noisyAdd fibs (tail fibs)
 
 
 main :: IO ()
 main = do
-    print $ fib 9
-    print $ fib 10
+    print $ fib 9 "foo"
+    print $ fib 10 "bar"
 
 
 
