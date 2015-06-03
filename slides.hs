@@ -3,8 +3,9 @@
 
 minimax :: (gameState -> Double)
         -> ...
-        -> ...
-minimax value ... = _
+        -> gameState
+        -> gameState
+minimax value ... currentState = _
 
 
 
