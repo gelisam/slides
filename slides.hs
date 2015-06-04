@@ -1,8 +1,7 @@
--- limitations
+-- next time
 
--- Only works if the game is small enough to be fully explored,
--- because there is no way to limit the depth or the order of
--- the exploration.
+-- Christian should present a different implementation of minimax
+-- which does not have those drawbacks.
 
 
 
