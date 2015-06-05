@@ -1,5 +1,5 @@
 -- minimax
-{-# LANGUAGE RecordWildCards, ScopedTypeVariables #-}
+{-# LANGUAGE GeneralizedNewtypeDeriving, RecordWildCards, ScopedTypeVariables #-}
 
 import Control.Monad
 import Data.Array
@@ -37,7 +37,7 @@ draw :: Double
 draw = 0
 
 
-type Board = Array (Int,Int) Cell
+type Board = Array (Fin3,Fin3) Cell
 data Cell = X | O | Empty
   deriving (Eq, Ord, Bounded, Ix)
 
@@ -104,8 +104,8 @@ threeInADiagonal b c = flip all [1..3] (\i -> b ! (i,  i) == c)
 data GameState = GameState
   { gameBoard       :: Board
   , activePlayer    :: Bool  -- True for X
-  , nbAvailableRows :: Int
-  } deriving (Eq, Ord, Bounded, Ix)
+  , nbAvailableRows :: Fin3
+  } deriving (Show, Eq, Ord, Bounded, Ix)
 
 values :: Array GameState Double
 values = array (minBound, maxBound)
@@ -129,24 +129,24 @@ values = array (minBound, maxBound)
 nextMoves :: GameState -> [GameState]
 nextMoves (GameState {..}) = [gameState ij | ij <- validPositions]
   where
-    emptyPositions :: [(Int,Int)]
+    emptyPositions :: [(Fin3,Fin3)]
     emptyPositions = [(i,j) | i <- [1..3]
                             , j <- [1..3]
                             , gameBoard ! (i,j) == Empty
                             ]
     
-    availablePositions :: [(Int,Int)]
+    availablePositions :: [(Fin3,Fin3)]
     availablePositions = filter (\(i,j) -> j >= minJ) emptyPositions
     
-    validPositions :: [(Int,Int)]
+    validPositions :: [(Fin3,Fin3)]
     validPositions = if null availablePositions
                      then emptyPositions
                      else availablePositions
     
-    minJ :: Int
+    minJ :: Fin3
     minJ = 4 - nbAvailableRows
     
-    gameState :: (Int,Int) -> GameState
+    gameState :: (Fin3,Fin3) -> GameState
     gameState (i,j) = GameState (gameBoard // [((i,j), activeToken)])
                                 (not activePlayer)
                                 (remainingRows j)
@@ -154,7 +154,7 @@ nextMoves (GameState {..}) = [gameState ij | ij <- validPositions]
     activeToken :: Cell
     activeToken = if activePlayer then X else O
     
-    remainingRows :: Int -> Int
+    remainingRows :: Fin3 -> Fin3
     remainingRows 1 = 2
     remainingRows 2 = 1
     remainingRows 3 = 3
@@ -306,3 +306,12 @@ instance (Ix i, Ix a) => Ix (Array i a) where
       where
         b = fromEq (bounds xs0) (bounds xsZ)
         rangeSizeAt i = rangeSize (xs0 ! i, xsZ ! i)
+
+
+
+newtype Fin3 = Fin3 { getFin3 :: Int }
+  deriving (Show, Eq, Num, Enum, Ord, Ix)
+
+instance Bounded Fin3 where
+  minBound = 1
+  maxBound = 3
