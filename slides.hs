@@ -6,6 +6,7 @@ import Data.Array
 import Data.List
 import Data.Monoid
 import Data.Ord
+import Text.Printf
 
 
 minimax :: forall gameState.
@@ -106,6 +107,13 @@ data GameState = GameState
   , activePlayer    :: Bool  -- True for X
   , nbAvailableRows :: Fin3
   } deriving (Show, Eq, Ord, Bounded, Ix)
+
+printGameState :: GameState -> IO ()
+printGameState (GameState {..}) = do
+    printBoard gameBoard
+    printf "%s to play, in the last %d rows if possible.\n"
+           (if activePlayer then "X" else "O")
+           (getFin3 nbAvailableRows)
 
 values :: Array GameState Double
 values = array (minBound, maxBound)
