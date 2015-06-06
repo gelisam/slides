@@ -176,92 +176,104 @@ ai g = minimax (values !)
 initialState :: GameState
 initialState = GameState emptyBoard True 3
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 main :: IO ()
-main = putStrLn "typechecks."
+main = display initialState
+  where
+    display :: GameState -> IO ()
+    display g = do printGameState g
+                   examine g
+    
+    examine :: GameState -> IO ()
+    examine g | isXWin (gameBoard g) = putStrLn "Congratulations, X!"
+              | isOWin (gameBoard g) = putStrLn "Congratulations, O!"
+              | isDraw (gameBoard g) = putStrLn "Oh well, it's a draw."
+              | otherwise            = play g
+    
+    play :: GameState -> IO ()
+    play = display . ai
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 instance (Ix i, Bounded i, Bounded a) => Bounded (Array i a) where
