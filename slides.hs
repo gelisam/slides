@@ -129,10 +129,7 @@ values = array (minBound, maxBound)
     value g | isXWin (gameBoard g) = xWins
     value g | isOWin (gameBoard g) = oWins
     value g | isDraw (gameBoard g) = draw
-    value g = cachedValue $ minimax cachedValue
-                                    nextMoves
-                                    (activePlayer g)
-                                    g
+    value g = cachedValue $ ai g
 
 nextMoves :: GameState -> [GameState]
 nextMoves (GameState {..}) = [gameState ij | ij <- validPositions]
