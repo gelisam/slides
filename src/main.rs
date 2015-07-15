@@ -1,19 +1,19 @@
 
 
 use std::sync::Mutex;
-
+use std::sync::MutexGuard;
 
 fn main() {
     let mut x: i32 = 0;
     let lock_x = Mutex::new(());
     
     {
-                                      lock_x.lock();
+        let guard_x: MutexGuard<()> = lock_x.lock().unwrap();
         x += 1;
     }
     
     {
-                                      lock_x.lock();
+        let guard_x: MutexGuard<()> = lock_x.lock().unwrap();
         println!("x is now {}", x);
     }
 }
