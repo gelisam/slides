@@ -3,7 +3,7 @@ use std::ops::DerefMut;
 use std::sync::Mutex;
 use std::sync::MutexGuard;
 
-fn my_deref_mut<A>(g: &mut MutexGuard<A>) -> &mut A
+fn my_deref_mut<'scope, A>(g: &'scope mut MutexGuard<A>) -> &'scope mut A
 {
     g.deref_mut()
 }
