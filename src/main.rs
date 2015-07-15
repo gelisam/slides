@@ -3,10 +3,10 @@ use std::ops::DerefMut;
 use std::sync::Mutex;
 use std::sync::MutexGuard;
 
-
-
-
-
+fn my_deref_mut<A>(g: MutexGuard<A>) -> &mut A
+{
+    g.deref_mut()
+}
 
 fn main() {
     let lock_x: Mutex<i32> = Mutex::new(0);
@@ -14,7 +14,7 @@ fn main() {
     
     {
         let mut guard_x: MutexGuard<i32> = lock_x.lock().unwrap();
-        x = guard_x.deref_mut(); // type error!
+        x = my_deref_mut(guard_x); // type error!
     }
     
     {
