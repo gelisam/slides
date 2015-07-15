@@ -9,7 +9,7 @@ fn main() {
     let x_copy: i32;
     {
         let mut guard_x: MutexGuard<i32> = lock_x.lock().unwrap();
-            x           = guard_x.deref_mut();
+        x = guard_x.deref_mut();
         x_copy = *x;
         *x += 1;
     }
