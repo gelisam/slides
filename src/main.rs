@@ -12,9 +12,6 @@ fn main() {
         *x += 1;
     }
     
-    // x not in scope
-    x += 1;
-    
     {
         let guard_x: MutexGuard<i32> = lock_x.lock().unwrap();
         let x: &i32 = guard_x.deref();
