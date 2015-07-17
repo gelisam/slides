@@ -11,7 +11,8 @@ main = do
    
    withMVar lock_x $ \ref_x -> do
      x <- readIORef ref_x
-     modifyIORef ref_x (+1)
+     if x < 10 then modifyIORef ref_x (+1)
+               else modifyIORef ref_x (+10)
    
    
    withMVar lock_x $ \ref_x -> do
