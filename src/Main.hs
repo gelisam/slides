@@ -13,7 +13,7 @@ main = do
      x <- readIORef ref_x
      if x < 10 then modifyIORef ref_x (+1)
                else modifyIORef ref_x (+10)
-     writeIORef ref (Just x)
+     writeIORef ref (Just ref_x)
    
    withMVar lock_x $ \ref_x -> do
      
