@@ -27,10 +27,12 @@ main = do
    lock_x <- newMutex (0 :: Int)
    
    
-   withMutex lock_x $ \ref_x -> do
-     x <- readIORef ref_x
-     if x < 10 then modifyIORef ref_x (+1)
-               else modifyIORef ref_x (+10)
+   withMutex lock_x $           do
+     x <- readIORef
+     if x < 10 then modifyIORef       (+1)
+               else modifyIORef       (+10)
+   
+   
 
 
 
