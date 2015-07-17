@@ -12,6 +12,9 @@ main = do
      modifyIORef ref_x (+1)
    
    
+   -- x modified without being protected by a lock
+   modifyIORef ref_x (+1)
+   
    
    withMVar lock_x $ \() -> do
      printf "x is now %d" =<< readIORef ref_x

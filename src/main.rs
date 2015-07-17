@@ -12,6 +12,9 @@ fn main() {
         x += 1;
     }
     
+    // x modified without being protected by a lock!
+    x += 1;
+    
     {
         let guard_x: MutexGuard<()> = lock_x.lock().unwrap();
         println!("x is now {}", x);
