@@ -4,15 +4,15 @@ import Text.Printf
 
 main :: IO ()
 main = do
-   lock_x <- newMVar ()
+   lock_x <- newMVar (0 :: Int)
    
    
-   withMVar    lock_x $ \() -> do
+   modifyMVar_ lock_x $ \x -> do
      
-     modifyIORef ref_x (+1)
-     
+     let x' = x + 1
+     return x'
    
    
-   withMVar lock_x $ \() -> do
+   withMVar lock_x $ \x -> do
      
-     printf "x is now %d" =<< readIORef ref_x
+     printf "x is now %d" x
