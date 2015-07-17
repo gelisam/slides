@@ -4,7 +4,11 @@ import Data.IORef
 import Text.Printf
 
 
+data Mutex a
 
+newMutex :: a -> IO (Mutex a)
+
+withMutex :: Mutex s -> State s a -> IO a
 
 
 
