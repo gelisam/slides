@@ -1,7 +1,7 @@
 import Control.Concurrent.MVar
+import Control.Monad.Trans.State
 import Data.IORef
 import Text.Printf
-
 
 main :: IO ()
 main = do
@@ -9,11 +9,11 @@ main = do
                 newMVar ref_x
    ref <- newIORef Nothing
    
-   withMVar lock_x $ \ref_x -> do
-     x <- readIORef ref_x
-     if x < 10 then modifyIORef ref_x (+1)
-               else modifyIORef ref_x (+10)
-     writeIORef ref (Just ref_x)
+   withMVar lock_x $           do
+     x <- get
+     if x < 10 then modify (+1)
+               else modify (+10)
+     
    
    withMVar lock_x $ \ref_x -> do
      
