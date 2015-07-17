@@ -8,12 +8,12 @@ fn main() {
     let lock_x = Mutex::new(());
     
     {
-        lock_x.lock();
+                                      lock_x.lock();
         x += 1;
     }
     
     {
-        lock_x.lock();
+                                      lock_x.lock();
         println!("x is now {}", x);
     }
 }
