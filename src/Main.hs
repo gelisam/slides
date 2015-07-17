@@ -32,6 +32,9 @@ main = do
      if x < 10 then modify            (+1)
                else modify            (+10)
    
+   x <- withMutex lock_x get
+   printf "x is now %d" x
+   
    
 
 
