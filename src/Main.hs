@@ -1,45 +1,43 @@
+import Control.Applicative
+import Control.Concurrent
 import Control.Concurrent.MVar
+import Control.Monad
 import Control.Monad.Trans.State
 import Data.IORef
 import Text.Printf
+import System.IO
 
 
+data MutexHandle = Mutex (MVar Handle)
 
-
-
-
-data Mutex a = Mutex (MVar (IORef a))
-
-newMutex :: a -> IO (Mutex a)
-newMutex x = do
-    ref <- newIORef x
-    mvar <- newMVar ref
+newMutexHandle :: Handle -> IO MutexHandle
+newMutexHandle h = do
+    
+    mvar <- newMVar h
     return (Mutex mvar)
 
-withMutex :: Mutex s -> State s a -> IO a
-withMutex (Mutex mvar) body = do
-    ref <- takeMVar mvar
-    s <- readIORef ref
-    let (x, s') = runState body s
-    writeIORef ref s'
-    putMVar mvar ref
+withMutexHandle :: MutexHandle -> HandleMonad a -> IO a
+withMutexHandle (Mutex mvar) body = do
+    h   <- takeMVar mvar
+    
+    x <- runHandleMonad body h
+    
+    putMVar mvar h
     return x
 
 
 main :: IO ()
 main = do
-   lock_x <- newMutex (0 :: Int)
+   lock_h <- newMutexHandle stdout
    
+   forkIO $ forever $ do
+     withMutexHandle lock_h $ do
+       handlePutStrLn "hello"
    
-   withMutex lock_x $           do
-     x <- get
-     if x < 10 then modify            (+1)
-               else modify            (+10)
-   
-   x <- withMutex lock_x get
-   printf "x is now %d" x
-   
-   
+   forever $ do
+     withMutexHandle lock_h $ do
+       handlePutStrLn "world"
+
 
 
 
