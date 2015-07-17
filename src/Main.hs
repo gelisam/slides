@@ -7,11 +7,12 @@ import Text.Printf
 
 main :: IO ()
 main = do
-   let h = stdout
+   lock_h <- newMVar stdout
    
    forkIO $ forever $ do
-     hPutStrLn h "hello"
-   
+     withMVar lock_h $ \h -> do
+       hPutStrLn h "hello"
    
    forever $ do
-     hPutStrLn h "world"
+     withMVar lock_h $ \h -> do
+       hPutStrLn h "world"
