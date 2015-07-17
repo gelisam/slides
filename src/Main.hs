@@ -1,20 +1,19 @@
-import Control.Concurrent
 import Control.Concurrent.MVar
-import Control.Monad
 import Data.IORef
-import System.IO
 import Text.Printf
+
 
 main :: IO ()
 main = do
-   lock_h <- newMVar stdout
-   ref_h <- newIORef Nothing
+   lock_x <- do ref_x <- newIORef (0 :: Int)
+                newMVar ref_x
    
-   forkIO $ forever $ do
-     withMVar lock_h $ \h -> do
-       writeIORef ref_h (Just h)
-       hPutStrLn h "hello"
    
-   Just h <- readIORef ref_h
-   forever $ do
-     hPutStrLn h "world"
+   withMVar lock_x $ \ref_x -> do
+     
+     modifyIORef ref_x (+1)
+   
+   
+   withMVar lock_x $ \ref_x -> do
+     
+     printf "x is now %d" =<< readIORef ref_x
