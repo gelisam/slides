@@ -28,9 +28,9 @@ main = do
    
    
    withMutex lock_x $           do
-     x <- readIORef
-     if x < 10 then modifyIORef       (+1)
-               else modifyIORef       (+10)
+     x <- get
+     if x < 10 then modify            (+1)
+               else modify            (+10)
    
    
 
