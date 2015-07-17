@@ -15,6 +15,6 @@ main = do
        writeIORef ref_h (Just h)
        hPutStrLn h "hello"
    
+   Just h <- readIORef ref_h
    forever $ do
-     withMVar lock_h $ \h -> do
-       hPutStrLn h "world"
+     hPutStrLn h "world"
