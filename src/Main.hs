@@ -9,8 +9,10 @@ main :: IO ()
 main = do
    lock_h <- newMVar stdout
    
+   
    forkIO $ forever $ do
      withMVar lock_h $ \h -> do
+       
        hPutStrLn h "hello"
    
    forever $ do
