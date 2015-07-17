@@ -13,6 +13,13 @@ newMutex x = do
     return (Mutex mvar)
 
 withMutex :: Mutex s -> State s a -> IO a
+withMutex (Mutex mvar) body = do
+    ref <- takeMVar mvar
+    s <- readIORef ref
+    let (x, s') = runState body s
+    writeIORef ref s'
+    putMVar mvar ref
+    return x
 
 
 
