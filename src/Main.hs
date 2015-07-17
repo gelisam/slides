@@ -10,7 +10,7 @@ main = do
    
    
    withMVar lock_x $ \ref_x -> do
-     
+     x <- readIORef ref_x
      modifyIORef ref_x (+1)
    
    
