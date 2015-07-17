@@ -4,7 +4,7 @@ import Data.IORef
 import Text.Printf
 
 
-data Mutex a
+data Mutex a = Mutex (MVar a)
 
 newMutex :: a -> IO (Mutex a)
 
