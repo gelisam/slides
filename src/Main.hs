@@ -22,11 +22,11 @@ main = do
    
    
    
-   x <- withMutex lock_x get
-   y <- withMutex lock_y get
-   
-   
-   printf "x is now %d, y is now %d" x y
+   withMutex lock_x $ do
+     withMutex lock_y $ do
+       x <- lift get
+       y <- get
+       liftIO $ printf "x is now %d, y is now %d" x y
    
    
 data Mutex a = Mutex (MVar (IORef a))
