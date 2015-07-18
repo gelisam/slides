@@ -10,18 +10,23 @@ import Text.Printf
 main :: IO ()
 main = do
    lock_x <- newMutex (0 :: Int)
-   
+   lock_y <- newMutex (100 :: Int)
    
    
    withMutex lock_x $ do
-     x <- get
-     modify (+1)
+     withMutex lock_y $ do
+       x <- get
+       y <- get
+       modify (+1)
+       modify (+10)
    
    
    
    x <- withMutex lock_x get
+   y <- withMutex lock_y get
    
-   printf "x is now %d" x
+   
+   printf "x is now %d, y is now %d" x y
    
    
 data Mutex a = Mutex (MVar (IORef a))
