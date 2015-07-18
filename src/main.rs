@@ -10,11 +10,11 @@ fn my_deref_mut<'scope, A>(g: &'scope mut MutexGuard<A>) -> &'scope mut A
 
 fn main() {
     let lock_x: Mutex<i32> = Mutex::new(0);
-    let x: &mut i32;
-   
+    
+    
     {
         let mut guard_x: MutexGuard<i32> = lock_x.lock().unwrap();
-            x            = my_deref_mut(&mut guard_x); // type error!
+        let x: &mut i32 = my_deref_mut(&mut guard_x); // typechecks!
     }
     
     {
