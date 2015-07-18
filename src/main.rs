@@ -21,6 +21,7 @@ fn main() {
         alt_guard_x = guard_x;
         
         guard_x = alt_guard_x;
+        deref_incr(&mut guard_x);
     }
     
     {
