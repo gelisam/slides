@@ -14,7 +14,7 @@ fn main() {
     
     {
         let mut guard_x;
-        
+        deref_incr(&mut guard_x); // uninitialized!
         guard_x = lock_x.lock().unwrap();
         deref_incr(&mut guard_x);
     }
