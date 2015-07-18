@@ -37,14 +37,14 @@ newMutex x = do
     mvar <- newMVar ref
     return (Mutex mvar)
 
-withMutex ::                     
-             Mutex s -> State  s   a -> IO a
+withMutex :: (Monad m, MonadIO m)
+          => Mutex s -> StateT s m a -> m a
 withMutex (Mutex mvar) body = do
-    ref <-          takeMVar mvar
-    s <-          readIORef ref
-    let (x, s') = runState body s
-             writeIORef ref s'
-             putMVar mvar ref
+    ref <- liftIO $ takeMVar mvar
+    s <- liftIO $ readIORef ref
+    (x, s') <- runStateT body s
+    liftIO $ writeIORef ref s'
+    liftIO $ putMVar mvar ref
     return x
 
 
