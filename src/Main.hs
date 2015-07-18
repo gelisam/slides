@@ -1,9 +1,9 @@
 import Control.Concurrent.MVar
+import Control.Monad.IO.Class
+import Control.Monad.Trans.Class
 import Control.Monad.Trans.State
 import Data.IORef
 import Text.Printf
-
-
 
 
 
@@ -15,9 +15,9 @@ main = do
    
    withMutex lock_x $ do
      withMutex lock_y $ do
-       x <- get
+       x <- lift get
        y <- get
-       modify (+1)
+       lift $ modify (+1)
        modify (+10)
    
    
