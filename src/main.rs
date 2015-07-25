@@ -14,6 +14,7 @@ fn main() {
     
     {
         let mut guard_x;
+        let mut alt_guard_x;
         
         guard_x = lock_x.lock().unwrap();
         deref_incr(&mut guard_x);
