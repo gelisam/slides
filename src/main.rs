@@ -3,11 +3,11 @@ use std::ops::DerefMut;
 use std::sync::Mutex;
 use std::sync::MutexGuard;
 
-fn my_deref_mut<'scope, A>(g: &'scope mut MutexGuard<A>) -> &'scope mut A
+fn deref_incr(g: &mut MutexGuard<i32>)
 {
-    g.deref_mut()
+    let x: &mut i32 = g.deref_mut();
+    *x += 1;
 }
-
 
 fn main() {
     let lock_x = Mutex::new(0);
@@ -15,8 +15,8 @@ fn main() {
     {
         let mut guard_x = lock_x.lock().unwrap();
         
-        let x = my_deref_mut(&mut guard_x);
-        *x += 1;
+        
+        deref_incr(&mut guard_x);
     }
     
     {
