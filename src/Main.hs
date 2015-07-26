@@ -4,13 +4,23 @@
 
 
 
-data Mutex a
+data Mutex a = Mutex (MVar (IORef a))
 
 newMutex :: a -> IO (Mutex a)
+newMutex x = do
+    ref <- newIORef x
+    mvar <- newMVar ref
+    return (Mutex mvar)
 
--- withMutex :: Mutex s -> State s a -> IO a
-
-withUninitializedGuard :: GuardInScope False True () -> IO ()
+withMutex :: (Monad m, MonadIO m)
+          => Mutex s -> StateT s m a -> m a
+withMutex (Mutex mvar) body = do
+    ref <- liftIO $ takeMVar mvar
+    s <- liftIO $ readIORef ref
+    (x, s') <- runStateT body s
+    liftIO $ writeIORef ref s'
+    liftIO $ putMVar mvar ref
+    return x
 
 
 data GuardInScope (i :: Bool) (j :: Bool) a
