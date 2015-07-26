@@ -10,6 +10,7 @@ newMutex :: a -> IO (Mutex a)
 
 withGuard :: Mutex s -> GuardInScope (Just s) (Just s) a -> IO a
 
+withUninitializedGuard :: GuardInScope Nothing (Just s) a -> IO a
 
 
 
