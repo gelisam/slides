@@ -8,7 +8,7 @@ data Mutex a
 
 newMutex :: a -> IO (Mutex a)
 
--- withMutex :: Mutex s -> State s a -> IO a
+withGuard :: Mutex s -> GuardInScope True True a -> IO a
 
 withUninitializedGuard :: GuardInScope False True () -> IO ()
 
