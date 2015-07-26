@@ -1,6 +1,8 @@
-{-# LANGUAGE DataKinds, KindSignatures #-}
+{-# LANGUAGE DataKinds, GADTs, KindSignatures, PolyKinds #-}
 
-
+import Control.Concurrent.MVar
+import Control.Monad.Trans.State
+import Data.IORef
 
 
 
@@ -12,28 +14,36 @@ newMutex x = do
     mvar <- newMVar ref
     return (Mutex mvar)
 
-withMutex :: (Monad m, MonadIO m)
-          => Mutex s -> StateT s m a -> m a
-withMutex (Mutex mvar) body = do
-    ref <- liftIO $ takeMVar mvar
-    s <- liftIO $ readIORef ref
-    (x, s') <- runStateT body s
-    liftIO $ writeIORef ref s'
-    liftIO $ putMVar mvar ref
-    return x
+-- withUninitializedGuard :: GuardInScope False True () -> IO ()
+-- withUninitializedGuard (Mutex mvar) body = do
+--     ref <- liftIO $ takeMVar mvar
+--     s <- liftIO $ readIORef ref
+--     (x, s') <- runStateT body s
+--     liftIO $ writeIORef ref s'
+--     liftIO $ putMVar mvar ref
+--     return x
 
 
-data GuardInScope (i :: Bool) (j :: Bool) a
+data FreeIxMonad f i j a where
+    Return :: a -> FreeIxMonad f i i a
+    Bind :: FreeIxMonad f i j a -> (a -> FreeIxMonad f j k b) -> FreeIxMonad f i j b
+    Lift :: f i j a -> FreeIxMonad f i j a
 
--- unlock lock_x :: GuardInScope False True  ()
--- derefIncr     :: GuardInScope True  True  ()
--- 
--- moveOut       :: GuardInScope True  False ()
--- moveIn        :: GuardInScope False True  ()
+data GuardInScopeOp i j a where
+    Lock   :: Mutex s   -> GuardInScopeOp 'Nothing  ('Just s) ()
+    Deref  :: State s a -> GuardInScopeOp ('Just s) ('Just s) a
+    Unlock ::              GuardInScopeOp ('Just s) 'Nothing  ()
 
+type GuardInScope = FreeIxMonad GuardInScopeOp
 
+lock :: Mutex s -> FreeIxMonad GuardInScopeOp 'Nothing ('Just s) ()
+lock = Lift . Lock
 
+deref :: State s a -> FreeIxMonad GuardInScopeOp ('Just s) ('Just s) a
+deref = Lift . Deref
 
+unlock :: FreeIxMonad GuardInScopeOp ('Just s) 'Nothing ()
+unlock = Lift Unlock
 
 
 
@@ -126,4 +136,9 @@ data GuardInScope (i :: Bool) (j :: Bool) a
 
 
 
+
+
+
+
+main :: IO ()
 main = putStrLn "typechecks."
