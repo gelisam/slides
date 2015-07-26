@@ -8,16 +8,19 @@ data Mutex a
 
 newMutex :: a -> IO (Mutex a)
 
-withGuard :: Mutex s -> GuardInScope (Just s) (Just s) a -> IO a
-withGuard _ _ = do
-    lock
-    ...
-    unlock
+-- withMutex :: Mutex s -> State s a -> IO a
 
-withUninitializedGuard :: GuardInScope Nothing (Just s) a -> IO a
-withUninitializedGuard _ = do
-    ...
-    unlock
+withUninitializedGuard :: GuardInScope False True () -> IO ()
+
+
+
+
+
+
+
+
+
+
 
 
 
