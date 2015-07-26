@@ -4,25 +4,11 @@
 
 
 
-derefIncr :: GuardInScope (Just Int) (Just Int) ()
+data Mutex a
 
+newMutex :: a -> IO (Mutex a)
 
-main :: IO ()
-main = do
-   lock_x <- newMutex (0 :: Int)
-   _cmd0 :: IO ()
-   
-   withUninitializedGuard $ do
-     _cmd1       :: GuardInScope Nothing    Nothing    ()
-     lock lock_x :: GuardInScope Nothing    (Just Int) ()
-     
-     derefIncr   :: GuardInScope (Just Int) (Just Int) ()
-     
-     moveOut     :: GuardInScope (Just Int) Nothing    ()
-     _cmd3       :: GuardInScope Nothing    Nothing    ()
-     moveIn      :: GuardInScope Nothing    (Just Int) ()
-     
-     derefIncr   :: GuardInScope (Just Int) (Just Int) ()
+withMutex :: Mutex s -> State s a -> IO a
 
 
 
@@ -119,3 +105,4 @@ main = do
 
 
 
+main = putStrLn "typechecks."
