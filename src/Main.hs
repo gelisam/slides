@@ -13,6 +13,7 @@ main = do
    lock_y <- newMutex (100 :: Int)
    
    
+   _cmd0 :: IO ()
    withMutex lock_x $ do
      withMutex lock_y $ do
        x <- lift get
