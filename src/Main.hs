@@ -4,7 +4,7 @@
 
 
 
-derefIncr :: StateT (MutexGuard Int) IO ()
+derefIncr :: GuardInScope True ()
 
 
 main :: IO ()
@@ -13,16 +13,16 @@ main = do
    _cmd0 :: IO ()
    
    withUninitializedGuard $ do
-     _cmd1     :: IO ()
+     _cmd1       :: GuardInScope False ()
      lock lock_x
      
-     derefIncr :: StateT (MutexGuard Int) IO ()
+     derefIncr   :: GuardInScope True  ()
      
      moveOut
-     _cmd3     :: IO ()
+     _cmd3       :: GuardInScope False ()
      moveIn
      
-     derefIncr :: StateT (MutexGuard Int) IO ()
+     derefIncr   :: GuardInScope True  ()
 
 
 
