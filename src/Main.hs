@@ -17,6 +17,7 @@ main = do
    withMutex lock_x $ do
      _cmd1 :: StateT Int IO ()
      withMutex lock_y $ do
+       _cmd2 :: StateT Int (StateT Int IO) ()
        x <- lift get
        y <- get
        lift $ modify (+1)
