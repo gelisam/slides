@@ -14,13 +14,13 @@ main = do
    
    withUninitializedGuard $ do
      _cmd1       :: GuardInScope Nothing    Nothing    ()
-     lock lock_x
+     lock lock_x :: GuardInScope Nothing    (Just Int) ()
      
      derefIncr   :: GuardInScope (Just Int) (Just Int) ()
      
-     moveOut
+     moveOut     :: GuardInScope (Just Int) Nothing    ()
      _cmd3       :: GuardInScope Nothing    Nothing    ()
-     moveIn
+     moveIn      :: GuardInScope Nothing    (Just Int) ()
      
      derefIncr   :: GuardInScope (Just Int) (Just Int) ()
 
