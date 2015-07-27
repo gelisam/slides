@@ -4,7 +4,7 @@
 
 
 
-derefIncr :: GuardInScope True ()
+derefIncr :: GuardInScope (Just Int) ()
 
 
 main :: IO ()
@@ -13,16 +13,16 @@ main = do
    _cmd0 :: IO ()
    
    withUninitializedGuard $ do
-     _cmd1       :: GuardInScope False ()
+     _cmd1       :: GuardInScope Nothing    ()
      lock lock_x
      
-     derefIncr   :: GuardInScope True  ()
+     derefIncr   :: GuardInScope (Just Int) ()
      
      moveOut
-     _cmd3       :: GuardInScope False ()
+     _cmd3       :: GuardInScope Nothing    ()
      moveIn
      
-     derefIncr   :: GuardInScope True  ()
+     derefIncr   :: GuardInScope (Just Int) ()
 
 
 
