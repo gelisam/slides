@@ -1,4 +1,6 @@
-{-# LANGUAGE DataKinds, GADTs, KindSignatures, PolyKinds #-}
+{-# LANGUAGE DataKinds, GADTs, KindSignatures, PolyKinds, ScopedTypeVariables, TypeFamilies #-}
+
+import Prelude hiding (return, (>>=))
 
 import Control.Concurrent.MVar
 import Control.Monad.Trans.State
@@ -14,6 +16,9 @@ newMutex x = do
     mvar <- newMVar ref
     return (Mutex mvar)
 
+touchMutex :: Mutex a -> IO ()
+touchMutex (Mutex _) = return ()
+
 -- withUninitializedGuard :: GuardInScope False True () -> IO ()
 -- withUninitializedGuard (Mutex mvar) body = do
 --     ref <- liftIO $ takeMVar mvar
@@ -26,8 +31,19 @@ newMutex x = do
 
 data FreeIxMonad f i j a where
     Return :: a -> FreeIxMonad f i i a
-    Bind :: FreeIxMonad f i j a -> (a -> FreeIxMonad f j k b) -> FreeIxMonad f i j b
+    Bind :: FreeIxMonad f i j a -> (a -> FreeIxMonad f j k b) -> FreeIxMonad f i k b
     Lift :: f i j a -> FreeIxMonad f i j a
+
+return :: a -> FreeIxMonad f i i a
+return = Return
+
+(>>=) :: FreeIxMonad f i j a -> (a -> FreeIxMonad f j k b) -> FreeIxMonad f i k b
+(>>=) = Bind
+
+
+type UnindexedOp m i j a = m a
+type Unindexed m a = FreeIxMonad (UnindexedOp m) '() '() a
+
 
 data GuardInScopeOp i j a where
     Lock   :: Mutex s   -> GuardInScopeOp 'Nothing  ('Just s) ()
@@ -36,21 +52,52 @@ data GuardInScopeOp i j a where
 
 type GuardInScope = FreeIxMonad GuardInScopeOp
 
-lock :: Mutex s -> FreeIxMonad GuardInScopeOp 'Nothing ('Just s) ()
+
+type family MaybeMutex i where
+    MaybeMutex 'Nothing = ()
+    MaybeMutex ('Just s) = Mutex s
+
+runGuardInScope :: GuardInScope i j a -> MaybeMutex i -> IO (a, MaybeMutex j)
+runGuardInScope (Return x)  mi = return (x, mi)
+runGuardInScope (Bind gx f) mi = do
+    (x, mj) <- runGuardInScope gx mi
+    runGuardInScope (f x) mj
+runGuardInScope (Lift (Lock mj)) () = do
+    touchMutex mj
+    return ((), mj)
+runGuardInScope (Lift (Deref _)) mi = do
+    touchMutex mi
+    return (undefined, mi)
+runGuardInScope (Lift Unlock) mi = do
+    touchMutex mi
+    return ((), ())
+
+
+lock :: Mutex s -> GuardInScope 'Nothing ('Just s) ()
 lock = Lift . Lock
 
-deref :: State s a -> FreeIxMonad GuardInScopeOp ('Just s) ('Just s) a
+deref :: State s a -> GuardInScope ('Just s) ('Just s) a
 deref = Lift . Deref
 
-unlock :: FreeIxMonad GuardInScopeOp ('Just s) 'Nothing ()
+unlock :: GuardInScope ('Just s) 'Nothing ()
 unlock = Lift Unlock
 
 
+class UnlockIfNeeded i where
+    unlockIfNeeded :: GuardInScope i 'Nothing ()
 
+instance UnlockIfNeeded 'Nothing where
+    unlockIfNeeded = Return ()
 
+instance UnlockIfNeeded ('Just s) where
+    unlockIfNeeded = unlock
 
-
-
+withUninitializedGuard :: UnlockIfNeeded j
+                       => GuardInScope 'Nothing j a
+                       -> IO a
+withUninitializedGuard body = do
+    (x, ()) <- runGuardInScope (body `Bind` (\x -> unlockIfNeeded `Bind` (\_ -> Return x))) ()
+    return x
 
 
 
