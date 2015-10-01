@@ -13,11 +13,34 @@ data MonoidAST a where
     MEmpty  :: MonoidAST a
     MAppend :: MonoidAST a -> MonoidAST a -> MonoidAST a
 
--- MEmpty <> MEmpty /= MEmpty
--- (MEmpty <> MEmpty) <> MEmpty /= MEmpty <> (MEmpty <> MEmpty)
-instance Monoid (MonoidAST a) where
-    mempty = MEmpty
-    mappend = MAppend
+-- mempty
+-- 
+-- x
+-- 
+-- x <> y
+-- 
+-- x <> (y <> z) =
+-- (x <> y) <> z
+-- 
+-- x <> (y <> (z <> t)) =
+-- x <> ((y <> z) <> t) =
+-- (x <> (y <> z)) <> t =
+-- ((x <> y) <> z) <> t
+-- 
+-- x <> (y <> (z <> (t <> u))) =
+-- x <> (y <> ((z <> t) <> u)) =
+-- x <> ((y <> (z <> t)) <> u) =
+-- x <> (((y <> z) <> t) <> u) =
+-- (x <> y) <> (z <> (t <> u)) =
+-- (x <> y) <> ((z <> t) <> u) =
+-- (x <> (y <> z)) <> (t <> u) =
+-- ((x <> y) <> z) <> (t <> u) =
+-- (x <> (y <> (z <> t))) <> u =
+-- (x <> ((y <> z) <> t)) <> u =
+-- ((x <> (y <> z)) <> t) <> u =
+-- (((x <> y) <> z) <> t) <> u
+-- 
+-- ...
 
 
 
