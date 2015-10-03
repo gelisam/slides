@@ -38,6 +38,11 @@ runM (MCons (IsDivisorM n d) cc) = do
     x <- isDivisorIO n d
     runM (cc x)
 
+optimize :: FreeMonad M a
+         -> FreeMonad M a
+optimize (MNil x)                    = MNil x
+optimize (MCons (IsDivisorM _ 1) cc) = cc True
+optimize (MCons mx               cc) = MCons mx $ fmap optimize cc
 
 
 
