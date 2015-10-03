@@ -10,27 +10,35 @@ data FreeMonad m a where
 -- Pattern-matching on monadic computations?
 
 
-isDivisorM :: Int -> Int -> FreeMonad IO Bool
-isDivisorM n d = singletonM $ isDivisorIO n d
+data M a where
+    IsDivisorM :: Int -> Int -> M Bool
 
+isDivisorM :: Int -> Int -> FreeMonad M Bool
+isDivisorM n d = singletonM $ IsDivisorM n d
 
-
-
-divisorsM  :: FreeMonad IO [Int]
+divisorsM  :: FreeMonad M  [Int]
 divisorsM  = filterM (isDivisorM  6) [1..5]
 
-divisorsM' :: FreeMonad IO [Int]
-divisorsM' =    MCons (isDivisorIO 6 1) $ \b1 ->
-                MCons (isDivisorIO 6 2) $ \b2 ->
-                MCons (isDivisorIO 6 3) $ \b3 ->
-                MCons (isDivisorIO 6 4) $ \b4 ->
-                MCons (isDivisorIO 6 5) $ \b5 ->
+divisorsM' :: FreeMonad M  [Int]
+divisorsM' =    MCons (IsDivisorM  6 1) $ \b1 ->
+                MCons (IsDivisorM  6 2) $ \b2 ->
+                MCons (IsDivisorM  6 3) $ \b3 ->
+                MCons (IsDivisorM  6 4) $ \b4 ->
+                MCons (IsDivisorM  6 5) $ \b5 ->
                 MNil    $ (if b1 then (1:) else id)
                         $ (if b2 then (2:) else id)
                         $ (if b3 then (3:) else id)
                         $ (if b4 then (4:) else id)
                         $ (if b5 then (5:) else id)
                         $ []
+
+runM :: FreeMonad M a -> IO a
+runM (MNil x)                    = return x
+runM (MCons (IsDivisorM n d) cc) = do
+    x <- isDivisorIO n d
+    runM (cc x)
+
+
 
 
 
@@ -128,8 +136,7 @@ divisorsM' =    MCons (isDivisorIO 6 1) $ \b1 ->
 isDivisorIO :: Int -> Int -> IO Bool
 isDivisorIO n d = do
     putStrLn "crunching numbers"
-    return $ isDivisor n d
-
+    return $ (n `mod` d) == 0
 
 
 
