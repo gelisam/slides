@@ -1,6 +1,6 @@
-{-# LANGUAGE BangPatterns, GADTs, MultiParamTypeClasses #-}
+{-# LANGUAGE BangPatterns, GADTs, MultiParamTypeClasses, TypeOperators #-}
 import Prelude hiding (id)
-
+import Control.Monad.Tardis
 
 data CategoryAST k a b where
     CBase :: k a b -> CategoryAST k a b
@@ -14,11 +14,27 @@ data K a b where
     Reverse  :: K [a] [a]
     -- ...
 
-optimize :: FreeCategory K a b
-         -> FreeCategory K a b
-optimize (CCons Reverse (CCons Reverse cc)) = optimize cc
-optimize CNil                               = CNil
-optimize (CCons f cc)                       = CCons f (optimize cc)
+optimize :: CategoryAST K a b
+         -> CategoryAST K a b
+optimize f0 = evalTardis (go f0) (False, False)
+  where
+    go :: CategoryAST K a b
+       -> Tardis Bool Bool (CategoryAST K a b)
+    go (CThen f g) = CThen <$> go f <*> go g
+    go (CBase Reverse) =
+        do sendPast True                     -- found a Reverse in the present!                           
+           bl <- getPast                     -- did I find a compatible one in the past?                  
+           if bl then do sendFuture False    -- matched with the one in the past,                         
+                         return CId          -- can't also use it in the future.                          
+                 else do sendFuture True     -- found a Reverse in the present!                           
+                         br <- getFuture     -- will I find a compatible one in the future?               
+                         return $ if br then CId                                                          
+                                        else CBase Reverse  -- unchanged
+    go f = do
+        sendPast False    -- f is not a Reverse, so it's not
+        sendFuture False  -- compatible with anything.
+        return f
+
 
 
 
@@ -199,5 +215,27 @@ singletonC :: k a b -> FreeCategory k a b
 singletonC f = CCons f CNil
 
 
+printK :: CategoryAST K [()] [()] -> IO ()
+printK = go ""
+  where
+    go :: String -> CategoryAST K a b -> IO ()
+    go indent (CBase Reverse) = do
+        putStr indent
+        putStrLn "Reverse"
+    go indent CId = do
+        putStr indent
+        putStrLn "CId"
+    go indent (CThen f g) = do
+        putStr indent
+        putStrLn "CThen"
+        go ("  " ++ indent) f
+        go ("  " ++ indent) g
+
+
 main :: IO ()
-main = putStrLn "typechecks."
+main = do
+    printK $ optimize $ CBase Reverse `CThen` CBase Reverse
+    printK $ optimize $ (CBase Reverse `CThen` CBase Reverse) `CThen` CBase Reverse
+    printK $ optimize $ CBase Reverse `CThen` (CBase Reverse `CThen` CBase Reverse)
+    printK $ optimize $ ((CBase Reverse `CThen` CBase Reverse) `CThen` CBase Reverse) `CThen` CBase Reverse
+    printK $ optimize $ (CBase Reverse `CThen` (CBase Reverse `CThen` CBase Reverse)) `CThen` CBase Reverse
