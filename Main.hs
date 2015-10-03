@@ -10,22 +10,22 @@ data FreeMonad m a where
 -- Pattern-matching on monadic computations?
 
 
-isDivisorIO :: Int -> Int -> IO Bool
-isDivisorIO n d = do
-    putStrLn "crunching numbers"
-    return $ isDivisor n d
+isDivisorM :: Int -> Int -> FreeMonad IO Bool
+isDivisorM n d = singletonM $ isDivisorIO n d
 
 
-divisorsIO :: IO [Int]
-divisorsIO = filterM (isDivisorIO 6) [1..5]
 
-divisorsIO' :: IO [Int]
-divisorsIO' = do b1 <- isDivisorIO 6 1
-                 b2 <- isDivisorIO 6 2
-                 b3 <- isDivisorIO 6 3
-                 b4 <- isDivisorIO 6 4
-                 b5 <- isDivisorIO 6 5
-                 return $ (if b1 then (1:) else id)
+
+divisorsM  :: FreeMonad IO [Int]
+divisorsM  = filterM (isDivisorM  6) [1..5]
+
+divisorsM' :: FreeMonad IO [Int]
+divisorsM' =    MCons (isDivisorIO 6 1) $ \b1 ->
+                MCons (isDivisorIO 6 2) $ \b2 ->
+                MCons (isDivisorIO 6 3) $ \b3 ->
+                MCons (isDivisorIO 6 4) $ \b4 ->
+                MCons (isDivisorIO 6 5) $ \b5 ->
+                MNil    $ (if b1 then (1:) else id)
                         $ (if b2 then (2:) else id)
                         $ (if b3 then (3:) else id)
                         $ (if b4 then (4:) else id)
@@ -124,6 +124,11 @@ divisorsIO' = do b1 <- isDivisorIO 6 1
 
 
 
+
+isDivisorIO :: Int -> Int -> IO Bool
+isDivisorIO n d = do
+    putStrLn "crunching numbers"
+    return $ isDivisor n d
 
 
 
