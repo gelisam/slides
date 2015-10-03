@@ -19,6 +19,19 @@ isDivisorIO n d = do
 divisorsIO :: IO [Int]
 divisorsIO = filterM (isDivisorIO 6) [1..5]
 
+divisorsIO' :: IO [Int]
+divisorsIO' = do b1 <- isDivisorIO 6 1
+                 b2 <- isDivisorIO 6 2
+                 b3 <- isDivisorIO 6 3
+                 b4 <- isDivisorIO 6 4
+                 b5 <- isDivisorIO 6 5
+                 return $ (if b1 then (1:) else id)
+                        $ (if b2 then (2:) else id)
+                        $ (if b3 then (3:) else id)
+                        $ (if b4 then (4:) else id)
+                        $ (if b5 then (5:) else id)
+                        $ []
+
 
 
 
