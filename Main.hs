@@ -6,18 +6,18 @@ data FreeMonad m a where
     MNil  :: a -> FreeMonad m a
     MCons :: m a -> (a -> FreeMonad m b) -> FreeMonad m b
 
+-- Interlude:
+-- Pattern-matching on monadic computations?
 
 
+isDivisorIO :: Int -> Int -> IO Bool
+isDivisorIO n d = do
+    putStrLn "crunching numbers"
+    return $ isDivisor n d
 
 
-
-
-
-
-
-
-
-
+divisorsIO :: IO [Int]
+divisorsIO = filterM (isDivisorIO 6) [1..5]
 
 
 
