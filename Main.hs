@@ -13,19 +13,19 @@ data MonoidAST a where
     MEmpty  :: MonoidAST a
     MAppend :: MonoidAST a -> MonoidAST a -> MonoidAST a
 
--- mempty
+-- mempty                      = []
 -- 
--- x
+-- x                           = [x]
 -- 
--- x <> y
+-- x <> y                      = [x,y]
 -- 
 -- x <> (y <> z) =
--- (x <> y) <> z
+-- (x <> y) <> z               = [x,y,z]
 -- 
 -- x <> (y <> (z <> t)) =
 -- x <> ((y <> z) <> t) =
 -- (x <> (y <> z)) <> t =
--- ((x <> y) <> z) <> t
+-- ((x <> y) <> z) <> t        = [x,y,z,t]
 -- 
 -- x <> (y <> (z <> (t <> u))) =
 -- x <> (y <> ((z <> t) <> u)) =
@@ -38,7 +38,7 @@ data MonoidAST a where
 -- (x <> (y <> (z <> t))) <> u =
 -- (x <> ((y <> z) <> t)) <> u =
 -- ((x <> (y <> z)) <> t) <> u =
--- (((x <> y) <> z) <> t) <> u
+-- (((x <> y) <> z) <> t) <> u = [x,y,z,t,u]
 -- 
 -- ...
 
