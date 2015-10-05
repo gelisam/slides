@@ -22,7 +22,8 @@ instance Monoid (FreeMonoid a) where
     Nil       `mappend` ys = ys
     Cons x xs `mappend` ys = Cons x (xs `mappend` ys)
 
-
+singleton :: a -> FreeMonoid a
+singleton x = Cons x Nil
 
 
 
