@@ -1,20 +1,29 @@
+{-# LANGUAGE GADTs #-}
+import Prelude hiding (Monoid(..))
+
+
+
+
+class Monoid a where
+    mempty  :: a
+    mappend :: a -> a -> a
 
 
 
 
 
 
-         ------------------------------------------
-         --                                      --
-         --      0. The Quest                    --
-         --                                      --
-         --    > 1. The Free Monoid              --
-         --      2. The Free Monad               --
-         --      3. The Free Category            --
-         --                                      --
-         --  BONUS. The Tardis Monad             --
-         --                                      --
-         ------------------------------------------
+
+
+
+
+
+
+
+
+
+
+
 
 
 
