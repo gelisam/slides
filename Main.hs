@@ -13,17 +13,17 @@ data MonadAST m a where
     MReturn :: a -> MonadAST m a
     MBind   :: MonadAST m a -> (a -> MonadAST m b) -> MonadAST m b
 
-data FreeMonad m a where
-    MNil  :: a -> FreeMonad m a
-    MCons :: m a -> (a -> FreeMonad m b) -> FreeMonad m b
+data FreeMonad m a where                         -- data Free f a
+    MNil  :: a -> FreeMonad m a                  --   = Pure a
+    MCons :: m (FreeMonad m b) -> FreeMonad m b  --   | Free f (Free f)
 
-instance Monad (FreeMonad m) where
+instance Functor m => Monad (FreeMonad m) where
     return = MNil
-    MNil x      >>= f = f x
-    MCons mx cc >>= f = MCons mx $ fmap (>>= f) cc
+    MNil x    >>= f = f x
+    MCons mfx >>= f = MCons $ fmap (>>= f) mfx
 
-singletonM :: m a -> FreeMonad m a
-singletonM mx = MCons mx MNil
+singletonM :: Functor m => m a -> FreeMonad m a
+singletonM mx = MCons (fmap MNil mx)
 
 
 
