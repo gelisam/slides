@@ -11,10 +11,21 @@ rearrange1 = $(syntax [|do
     returnC ((x1,y1), (x2,y2))
   |])
 
-rearrange2 :: Either (Either a1 a2) (Either b1 b2)
+rearrange2 :: Exp
+rearrange2 = DoE [ BindS (TupP [ TupP [VarP "x1", VarP "x2"]
+                               , TupP [VarP "y1", VarP "y2"]
+                               ])
+                         (VarE "getInput")
+                 , NoBindS $ VarE "returnC"
+                      `AppE` TupE [ TupE [VarE "x1", VarE "y1"]
+                                  , TupE [VarE "x2", VarE "y2"]
+                                  ]
+                 ]
+
+rearrange3 :: Either (Either a1 a2) (Either b1 b2)
            -> Either (Either a1 b1) (Either a2 b2)
              -- ((x1, x2), (y1,y2)))
-rearrange2 = associate
+rearrange3 = associate
              -- (x1, (x2, (y1,y2)))
          >>> second coassociate
              -- (x1, ((x2,y1), y2))
