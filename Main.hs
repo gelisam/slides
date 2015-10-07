@@ -23,6 +23,9 @@ emptyCircle :: FreeMonoid Circle
 emptyCircle = mempty
 
 
+instance (Monoid a, Monoid b) => Monoid (a,b) where
+    mempty = (mempty, mempty)
+    mappend (x1,y1) (x2,y2) = (mappend x1 x2, mappend y1 y2)
 
 
 
