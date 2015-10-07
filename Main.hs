@@ -8,6 +8,10 @@ class Monoid a where
     mempty  :: a
     mappend :: a -> a -> a
 
+data Circle = Circle
+  { center :: (Double,Double)
+  , radius :: Double
+  }
 
 
 
