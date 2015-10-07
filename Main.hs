@@ -13,9 +13,14 @@ data Circle = Circle
   , radius :: Double
   }
 
+data Circle' = ...
 
+instance Monoid Circle' where
+    mempty  = ...
+    mappend = ...
 
-
+emptyCircle :: Circle'
+emptyCircle = mempty
 
 
 
