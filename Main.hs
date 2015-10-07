@@ -13,13 +13,13 @@ data Circle = Circle
   , radius :: Double
   }
 
-data Circle' = ...
+data FreeMonoid a = ...
 
-instance Monoid Circle' where
+instance Monoid (FreeMonoid a) where
     mempty  = ...
     mappend = ...
 
-emptyCircle :: Circle'
+emptyCircle :: FreeMonoid Circle
 emptyCircle = mempty
 
 
