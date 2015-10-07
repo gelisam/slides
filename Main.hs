@@ -11,7 +11,7 @@ rearrange1 = $(syntax [|do
     returnC ((x1,y1), (x2,y2))
   |])
 
-rearrange2 :: IntermediateRepr
+rearrange2 :: FreeCategory
 rearrange2 = ?
 
 
