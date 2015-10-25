@@ -8,6 +8,9 @@
 
   // a new user filled the signup form
   app.post('/signup', function(req, res, next) {
+    assert(typeof req.body.firstName === 'string');
+    assert(typeof req.body.lastName  === 'string');
+    assert(typeof req.body.email     === 'string');
     
     // the client sent us a JSON object with all the fields
     // required to create a User row in Mongoose
