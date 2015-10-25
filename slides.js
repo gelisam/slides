@@ -1,38 +1,38 @@
-///////////////////////////
-// defensive programming //
-///////////////////////////
++-----------------------+
+| defensive programming |
++-----------------------+
 
-// > Good idea: defend against malformed user input
-//    Bad idea: defend against malformed input arguments
+  Good idea: defend against malformed user input
+   Bad idea: defend against malformed input arguments
 
 
   // a new user filled the signup form
   app.post('/signup', function(req, res, next) {
-    assert(typeof req.body.firstName === 'string' && req.body.firstName.trim() != '');
-    assert(typeof req.body.lastName  === 'string' && req.body.lastName.trim() != '');
-    assert(typeof req.body.email     === 'string' && emailRegexp.test(req.body.email));
     
-    generateOneTimeToken(function(token) {
-      // send confirmation email
-      mail.send(req.body.email, 'Please confirm your email by clicking the following link...');
-    });
-  });
-  
-  app.get('/confirm', function(req, res, next) {
-    assert(typeof req.body.token === 'string' && isValidToken(req.body.token);
     
-    assert(typeof req.body.firstName === 'string' && req.body.firstName.trim() != '');
-    assert(typeof req.body.lastName  === 'string' && req.body.lastName.trim() != '');
-    assert(typeof req.body.email     === 'string' && emailRegexp.test(req.body.email));
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     
     // the client sent us a JSON object with all the fields
     // required to create a User row in Mongoose
-    var newUser = new User({          // {
-      firstName : req.body.firstName, //   firstName  : "Samuel",
-      lastName  : req.body.lastName,  //   lastName   : "Gélineau",
-      email     : req.body.email,     //   email      : "samuel.gelineau@keatext.com,
-    });                               //   id         : 123456  // ignored
-                                      // }
+    var newUser = new User(req.body);
+    
+    
+    
+    
+    
     
     // write it to the Mongoose DB
     newUser.save()
