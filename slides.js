@@ -12,6 +12,11 @@
     assert(typeof req.body.lastName  === 'string' && req.body.lastName.trim() != '');
     assert(typeof req.body.email     === 'string' && emailRegexp.test(req.body.email));
     
+    // send confirmation email
+    mail.send(req.body.email, 'Please confirm your email by clicking the following link...');
+  });
+  
+  app.get('/confirm', function(req, res, next) {
     // the client sent us a JSON object with all the fields
     // required to create a User row in Mongoose
     var newUser = new User({          // {
