@@ -10,7 +10,7 @@
   app.post('/signup', function(req, res, next) {
     assert(typeof req.body.firstName === 'string' && req.body.firstName.trim() != '');
     assert(typeof req.body.lastName  === 'string' && req.body.lastName.trim() != '');
-    assert(typeof req.body.email     === 'string' && req.body.email.trim() != '');
+    assert(typeof req.body.email     === 'string' && emailRegexp.test(req.body.email));
     
     // the client sent us a JSON object with all the fields
     // required to create a User row in Mongoose
