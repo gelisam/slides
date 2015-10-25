@@ -11,15 +11,15 @@
     
     // the client sent us a JSON object with all the fields
     // required to create a User row in Mongoose
-    var newUser = new User(req.body); // {
-                                      //   firstName  : "Samuel",
-                                      //   lastName   : "Gélineau",
-                                      //   email      : "samuel.gelineau@keatext.com,
-                                      //   id         : 123456  // an existing user's id
+    var newUser = new User({          // {
+      firstName : req.body.firstName, //   firstName  : "Samuel",
+      lastName  : req.body.lastName,  //   lastName   : "Gélineau",
+      email     : req.body.email,     //   email      : "samuel.gelineau@keatext.com,
+    });                               //   id         : 123456  // ignored
                                       // }
     
     // write it to the Mongoose DB
-    newUser.save()                    // replaces user 123456's email field!
+    newUser.save()
       .then(function(user) {
         
         // confirm that the user was created
