@@ -12,11 +12,15 @@
     assert(typeof req.body.lastName  === 'string' && req.body.lastName.trim() != '');
     assert(typeof req.body.email     === 'string' && emailRegexp.test(req.body.email));
     
-    // send confirmation email
-    mail.send(req.body.email, 'Please confirm your email by clicking the following link...');
+    generateOneTimeToken(function(token) {
+      // send confirmation email
+      mail.send(req.body.email, 'Please confirm your email by clicking the following link...');
+    });
   });
   
   app.get('/confirm', function(req, res, next) {
+    assert(typeof req.body.token === 'string' && isValidToken(req.body.token);
+    
     assert(typeof req.body.firstName === 'string' && req.body.firstName.trim() != '');
     assert(typeof req.body.lastName  === 'string' && req.body.lastName.trim() != '');
     assert(typeof req.body.email     === 'string' && emailRegexp.test(req.body.email));
