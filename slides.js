@@ -15,8 +15,8 @@
                                       //   firstName  : "Samuel",
                                       //   lastName   : "Gélineau",
                                       //   email      : "samuel.gelineau@keatext.com,
+                                      //   id         : 123456
                                       // }
-    
     
     // write it to the Mongoose DB
     newUser.save()
