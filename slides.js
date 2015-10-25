@@ -15,11 +15,11 @@
                                       //   firstName  : "Samuel",
                                       //   lastName   : "Gélineau",
                                       //   email      : "samuel.gelineau@keatext.com,
-                                      //   id         : 123456
+                                      //   id         : 123456  // an existing user's id
                                       // }
     
     // write it to the Mongoose DB
-    newUser.save()
+    newUser.save()                    // replaces user 123456's email field!
       .then(function(user) {
         
         // confirm that the user was created
