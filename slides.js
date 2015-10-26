@@ -1,25 +1,24 @@
 
 
+// A common pattern in javascript:
 
 
+  var email = user && user.email;
+  
+  var subscriptionId = organization
+                    && organization.subscription
+                    && organization.subscription.id;
 
 
 
 
 
-                 ///////////////////////////////
-                 //                           //
-                 //  Auto-immune programming  //
-                 //                           //
-                 ///////////////////////////////
 
 
 
 
 
 
-                                              //        presented by
-                                              //     Samuel Gélineau
 
 
 
@@ -104,5 +103,14 @@
 
 
 
-// Hi and welcome to my talk on "auto-immune programming". If the term doesn't ring a bell,
-// that's entirely normal, because I made it up :)
+
+
+
+
+
+
+// So, what does auto-immune programming look like? Well, here is a common javascript
+// pattern: before accessing a field, we check that the parent exists, and of course
+// for a nested field we check all the parents along the path. We do this, of course,
+// because the parent might be null or undefined, in which case accessing the field
+// would raise an error and abort our program.
