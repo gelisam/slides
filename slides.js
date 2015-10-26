@@ -11,7 +11,12 @@
     
     // the client sent us a JSON object with all the fields
     // required to create a User row in Mongoose
-    var newUser = new User(req.body);
+    var newUser = new User(req.body); // {
+                                      //   firstName  : "Samuel",
+                                      //   lastName   : "Gélineau",
+                                      //   email      : "samuel.gelineau@keatext.com,
+                                      // }
+    
     
     // write it to the Mongoose DB
     newUser.save()
@@ -125,5 +130,4 @@
 
 
 
-// So here's an example in which defensive programming is a good idea: you're writing the
-// handler for 
+
