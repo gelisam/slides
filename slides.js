@@ -2,10 +2,28 @@
 // defensive programming //
 ///////////////////////////
 
-//   Good idea: defend against malformed user input
+// > Good idea: defend against malformed user input
 //    Bad idea: defend against malformed input arguments
 
 
+  // a new user filled the signup form
+  app.post('/signup', function(req, res, next) {
+    
+    // the client sent us a JSON object with all the fields
+    // required to create a User row in Mongoose
+    var newUser = new User(req.body);
+    
+    // write it to the Mongoose DB
+    newUser.save()
+      .then(function(user) {
+        
+        // confirm that the user was created
+        res.send({
+          successful: true,
+          userId: user.id
+        });
+      });
+  });
 
 
 
@@ -107,28 +125,5 @@
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// Now, before I go too far with this idea, I want to contrast it with a similar practice
-// called "defensive programming". I think defensive programming is a good idea, and I
-// wouldn't want you to walk away from this talk thinking that you should never validate
-// your inputs, on the contrary. No, the point of this talk is that you should defend
-// against the outside world, but not against yourself. That's why I call it "auto-immune",
-// like an auto-immune disease in which your body has defenses which are meant to be used
-// against outside threats, but uses them to defend against your own cells.
+// So here's an example in which defensive programming is a good idea: you're writing the
+// handler for 
