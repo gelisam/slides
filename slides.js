@@ -11,6 +11,7 @@
 
 
 
+// I hate this!!!
 
 
 
@@ -109,8 +110,9 @@
 
 
 
-// So, what does auto-immune programming look like? Well, here is a common javascript
-// pattern: before accessing a field, we check that the parent exists, and of course
-// for a nested field we check all the parents along the path. We do this, of course,
-// because the parent might be null or undefined, in which case accessing the field
-// would raise an error and abort our program.
+
+// I *hate* this pattern. How come you don't know whether or not the parent could be
+// undefined? To me, code of this form is a symptom of unmaintainable code.
+// 
+// Now I'm not saying that this code itself is unmaintainable, it's quite short and
+// easy to understand. But it's a sign that the code as a whole is unmaintainable.
