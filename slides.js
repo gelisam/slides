@@ -2,14 +2,14 @@
 
 // A common pattern in javascript:
 
-
+function f {
   var email = user && user.email;
   
   var subscriptionId = organization
                     && organization.subscription
                     && organization.subscription.id;
-
-
+  /// ...
+}
 
 // I hate this!!!
 
