@@ -111,8 +111,14 @@
 
 
 
-// I *hate* this pattern. How come you don't know whether or not the parent could be
-// undefined? To me, code of this form is a symptom of unmaintainable code.
+// This piece of code lives in a much larger codebase with data constantly flowing
+// from one part of the code to another, and in order to maintain the program we not
+// only to understand what each particular piece of code does, but also how the pieces
+// interact.
 // 
-// Now I'm not saying that this code itself is unmaintainable, it's quite short and
-// easy to understand. But it's a sign that the code as a whole is unmaintainable.
+// To me, this pattern is not a "javascript good practice", it's the symptom of an
+// unmaintainable program, a sign that the programmers have given up on understanding
+// which state their program can be in, and thus have no idea what values this function
+// could receive as input, they simply hope that all the fields are there, but in the
+// case they aren't, the programmers are mounting defenses, preparing to defend against
+// random other inputs that could be thrown at them.
