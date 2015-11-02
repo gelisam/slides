@@ -1,17 +1,12 @@
+///////////////////////////
+// defensive programming //
+///////////////////////////
 
+//   Good idea: defend against malformed user input
+//    Bad idea: defend against malformed input arguments
 
-// A common pattern in javascript:
 
-function f {
-  var email = user && user.email;
-  
-  var subscriptionId = organization
-                    && organization.subscription
-                    && organization.subscription.id;
-  /// ...
-}
 
-// I hate this!!!
 
 
 
@@ -111,14 +106,29 @@ function f {
 
 
 
-// This piece of code lives in a much larger codebase with data constantly flowing
-// from one part of the code to another, and in order to maintain the program we not
-// only to understand what each particular piece of code does, but also how the pieces
-// interact.
-// 
-// To me, this pattern is not a "javascript good practice", it's the symptom of an
-// unmaintainable program, a sign that the programmers have given up on understanding
-// which state their program can be in, and thus have no idea what values this function
-// could receive as input, they simply hope that all the fields are there, but in the
-// case they aren't, the programmers are mounting defenses, preparing to defend against
-// random other inputs that could be thrown at them.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// Now, before I go too far with this idea, I want to contrast it with a similar practice
+// called "defensive programming". I think defensive programming is a good idea, and I
+// wouldn't want you to walk away from this talk thinking that you should never validate
+// your inputs, on the contrary. No, the point of this talk is that you should defend
+// against the outside world, but not against yourself. That's why I call it "auto-immune",
+// like an auto-immune disease in which your body has defenses which are meant to be used
+// against outside threats, but uses them to defend against your own cells.
