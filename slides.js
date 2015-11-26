@@ -4,14 +4,14 @@
 
 
 // play intro animation
-function playCutscene(callback) {
-  lookLeft(boyfriend, function() {
-    speak(boyfriend, heartSprite, function() {
-      lookRight(player, function() {
-        speak(player, heartSprite, function() {
-          sleep(200, function() { // for dramatic effect!
-            lookDown(boyfriend, function() {
-              speak(boyfriend, heartSprite, callback);
+function playCutscene() {
+  return lookLeft(boyfriend).then(function() {
+    return speak(boyfriend, heartSprite).then(function() {
+      return lookRight(player).then(function() {
+        return speak(player, heartSprite).then(function() {
+          return sleep(200).then(function() { // for dramatic effect!
+            return lookDown(boyfriend).then(function() {
+              return speak(boyfriend, heartSprite);
             });
           });
         });
@@ -121,20 +121,4 @@ function playCutscene(callback) {
 
 
 
-var boyfriend = "boyfriend";
-function lookLeft(actor, callback) {
-  console.log(actor + " looks left.");
-}
-//    speak(boyfriend, heartSprite, function() {
-//      lookRight(player, function() {
-//        speak(player, heartSprite, function() {
-//          pause(200, function() { // for dramatic effect!
-//            lookDown(boyfriend, function() {
-//              speak(boyfriend, heartSprite, callback);
-//            });
-//          });
-//        });
-//      });
-//    });
 
-playCutscene();
