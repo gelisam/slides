@@ -34,7 +34,7 @@ main = do
       Nothing -> print "failed."
     
     catch (do let r = bangPlusTwo
-              print "succeeded.")
+              r `seq` print "succeeded.")
           (\(err :: SomeException) -> do
               print "failed.")
 
