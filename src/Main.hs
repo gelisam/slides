@@ -2,11 +2,10 @@
 div' = div
 
 doMath :: Int -> IO ()
-doMath 0 = putStrLn "please enter another number"
 doMath n = print $ (42 `div'` n) + 1
 
 main :: IO ()
-main = doMath 0
+main = doMath 0  -- compile-time error!
 
 
 
