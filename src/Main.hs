@@ -29,9 +29,9 @@ bangPlusTwo = bangPlusOne + 1
 
 main :: IO ()
 main = do
-    case lookupPlusTwo of
-      Just _  -> print "succeeded."
-      Nothing -> print "failed."
+    print $ lookupPlusTwo + 1
+    
+    
     
     catch (do let r = bangPlusTwo
               r `seq` print "succeeded.")
