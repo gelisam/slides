@@ -1,5 +1,9 @@
+div' :: Int -> Int -> Maybe Int
+div' _ 0 = Nothing
+div' x y = Just (x `div` y)
+
 main :: IO ()
-main = print $ (42 `div` 2) + 1
+main = print $ (42 `div'` 2) + 1
 
 
 
