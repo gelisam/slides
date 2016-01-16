@@ -1,5 +1,5 @@
 main :: IO ()
-main = print $ 42 `div` 0
+main = print $ tail (tail [1])
 
 
 
