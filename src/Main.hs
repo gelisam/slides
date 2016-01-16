@@ -4,12 +4,12 @@ div' x y = Just (x `div` y)
 
 doMath :: Int -> IO ()
 doMath n = do
-    case n `div'` 2 of
-      Nothing -> error "never happens"
+    case 42 `div'` n of
+      Nothing -> putStrLn "divided by zero"
       Just x  -> print (x + 1)
 
 main :: IO ()
-main = doMath 42
+main = doMath 0
 
 
 
