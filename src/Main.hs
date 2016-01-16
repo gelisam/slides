@@ -1,11 +1,16 @@
-assocList :: [(Int, Char)]
-assocList = [ (1, 'a')
-            , (2, 'b')
-            , (3, 'c')
-            ]
+import Data.Map as Map
+
+
+chars :: Map Int Char
+chars = Map.fromList [ (1, 'a')
+                     , (2, 'b')
+                     , (3, 'c')
+                     ]
 
 main :: IO ()
-main = print $ lookup 4 assocList
+main = do
+    print $ Map.lookup 4 chars
+    print $ chars ! 4
 
 
 
