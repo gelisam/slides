@@ -1,5 +1,7 @@
 main :: IO ()
-main = print $ tail (tail [1])
+main = do
+    s <- readFile "foo"
+    print s
 
 
 
