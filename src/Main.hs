@@ -3,7 +3,10 @@ div' _ 0 = Nothing
 div' x y = Just (x `div` y)
 
 main :: IO ()
-main = print $ (42 `div'` 2) + 1
+main = do
+    print $ case 42 `div'` 2 of
+      Nothing -> error "never happens"
+      Just x  -> x + 1
 
 
 
