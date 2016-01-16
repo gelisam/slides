@@ -2,13 +2,14 @@ div' :: Int -> Int -> Maybe Int
 div' _ 0 = Nothing
 div' x y = Just (x `div` y)
 
-main :: IO ()
-main = do
-    print $ case 42 `div'` 2 of
+doMath :: Int -> IO ()
+doMath n = do
+    case n `div'` 2 of
       Nothing -> error "never happens"
-      Just x  -> x + 1
+      Just x  -> print (x + 1)
 
-
+main :: IO ()
+main = doMath 42
 
 
 
