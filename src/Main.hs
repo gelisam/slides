@@ -29,7 +29,7 @@ bangPlusTwo = bangPlusOne + 1
 
 main :: IO ()
 main = do
-    print $ lookupPlusTwo + 1
+    -- print $ lookupPlusTwo + 1
     
     
     
