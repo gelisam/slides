@@ -1,8 +1,16 @@
-tail' :: [a] -> [a]
-tail' = tail
+import Data.Map as Map
+
+
+chars :: Map Int Char
+chars = Map.fromList [ (1, 'a')
+                     , (2, 'b')
+                     , (3, 'c')
+                     ]
 
 main :: IO ()
-main = print $ tail' (tail' [1])  -- programmer error!
+main = do
+    print $ Map.lookup 4 chars
+    print $ chars ! 4
 
 
 
