@@ -1,6 +1,6 @@
 import Control.Exception
+import GHC.Conc
 import System.IO.Unsafe
-
 
 
 main :: IO ()
@@ -18,7 +18,7 @@ head' = unexceptional1 head
 
 unexceptional1 :: (a -> b)
                -> (a -> Either SomeException b)
-unexceptional1 f x = x `seq` unexceptional (f x)
+unexceptional1 f x = x `pseq` unexceptional (f x)
 
 
 
