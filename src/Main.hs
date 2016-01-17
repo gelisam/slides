@@ -7,7 +7,7 @@ main = print $ unexceptional $ tail (tail [1])
 
 unexceptional :: a -> Either SomeException a
 unexceptional x = unsafePerformIO $ do
-    try (return x)
+    try (x `seq` return x)
 
 
 
