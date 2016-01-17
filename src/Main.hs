@@ -1,10 +1,10 @@
-
+import UnexceptionalIO
 
 
 main :: IO ()
 main = do
-    s <- readFile "foo"
-    print s
+    r <- syncIO $ readFile "foo"
+    print r
 
 
 
