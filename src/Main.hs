@@ -1,7 +1,11 @@
+assocList :: [(Int, Char)]
+assocList = [ (1, 'a')
+            , (2, 'b')
+            , (3, 'c')
+            ]
+
 main :: IO ()
-main = do
-    s <- readFile "foo"
-    print s
+main = print $ lookup 4 assocList
 
 
 
