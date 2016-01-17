@@ -18,7 +18,9 @@ dfs node0 g = go node0 Map.empty
       Nothing ->
         let i        = Map.size visited
             visited' = Map.insert node i visited
-            neighbours = g ! node
+            neighbours = case Map.lookup node g of
+              Just nodes -> nodes
+              Nothing    -> error "invalid graph"
         in foldr go visited' neighbours
 
 --  / \
