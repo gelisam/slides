@@ -10,7 +10,7 @@ unexceptional = undefined
 
 -- same as Try(...) in Scala
 try' :: IO a -> IO (Either SomeException a)
-try' = undefined
+try' = try
 
 
 
