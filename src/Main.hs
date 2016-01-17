@@ -1,14 +1,10 @@
-import Data.Maybe
 
 
-assocList :: [(Int, Char)]
-assocList = [ (1, 'a')
-            , (2, 'b')
-            , (3, 'c')
-            ]
 
 main :: IO ()
-main = print $ fromJust $ lookup 4 assocList
+main = do
+    s <- readFile "foo"
+    print s
 
 
 
