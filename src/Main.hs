@@ -4,6 +4,7 @@ import UnexceptionalIO
 main :: IO ()
 main = do
     r <- syncIO $ return $ tail (tail [1])
+    putStrLn "---"
     print r
 
 
