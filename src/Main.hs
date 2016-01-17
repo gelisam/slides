@@ -34,8 +34,8 @@ main = print
      $ Map.toList
      $ dfs "a"
      $ Map.fromList [ ("a", ["a", "b"])
-                    , ("b", ["a", "c"])
-                    , ("c", ["c", "d"])
+                    , ("b", ["a", "e"]) -- programmer
+                    , ("c", ["c", "d"]) -- error!
                     , ("d", ["a", "c"])
                     ]
                      
