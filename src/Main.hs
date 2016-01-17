@@ -1,9 +1,5 @@
 main :: IO ()
-main = do
-    putStrLn "Hello again, fellow Haskellers!"
-    putStrLn ""
-    putStrLn "today's subject:"
-    putStrLn "Maybe/Either vs exceptions"
+main = print $ 42 `div` 0
 
 
 
