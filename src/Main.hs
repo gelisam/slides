@@ -13,10 +13,12 @@ main = do
 
 
 head' :: [a] -> Either SomeException a
-head' xs = unexceptional (head xs)
+head' = unexceptional1 head
 
 
-
+unexceptional1 :: (a -> b)
+               -> (a -> Either SomeException b)
+unexceptional1 f x = x `seq` unexceptional (f x)
 
 
 
