@@ -2,7 +2,7 @@ import Control.Exception
 import System.IO.Unsafe
 
 main :: IO ()
-main = print $ unexceptional $ tail (tail [1])
+main = print $ unexceptional $ head [1 `div` 0]
 
 
 unexceptional :: a -> Either SomeException a
