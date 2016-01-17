@@ -1,16 +1,16 @@
 import Control.Exception
-
+import System.IO.Unsafe
 
 main :: IO ()
 main = print $ unexceptional $ tail (tail [1])
 
 
 unexceptional :: a -> Either SomeException a
-unexceptional = undefined
+unexceptional x = unsafePerformIO $ do
+    try (return x)
 
--- same as Try(...) in Scala
-try' :: IO a -> IO (Either SomeException a)
-try' = try
+
+
 
 
 
