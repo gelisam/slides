@@ -3,7 +3,7 @@ import UnexceptionalIO
 
 main :: IO ()
 main = do
-    r <- syncIO $ readFile "foo"
+    r <- syncIO $ return $ tail (tail [1])
     print r
 
 
