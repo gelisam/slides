@@ -1,12 +1,21 @@
-import UnexceptionalIO
+import Control.Exception
 
 
 main :: IO ()
-main = do
-    r <- syncIO $ let x = tail (tail [1])
-                  in x `seq` return x
-    putStrLn "---"
-    print r
+main = print $ unexceptional $ tail (tail [1])
+
+
+unexceptional :: a -> Either SomeException a
+unexceptional = undefined
+
+
+
+
+
+
+
+
+
 
 
 
