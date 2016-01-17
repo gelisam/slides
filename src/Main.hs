@@ -1,4 +1,4 @@
-
+import Data.Maybe
 
 
 assocList :: [(Int, Char)]
@@ -8,7 +8,7 @@ assocList = [ (1, 'a')
             ]
 
 main :: IO ()
-main = print $ lookup 4 assocList
+main = print $ fromJust $ lookup 4 assocList
 
 
 
