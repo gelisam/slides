@@ -4,7 +4,7 @@ import Control.Exception
 main :: IO ()
 main = print $ unexceptional $ tail (tail [1])
 
-
+-- same as Try(...) in Scala
 unexceptional :: a -> Either SomeException a
 unexceptional = undefined
 
