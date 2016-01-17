@@ -1,16 +1,44 @@
-import Data.Map as Map
+{-# LANGUAGE ScopedTypeVariables #-}
+import Control.Monad
+import Data.Map (Map, (!))
+import qualified Data.Map as Map
 
 
-chars :: Map Int Char
-chars = Map.fromList [ (1, 'a')
-                     , (2, 'b')
-                     , (3, 'c')
-                     ]
+type Graph node = Map node [node]
 
+dfs :: forall node. (Show node, Ord node)
+    => node
+    -> Graph node
+    -> Map node Int
+dfs node0 g = go node0 Map.empty
+  where
+    go :: node -> Map node Int -> Map node Int
+    go node visited = case Map.lookup node visited of
+      Just _  -> visited
+      Nothing ->
+        let i        = Map.size visited
+            visited' = Map.insert node i visited
+            neighbours = g ! node
+        in foldr go visited' neighbours
+
+--  / \
+-- |   |
+--  `->a <--> b
+--     ^      |
+--     |      v
+--     d <--> c<-.
+--            |   |
+--             \ /
 main :: IO ()
-main = do
-    print $ Map.lookup 4 chars
-    print $ chars ! 4
+main = print
+     $ Map.toList
+     $ dfs "a"
+     $ Map.fromList [ ("a", ["a", "b"])
+                    , ("b", ["a", "c"])
+                    , ("c", ["c", "d"])
+                    , ("d", ["a", "c"])
+                    ]
+                     
 
 
 
