@@ -5,9 +5,9 @@
   v Introduction
     - the conference
     - the talks
-    -[this talk]
+    - this talk
   v Excerpts
-    - add a type parameter!
+    -[add a type parameter!]
     - composing network operating systems
     - active patterns
   > Conclusion
