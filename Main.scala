@@ -19,6 +19,12 @@ case class Webpage(
   referrer: Option[URL]
 )
 
+case class WebpageReference(
+  location: URL,
+  referrer: Option[URL]
+)
+
+def download(ref: WebpageReference): Webpage = ???
 
 
 
