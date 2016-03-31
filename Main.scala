@@ -29,6 +29,15 @@ class TimeTravellingOS extends OS {
     Long.MaxValue - super.getCurrentTimeMillis
 }
 
+class DeterministicOS extends OS {
+  override def srand(seed: Int): Unit =
+    super.srand(1234)
+}
+
+
+
+
+
 
 
 
