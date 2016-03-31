@@ -1,22 +1,19 @@
-  ////////////////////
- // the conference //
-////////////////////
-
-WHERE: New York
-WHEN:  February 4-5, 2016
-WHAT:  Talks about strongly-typed functional programming
-WHO:   Hundreds of people! Doubles every year!
 
 
+  Excerpts from the Compose Conference (2016)
 
-
-
-
-
-
-
-
-
+  v Introduction
+    - the conference
+    - the talks
+    - this talk
+  v Excerpts
+    - add a type parameter!
+    - composing network operating systems
+    - active patterns
+  v Conclusion
+    -[the conference]
+    - the talks
+    - this talk
 
 
 
