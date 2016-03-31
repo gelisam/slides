@@ -12,11 +12,7 @@ WHAT:  Talks about strongly-typed functional programming
        - OCaml
        - SML
 
-
-
-
-
-
+       ...but not Scala?
 
 
 
