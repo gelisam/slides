@@ -18,7 +18,10 @@ case class Webpage[A](
 
 def download(ref: Webpage[Unit]): Webpage[String] = ???
 
-def render(page: Webpage[String]) {
+import scala.xml.Document
+def parse(page: Webpage[String]): Webpage[Document] = ???
+
+def render(page: Webpage[Document]) {
   val content = page.content
   // ...
 }
