@@ -12,16 +12,11 @@ import java.net.URL
 
 case class Webpage(
   location: URL,
-  content:  String,
+  content:  Option[String],
   referrer: Option[URL]
 )
 
-case class WebpageReference(
-  location: URL,
-  referrer: Option[URL]
-)
-
-def download(ref: WebpageReference): Webpage = ???
+def download(ref: Webpage): Webpage = ???
 
 
 
