@@ -1,15 +1,21 @@
-  ///////////////
- // this talk //
-///////////////
 
 
 
-- "Add a type parameter! [...]", by Stephen Compall
-
-- "Composing Network Operating Systems", by Mindy Preston
 
 
-- "[...] F# Active Patterns [...]", by Paulmichael Blasucci
+
+                          THANK YOU!
+                          ==========
+                          QUESTIONS?
+
+
+
+
+
+
+
+
+
 
 
 
