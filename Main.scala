@@ -9,22 +9,16 @@ case class Cons[A](head: A, tail: List[A]) extends List[A]
 
 
 import java.net.URL
+import scala.xml.Document
 
-case class Webpage[A](
+case class Webpage(
   location: URL,
-  content:  A,
+  content:  Document,
+  title:    String,
+  links:    List[(String,URL)],
   referrer: Option[URL]
 )
 
-def download(ref: Webpage[Unit]): Webpage[String] = ???
-
-import scala.xml.Document
-def parse(page: Webpage[String]): Webpage[Document] = ???
-
-def render(page: Webpage[Document]) {
-  val content = page.content
-  // ...
-}
 
 
 
