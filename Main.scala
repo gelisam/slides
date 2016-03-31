@@ -11,21 +11,17 @@ case class Cons[A](head: A, tail: List[A]) extends List[A]
 import java.net.URL
 import scala.xml.Document
 
-case class Webpage[C,T,L](
+case class Webpage[F[_]](
   location: URL,
-  content:  C,
-  title:    T,
-  links:    L,
+  content:  F[ Document ],
+  title:    F[ String ],
+  links:    F[ List[(String,URL)] ],
   referrer: Option[URL]
 )
 
-def download(
-  ref: Webpage[Unit, Unit, Unit]
-): Webpage[
-     Document,
-     String,
-     List[(String,URL)]
-   ]= ???
+type Missing[A] = Unit
+type Present[A] = A
+def download(ref: Webpage[Missing]): Webpage[Present] = ???
 
 
 
