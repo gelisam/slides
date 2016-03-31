@@ -10,16 +10,16 @@ case class Cons[A](head: A, tail: List[A]) extends List[A]
 
 import java.net.URL
 
-case class Webpage(
+case class Webpage[A](
   location: URL,
-  content:  Option[String],
+  content:  A,
   referrer: Option[URL]
 )
 
-def download(ref: Webpage): Webpage = ???
+def download(ref: Webpage[Unit]): Webpage[String] = ???
 
-def render(page: Webpage) {
-  val content = page.content.get
+def render(page: Webpage[String]) {
+  val content = page.content
   // ...
 }
 
