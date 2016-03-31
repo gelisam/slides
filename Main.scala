@@ -52,7 +52,13 @@ class DenialOfServiceOS extends OS {
       super.read(fd, byte_count)
 }
 
-
+class VersionedOS extends OS {
+  override def write(fd: FileDescriptor, bytes: List[Byte]): Int = {
+    val r = super.write(fd, bytes)
+    system(s"git commit -a")
+    r
+  }
+}
 
 
 
