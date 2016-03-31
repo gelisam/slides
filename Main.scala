@@ -1,15 +1,13 @@
-  ///////////////
- // this talk //
-///////////////
 
 
+  Excerpts from the Compose Conference (2016)
 
-- "Add a type parameter! [...]", by Stephen Compall
-
-- "Composing Network Operating Systems", by Mindy Preston
-
-
-- "[...] F# Active Patterns [...]", by Paulmichael Blasucci
+  v Introduction
+    - the conference
+    - the talks
+    -[this talk]
+  > Excerpts
+  > Conclusion
 
 
 
