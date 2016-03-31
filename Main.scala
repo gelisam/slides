@@ -24,6 +24,11 @@ class SlowOS extends OS {
     (super.getCurrentTimeMillis * 0.5).toLong
 }
 
+class TimeTravellingOS extends OS {
+  override def getCurrentTimeMillis: Long =
+    Long.MaxValue - super.getCurrentTimeMillis
+}
+
 
 
 
