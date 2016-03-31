@@ -5,6 +5,7 @@
 WHERE: New York
 WHEN:  February 4-5, 2016
 WHAT:  Talks about strongly-typed functional programming
+WHO:   Hundreds of people! Doubles every year!
 
 
 
