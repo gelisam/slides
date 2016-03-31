@@ -39,6 +39,18 @@ class DiskFullOS extends OS {
     throw new java.io.IOException("Not enough space")
 }
 
+class DenialOfServiceOS extends OS {
+  val fullFileDescriptor = FileDescriptor(666)
+  
+  override def accept(url: URL, port: Int): FileDescriptor =
+    fullFileDescriptor
+  
+  override def read(fd: FileDescriptor, byte_count: Int): List[Byte] =
+    if (fd == fullFileDescriptor)
+      List(0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0)
+    else
+      super.read(fd, byte_count)
+}
 
 
 
