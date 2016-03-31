@@ -19,6 +19,10 @@ class OS {
   def system(command: String): String = ???
 }
 
+class SlowOS extends OS {
+  override def getCurrentTimeMillis: Long =
+    (super.getCurrentTimeMillis * 0.5).toLong
+}
 
 
 
