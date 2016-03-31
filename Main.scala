@@ -18,6 +18,10 @@ case class Webpage(
 
 def download(ref: Webpage): Webpage = ???
 
+def render(page: Webpage) {
+  val content = page.content.get
+  // ...
+}
 
 
 
