@@ -11,8 +11,8 @@
     - composing network operating systems
     - active patterns
   v Conclusion
-    -[the conference]
-    - the talks
+    - the conference
+    -[the talks]
     - this talk
 
 
