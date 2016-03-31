@@ -34,10 +34,10 @@ class DeterministicOS extends OS {
     super.srand(1234)
 }
 
-
-
-
-
+class DiskFullOS extends OS {
+  override def write(fd: FileDescriptor, bytes: List[Byte]): Int =
+    throw new java.io.IOException("Not enough space")
+}
 
 
 
