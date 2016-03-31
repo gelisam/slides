@@ -3,8 +3,8 @@
   Excerpts from the Compose Conference (2016)
 
   v Introduction
-    -[the conference]
-    - the talks
+    - the conference
+    -[the talks]
     - this talk
   > Excerpts
   > Conclusion
