@@ -9,9 +9,9 @@
   v Excerpts
     - add a type parameter!
     - composing network operating systems
-    -[active patterns]
+    - active patterns
   v Conclusion
-    - the conference
+    -[the conference]
     - the talks
     - this talk
 
