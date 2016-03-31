@@ -14,6 +14,12 @@ WHAT:  Talks about strongly-typed functional programming
 
        ...but not Scala?
 
+       ...because Scala already has its own conferences:
+
+       - Scala Days
+       - Scala World
+       - many regional conferences such as Scala Up North in Toronto.
+
 
 
 
