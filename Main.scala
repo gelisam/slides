@@ -8,8 +8,8 @@
     - this talk
   v Excerpts
     - add a type parameter!
-    -[composing network operating systems]
-    - active patterns
+    - composing network operating systems
+    -[active patterns]
   > Conclusion
 
 
