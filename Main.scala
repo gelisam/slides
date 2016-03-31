@@ -1,19 +1,23 @@
 
 
+  Excerpts from the Compose Conference (2016)
+
+  > Introduction
+  > Excerpts
+  > Conclusion
 
 
 
 
 
-                             Excerpts
-                             from the
-                        Compose Conference
-                              (2016)
 
 
 
-                                                     a talk by
-                                               Samuel Gélineau
+
+
+
+
+
 
 
 
