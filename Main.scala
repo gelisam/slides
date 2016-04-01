@@ -1,21 +1,100 @@
-  /////////////////////////////////////////
- // composing network operating systems //
-/////////////////////////////////////////
 
-                 MirageOS
 
-               presented by
+  Excerpts from the Compose Conference (2016)
 
-                        ##        .            
-                  ## ## ##       ==            
-               ## ## ## ##      ===            
-           /""""""""""""""""\___/ ===        
-      ~~~ {~~ ~~~~ ~~~ ~~~~ ~~ ~ /  ===- ~~~   
-           \______ o          __/            
-             \    \        __/             
-              \____\______/                
-     
-              |          |
-           __ |  __   __ | _  __   _
-          /  \| /  \ /   |/  / _\ | 
-          \__/| \__/ \__ |\_ \__  |
+  v Introduction
+    - the conference
+    - the talks
+    - this talk
+  v Excerpts
+    - add a type parameter!
+    -[composing network operating systems]
+    - active patterns
+  > Conclusion
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
