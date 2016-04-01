@@ -10,8 +10,10 @@
     - add a type parameter!
     - composing network operating systems
     -[active patterns]
-  > Conclusion
-
+  v Conclusion
+    - the conference
+    - the talks
+    - this talk
 
 
 
