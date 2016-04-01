@@ -1,16 +1,23 @@
+  /////////////////////
+ // active patterns //
+/////////////////////
 
 
-  Excerpts from the Compose Conference (2016)
+case class Vector(x: Double, y: Double)
 
-  v Introduction
-    - the conference
-    - the talks
-    - this talk
-  v Excerpts
-    - add a type parameter!
-    - composing network operating systems
-    -[active patterns]
-  > Conclusion
+
+
+
+
+
+
+val point = Vector(3, 4)
+
+
+
+
+
+
 
 
 
