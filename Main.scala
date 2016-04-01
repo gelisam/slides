@@ -12,7 +12,7 @@ object NorthWest {...}
 
 def manhattan_distance(vector: Vector): Double =
   vector match {
-    case NorthEast(dx, dy) => dx + dy
+    // oups, missing NorthEast!
     case SouthEast(dx, dy) => dx + dy
     case SouthWest(dx, dy) => dx + dy
     case NorthWest(dx, dy) => dx + dy
