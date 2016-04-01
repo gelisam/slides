@@ -1,16 +1,22 @@
+  ///////////////////////////
+ // add a type parameter! //
+///////////////////////////
 
 
-  Excerpts from the Compose Conference (2016)
+sealed trait List[A]
+case class Nil[A]()                        extends List[A]
+case class Cons[A](head: A, tail: List[A]) extends List[A]
 
-  v Introduction
-    - the conference
-    - the talks
-    - this talk
-  v Excerpts
-    -[add a type parameter!]
-    - composing network operating systems
-    - active patterns
-  > Conclusion
+
+
+
+
+
+
+
+
+
+
 
 
 
