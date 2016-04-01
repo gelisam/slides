@@ -1,16 +1,30 @@
+  /////////////////////////////////////////
+ // composing network operating systems //
+/////////////////////////////////////////
+
+import java.net.URL
+class OS {
+  def getCurrentTimeMillis: Long = ???
+
+  def srand(seed: Int): Unit = ???
+  def rand: Int = ???
+
+  case class FileDescriptor(n: Int)
+  def read(fd: FileDescriptor, byte_count: Int): List[Byte] = ???
+  def write(fd: FileDescriptor, bytes: List[Byte]): Int = ???
+
+  def accept(url: URL, port: Int): FileDescriptor = ???
+  def connect(url: URL, port: Int): FileDescriptor = ???
+  
+  def system(command: String): String = ???
+}
 
 
-  Excerpts from the Compose Conference (2016)
 
-  v Introduction
-    - the conference
-    - the talks
-    - this talk
-  v Excerpts
-    - add a type parameter!
-    -[composing network operating systems]
-    - active patterns
-  > Conclusion
+
+
+
+
 
 
 
