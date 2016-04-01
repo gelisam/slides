@@ -5,14 +5,21 @@
 
 case class Vector(x: Double, y: Double)
 
-object NorthEast {...}
-object SouthEast {...}
-object SouthWest {...}
-object NorthWest {...}
+
+sealed trait Cardinal
+case class NorthEast(dx: Double, dy: Double) extends Cardinal
+case class SouthEast(dx: Double, dy: Double) extends Cardinal
+case class SouthWest(dx: Double, dy: Double) extends Cardinal
+case class NorthWest(dx: Double, dy: Double) extends Cardinal
+
+object Cardinal {
+  def apply(vector: Vector): Cardinal = ???
+}
+
 
 def manhattan_distance(vector: Vector): Double =
-  vector match {
-    // oups, missing NorthEast!
+  Cardinal(vector) match {
+    // warning: match is not exhaustive, case NorthEast() is missing
     case SouthEast(dx, dy) => dx + dy
     case SouthWest(dx, dy) => dx + dy
     case NorthWest(dx, dy) => dx + dy
