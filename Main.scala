@@ -12,6 +12,7 @@ case class Vector(x: Double, y: Double)
 
 
 val point = Vector(3, 4)
+val Vector(px, py) = point
 
 
 
