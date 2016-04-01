@@ -6,13 +6,13 @@
 case class Vector(x: Double, y: Double)
 
 object Polar {
-  def apply(angle: Double, magnitude: Double) =
-    Vector(Math.cos(angle) * magnitude,
-           Math.sin(angle) * magnitude)
+  def unapply(vector: Vector) =
+    Some((Math.atan2(vector.y, vector.x),
+          Math.sqrt(vector.x * vector.x + vector.y * vector.y)))
 }
 
-val point = Polar(0.9273, 5)
-val Vector(px, py) = point
+val point = Vector(3, 4)
+val Polar(angle, magnitude) = point
 
 
 
