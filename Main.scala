@@ -1,23 +1,34 @@
 import scala.collection.TraversableLike
 import scala.collection.generic.CanBuildFrom
+import scala.concurrent.Future
+import scala.concurrent.ExecutionContext.Implicits.global
 
-def processString(string: String): String =
-  string + "!"
+
+def processString(string: String): Future[Int] =
+  Future.successful(string.length)
 
 def processMany[
   L[X] <: TraversableLike[X, L[X]]
 ](
   strings: L[String]
 )(implicit
-  cbf: CanBuildFrom[  L[String], Int, L[Int]  ]
+  cbf1: CanBuildFrom[  L[String],      Future[Int], L[Future[Int]]  ],
+  cbf2: CanBuildFrom[  L[Future[Int]], Int,         L[Int]          ]
 )
-: L[Int] =
-  strings.map(processString)
+: Future[L[Int]] =
+  Future.sequence(
+    strings.map(processString)
+  )
 
 
-println(processString("hello")) // 5
-println(processMany(List("hello", "world")): List[Int]) // List(5, 5)
-println(processMany(Set("hello", "world")): Set[Int]) // Set(5)
+val r1: Future[Int]       = processString("hello")
+val r2: Future[List[Int]] = processMany(List("hello", "world"))
+val r3: Future[Set[Int]]  = processMany(Set("hello", "world"))
+
+r1.map(println) // 5
+r2.map(println) // List(5, 5)
+r3.map(println) // Set(5)
+
 
 
 
