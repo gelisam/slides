@@ -1,17 +1,35 @@
+import java.util.*;
 
-   Type Classes
-   ===
-   - original problem
-   - example problem
-     - Python solution
-     - Elm solution
-     - C++ solution
-     [ Java solution ]
-     - Scala solution
-     - Haskell solution
-   - Type Classes
-     - in Haskell
-     - in Scala
+
+public class Main {
+  static int processString(String string) {
+    return string.length();
+  }
+  
+  
+  public static void main(String[] args) {
+    System.out.println(processString("hello")); // 5
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
