@@ -2,8 +2,8 @@
    Type Classes
    ===
    - original problem
-   [ example problem ]
-     - Python solution
+   - example problem
+     [ Python solution ]
      - Elm solution
      - C++ solution
      - Java solution
