@@ -2,7 +2,8 @@
 processString
   String -> Int
 
-
+processList
+  List[String] -> List[Int]
 
 
 
