@@ -6,6 +6,10 @@ import String
 processString : String -> Int
 processString = String.length
 
+-- >>> processList ["hello", "world"]
+-- [5, 5]
+processList : List String -> List Int
+processList = List.map processString
 
 
 
