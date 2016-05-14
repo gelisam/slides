@@ -4,8 +4,8 @@
    - original problem
    - example problem
      - Python solution
-     [ Elm solution ]
-     - C++ solution
+     - Elm solution
+     [ C++ solution ]
      - Java solution
      - Scala solution
      - Haskell solution
