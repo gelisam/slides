@@ -1,8 +1,8 @@
 
    Type Classes
    ===
-   [ original problem ]
-   - example problem
+   - original problem
+   [ example problem ]
      - Python solution
      - Elm solution
      - C++ solution
