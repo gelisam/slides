@@ -26,12 +26,12 @@ def processString(string):
 def processMany(strings):
   return strings.map(processString)
 
-
-
+def processHelper(strings):
+  return processMany(strings)
 
 print processString("hello")  # 5
-print processMany(MyList(["hello", "world"]))  # [5, 5]
-print processMany(MySet(["hello", "world"]))  # set([5])
+print processHelper(MyList(["hello", "world"]))  # [5, 5]
+print processHelper(MySet(["hello", "world"]))  # set([5])
 
 
 
