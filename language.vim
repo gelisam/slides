@@ -1,1 +1,1 @@
-:set syntax=python
+:set syntax=scala
