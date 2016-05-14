@@ -65,12 +65,14 @@ public class Main {
     LinkedList<String> v1 = new LinkedList<String>();
     v1.add("hello");
     v1.add("world");
-    System.out.println(processMany(new MyList<String>(v1))); // [5, 5]
+    MyList<Integer> r1 = processMany(new MyList<String>(v1)); // X
+    System.out.println(r1);
     
     HashSet<String> v2 = new HashSet<String>();
     v2.add("hello");
     v2.add("world");
-    System.out.println(processMany(new MySet<String>(v2))); // [5]
+    MySet<Integer> r2 = processMany(new MySet<String>(v2)); // X
+    System.out.println(r2);
   }
 }
 
