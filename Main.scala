@@ -65,13 +65,13 @@ public class Main {
     LinkedList<String> v1 = new LinkedList<String>();
     v1.add("hello");
     v1.add("world");
-    MyList<Integer> r1 = processMany(new MyList<String>(v1)); // X
+    MyList<Integer> r1 = (MyList<Integer>) processMany(new MyList<String>(v1));
     System.out.println(r1);
     
     HashSet<String> v2 = new HashSet<String>();
     v2.add("hello");
     v2.add("world");
-    MySet<Integer> r2 = processMany(new MySet<String>(v2)); // X
+    MySet<Integer> r2 = (MySet<Integer>) processMany(new MySet<String>(v2));
     System.out.println(r2);
   }
 }
