@@ -19,6 +19,21 @@ def normalizeHelper(
   normalizeList(strings, false)
 
 
+def normalizeSet(
+  strings: Set[String], partialMatch: Boolean
+): Future[Set[String]] =
+  Future.sequence(
+    strings.map { str =>
+      normalizeString(str, partialMatch)
+    }
+  )
+ 
+def normalizeHelper(
+  strings: Set[String]
+): Future[Set[String]] =
+  normalizeSet(strings, false)
+
+
 
 
 
