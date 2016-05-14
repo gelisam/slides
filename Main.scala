@@ -5,14 +5,15 @@ def processString(string):
 def processList(strings):
   return map(processString, strings)
 
-
-
+def processSet(strings):
+  return set(map(processString, strings))
 
 
 
 
 print processString("hello")  # 5
 print processList(["hello", "world"])  # [5, 5]
+print processSet(set(["hello", "world"]))  # set([5])
 
 
 
