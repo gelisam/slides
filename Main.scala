@@ -5,6 +5,8 @@ processString
 processList
   List[String] -> List[Int]
 
+processSet
+  Set[String] -> Set[Int]
 
 
 
