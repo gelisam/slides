@@ -1,5 +1,5 @@
 import String
-
+import Set exposing (Set)
 
 -- >>> processString "hello"
 -- 5
@@ -11,7 +11,10 @@ processString = String.length
 processList : List String -> List Int
 processList = List.map processString
 
-
+-- >>> processSet (Set.fromList ["hello", "world"])
+-- Set.fromList [5]
+processSet : Set String -> Set Int
+processSet = Set.map processString
 
 
 
