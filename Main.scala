@@ -2,13 +2,10 @@
 processString
   String -> Int
 
-processList
+processMany
   List[String] -> List[Int]
-
-processSet
   Set[String] -> Set[Int]
-
-
+  ...
 
 
 
