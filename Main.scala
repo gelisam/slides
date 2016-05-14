@@ -23,15 +23,15 @@ class MySet:
 def processString(string):
   return len(string)
 
-def processList(strings):
+def processMany(strings):
   return strings.map(processString)
 
-def processSet(strings):
-  return strings.map(processString)
+
+
 
 print processString("hello")  # 5
-print processList(MyList(["hello", "world"]))  # [5, 5]
-print processSet(MySet(["hello", "world"]))  # set([5])
+print processMany(MyList(["hello", "world"]))  # [5, 5]
+print processMany(MySet(["hello", "world"]))  # set([5])
 
 
 
