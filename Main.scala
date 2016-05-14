@@ -3,35 +3,29 @@ def normalizeString(
   string: String, partialMatch: Boolean
 ): Future[String] =
   normalizer.results.normalizeFromCorpus(datasetId, string, partialMatch)
-
-def normalizeList(
-  strings: List[String], partialMatch: Boolean
-): Future[List[String]] =
+ 
+def normalizeMany[M[X] <: TraversableLike[X, M[X]]](
+  strings: M[String],
+  partialMatch: Boolean
+)(implicit
+  cbfa: CanBuildFrom[M[String], Future[String], M[Future[String]]],
+  cbfb: CanBuildFrom[M[Future[String]], String, M[String]]
+)
+: Future[M[String]] =
   Future.sequence(
     strings.map { str =>
       normalizeString(str, partialMatch)
     }
   )
  
-def normalizeHelper(
-  strings: List[String]
-): Future[List[String]] =
+def normalizeHelper[M[X] <: TraversableLike[X, M[X]]](
+  strings: M[String]
+)(implicit
+  cbfa: CanBuildFrom[M[String], Future[String], M[Future[String]]],
+  cbfb: CanBuildFrom[M[Future[String]], String, M[String]]
+)
+: Future[M[String]] =
   normalizeList(strings, false)
-
-
-def normalizeSet(
-  strings: Set[String], partialMatch: Boolean
-): Future[Set[String]] =
-  Future.sequence(
-    strings.map { str =>
-      normalizeString(str, partialMatch)
-    }
-  )
- 
-def normalizeHelper(
-  strings: Set[String]
-): Future[Set[String]] =
-  normalizeSet(strings, false)
 
 
 
