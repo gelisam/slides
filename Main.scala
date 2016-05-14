@@ -1,17 +1,23 @@
+#include <iostream>
+#include <string>
+using namespace std;
 
-   Type Classes
-   ===
-   - original problem
-   - example problem
-     - Python solution
-     - Elm solution
-     [ C++ solution ]
-     - Java solution
-     - Scala solution
-     - Haskell solution
-   - Type Classes
-     - in Haskell
-     - in Scala
+
+
+
+
+int processString(string str) {
+  return str.size();
+}
+
+
+int main() {
+  cout << processString("hello") << endl;
+}
+
+
+
+
 
 
 
