@@ -1,1 +1,1 @@
-:set syntax=haskell
+:set syntax=scala
