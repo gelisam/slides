@@ -3,8 +3,8 @@
    ===
    - original problem
    - example problem
-     [ Python solution ]
-     - Elm solution
+     - Python solution
+     [ Elm solution ]
      - C++ solution
      - Java solution
      - Scala solution
