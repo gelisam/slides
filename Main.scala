@@ -2,8 +2,8 @@
 def processString(string):
   return len(string)
 
-
-
+def processList(strings):
+  return map(processString, strings)
 
 
 
@@ -12,6 +12,7 @@ def processString(string):
 
 
 print processString("hello")  # 5
+print processList(["hello", "world"])  # [5, 5]
 
 
 
