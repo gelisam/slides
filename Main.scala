@@ -5,7 +5,7 @@ def processString(string: String): Int =
   string.length
 
 def processIterable[
-  L[X]
+  L[X] <: Iterable[X]
 ](
   strings: L[String]
 )
