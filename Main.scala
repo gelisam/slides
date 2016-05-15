@@ -14,6 +14,17 @@ case class MyList[A](impl: List[A]) extends Mappable[A, MyList] {
     MyList(impl.map(f))
 }
 
+class ChildList[A](impl: List[A]) extends MyList[A](impl) {
+  override def map[B](
+    f: A => B
+  )
+  : ChildList[B] =
+    new ChildList[B](impl.map(f))
+  
+  override def toString: String =
+    s"ChildList(${impl})"
+}
+
 case class MySet[A](impl: Set[A]) extends Mappable[A, MySet] {
   def map[B](
     f: A => B
