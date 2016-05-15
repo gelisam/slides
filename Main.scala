@@ -1,5 +1,5 @@
-
-
+import scala.collection.TraversableLike
+import scala.collection.generic.CanBuildFrom
 
 def processString(string: String): String =
   string + "!"
@@ -8,6 +8,8 @@ def processIterable[
   L[_] <: Iterable[_]
 ](
   strings: L[String]
+)(implicit
+  bf: CanBuildFrom[Iterable[String], Int, L[Int]]
 )
 : L[Int] =
   // trait Iterable {
