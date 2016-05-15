@@ -48,6 +48,8 @@ def processIterable[
 : L[String] =
   strings.map { string =>
     processString(string)
+  }.map { x =>
+    x + 1
   }
 
 println(processString("hello")) // hello!
