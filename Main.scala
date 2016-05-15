@@ -14,17 +14,6 @@ case class MyList[A](impl: List[A]) extends Mappable[A, MyList] {
     MyList(impl.map(f))
 }
 
-class ChildList[A](impl: List[A]) extends MyList[A](impl) {
-  override def map[B](
-    f: A => B
-  )
-  : ChildList[B] =
-    new ChildList[B](impl.map(f))
-  
-  override def toString: String =
-    s"ChildList(${impl})"
-}
-
 case class MySet[A](impl: Set[A]) extends Mappable[A, MySet] {
   def map[B](
     f: A => B
@@ -37,9 +26,6 @@ case class MySet[A](impl: Set[A]) extends Mappable[A, MySet] {
 def processString(string: String): Int =
   string.length
 
-// MyList[X] <: Mappable[X, MyList]
-// ChildList[X] <: Mappable[X, MyList]
-// ChildList[X] <: Mappable[X, ChildList]
 def processIterable[
   L[X] <: Mappable[X, L]
 ](
@@ -48,14 +34,11 @@ def processIterable[
 : L[Int] =
   strings.map { string =>
     processString(string)
-  }.map { x =>
-    x + 1
   }
 
-println(processString("hello")) // hello!
-println(processIterable(MyList(List("hello", "world"))))
-println(processIterable(new ChildList(List("hello", "world"))))
-println(processIterable(MySet(Set("hello", "world"))))
+println(processString("hello")) // 5
+println(processIterable(MyList(List("hello", "world")))) // MyList(List(5, 5))
+println(processIterable(MySet(Set("hello", "world")))) // MySet(Set(5))
 
 
 
