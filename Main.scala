@@ -38,6 +38,7 @@ def processString(string: String): Int =
   string.length
 
 // MyList[X] <: Mappable[X, MyList]
+// ChildList[X] <: Mappable[X, MyList]
 def processIterable[
   L[X] <: Mappable[X, L]
 ](
