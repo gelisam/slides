@@ -1,5 +1,5 @@
 
-trait Mappable[A, L_A] {
+trait Mappable[A, +L_A] {
   def map(
     f: A => A
   )
