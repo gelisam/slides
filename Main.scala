@@ -1,43 +1,49 @@
 
-trait Mappable[A, L_A] {
-  def map[B](
-    f: A => A
+trait Mappable[A] {
+  type Self
+  
+  def map[L[X],B](
+    f: A => B
+  )(implicit
+    eq: Self =:= L[A]
   )
-  : L_A
+  : L[B]
 }
 
-case class MyList[A](impl: List[A]) extends Mappable[A, MyList[A]] {
-  def map[B](
-    f: A => A
+case class MyList[A](impl: List[A]) extends Mappable[A] {
+  type Self = MyList[A]
+  
+  def map[L[X],B](
+    f: A => B
+  )(implicit
+    eq: Self =:= L[A]
   )
-  : MyList[B] =
+  : L[B] =
     MyList(impl.map(f))
 }
 
-//class ChildList[A](impl: List[A]) extends MyList[A](impl) {
-//  override def map[B](
-//    f: A => B
-//  )
-//  : ChildList[B] =
-//    new ChildList[B](impl.map(f))
-//}
-//
-//case class MySet[A](impl: Set[A]) extends Mappable[A, MySet[A]] {
-//  def map[B](
-//    f: A => B
-//  )
-//  : MySet[B] =
-//    MySet(impl.map(f))
-//}
+case class MySet[A](impl: Set[A]) extends Mappable[A] {
+  type Self = MySet[A]
+  
+  def map[L[X],B](
+    f: A => B
+  )(implicit
+    eq: Self =:= L[A]
+  )
+  : L[B] =
+    MySet(impl.map(f))
+}
 
 
 def processString(string: String): String =
   string + "!"
 
 def processIterable[
-  L[X] <: Mappable[X, L[X]]
+  L[X] <: Mappable[X]
 ](
   strings: L[String]
+)(implicit
+  eq: strings.Self =:= L[String]
 )
 : L[Int] =
   strings.map { string =>
@@ -46,8 +52,7 @@ def processIterable[
 
 println(processString("hello")) // hello!
 println(processIterable(MyList(List("hello", "world"))))
-//println(processIterable(new ChildList(List("hello", "world"))))
-//println(processIterable(MySet(Set("hello", "world"))))
+println(processIterable(MySet(Set("hello", "world"))))
 
 
 
