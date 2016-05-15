@@ -9,7 +9,7 @@ def processIterable[
 ](
   strings: L[String]
 )(implicit
-  bf: CanBuildFrom[Iterable[String], Int, L[Int]]
+  bf: CanBuildFrom[L[String], Int, L[Int]]
 )
 : L[Int] =
   // trait Iterable {
@@ -20,9 +20,9 @@ def processIterable[
   //   )
   //   : L_Int
   // }
-  strings.map { string =>
+  strings.map[Int,L[Int]]( string =>
     processString(string)
-  }
+  )(bf)
 
 println(processString("hello")) // hello!
 println(processIterable(List("hello", "world")): List[Int])
