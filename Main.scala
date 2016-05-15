@@ -1,12 +1,12 @@
 
-trait Mappable[A, L[_]] {
+trait Mappable[A, L_A] {
   def map(
     f: A => A
   )
-  : L[A]
+  : L_A
 }
 
-case class MyList[A](impl: List[A]) extends Mappable[A, MyList] {
+case class MyList[A](impl: List[A]) extends Mappable[A, MyList[A]] {
   def map(
     f: A => A
   )
@@ -14,7 +14,7 @@ case class MyList[A](impl: List[A]) extends Mappable[A, MyList] {
     MyList(impl.map(f))
 }
 
-case class MySet[A](impl: Set[A]) extends Mappable[A, MySet] {
+case class MySet[A](impl: Set[A]) extends Mappable[A, MySet[A]] {
   def map(
     f: A => A
   )
@@ -27,7 +27,7 @@ def processString(string: String): String =
   string + "!"
 
 def processIterable[
-  L[X] <: Mappable[X, L]
+  L[X] <: Mappable[X, L[X]]
 ](
   strings: L[String]
 )
