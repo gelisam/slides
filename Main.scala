@@ -10,10 +10,12 @@ def processIterable[
   strings: L[String]
 )
 : L[Int] =
-  // def map(
-  //   f: String => Int
-  // )
-  // : L[Int]
+  // trait Iterable {
+  //   def map(
+  //     f: String => Int
+  //   )
+  //   : L[Int]
+  // }
   strings.map { string =>
     processString(string)
   }
