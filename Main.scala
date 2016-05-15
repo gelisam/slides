@@ -51,6 +51,7 @@ def processIterable[
 
 println(processString("hello")) // hello!
 println(processIterable(MyList(List("hello", "world"))))
+println(processIterable(new ChildList(List("hello", "world"))))
 println(processIterable(MySet(Set("hello", "world"))))
 
 
