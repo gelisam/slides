@@ -15,8 +15,8 @@ def processIterable(strings: Iterable[String]): Iterable[Int] =
 
 
 println(processString("hello")) // 5
-println(processIterable(List("hello", "world"))) // List(5, 5)
-println(processIterable(Set("hello", "world"))) // Set(5)
+println(processIterable(List("hello", "world")): List[Int]) // X
+println(processIterable(Set("hello", "world")): Set[Int]) // X
 
 
 
