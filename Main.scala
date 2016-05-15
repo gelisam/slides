@@ -37,6 +37,7 @@ case class MySet[A](impl: Set[A]) extends Mappable[A, MySet] {
 def processString(string: String): Int =
   string.length
 
+// MyList[X] <: Mappable[X, MyList]
 def processIterable[
   L[X] <: Mappable[X, L]
 ](
