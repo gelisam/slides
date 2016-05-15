@@ -4,10 +4,10 @@
 def processString(string: String): Int =
   string.length
 
-def processIterable(strings: Iterable[String]): Iterable[Int] =
-  strings.map { string =>
-    processString(string)
-  }
+def processIterable[L[X]](strings: L[String]): L[Int] = ???
+  //strings.map { string =>
+  //  processString(string)
+  //}
 
 
 
@@ -15,8 +15,8 @@ def processIterable(strings: Iterable[String]): Iterable[Int] =
 
 
 println(processString("hello")) // 5
-println(processIterable(List("hello", "world")): List[Int]) // X
-println(processIterable(Set("hello", "world")): Set[Int]) // X
+println(processIterable(List("hello", "world")): List[Int])
+println(processIterable(Set("hello", "world")): Set[Int])
 
 
 
