@@ -2,11 +2,11 @@ import java.util.*;
 import java.util.function.*;
 
 
+interface Mappable<A> {
+  <B> Mappable<B> map(Function<A,B> f);
+}
 
-
-
-
-class MyList<A> {
+class MyList<A> implements Mappable<A> {
   LinkedList<A> impl;
   
   public MyList(LinkedList<A> impl) {
@@ -26,7 +26,7 @@ class MyList<A> {
   }
 }
 
-class MySet<A> {
+class MySet<A> implements Mappable<A> {
   HashSet<A> impl;
   
   public MySet(HashSet<A> impl) {
@@ -52,13 +52,7 @@ public class Main {
     return string.length();
   }
   
-  static MyList<Integer> processList(MyList<String> strings) {
-    return strings.map(
-      (String s) -> processString(s)
-    );
-  }
-  
-  static MySet<Integer> processSet(MySet<String> strings) {
+  static Mappable<Integer> processMany(Mappable<String> strings) {
     return strings.map(
       (String s) -> processString(s)
     );
@@ -71,12 +65,12 @@ public class Main {
     LinkedList<String> v1 = new LinkedList<String>();
     v1.add("hello");
     v1.add("world");
-    System.out.println(processList(new MyList<String>(v1))); // [5, 5]
+    System.out.println(processMany(new MyList<String>(v1))); // [5, 5]
     
     HashSet<String> v2 = new HashSet<String>();
     v2.add("hello");
     v2.add("world");
-    System.out.println(processSet(new MySet<String>(v2))); // [5]
+    System.out.println(processMany(new MySet<String>(v2))); // [5]
   }
 }
 
