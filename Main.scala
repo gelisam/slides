@@ -1,44 +1,44 @@
 
 trait Mappable[A, L[_]] {
-  def map[B](
-    f: A => B
+  def map(
+    f: A => A
   )
-  : L[B]
+  : L[A]
 }
 
 case class MyList[A](impl: List[A]) extends Mappable[A, MyList] {
-  def map[B](
-    f: A => B
+  def map(
+    f: A => A
   )
-  : MyList[B] =
+  : MyList[A] =
     MyList(impl.map(f))
 }
 
 case class MySet[A](impl: Set[A]) extends Mappable[A, MySet] {
-  def map[B](
-    f: A => B
+  def map(
+    f: A => A
   )
-  : MySet[B] =
+  : MySet[A] =
     MySet(impl.map(f))
 }
 
 
-def processString(string: String): Int =
-  string.length
+def processString(string: String): String =
+  string + "!"
 
 def processIterable[
   L[X] <: Mappable[X, L]
 ](
   strings: L[String]
 )
-: L[Int] =
+: L[String] =
   strings.map { string =>
     processString(string)
   }
 
-println(processString("hello")) // 5
-println(processIterable(MyList(List("hello", "world")))) // MyList(List(5, 5))
-println(processIterable(MySet(Set("hello", "world")))) // MySet(Set(5))
+println(processString("hello")) // hello!
+println(processIterable(MyList(List("hello", "world")))) // MyList(List(hello!, world!))
+println(processIterable(MySet(Set("hello", "world")))) // MySet(Set(hello!, world!))
 
 
 
