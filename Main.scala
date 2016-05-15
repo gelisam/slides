@@ -4,30 +4,20 @@ import scala.collection.generic.CanBuildFrom
 def processString(string: String): String =
   string + "!"
 
-def processIterable[
-  L[_] <: Iterable[_]
+def processMany[
+  L[X] <: TraversableLike[X, L[X]]
 ](
   strings: L[String]
 )(implicit
-  bf: CanBuildFrom[L[String], Int, L[Int]]
+  cbf: CanBuildFrom[  L[String], Int, L[Int]  ]
 )
 : L[Int] =
-  // trait Iterable {
-  //   def map[L_Int](
-  //     f: String => Int
-  //   )(implicit
-  //     bf: CanBuildFrom[Iterable[String], Int, L_Int]
-  //   )
-  //   : L_Int
-  // }
-  strings.map[Int,L[Int]]( string =>
-    processString(string)
-  )(bf)
+  strings.map(processString)
 
-println(processString("hello")) // hello!
-println(processIterable(List("hello", "world")): List[Int])
-println(processIterable(Set("hello", "world")): Set[Int])
 
+println(processString("hello")) // 5
+println(processMany(List("hello", "world")): List[Int]) // List(5, 5)
+println(processMany(Set("hello", "world")): Set[Int]) // Set(5)
 
 
 
