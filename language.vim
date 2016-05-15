@@ -1,1 +1,1 @@
-:set syntax=java
+:set syntax=scala
