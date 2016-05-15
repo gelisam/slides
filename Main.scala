@@ -14,7 +14,7 @@ def processIterable[
   //   def map(
   //     f: String => Int
   //   )
-  //   : L[Int]
+  //   : Iterable[Int]
   // }
   strings.map { string =>
     processString(string)
