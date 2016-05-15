@@ -9,10 +9,10 @@ def processIterable[
 ](
   strings: L[String]
 )
-: L[Int] = ???
-  //strings.map { string =>
-  //  processString(string)
-  //}
+: L[Int] =
+  strings.map { string =>
+    processString(string)
+  }
 
 println(processString("hello")) // hello!
 println(processIterable(List("hello", "world")): List[Int])
