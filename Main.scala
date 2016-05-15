@@ -6,49 +6,98 @@
 using namespace std;
 
 
+template <typename A>
+struct MyList {
+  list<A> impl;
+  
+  MyList(list<A> impl)
+  : impl(impl) {}
+  
+  template <typename B>
+  MyList<B> map(function<B(A)> f) {
+    list<B> result;
+    transform(
+      impl.begin(),
+      impl.end(),
+      inserter(result, result.end()),
+      f
+    );
+    return MyList<B>(result);
+  }
+  
+  void print() {
+    auto it = impl.begin();
+    cout << "list(";
+    if (it != impl.end()) {
+      cout << *it;
+      for(++it; it != impl.end(); ++it) {
+        cout << ", " << *it;
+      }
+    }
+    cout << ")" << endl;
+  }
+};
+
+template <typename A>
+struct MySet {
+  set<A> impl;
+  
+  MySet(set<A> impl)
+  : impl(impl) {}
+  
+  template <typename B>
+  MySet<B> map(function<B(A)> f) {
+    set<B> result;
+    transform(
+      impl.begin(),
+      impl.end(),
+      inserter(result, result.end()),
+      f
+    );
+    return MySet<B>(result);
+  }
+  
+  void print() {
+    auto it = impl.begin();
+    cout << "set(";
+    if (it != impl.end()) {
+      cout << *it;
+      for(++it; it != impl.end(); ++it) {
+        cout << ", " << *it;
+      }
+    }
+    cout << ")" << endl;
+  }
+};
+
+
 int processString(string str) {
   return str.size();
 }
 
-list<int> processList(list<string> strs) {
-  list<int> result;
-  transform(
-    strs.begin(),
-    strs.end(),
-    inserter(result,result.end()),
-    ::processString
-  );
-  return result;
+
+MyList<int> processList(MyList<string> strs) {
+  function<int(string)> f = [](string str) {
+    return processString(str);
+  };
+  
+  return strs.map(f);
 }
 
-set<int> processSet(set<string> strs) {
-  set<int> result;
-  transform(
-    strs.begin(),
-    strs.end(),
-    inserter(result,result.end()),
-    ::processString
-  );
-  return result;
+MySet<int> processSet(MySet<string> strs) {
+  function<int(string)> f = [](string str) {
+    return processString(str);
+  };
+  
+  return strs.map(f);
 }
 
 
 int main() {
   cout << processString("hello") << endl;
   
-  list<int> r1 = processList(list<string>{"hello", "world"});
-  cout << "list(" << endl;
-  for(auto it = r1.begin(); it != r1.end(); ++it) {
-    cout << "  " << *it << endl;
-  }
-  cout << ")" << endl;
-  
-  set<int> r2 = processSet(set<string>{"hello", "world"});
-  cout << "set(" << endl;
-  for(auto it = r2.begin(); it != r2.end(); ++it) {
-    cout << "  " << *it << endl;
-  }
-  cout << ")" << endl;
+  processList(MyList<string>(list<string>{"hello", "world"})).print(); // list(5, 5)
+  processSet(MySet<string>(set<string>{"hello", "world"})).print(); // set(5)
 }
 
 
