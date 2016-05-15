@@ -1,1 +1,1 @@
-:set syntax=cpp
+:set syntax=scala
