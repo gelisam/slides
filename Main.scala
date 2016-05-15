@@ -6,8 +6,8 @@
      - Python solution
      - Elm solution
      - C++ solution
-     [ Java solution ]
-     - Scala solution
+     - Java solution
+     [ Scala solution ]
      - Haskell solution
    - Type Classes
      - in Haskell
