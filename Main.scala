@@ -1,17 +1,27 @@
 
-   Type Classes
-   ===
-   - original problem
-   - example problem
-     - Python solution
-     - Elm solution
-     - C++ solution
-     - Java solution
-     [ Scala solution ]
-     - Haskell solution
-   - Type Classes
-     - in Haskell
-     - in Scala
+
+
+def processString(string: String): Int =
+  string.length
+
+def processList(strings: List[String]): List[Int] =
+  strings.map { string =>
+    processString(string)
+  }
+
+def processSet(strings: Set[String]): Set[Int] =
+  strings.map { string =>
+    processString(string)
+  }
+
+println(processString("hello")) // 5
+println(processList(List("hello", "world"))) // List(5, 5)
+println(processSet(Set("hello", "world"))) // Set(5)
+
+
+
+
+
 
 
 
