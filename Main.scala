@@ -75,16 +75,8 @@ int processString(string str) {
   return str.size();
 }
 
-
-MyList<int> processList(MyList<string> strs) {
-  function<int(string)> f = [](string str) {
-    return processString(str);
-  };
-  
-  return strs.map(f);
-}
-
-MySet<int> processSet(MySet<string> strs) {
+template <template <typename> class L>
+L<int> processMany(L<string> strs) {
   function<int(string)> f = [](string str) {
     return processString(str);
   };
@@ -96,8 +88,8 @@ MySet<int> processSet(MySet<string> strs) {
 int main() {
   cout << processString("hello") << endl;
   
-  processList(MyList<string>(list<string>{"hello", "world"})).print(); // list(5, 5)
-  processSet(MySet<string>(set<string>{"hello", "world"})).print(); // set(5)
+  processMany(MyList<string>(list<string>{"hello", "world"})).print(); // list(5, 5)
+  processMany(MySet<string>(set<string>{"hello", "world"})).print(); // set(5)
 }
 
 
