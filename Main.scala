@@ -62,6 +62,8 @@ def processIterable[
 : L[Int] =
   strings.map { string =>
     processString(string)
+  }(eq1).map { x =>
+    x + 1
   }(eq1)
 
 println(processString("hello")) // hello!
