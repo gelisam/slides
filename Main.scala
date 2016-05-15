@@ -1,37 +1,51 @@
 
 trait Mappable[A] {
-  def map[B](
-    f: A => B
+  type Self
+  
+  def map[L[X]](
+    f: A => A
+  )(implicit
+    eq: Self =:= L[A]
   )
-  : Mappable[B]
+  : L[A]
 }
 
 case class MyList[A](impl: List[A]) extends Mappable[A] {
-  def map[B](
-    f: A => B
+  type Self = MyList[A]
+  
+  def map[L[X]](
+    f: A => A
+  )(implicit
+    eq: Self =:= L[A]
   )
-  : MyList[B] =
+  : L[A] =
     MyList(impl.map(f))
 }
 
 case class MySet[A](impl: Set[A]) extends Mappable[A] {
-  def map[B](
-    f: A => B
+  type Self = MySet[A]
+  
+  def map[L[X]](
+    f: A => A
+  )(implicit
+    eq: Self =:= L[A]
   )
-  : MySet[B] =
+  : L[A] =
     MySet(impl.map(f))
 }
 
 
-def processString(string: String): Int =
-  string.length
+def processString(string: String): String =
+  string + "!"
 
 def processIterable[
   L[X] <: Mappable[X]
 ](
   strings: L[String]
+)(implicit
+  eq: strings.Self =:= L[String]
 )
-: Mappable[Int] =
+: L[String] =
   strings.map { string =>
     processString(string)
   }
