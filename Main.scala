@@ -14,6 +14,14 @@ public class Main {
     return result;
   }
   
+  static HashSet<Integer> processSet(HashSet<String> strings) {
+    HashSet<Integer> result = new HashSet<Integer>();
+    for(String string : strings) {
+      result.add(processString(string));
+    }
+    return result;
+  }
+  
   
   public static void main(String[] args) {
     System.out.println(processString("hello")); // 5
@@ -22,6 +30,11 @@ public class Main {
     v1.addLast("hello");
     v1.addLast("world");
     System.out.println(processList(v1)); // [5, 5]
+    
+    HashSet<String> v2 = new HashSet<String>();
+    v2.add("hello");
+    v2.add("world");
+    System.out.println(processSet(v2)); // [5]
   }
 }
 
