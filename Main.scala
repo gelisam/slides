@@ -52,7 +52,7 @@ public class Main {
     return string.length();
   }
   
-  static Mappable<Integer> processMany(Mappable<String> strings) {
+  static <L> L<Integer> processMany(L<String> strings) {
     return strings.map(
       (String s) -> processString(s)
     );
