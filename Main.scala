@@ -11,6 +11,8 @@ SortedSet(1!, 2!, 3!)
 >>> import scala.collection.generic.CanBuildFrom
 >>> implicitly[CanBuildFrom[ List[Int], String, List[String] ]]
 OK
+>>> implicitly[CanBuildFrom[ Set[Int], String, Set[String] ]]
+OK
 
 
 
