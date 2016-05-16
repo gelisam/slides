@@ -19,6 +19,10 @@ OK
 >>> implicitly[CanBuildFrom[ BitSet, String, BitSet ]]
 NOT FOUND
 
+>>> import scala.collection.immutable.SortedSet
+>>> implicitly[CanBuildFrom[ BitSet, String, SortedSet[String] ]]
+OK
+
 
 
 
