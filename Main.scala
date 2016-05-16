@@ -8,6 +8,10 @@ processList
 processSet
   Set[String] -> Set[Int]
 
+processMany
+  List[String] -> List[Int]
+  Set[String] -> Set[Int]
+  ...
 
 
 
