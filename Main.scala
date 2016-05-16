@@ -1,27 +1,20 @@
->>> List(1,2,3).map { x => s"${x}!" }
-List(1!, 2!, 3!)
+import scala.collection.TraversableLike
+import scala.collection.generic.CanBuildFrom
 
->>> Set(1,2,3).map { x => s"${x}!" }
-Set(1!, 2!, 3!)
+def processString(string: String): Int =
+  string.length
 
->>> import scala.collection.immutable.BitSet
->>> BitSet(1,2,3).map { x => s"${x}!" }
-SortedSet(1!, 2!, 3!)
+def processMany[
+  L[X] <: TraversableLike[X, L[X]]
+](
+  strings: L[String]
+)(implicit
+  cbf: CanBuildFrom[  L[String], Int, L[Int]  ]
+)
+: L[Int] =
+  strings.map(processString)
 
->>> import scala.collection.generic.CanBuildFrom
->>> implicitly[CanBuildFrom[ List[Int], String, List[String] ]]
-OK
->>> implicitly[CanBuildFrom[ Set[Int], String, Set[String] ]]
-OK
 
->>> implicitly[CanBuildFrom[ BitSet, Int, BitSet ]]
-OK
->>> implicitly[CanBuildFrom[ BitSet, String, BitSet ]]
-NOT FOUND
-
->>> import scala.collection.immutable.SortedSet
->>> implicitly[CanBuildFrom[ BitSet, String, SortedSet[String] ]]
-OK
 
 
 
