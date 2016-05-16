@@ -11,6 +11,13 @@ def processString(string: String): Int =
 def processList(strings: List[String]): List[Int] =
   strings.map(processString)
 
+// >>> processSet(Set("hello", "world"))
+// Set(5)
+def processSet(strings: Set[String]): Set[Int] =
+  strings.map(processString)
+
+
+
 
 
 
