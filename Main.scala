@@ -20,15 +20,11 @@ def processSet(strings: Set[String]): Set[Int] =
 // List(5, 5)
 // >>> processMany(Set("hello", "world"))
 // Set(5)
-def processMany[
-  L[X] <: TraversableLike[X, L[X]]
-](
+def processMany[L[_] : Mappable](
   strings: L[String]
-)(implicit
-  cbf: CanBuildFrom[  L[String], Int, L[Int]  ]
 )
 : L[Int] =
-  strings.map(processString)
+  strings.fmap(processString)
 
 
 
