@@ -6,6 +6,11 @@
 def processString(string: String): Int =
   string.length
 
+// >>> processList(List("hello", "world"))
+// List(5, 5)
+def processList(strings: List[String]): List[Int] =
+  strings.map(processString)
+
 
 
 
