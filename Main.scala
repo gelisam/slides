@@ -5,14 +5,14 @@ def processString(string: String): Int =
   string.length
 
 def processMany[
-  L[_]
+  L[X] <: Iterable[X]
 ](
   strings: L[String]
 )
 
 
 : L[Int] =
-  strings.map(processString) // map is not a method of L[String]
+  strings.map(processString)
 
 
 
