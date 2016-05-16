@@ -1,16 +1,19 @@
+>>> List(1,2,3).map { x => x + 1 }
+List(2, 3, 4)
 
-   Type Classes
-   ===
-   - original problem
-   - simpler problem
-   - TraversableLike and CanBuildFrom
-     - what are they?
-     [ why are they so complicated? ]
-   - Type Classes
-     - problem
-     - solution
-     - cosmetics
-   - conclusion
+>>> Set(1,2,3).map { x => s"${x}!" }
+Set(1!, 2!, 3!)
+
+>>> import scala.collection.immutable.BitSet
+>>> BitSet(1,2,3).map { x => s"${x}!" }
+SortedSet(1!, 2!, 3!)
+
+
+
+
+
+
+
 
 
 
