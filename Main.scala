@@ -1,24 +1,16 @@
-import scala.collection.TraversableLike
-import scala.collection.generic.CanBuildFrom
 
-def processString(string: String): Int =
-  string.length
-
-def processMany[
-  L[X] <: TraversableLike[X, L[X]]
-](
-  strings: L[String]
-)(implicit
-  cbf: CanBuildFrom[  L[String], Int, L[Int]  ]
-)
-: L[Int] =
-  strings.map(processString)
-
-
-
-
-
-
+   Type Classes
+   ===
+   - original problem
+   - simpler problem
+   - TraversableLike and CanBuildFrom
+     [ what are they? ]
+     - why are they so complicated?
+   - Type Classes
+     - problem
+     - solution
+     - cosmetics
+   - conclusion
 
 
 
