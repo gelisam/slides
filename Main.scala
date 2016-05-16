@@ -12,7 +12,7 @@ def processMany[
 
 
 : L[Int] =
-  strings.map(processString)
+  strings.map(processString) // map is not a method of L[String]
 
 
 
