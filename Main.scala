@@ -14,6 +14,11 @@ OK
 >>> implicitly[CanBuildFrom[ Set[Int], String, Set[String] ]]
 OK
 
+>>> implicitly[CanBuildFrom[ BitSet, Int, BitSet ]]
+OK
+>>> implicitly[CanBuildFrom[ BitSet, String, BitSet ]]
+NOT FOUND
+
 
 
 
