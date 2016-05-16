@@ -8,8 +8,9 @@ Set(1!, 2!, 3!)
 >>> BitSet(1,2,3).map { x => s"${x}!" }
 SortedSet(1!, 2!, 3!)
 
-
-
+>>> import scala.collection.generic.CanBuildFrom
+>>> implicitly[CanBuildFrom[ List[Int], String, List[String] ]]
+OK
 
 
 
