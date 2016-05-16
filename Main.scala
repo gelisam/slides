@@ -1,18 +1,9 @@
-import scala.collection.TraversableLike
-import scala.collection.generic.CanBuildFrom
+>>> List(1,2,3).map { x => x + 1 }
+List(2, 3, 4)
 
-def processString(string: String): Int =
-  string.length
+>>> Set(1,2,3).map { x => x + 1 }
+Set(2, 3, 4)
 
-def processMany[
-  L[X] <: TraversableLike[X, L[X]]
-](
-  strings: L[String]
-)
-
-
-: L[Int] =
-  strings.map(processString)
 
 
 
