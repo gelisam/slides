@@ -1,3 +1,5 @@
+trait ChangeElementType[L_A, B, L_B]
+
 
 trait Mappable[A, +L_A] {
   def map(
