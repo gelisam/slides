@@ -5,14 +5,14 @@ def processString(string: String): Int =
   string.length
 
 def processMany[
-  L[X] <: Iterable[X]
+  L[X] <: TraversableLike[X, L[X]]
 ](
   strings: L[String]
 )
 
 
 : L[Int] =
-  strings.map(processString) // found Iterable[Int], required L[Int]
+  strings.map(processString)
 
 
 
