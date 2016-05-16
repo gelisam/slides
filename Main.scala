@@ -1,5 +1,5 @@
-
-
+import scala.collection.TraversableLike
+import scala.collection.generic.CanBuildFrom
 
 // >>> processString("hello")
 // 5
@@ -16,6 +16,19 @@ def processList(strings: List[String]): List[Int] =
 def processSet(strings: Set[String]): Set[Int] =
   strings.map(processString)
 
+// >>> processMany(List("hello", "world"))
+// List(5, 5)
+// >>> processMany(Set("hello", "world"))
+// Set(5)
+def processMany[
+  L[X] <: TraversableLike[X, L[X]]
+](
+  strings: L[String]
+)(implicit
+  cbf: CanBuildFrom[  L[String], Int, L[Int]  ]
+)
+: L[Int] =
+  strings.map(processString)
 
 
 
