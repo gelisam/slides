@@ -1,22 +1,10 @@
 
-processString
-  String -> Int
-
-processList
-  List[String] -> List[Int]
-
-processSet
-  Set[String] -> Set[Int]
-
-processMany
-  List[String] -> List[Int]
-  Set[String] -> Set[Int]
-  ...
 
 
-
-
-
+// >>> processString("hello")
+// 5
+def processString(string: String): Int =
+  string.length
 
 
 
