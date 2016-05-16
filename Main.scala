@@ -12,7 +12,7 @@ def processMany[
 
 
 : L[Int] =
-  strings.map(processString)
+  strings.map(processString) // found Iterable[Int], required L[Int]
 
 
 
