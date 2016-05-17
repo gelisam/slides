@@ -5,9 +5,9 @@
    - simpler problem
    - TraversableLike and CanBuildFrom
      - what are they?
-     [ why are they so complicated? ]
+     - why are they so complicated?
    - Type Classes
-     - problem
+     [ problem ]
      - solution
      - cosmetics
    - conclusion
