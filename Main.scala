@@ -13,8 +13,6 @@ def processMany[
   L[X] <: MonoMappable[X, L[X]]
 ](
   strings: L[String]
-)(implicit
-  cbf: CanBuildFrom[  L[String], Int, L[Int]  ]
 )
 : L[Int] =
   strings.monoMap(processString)
