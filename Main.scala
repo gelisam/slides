@@ -9,8 +9,8 @@
    - Type Classes
      - problem
      - solution
-     [ cosmetics ]
-   - conclusion
+     - cosmetics
+   [ conclusion ]
 
 
 
