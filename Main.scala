@@ -1,24 +1,30 @@
 
-data Rectangle = Rectangle
-  { width :: Double
-  , height :: Double
-  }
+case class Rectangle(
+  width: Double,
+  height: Double
+)
 
-data Circle = Circle
-  { radius :: Double
-  }
+case class Circle(
+  radius: Double
+)
 
 
-rectangleArea :: Rectangle -> Double
-rectangleArea (Rectangle w h) = w * h
+def rectangleArea(rectangle: Rectangle): Double =
+  rectangle.width * rectangle.height
 
-circleArea :: Circle -> Double
-circleArea (Circle r) = pi * r ^ 2
+def circleArea(circle: Circle): Double =
+  scala.math.Pi * Math.pow(circle.radius, 2)
 
 
+def isRectangleTooLarge(rectangle: Rectangle): Boolean =
+  rectangleArea(rectangle) > 9000
 
+def isCircleTooLarge(circle: Circle): Boolean =
+  circleArea(circle) > 9000
 
 
+def isAreaTooLarge(shape: ???): Boolean =
+  shape.area > 9000
 
 
 
@@ -94,5 +100,8 @@ circleArea (Circle r) = pi * r ^ 2
 
 
 
-main :: IO ()
-main = putStrLn "typechecks."
+
+
+
+
+
