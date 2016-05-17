@@ -27,21 +27,22 @@ trait Shape[A] {
   val area: A => Double
 }
 
-val rectangularShape: Shape[Rectangle] = new Shape[Rectangle] {
+implicit val rectangularShape: Shape[Rectangle] = new Shape[Rectangle] {
   val area: Rectangle => Double = rectangleArea
 }
 
-val circularShape: Shape[Circle] = new Shape[Circle] {
+implicit val circularShape: Shape[Circle] = new Shape[Circle] {
   val area: Circle => Double = circleArea
 }
 
 
-// >>> isAreaTooLarge(Rectangle(100,100), rectangularShape)
+// >>> isAreaTooLarge(Rectangle(100,100))
 // true
-// >>> isAreaTooLarge(Circle(50), circularShape)
+// >>> isAreaTooLarge(Circle(50))
 // false
 def isAreaTooLarge[A](
-  shape: A,
+  shape: A
+)(implicit
   isShape: Shape[A]
 ): Boolean =
   isShape.area(shape) > 9000
