@@ -56,10 +56,8 @@ implicit def toRichShape[A](
 // true
 // >>> isAreaTooLarge(Circle(50))
 // false
-def isAreaTooLarge[A](
+def isAreaTooLarge[A: Shape](
   shape: A
-)(implicit
-  isShape: Shape[A]
 ): Boolean =
   shape.area > 9000
 
