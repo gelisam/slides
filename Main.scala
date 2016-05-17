@@ -1,16 +1,9 @@
 
-   Type Classes
+   Conclusions
    ===
-   - original problem
-   - simpler problem
-   - TraversableLike and CanBuildFrom
-     - what are they?
-     - why are they so complicated?
-   - Type Classes
-     - problem
-     - solution
-     - cosmetics
-   [ conclusion ]
+   - TraversableLike and CanBuildFrom are complicated
+   - Type Classes are more flexible
+   - use type classes!
 
 
 
