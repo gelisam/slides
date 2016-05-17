@@ -23,7 +23,9 @@ def isCircleTooLarge(circle: Circle): Boolean =
   circleArea(circle) > 9000
 
 
-def isAreaTooLarge(shape: ???): Boolean =
+def isAreaTooLarge[A](
+  shape: A
+): Boolean =
   shape.area > 9000
 
 
