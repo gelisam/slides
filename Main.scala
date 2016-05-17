@@ -1,65 +1,61 @@
+import scala.collection.TraversableLike
+import scala.collection.generic.CanBuildFrom
 
-case class Rectangle(
-  width: Double,
-  height: Double
-)
+// >>> processString("hello")
+// 5
+def processString(string: String): Int =
+  string.length
 
-case class Circle(
-  radius: Double
-)
+// >>> processList(List("hello", "world"))
+// List(5, 5)
+def processList(strings: List[String]): List[Int] =
+  strings.map(processString)
 
-
-def rectangleArea(rectangle: Rectangle): Double =
-  rectangle.width * rectangle.height
-
-def circleArea(circle: Circle): Double =
-  scala.math.Pi * Math.pow(circle.radius, 2)
-
-
-def isRectangleTooLarge(rectangle: Rectangle): Boolean =
-  rectangleArea(rectangle) > 9000
-
-def isCircleTooLarge(circle: Circle): Boolean =
-  circleArea(circle) > 9000
+// >>> processSet(Set("hello", "world"))
+// Set(5)
+def processSet(strings: Set[String]): Set[Int] =
+  strings.map(processString)
 
 
-trait Shape[A] {
-  val area: A => Double
+trait Mappable[L[_]] {
+  def fmap[A,B](xs: L[A], f: A => B): L[B]
 }
 
-implicit val rectangularShape: Shape[Rectangle] = new Shape[Rectangle] {
-  val area: Rectangle => Double = rectangleArea
+implicit val mappableList: Mappable[List] = new Mappable[List] {
+  def fmap[A,B](xs: List[A], f: A => B): List[B] =
+    xs.map(f)
 }
 
-implicit val circularShape: Shape[Circle] = new Shape[Circle] {
-  val area: Circle => Double = circleArea
+implicit val mappableSet: Mappable[Set] = new Mappable[Set] {
+  def fmap[A,B](xs: Set[A], f: A => B): Set[B] =
+    xs.map(f)
 }
 
 
-case class RichShape[A](
-  shape: A,
-  isShape: Shape[A]
-) {
-  def area: Double =
-    isShape.area(shape)
+trait RichMappable[L[_], A] {
+  def fmap[B](f: A => B): L[B]
 }
 
-implicit def toRichShape[A](
-  shape: A
+implicit def richMappable[L[_], A](
+  xs: L[A]
 )(implicit
-  isShape: Shape[A]
-): RichShape[A] =
-  RichShape(shape, isShape)
+  mappable: Mappable[L]
+)
+: RichMappable[L,A] = new RichMappable[L,A] {
+  def fmap[B](f: A => B): L[B] =
+    mappable.fmap(xs, f)
+}
 
 
-// >>> isAreaTooLarge(Rectangle(100,100))
-// true
-// >>> isAreaTooLarge(Circle(50))
-// false
-def isAreaTooLarge[A: Shape](
-  shape: A
-): Boolean =
-  shape.area > 9000
+// >>> processMany(List("hello", "world"))
+// List(5, 5)
+// >>> processMany(Set("hello", "world"))
+// Set(5)
+def processMany[L[_]: Mappable](
+  strings: L[String]
+)
+: L[Int] =
+  strings.fmap(processString)
 
 
 
@@ -140,3 +136,13 @@ def isAreaTooLarge[A: Shape](
 
 
 
+
+
+
+
+
+
+
+
+main :: IO ()
+main = putStrLn "typechecks."
