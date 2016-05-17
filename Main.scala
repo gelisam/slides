@@ -16,6 +16,13 @@ def circleArea(circle: Circle): Double =
   scala.math.Pi * Math.pow(circle.radius, 2)
 
 
+def isRectangleTooLarge(rectangle: Rectangle): Boolean =
+  rectangleArea(rectangle) > 9000
+
+def isCircleTooLarge(circle: Circle): Boolean =
+  circleArea(circle) > 9000
+
+
 
 
 
