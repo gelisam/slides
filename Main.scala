@@ -23,15 +23,28 @@ def isCircleTooLarge(circle: Circle): Boolean =
   circleArea(circle) > 9000
 
 
-// >>> isAreaTooLarge(Rectangle(100,100), rectangleArea)
+trait Shape[A] {
+  val area: A => Double
+}
+
+val rectangularShape: Shape[Rectangle] = new Shape[Rectangle] {
+  val area: Rectangle => Double = rectangleArea
+}
+
+val circularShape: Shape[Circle] = new Shape[Circle] {
+  val area: Circle => Double = circleArea
+}
+
+
+// >>> isAreaTooLarge(Rectangle(100,100), rectangularShape)
 // true
-// >>> isAreaTooLarge(Circle(50), circleArea)
+// >>> isAreaTooLarge(Circle(50), circularShape)
 // false
 def isAreaTooLarge[A](
   shape: A,
-  area: A => Double
+  isShape: Shape[A]
 ): Boolean =
-  area(shape) > 9000
+  isShape.area(shape) > 9000
 
 
 
