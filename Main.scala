@@ -24,9 +24,10 @@ def isCircleTooLarge(circle: Circle): Boolean =
 
 
 def isAreaTooLarge[A](
-  shape: A
+  shape: A,
+  area: A => Double
 ): Boolean =
-  shape.area > 9000 // method area not found
+  area(shape) > 9000
 
 
 
