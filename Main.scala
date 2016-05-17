@@ -7,8 +7,8 @@
      - what are they?
      - why are they so complicated?
    - Type Classes
-     [ problem ]
-     - solution
+     - problem
+     [ solution ]
      - cosmetics
    - conclusion
 
