@@ -9,6 +9,11 @@ case class Circle(
 )
 
 
+def rectangleArea(rectangle: Rectangle): Double =
+  rectangle.width * rectangle.height
+
+def circleArea(circle: Circle): Double =
+  scala.math.Pi * Math.pow(circle.radius, 2)
 
 
 
