@@ -8,8 +8,8 @@
      - why are they so complicated?
    - Type Classes
      - problem
-     [ solution ]
-     - cosmetics
+     - solution
+     [ cosmetics ]
    - conclusion
 
 
