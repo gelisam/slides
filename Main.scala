@@ -2,9 +2,9 @@
    Type Classes
    ===
    - original problem
-   [ simpler problem ]
+   - simpler problem
    - TraversableLike and CanBuildFrom
-     - what are they?
+     [ what are they? ]
      - why are they so complicated?
    - Type Classes
      - problem
