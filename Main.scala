@@ -36,6 +36,22 @@ implicit val circularShape: Shape[Circle] = new Shape[Circle] {
 }
 
 
+case class RichShape[A](
+  shape: A,
+  isShape: Shape[A]
+) {
+  def area: Double =
+    isShape.area(shape)
+}
+
+implicit def toRichShape[A](
+  shape: A
+)(implicit
+  isShape: Shape[A]
+): RichShape[A] =
+  RichShape(shape, isShape)
+
+
 // >>> isAreaTooLarge(Rectangle(100,100))
 // true
 // >>> isAreaTooLarge(Circle(50))
@@ -45,7 +61,7 @@ def isAreaTooLarge[A](
 )(implicit
   isShape: Shape[A]
 ): Boolean =
-  isShape.area(shape) > 9000
+  shape.area > 9000
 
 
 
