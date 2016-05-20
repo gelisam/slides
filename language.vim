@@ -1,1 +1,1 @@
-:set syntax=txt
+:set syntax=scala
