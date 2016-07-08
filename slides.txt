@@ -1,4 +1,4 @@
-Future vs Task
+Foldable vs GenTraversableLike
 ===
 
 
