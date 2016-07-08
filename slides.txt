@@ -1,7 +1,8 @@
-Foldable vs GenTraversableLike
+Functional vs Imperative
 ===
 
-
+- for-notation vs side-effects
+- val vs var
 
 
 
