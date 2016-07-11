@@ -1,24 +1,7 @@
-// Keep an open mind, but not so open that your brains fall out
-// ===
-// Option vs null
-
-var name: String = null
-// ...
-name = "Samuel"
-// ...
-println(s"hello ${name}, how do you do?")
-
-
-var name: Option[String] = None
-// ...
-name = Some("Samuel")
-// ...
-name match {
-  case None => throw new RuntimeException("uninitialized name")
-  case Some(n) => println(s"hello ${n}, how do you do?")
-}
-
-
+GC vs manual memory management
+===
+- I've seen this room before, with and without forcing GC on every frame
+- Tetroidvania, with and without removing pickups
 
 
 
