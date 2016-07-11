@@ -1,1 +1,1 @@
-:set syntax=markdown
+:set syntax=scala

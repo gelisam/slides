@@ -1,5 +1,23 @@
-This presentation
-===
+// Keep an open mind, but not so open that your brains fall out
+// ===
+// Option vs null
+
+var name: String = null
+// ...
+name = "Samuel"
+// ...
+println(s"hello ${name}, how do you do?")
+
+
+var name: Option[String] = None
+// ...
+name = Some("Samuel")
+// ...
+name match {
+  case None => throw new RuntimeException("uninitialized name")
+  case Some(n) => println(s"hello ${n}, how do you do?")
+}
+
 
 
 
