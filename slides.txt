@@ -1,7 +1,6 @@
-GC vs manual memory management
+Future vs Task
 ===
-- I've seen this room before, with and without forcing GC on every frame
-- Tetroidvania, with and without removing pickups
+
 
 
 
