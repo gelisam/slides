@@ -1,48 +1,7 @@
-Plan
+About me
 ===
 
-- About me
-  - I am a FP fanatic
-- My typical FP presentations
-  - Here's a problem
-  - Here's the standard imperative solution
-  - Here's the FP solution
-  - FP is a better solution, hurray :)
-- This presentation
-  - Here are two solutions
-  - What are the problems that they solve?
-- Why?
-  - To avoid blind spots.
-  - What if each technology is actually a solution to a different problem?
-  - As an FP fan I am naturally well aware of my favorite technology and with
-    the problems it's good at, and I also know that there's this competing
-    technology which appears to be backed by people who haven't yet seen the
-    light, but maybe it is I who haven't seen the light, maybe I'm so focused
-    on the fact that they are not a very good solution to my problem, that I
-    completely miss the fact that their technology is a better solution for
-    their problem.
-  - So with this talk, my goal is to convince myself, and hopefully others in
-    the same situation, that when the question is "should use technology A or
-    technology B", then even if you're a big fan of technology B, especially
-    if you're a big fan of technology B, your favorite answer is probably
-    going to be "use technology B because so and so", but the right answer is
-    probably "it depends".
 
-- Keep an open mind, but not so open that your brains fall out
-  - Option vs null
-- GC vs manual memory management
-  - I've seen this room before, with and without forcing GC on every frame
-  - Tetroidvania, with and without removing pickups
-- Future vs Task
-- Foldable vs GenTraversableLike
-- Either vs exceptions
-- Absctract vs concrete
-- Functional vs Imperative
-  - for-notation vs side-effects
-  - val vs var
-- Functional vs Object-Oriented
-  - case class vs class
-  - transparent vs opaque
 
 
 
