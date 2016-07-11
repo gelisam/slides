@@ -1,8 +1,8 @@
-Functional vs Imperative
+Functional vs Object-Oriented
 ===
 
-- for-notation vs side-effects
-- val vs var
+- case class vs class
+- transparent vs opaque
 
 
 
