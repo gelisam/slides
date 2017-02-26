@@ -1,16 +1,20 @@
+import Control.Category
+
+class Category k => Arrow k where
+  arr   :: (a -> b) -> k a b
+  first :: k a b    -> k (a,r) (b,r)
 
 
-         -----------------------------------------
-         --                                     --
-         --                                     --
-         --                                     --
-         --   2D composition using Arrow        --
-         --                                     --
-         --                  by Samuel Gélineau --
-         --                                     --
-         --                                     --
-         --                                     --
-         -----------------------------------------
+
+
+
+
+
+
+
+
+
+
 
 
 
