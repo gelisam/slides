@@ -1,25 +1,48 @@
+
+import Prelude hiding ((.), id)
 import Control.Arrow
+import Control.Category
 
---   +---+---+
---   | 1 | 2 |
---   +---+---+
---   | 3 | 4 |
---   +---+---+
+--class Arrow k => ArrowApply k where
+--  app :: k (k a b, a) b
 
-rowsFirst, colsFirst :: Arrow k
-                     => k a b -> k a' b'
-                     -> k b c -> k b' c'
-                     -> k (a,a') (c,c')
-rowsFirst k1 k2 k3 k4 = (k1 *** k2) >>> (k3 *** k4)
-colsFirst k1 k2 k3 k4 = (k1 >>> k3) *** (k2 >>> k4)
+--               (>>=) :: m a -> (a ->   m b) ->   m b
+bind :: ArrowApply k => k u a -> (a -> k u b) -> k u b
+          -- u
+bind kua f = (kua &&& id)
+          -- (a, u)
+         >>> first (arr f)
+          -- (k u b, u)
+         >>> app
+          -- b
 
---data Kleisli m a b = Kleisli { runKleisli :: a -> m b }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 main :: IO ()
-main = do
-    ((),()) <- runKleisli (rowsFirst (go 1) (go 2) (go 3) (go 4)) ((),())
-    putStrLn "---"
-    ((),()) <- runKleisli (colsFirst (go 1) (go 2) (go 3) (go 4)) ((),())
-    return ()
-  where
-    go :: Int -> Kleisli IO () ()
-    go x = Kleisli $ \() -> print x
+main = putStrLn "done."
