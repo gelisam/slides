@@ -1,12 +1,12 @@
-
+import qualified Data.List
 
 data Bash a b
 
 ls     :: FilePath -> Bash a        [FilePath]
 grep   :: RegExp   -> Bash [String] [String]
 
---sort :: Bash [String] [String]
-
+sort   :: Bash [String] [String]
+sort = arr Data.List.sort
 
 
 
