@@ -8,7 +8,7 @@ handshake  ::            Protocol Start   Ready
 send       :: Message -> Protocol Ready   Waiting
 waitForAck ::            Protocol Waiting Ready
 disconnect ::            Protocol a       Start
-
+multiplex  ::            Protocol a       (a, Start)
 
 
 
@@ -35,6 +35,7 @@ handshake  = undefined
 send       = undefined
 waitForAck = undefined
 disconnect = undefined
+multiplex  = undefined
 
 
 
