@@ -1,4 +1,4 @@
-
+{-# LANGUAGE Arrows #-}
 import Prelude hiding ((.), id)
 import Control.Arrow
 import Control.Category
@@ -8,13 +8,11 @@ import Control.Category
 
 --               (>>=) :: m a -> (a ->   m b) ->   m b
 bind :: ArrowApply k => k u a -> (a -> k u b) -> k u b
-          -- u
-bind kua f = (kua &&& id)
-          -- (a, u)
-         >>> first (arr f)
-          -- (k u b, u)
-         >>> app
-          -- b
+bind kua f = proc u -> do
+    a   <- kua   -< u
+    kub <- arr f -< a
+    b   <- app   -< (kub, u)
+    returnA      -< b
 
 
 
