@@ -4,9 +4,11 @@
          --                                     --
          --  Functor               Category     --
          --                                     --
-         --  Applicative           ???          --
+         --                        ???          --
          --                                     --
-         --  Monad                 Arrow        --
+         --  Applicative           Arrow        --
+         --                                     --
+         --  Monad                 ArrowApply   --
          --                                     --
          -----------------------------------------
 
