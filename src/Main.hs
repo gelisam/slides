@@ -10,7 +10,13 @@ waitForAck ::            Protocol Waiting Ready
 disconnect ::            Protocol a       Start
 multiplex  ::            Protocol a       (a, Start)
 
-
+doubleSend :: Message -> Protocol (Ready, Ready) (Waiting, Ready)
+              -- (Ready, Ready)
+doubleSend msg = first (send msg)
+              -- (Waiting, Ready)
+             >>> arr (\(_,r) -> (r,r))
+              -- (Ready, Ready)
+             >>> first (send msg)
 
 
 
@@ -37,6 +43,14 @@ waitForAck = undefined
 disconnect = undefined
 multiplex  = undefined
 
+(>>>) :: Protocol a b -> Protocol b c -> Protocol a c
+(>>>) = undefined
+
+arr :: (a -> b) -> Protocol a b
+arr = undefined
+
+first :: Protocol a b -> Protocol (a,r) (b,r)
+first = undefined
 
 
 
