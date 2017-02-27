@@ -9,9 +9,9 @@ arr   :: (a -> b) -> Bash a        b
 
 
 
-
-
--- $ ls myfolder | ghc -e 'interact (unlines . reverse . lines)' | grep png
+-- $ mkfifo pure_input
+-- $ mkfifo pure_output
+-- $ ls myfolder | (cat > pure_input; cat pure_output) | grep png
 -- image2.png
 -- image1.png
 
