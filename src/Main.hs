@@ -4,7 +4,15 @@
          --                                     --
          --  Functor               Category     --
          --                                     --
-         --                        ???          --
+         --                        Bifunctor    --
+         --                                     --
+         --                        Associative  --
+         --                                     --
+         --                        Monoidal     --
+         --                                     --
+         --                        Symmetric    --
+         --                                     --
+         --                        Cartesian    --
          --                                     --
          --  Applicative           Arrow        --
          --                                     --
