@@ -3,6 +3,7 @@ data Bash a b
 
 ls    :: FilePath -> Bash a        [FilePath]
 grep  :: RegExp   -> Bash [String] [String]
+arr   :: (a -> b) -> Bash a        b
 
 
 
@@ -10,10 +11,12 @@ grep  :: RegExp   -> Bash [String] [String]
 
 
 
-
--- $ ls myfolder | grep png
--- image1.png
+-- $ ls myfolder | ghc -e 'interact (unlines . reverse . lines)' | grep png
 -- image2.png
+-- image1.png
+
+
+
 
 
 
@@ -39,7 +42,7 @@ grep  :: RegExp   -> Bash [String] [String]
 data RegExp
 ls    = undefined
 grep  = undefined
-
+arr   = undefined
 
 
 
