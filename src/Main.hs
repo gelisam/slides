@@ -1,10 +1,10 @@
 {-# LANGUAGE RankNTypes #-}                                                                                            {-# LANGUAGE RecordWildCards #-}
 import Control.Monad.Trans.State
 
+type Setter' s a = (a -> a) -> (s -> s)
 
-
-
-_ += dx = modify $ _something (+ dx)
+(+=) :: Num a => Setter' s a -> a -> State s ()
+setter += dx = modify $ setter (+ dx)
 
 
 data Game   = Game   { _player :: Player }
@@ -57,8 +57,6 @@ movePlayer (dx, dy) = do
 
 infix 4 +=
 
-
-type Setter' s a = (a -> a) -> (s -> s)
 
 player :: Setter' Game   Player
 pos    :: Setter' Player Vec2D
