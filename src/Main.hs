@@ -19,7 +19,7 @@ type  GH a =    G (H a)
 --        ^      ^      ^      ^
 --        |      |      |      |
 --  s = FGH a   GH a   H a     a ----.
---                             b <---'
+--                     H b     b <---'
 
 
 
