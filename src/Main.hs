@@ -18,7 +18,8 @@ type  GH a =    G (H a)
 -- fffmap = fmap . fmap . fmap :: Setter (FGH a) (FGH b) a b
 --        ^      ^      ^      ^
 --        |      |      |      |
---  s = FGH a   GH a   H a     a
+--  s = FGH a   GH a   H a     a ----.
+--                             b <---'
 
 
 
