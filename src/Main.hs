@@ -1,25 +1,12 @@
 {-# LANGUAGE RankNTypes #-}
 
-
-type Setter' s a     = (a -> a) -> (s -> s)
-type Setter  s a b t = (a -> b) -> (s -> t)
-
-type FGH a = F (G (H a))
-type  GH a =    G (H a)
-
---  FGH a -> FGH b
---        |
---        | GH a -> GH b
---        |      |
---        |      |  H a -> H b
---        |      |      |
---        v      v      v
--- fffmap = fmap . fmap . fmap :: (a -> b) -> (FGH a -> FGH b)
--- fffmap = fmap . fmap . fmap :: Setter (FGH a) a b (FGH b)
---        ^      ^      ^      ^
---        |      |      |      |
---  s = FGH a   GH a   H a     a ----.
---  t = FGH b   GH b   H b     b <---'
+---- Back      s   a   =                                    a  ->         s
+type Setter'   s   a   =                            (a ->   a) -> (s ->   s)
+type Setter    s t a b =                            (a ->   b) -> (s ->   t)
+---- Fold      s   a   = forall m. Monoid m      => (a ->   m) -> (s ->   m)
+---- Getter    s   a   = forall e.                  (a ->   e) -> (s ->   e)
+---- Traversal s t a b = forall f. Applicative f => (a -> f b) -> (s -> f t)
+---- Lens      s t a b = forall f. Functor f     => (a -> f b) -> (s -> f t)
 
 
 
@@ -69,17 +56,7 @@ type  GH a =    G (H a)
 
 
 
-
-
-
-
-
-
-
-
-data F a
-data G a
-data H a
+data Const m a = Const m
 
 main :: IO ()
 main = putStrLn "done."
