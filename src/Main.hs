@@ -11,9 +11,9 @@ type  GH a =    G (H a)
 
 
 
-
-
-
+--                  H a -> H b
+--                      |
+--                      v
 -- fffmap = fmap . fmap . fmap :: (a -> b) -> (FGH a -> FGH b)
 
 
