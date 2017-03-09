@@ -4,7 +4,7 @@ import Control.Monad.Trans.State
 
 
 
-
+_ += dx = modify $ _something (+ dx)
 
 
 data Game   = Game   { _player :: Player }
@@ -13,10 +13,10 @@ data Vec2D  = Vec2D  { _x, _y  :: Int    }
 
 movePlayer :: (Int, Int) -> State Game ()
 movePlayer (dx, dy) = do
-  modify (\(Game (Player (Vec2D  x       y      ))) ->
-            Game (Player (Vec2D (x + dx) y      )))
-  modify (\(Game (Player (Vec2D  x       y      ))) ->
-            Game (Player (Vec2D  x      (y + dy))))
+  player.pos.x += dx
+  player.pos.y += dy
+
+
 
 
 
@@ -56,8 +56,6 @@ movePlayer (dx, dy) = do
 
 
 infix 4 +=
-(+=) :: Num a => Setter' s a -> a -> State s ()
-setter += dx = modify $ setter (+ dx)
 
 
 type Setter' s a = (a -> a) -> (s -> s)
