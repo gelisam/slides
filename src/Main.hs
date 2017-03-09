@@ -11,13 +11,9 @@ data Game   = Game   { _player :: Player }
 data Player = Player { _pos    :: Vec2D  }
 data Vec2D  = Vec2D  { _x, _y  :: Int    }
 
-
-movePlayer (dx, dy) = do
-  player.pos.x += dx
-  player.pos.y += dy
-
-
-
+movePlayer :: (Int, Int) -> Game -> Game
+movePlayer (dx, dy) (Game (Player (Vec2D  x        y      ))) =
+                    (Game (Player (Vec2D (x + dx) (y + dy))))
 
 
 
