@@ -1,11 +1,11 @@
 
 
-type Func a b = a -> b
+type Back b a = a -> b
 
-(.) :: (b -> c) -> (a -> b) -> (a -> c)
+(.) :: Back c b -> Back b a -> Back c a
 (.) f g x = f (g x)
 
-(>>>) :: (a -> b) -> (b -> c) -> (a -> c)
+(>>>) :: Back b a -> Back c b -> Back c a
 (>>>) = flip (.)
 
 
