@@ -2,14 +2,16 @@
 
 type Func a b = a -> b
 
-(.) :: (a -> b) -> (b -> c) -> (a -> c)
+(.) :: (b -> c) -> (a -> b) -> (a -> c)
 (.) f g x = f (g x)
---             ^ ^
---             | |
---             | expected: b
---             | actual:   a
---             |
---           b -> c
+
+
+
+
+
+
+
+
 
 
 
