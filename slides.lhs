@@ -10,6 +10,8 @@ Combinators:
   * x && y
   * x || y
   * !x
+  * any(predicate, list)
+  * all(predicate, list)
 
 
 
