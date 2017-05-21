@@ -4,6 +4,17 @@ Binary codecs
 >              , decode :: ByteString -> Maybe a
 >              }
 
+Primitives:
+
+> charCodec :: Codec Char
+
+
+Combinators:
+
+> listCodec :: Codec a -> Codec [a]
+
+> pairCodec :: Codec a -> Codec b -> Codec (a, b)
+
 
 
 
