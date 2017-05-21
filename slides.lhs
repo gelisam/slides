@@ -21,6 +21,9 @@ Derived:
 > stringCodec :: Codec String
 > stringCodec = listCodec charCodec
 
+> alistCodec :: Codec k -> Codec v -> Codec [(k, v)]
+> alistCodec keyCodec valueCodec = listCodec (pairCodec keyCodec valueCodec)
+
 
 
 
