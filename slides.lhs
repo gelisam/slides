@@ -12,7 +12,7 @@
 
 
 > (&&) :: Bool -> Bool -> Bool
-
+> both :: Event -> Event -> Event
 
 > all :: (a -> Bool) -> [a] -> Bool
 > all f = foldr (&&) True
