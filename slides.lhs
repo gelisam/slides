@@ -6,6 +6,9 @@
 >   mempty  = now
 >   mappend = both
 
+> allEvents :: (a -> Event) -> [a] -> Event
+> allEvents = foldMap  -- allEvents f = foldr both now
+>                      --             . map f
 
 
 
