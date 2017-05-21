@@ -1,16 +1,26 @@
-Event occurrences
 
-Primitives:
 
-  * event occurs after n seconds
-  * run function in a separate thread,
-    event occurs when the function completes
-  * event occurs when the user clicks
+       -------------------   Implementation
+      | o .               |
+      |-------------------|  * display splash screen
+      |                   |
+      |                   |
+      |                   |
+      |                   |
+      |    SPLASH         |
+      |    S C R E E N    |
+      |                   |
+      |                   |
+      |                   |
+      |                   |
+      |    please wait... |
+      |                   |
+      |___________________|
+      |        ( )        |
+       -------------------
 
-Combinators:
 
-  * combined event occurs once both sub-events have occurred
-  * combined event occurs once either sub-event has occurred
+
 
 
 
