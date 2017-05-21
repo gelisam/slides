@@ -8,11 +8,20 @@ Binary codecs
 
 > utf16CharCodec :: Codec Char
 
-> pngCodec :: Codec String
-> pngCodec = ... utf8Char8Codec ...
-
-> windowsRegistryCodec :: Codec String
-> windowsRegistryCodec = ... utf16CharCodec ...
+> -- [...]
+> -- If there are two different ways of doing something, PSD will do both, in
+> -- different places. It will then make up three more ways no sane human would
+> -- think of, and do those too. PSD makes inconsistency an art form.
+> -- [...]
+> -- PSD is not my favourite file format.
+> psdCodec :: Codec
+> psdCodec = ... utf8CharCodec ... utf16CharCodec
+>            ... weirdCharCodec1 ... weirdCharCodec2 ... weirdCharCodec3
+>   where
+>     weirdCharCodec1, weirdCharCodec2, weirdCharCodec3 :: Codec Char
+>     weirdCharCodec1 = ...
+>     weirdCharCodec2 = ...
+>     weirdCharCodec3 = ...
 
 
 
