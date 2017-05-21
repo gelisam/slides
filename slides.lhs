@@ -1,28 +1,19 @@
 Binary codecs
 
-> class HasCodec a where
->   codec :: Codec a
+> data Codec a { encode :: a -> ByteString
+>              , decode :: ByteString -> Maybe a
+>              }
 
+> utf8CharCodec :: Codec Char
 
-Primitives:
+> utf16CharCodec :: Codec Char
 
-> instance HasCodec Char
->   codec = charCodec
+> pngCodec :: Codec String
+> pngCodec = ... utf8Char8Codec ...
 
-Combinators:
+> windowsRegistryCodec :: Codec String
+> windowsRegistryCodec = ... utf16CharCodec ...
 
-> instance HasCodec a => HasCodec [a] where
->   codec = listCodec codec
-> instance (HasCodec a, HasCodec b) => HasCodec (a, b) where
->   codec = pairCodec codec codec
-
-Derived:
-
-> stringCodec :: Codec String
-> stringCodec = codec  -- listCodec charCodec
-
-> alistCodec :: (HasCodec k, HasCodec v) => Codec [(k, v)]
-> alistCodec = codec   -- listCodec (pairCodec codec codec)
 
 
 
