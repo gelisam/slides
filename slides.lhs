@@ -11,13 +11,13 @@
 >   (<|>) :: f a -> f a -> f a
 
 
-> data Event
+> data Promise a
 
-> now  :: Event
-> both :: Event -> Event -> Event
+> now  :: Promise ?
+> both :: Promise ? -> Promise ? -> Promise ?
 
-> never  :: Event
-> either :: Event -> Event -> Event
+> never  :: Promise ?
+> either :: Promise ? -> Promise ? -> Promise ?
 
 
 
