@@ -13,11 +13,11 @@
 
 > data Promise a
 
-> now  :: a -> Promise a
 > both :: Promise a -> Promise b -> Promise (a, b)
+> both ea eb = (,) <$> ea <*> eb
 
-> never  :: Promise a
-> either :: Promise a -> Promise a -> Promise a
+> (<$>) ::       (a -> b) -> Promise a -> Promise b
+> (<*>) :: Promise (a -> b) -> Promise a -> Promise b
 
 
 
