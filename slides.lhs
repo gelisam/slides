@@ -6,22 +6,18 @@
 >   pure  :: a -> f a
 >   (<*>) :: f (a -> b) -> f a -> f b
 
-> class Alternative f where
->   empty :: f a
->   (<|>) :: f a -> f a -> f a
+> class Monad f where
+>   (>>=) :: f a -> (a -> f b) -> f b
 
-
-> data Promise a
-
-> both :: Promise a -> Promise b -> Promise (a, b)
-> both ea eb = (,) <$> ea <*> eb
-
-> (<$>) ::       (a -> b) -> Promise a -> Promise b
-> (<*>) :: Promise (a -> b) -> Promise a -> Promise b
-
-
-
-
+> maybeDisplayAd :: Event ()
+> maybeDisplayAd = do
+>   user <- fetchUserInfo                      -- fetchUserInfo().then(function(user) {
+>   if userSubscriptionLevel user == Freemium  --   if (user.subscriptionLevel == "fremium") {
+>     then displayAd                           --     return displayAd();
+>     else now ()                              --   } else {
+>                                              --     return Promise.resolve(undefined);
+>                                              --   }
+>                                              -- });
 
 
 
