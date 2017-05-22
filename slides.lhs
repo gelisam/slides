@@ -14,10 +14,10 @@
 > data Promise a
 
 > now  :: a -> Promise a
-> both :: Promise ? -> Promise ? -> Promise ?
+> both :: Promise a -> Promise b -> Promise (a, b)
 
 > never  :: Promise a
-> either :: Promise ? -> Promise ? -> Promise ?
+> either :: Promise a -> Promise a -> Promise a
 
 
 
