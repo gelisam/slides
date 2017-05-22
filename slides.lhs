@@ -3,12 +3,12 @@
 >   mappend :: a -> a -> a
 
 > class Applicative f where
->   pure  :: a -> f a
->   (<*>) :: f (a -> b) -> f a -> f b
+>   pure  ::      f
+>   (<*>) :: f          -> f   -> f
 
 > class Alternative f where
->   empty :: f a
->   (<|>) :: f a -> f a -> f a
+>   empty :: f
+>   (<|>) :: f   -> f   -> f
 
 
 
