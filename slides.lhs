@@ -11,6 +11,13 @@
 >   (<|>) :: f a -> f a -> f a
 
 
+> data Event
+
+> now  :: Event
+> both :: Event -> Event -> Event
+
+> never  :: Event
+> either :: Event -> Event -> Event
 
 
 
