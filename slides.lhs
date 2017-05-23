@@ -7,9 +7,10 @@ Primitives:
     event occurs when the function completes
   * event occurs when the user clicks
 
+Combinators:
 
-
-
+  * combined event occurs once both sub-events have occurred
+  * combined event occurs once either sub-event has occurred
 
 
 
