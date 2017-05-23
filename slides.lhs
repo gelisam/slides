@@ -2,16 +2,13 @@
 >   mempty  :: a
 >   mappend :: a -> a -> a
 
-> instance Monoid Event where
->   mempty  = never   -- either e never = e
->   mappend = either
+> class Applicative f where
+>   pure  :: a -> f a
+>   (<*>) :: f (a -> b) -> f a -> f b
 
-> someEvent :: (a -> Event) -> [a] -> Event
-> someEvent f []           = never
-> someEvent f [x1]         = f x1
-> someEvent f [x1, x2]     = f x1 `either` f x2
-> someEvent f [x1, x2, x3] = f x1 `either` f x2 `either` f x3
-> someEvent f ...          = ...
+> class Alternative f where
+>   empty :: f a
+>   (<|>) :: f a -> f a -> f a
 
 
 
