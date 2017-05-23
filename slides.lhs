@@ -8,6 +8,7 @@
         * More self-documenting
           (intermediate names)
         * Easier to change
+        * Fewer mistakes
 
 
 
