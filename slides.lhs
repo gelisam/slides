@@ -1,22 +1,21 @@
+Binary codecs
+
+> data Codec a { encode :: a -> ByteString
+>              , decode :: ByteString -> Maybe a
+>              }
+
+Primitives:
+
+> charCodec :: Codec Char
 
 
-  class Person implements Serializable {
-    String name;
-    Integer age;
-    List<Person> friends;
+Combinators:
 
-    void encode() {
-      name.encode();
-      age.encode();
-      friends.encode();
-    }
+> listCodec :: Codec a -> Codec [a]
 
-    void decode() {
-      name.decode();
-      age.decode();
-    }
-  }
-    
+> pairCodec :: Codec a -> Codec b -> Codec (a, b)
+
+
 
 
 
