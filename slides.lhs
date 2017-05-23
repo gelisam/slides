@@ -5,15 +5,27 @@
 
 
 
-                     Combinator libraries
-                   + Type Classes
 
 
-                        First benefit:
-                     Automatic solutions
 
-                       Second benefit:
-                         API guidance
+
+
+
+> (&&) :: Bool -> Bool -> Bool
+
+
+> all :: (a -> Bool) -> [a] -> Bool
+> all f = foldr (&&) True
+>       . map f
+
+
+
+
+
+
+
+
+
 
 
 
