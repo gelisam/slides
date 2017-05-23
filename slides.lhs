@@ -9,6 +9,7 @@
           (intermediate names)
         * Easier to change
         * Fewer mistakes
+          (each solution is consistent)
 
 
 
