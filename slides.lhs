@@ -1,3 +1,19 @@
+Binary codecs
+
+> data Codec a { encode :: a -> ByteString
+>              , decode :: ByteString -> Maybe a
+>              }
+
+Primitives:
+
+> charCodec :: Codec Char
+
+
+Combinators:
+
+> listCodec :: Codec a -> Codec [a]
+
+> pairCodec :: Codec a -> Codec b -> Codec (a, b)
 
 
 
@@ -5,18 +21,121 @@
 
 
 
-                     Combinator libraries
-                   + Type Classes
-
-
-                        First benefit:
-                     Automatic solutions
 
 
 
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                   Combinator libraries
+
+          Benefits                      Costs
+
+        * Shorter                     * Need some up-front design to find
+          (work hidden in combinators)  the proper primitives and combinators
+        * More self-documenting
+          (intermediate names)
+        * Fewer mistakes
+          (each system is consistent)
 
 
 
