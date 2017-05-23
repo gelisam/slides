@@ -1,28 +1,28 @@
 Binary codecs
 
-> data Codec a { encode :: a -> ByteString
->              , decode :: ByteString -> Maybe a
->              }
+> class HasCodec a where
+>   codec :: Codec a
+
 
 Primitives:
 
-> charCodec :: Codec Char
-
+> instance HasCodec Char
+>   codec = charCodec
 
 Combinators:
 
-> listCodec :: Codec a -> Codec [a]
-
-> pairCodec :: Codec a -> Codec b -> Codec (a, b)
-
+> instance HasCodec a => HasCodec [a] where
+>   codec = listCodec codec
+> instance (HasCodec a, HasCodec b) => HasCodec (a, b) where
+>   codec = pairCodec codec codec
 
 Derived:
 
 > stringCodec :: Codec String
-> stringCodec = listCodec charCodec
+> stringCodec = codec  -- listCodec charCodec
 
-> alistCodec :: Codec k -> Codec v -> Codec [(k, v)]
-> alistCodec keyCodec valueCodec = listCodec (pairCodec keyCodec valueCodec)
+> alistCodec :: (HasCodec k, HasCodec v) => Codec [(k, v)]
+> alistCodec = codec   -- listCodec (pairCodec codec codec)
 
 
 
