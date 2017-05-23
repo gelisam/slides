@@ -3,8 +3,10 @@
 
           Benefits                      Costs
 
-        * Shorter                     
+        * Shorter
           (work hidden in combinators)
+        * More self-documenting       
+          (intermediate names)        
 
 
 
