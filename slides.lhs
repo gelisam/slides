@@ -1,3 +1,10 @@
+> class Monoid a where
+>   mempty  :: a
+>   mappend :: a -> a -> a
+
+> instance Monoid Event where
+>   mempty  = now
+>   mappend = both
 
 
 
@@ -5,9 +12,49 @@
 
 
 
-                         BONUS SLIDES
 
-                       More API guidance
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
