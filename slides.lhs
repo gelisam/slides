@@ -11,16 +11,12 @@
 >   mappend = both
 
 
-
-
-
-> all :: (a -> Bool) -> [a] -> Bool
-> all f = foldr (&&) True
->       . map f
-
 > allEvents :: (a -> Event) -> [a] -> Event
-> allEvents f = foldr both now
->             . map f
+> allEvents f []           = now
+> allEvents f [x1]         = f x1
+> allEvents f [x1, x2]     = f x1 `both` f x2
+> allEvents f [x1, x2, x3] = f x1 `both` f x2 `both` f x3
+> allEvents f ...          = ...
 
 
 
