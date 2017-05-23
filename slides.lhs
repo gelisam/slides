@@ -7,7 +7,7 @@
 >   mappend = (&&)
 
 > instance Monoid Event where
->   mempty  = ???   -- both e ??? = e
+>   mempty  = now   -- both e now = e
 >   mappend = both
 
 
@@ -19,7 +19,7 @@
 >       . map f
 
 > allEvents :: (a -> Event) -> [a] -> Event
-> allEvents f = foldr both ???
+> allEvents f = foldr both now
 >             . map f
 
 
