@@ -3,10 +3,12 @@
   class Person implements Serializable {
     String name;
     Integer age;
+    List<Person> friends;
 
     void encode() {
       name.encode();
       age.encode();
+      friends.encode();
     }
 
     void decode() {
