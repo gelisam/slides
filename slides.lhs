@@ -1,15 +1,62 @@
-Boolean expressions
 
-Primitives:
+                   Combinator libraries
 
-  * is a number greater than another?
-  * is mario touching this sprite?
+          Benefits                      Costs
 
-Combinators:
 
-  * x && y
-  * x || y
-  * !x
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
