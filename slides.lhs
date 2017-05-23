@@ -1,17 +1,11 @@
 
 
-
-
-
-
-                  Combinator Libraries   
-
-
-
-
-
-                                   a presentation by
-                                     Samuel Gélineau
+   This Talk:
+   
+   1) Boolean expressions
+   2) Event occurrences
+   3) Codecs
+   
 
 
 
@@ -23,9 +17,26 @@
 
 
 
-                                                                                                 
 
-                                                                                                 +
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
