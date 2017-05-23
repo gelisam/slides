@@ -10,20 +10,17 @@
 >   mempty  = now
 >   mappend = both
 
-
-
-
+> foldMap :: Monoid e => (a -> e) -> [a] -> e
+> foldMap f = foldr mappend mempty
+>           . map f
 
 > all :: (a -> Bool) -> [a] -> Bool
-> all f = foldr (&&) True
->       . map f
+> all = foldMap        -- all f = foldr (&&) True
+>                      --       . map f
 
 > allEvents :: (a -> Event) -> [a] -> Event
-> allEvents f = foldr both now
->             . map f
-
-
-
+> allEvents = foldMap  -- allEvents f = foldr both now
+>                      --             . map f
 
 
 
