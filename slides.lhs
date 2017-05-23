@@ -1,4 +1,127 @@
 
+
+  class Person implements Serializable {
+    String name;
+    Integer age;
+
+    void encode() {
+      name.encode();
+      age.encode();
+    }
+
+    void decode() {
+      name.decode();
+      age.decode();
+    }
+  }
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
                    Combinator libraries
 
           Benefits                      Costs
@@ -7,9 +130,8 @@
           (work hidden in combinators)  the proper primitives and combinators
         * More self-documenting
           (intermediate names)
-        * Easier to change
         * Fewer mistakes
-          (each solution is consistent)
+          (each system is consistent)
 
 
 
