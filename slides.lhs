@@ -18,6 +18,9 @@
 > allEvents f [x1, x2, x3] = f x1 `both` f x2 `both` f x3
 > allEvents f ...          = ...
 
+> imagesArePreloaded :: [Image] -> Event
+> imagesArePreloaded = allEvents imageIsPreloaded
+
 
 
 
