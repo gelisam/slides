@@ -9,6 +9,8 @@
                    + Type Classes
 
 
+                        First benefit:
+                     Automatic solutions
 
 
 
