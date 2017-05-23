@@ -18,6 +18,9 @@
 > all f = foldr (&&) True
 >       . map f
 
+> allEvents :: (a -> Event) -> [a] -> Event
+> allEvents f = foldr both ???
+>             . map f
 
 
 
