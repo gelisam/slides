@@ -3,6 +3,8 @@
 
           Benefits                      Costs
 
+        * Shorter                     
+          (work hidden in combinators)
 
 
 
