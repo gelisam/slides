@@ -16,6 +16,10 @@ Combinators:
 > pairCodec :: Codec a -> Codec b -> Codec (a, b)
 
 
+Derived:
+
+> stringCodec :: Codec String
+> stringCodec = listCodec charCodec
 
 
 
