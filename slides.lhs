@@ -3,11 +3,8 @@
 
 
 
-      Expected "ok" in ["err": true, "message": "file not found"]
-
-    =>
-
-      file not found
+echo 'Expected "ok" in ["err": true, "message": "file not found"]' |
+  cut -d'"' -f8
 
 
 
@@ -63,7 +60,11 @@
 
 
 
+exit 0
 
+> import System.Process
 
 > main :: IO ()
-> main = putStrLn "typechecks."
+> main = do
+>   _ <- system "bash slides.lhs"
+>   pure ()
