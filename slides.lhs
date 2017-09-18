@@ -1,18 +1,12 @@
+> import Data.List.Extra
 
+> input :: String
+> input =                                                                                                                                            "Expected \"ok\" in [\"err\": true, \"message\": \"file not found\"]"
 
+      Expected "ok" in ["err": true, "message": "file not found"]
 
-
-
-echo 'Expected "ok" in ["err": true, "message": "file not found"]' |
-  cut -d'"' -f8
-
-
-
-
-
-
-
-
+> output :: String
+> output = wordsBy (== '\"') input !! 7
 
 
 
@@ -60,11 +54,13 @@ echo 'Expected "ok" in ["err": true, "message": "file not found"]' |
 
 
 
-exit 0
 
-> import System.Process
+
+
+
+
+
 
 > main :: IO ()
 > main = do
->   _ <- system "bash slides.lhs"
->   pure ()
+>   print output
