@@ -1,9 +1,9 @@
 > import Data.List.Extra
 
 > input :: String
-> input =                                                                                                                                            "Expected \"ok\" in [\"err\": true, \"message\": \"file not found\"]"
+> input =                                                                                                                                            "Expected \"ok\" in [\"err\": true, \"message\": \"file \\\"foo.txt\\\" not found\"]"
 
-      Expected "ok" in ["err": true, "message": "file not found"]
+      Expected "ok" in ["err": true, "message": "file \"foo.txt\" not found"]
 
 > output :: String
 > output = wordsBy (== '\"') input !! 7
