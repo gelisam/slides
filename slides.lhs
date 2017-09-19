@@ -1,27 +1,19 @@
-> import Control.Applicative
-> import Text.Trifecta
 
-> bool :: Parser Bool
-> bool = (True  <$ string "True")
->    <|> (False <$ string "False")
+> import Text.Trifecta hiding (sepBy)
+> import Text.Parser.Combinators
 
-> tuple :: Parser a -> Parser b -> Parser (a, b)
-> tuple parseA parseB = (,)
->                   <$> (char '(' *> parseA)
->                   <*> (char ',' *> parseB)
->                   <*   char ')'
+between       :: Applicative f => f open -> f close -> f a -> f a
 
-> string_ :: Parser String
-> string_ = char '"'
->        *> many stringChar
->       <*  char '"'
-
-> stringChar :: Parser Char
-> stringChar = satisfy (`notElem` ['\\', '\"'])
->          <|> (char '\\' *> char '\"')
->          <|> (char '\\' *> char '\\')
+sepBy         :: Alternative f => f a -> f sep -> f [a]
+sepByNonEmpty :: Alternative f => f a -> f sep -> f (NonEmpty a)
 
 
+
+
+
+> list :: Parser a -> Parser [a]
+> list element = between (char '[') (char ']')
+>              $ sepBy element (char ',')
 
 
 
@@ -67,4 +59,4 @@
 
 > main :: IO ()
 > main = do
->   putStrLn "typechecks."
+>   parseTest (list integer) "[1,2,3]"
