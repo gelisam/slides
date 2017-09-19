@@ -6,6 +6,7 @@ only testing the happy path
 > bool :: Parser Bool
 > bool = (True  <$ string "True")
 >    <|> (False <$ string "False")
+>    <?> "boolean"
 
 
 
