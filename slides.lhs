@@ -1,24 +1,25 @@
+> import Control.Applicative
+> import Text.Trifecta
 
-class Functor f where
-  (<$>) :: (a -> b) -> f a -> f b
+> bool :: Parser Bool
+> bool = (True  <$ string "True")
+>    <|> (False <$ string "False")
 
-(<$) :: Functor f => a -> f b -> f a
+> tuple :: Parser a -> Parser b -> Parser (a, b)
+> tuple parseA parseB = (,)
+>                   <$> (char '(' *> parseA)
+>                   <*> (char ',' *> parseB)
+>                   <*   char ')'
 
+> string_ :: Parser String
+> string_ = char '"'
+>        *> many stringChar
+>       <*  char '"'
 
-class Applicative f where
-  pure  :: a -> f a
-  (<*>) :: f (a -> b) -> f a -> f b
-
-(<*) :: Applicative f => f a -> f b -> f a
-(*>) :: Applicative f => f a -> f b -> f b
-
-
-class Alternative f where
-  empty :: f a
-  (<|>) :: f a -> f a -> f a
-
-some :: Alternative f => f a -> f (NonEmpty a)
-many :: Alternative f => f a -> f [a]
+> stringChar :: Parser Char
+> stringChar = satisfy (`notElem` ['\\', '\"'])
+>          <|> (char '\\' *> char '\"')
+>          <|> (char '\\' *> char '\\')
 
 
 
