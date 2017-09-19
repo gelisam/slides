@@ -1,6 +1,6 @@
 > {-# LANGUAGE OverloadedStrings #-}
-> import Text.Parsec
-> import Text.Parsec.Text
+> import Text.Megaparsec
+> import Text.Megaparsec.Text
 > import Data.Text
 
 > parser :: Parser String
