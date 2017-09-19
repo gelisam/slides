@@ -54,4 +54,4 @@ only testing the happy path
 
 > main :: IO ()
 > main = do
->   parseTest (list bool) "[True,False,True]"
+>   parseTest (list bool) "[True,False,Purple,True]"
