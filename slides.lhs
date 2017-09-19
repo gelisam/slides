@@ -1,7 +1,7 @@
 > {-# LANGUAGE OverloadedStrings #-}
-> import Text.Megaparsec
-> import Text.Megaparsec.Text
-> import Data.Text
+> import Control.Applicative
+> import Text.Trifecta
+
 
 > parser :: Parser String
 > parser = string "Expected \"ok\" in [\"err\": true, \"message\": \""
@@ -60,7 +60,7 @@
 
 
 
-> input :: Text
+> input :: String
 > input = "Expected \"ok\" in [\"err\": true, \"message\": \"file \\\"foo.txt\\\" not found\"]"
 
 > main :: IO ()
