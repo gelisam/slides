@@ -6,10 +6,10 @@ failing without an error message
 > import Text.Trifecta
 
 > bool :: Parser Bool
-> bool = (do s <- many (satisfy isAlpha)
->            case readMaybe s of
->              Just b -> pure b
->              Nothing -> empty <?> "boolean")
+> bool = try (do s <- many (satisfy isAlpha)
+>                case readMaybe s of
+>                  Just b -> pure b
+>                  Nothing -> empty <?> "boolean")
 >    <|> (False <$ string "Purple")
 
 
