@@ -1,4 +1,4 @@
-prioritized choice
+consuming characters commits to this alternative
 
 > import Control.Applicative
 > import Text.Trifecta hiding (sepBy)
@@ -8,8 +8,8 @@ prioritized choice
 > sepBy :: Parser a -> Parser sep -> Parser [a]
 > sepBy element sep = go <|> pure []
 >   where
->     go = ((:) <$> element <*> pure [])
->      <|> ((:) <$> element <*> (sep *> go))
+>     go = ((:) <$> element <*> (sep *> go))
+>      <|> ((:) <$> element <*> pure [])
 
 
 
@@ -61,4 +61,4 @@ prioritized choice
 
 > main :: IO ()
 > main = do
->   parseTest (list integer <* eof) "[1,2,3]"
+>   parseTest (list integer) "[1,2,3]"
