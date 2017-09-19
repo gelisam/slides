@@ -1,12 +1,15 @@
-only testing the happy path
+failing without an error message
 
 > import Control.Applicative
+> import Data.Char
+> import Text.Read
 > import Text.Trifecta
 
 > bool :: Parser Bool
-> bool = (True  <$ string "True")
->    <|> (False <$ string "False")
->    <?> "boolean"
+> bool = do s <- many (satisfy isAlpha)
+>           case readMaybe s of
+>             Just b -> pure b
+>             Nothing -> empty
 
 
 
