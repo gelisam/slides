@@ -1,4 +1,8 @@
+
 -- alex
+{
+module Lexer where
+}
 
 %wrapper "basic"
 
@@ -16,7 +20,5 @@ data Token
   | Suffix
   | Char Char
   deriving (Eq,Show)
-
-main = mapM_ print . alexScanTokens =<< getContents
 }
 

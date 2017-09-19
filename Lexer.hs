@@ -1,5 +1,9 @@
 {-# OPTIONS_GHC -fno-warn-unused-binds -fno-warn-missing-signatures #-}
 {-# LANGUAGE CPP #-}
+{-# LINE 3 "Lexer.x" #-}
+
+module Lexer where
+
 #if __GLASGOW_HASKELL__ >= 603
 #include "ghcconfig.h"
 #elif defined(__GLASGOW_HASKELL__)
@@ -351,15 +355,13 @@ alex_accept = listArray (0::Int,59) [AlexAccNone,AlexAccNone,AlexAccNone,AlexAcc
 
 alex_actions = array (0::Int,6) [(5,alex_action_0),(4,alex_action_1),(3,alex_action_2),(2,alex_action_2),(1,alex_action_3),(0,alex_action_4)]
 
-{-# LINE 13 "Lexer.x" #-}
+{-# LINE 17 "Lexer.x" #-}
 
 data Token
   = Prefix
   | Suffix
   | Char Char
   deriving (Eq,Show)
-
-main = mapM_ print . alexScanTokens =<< getContents
 
 alex_action_0 =  \s -> Prefix 
 alex_action_1 =  \s -> Suffix 
