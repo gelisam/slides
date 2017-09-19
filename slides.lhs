@@ -1,4 +1,4 @@
-consuming characters commits to this alternative
+left factoring
 
 > import Control.Applicative
 > import Text.Trifecta hiding (sepBy)
@@ -8,9 +8,9 @@ consuming characters commits to this alternative
 > sepBy :: Parser a -> Parser sep -> Parser [a]
 > sepBy element sep = go <|> pure []
 >   where
->     go = ((:) <$> element <*> (sep *> go))
->      <|> ((:) <$> element <*> pure [])
-
+>     go =  (:) <$> element <*> ( (sep *> go)
+>                             <|> pure []
+>                               )
 
 
 > list :: Parser a -> Parser [a]
