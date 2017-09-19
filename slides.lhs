@@ -1,6 +1,6 @@
 > {-# LANGUAGE OverloadedStrings #-}
-> import Control.Applicative
-> import Data.Attoparsec.Text
+> import Text.Parsec
+> import Text.Parsec.Text
 > import Data.Text
 
 > parser :: Parser String
