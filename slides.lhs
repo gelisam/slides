@@ -1,4 +1,4 @@
-left recursion
+import Range.Shared.Utils
 
 > import Control.Applicative
 > import Text.Trifecta hiding (sepBy)
@@ -8,8 +8,52 @@ left recursion
 > sepBy :: Parser a -> Parser sep -> Parser (SnocList a)
 > sepBy element sep = go <|> pure Nil
 >   where
->     go = (Snoc <$> go       <*> (sep *> element))
->      <|> (Snoc <$> pure Nil <*> element)
+>     go = leftRecursiveParser (Snoc Nil <$> element) $ \xs
+>                           -> (Snoc xs  <$> (sep *> element))
+
+> leftRecursiveParser :: Parser a -> (a -> Parser a) -> Parser a
+> leftRecursiveParser nonRecursiveCases mkRecursiveCases = allCases nonRecursiveCases
+>   where
+>     -- Depth N+1 looks like depth N followed by more stuff. So if we can't parse
+>     -- with depth N, give up early, thereby breaking the infinite recursion.
+>     allCases smallCases = do
+>       lhs <- smallCases
+>       allCases (mkRecursiveCases lhs) <|> pure lhs
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -17,50 +61,6 @@ left recursion
 > list element = between (char '[') (char ']')
 >              $ sepBy element (char ',')
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 > main :: IO ()
 > main = do
->   --parseTest (list integer) "[1,2,3]"
-> 
->   -- GHC is usually pretty good at detecting infinite loops,
->   -- but not this time (and also not in ghci)
->   putStrLn "<<loop>>"
+>   parseTest (list integer) "[1,2,3]"
