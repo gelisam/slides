@@ -1,19 +1,36 @@
 
-> import Text.Trifecta hiding (sepBy)
-> import Text.Parser.Combinators
-
-between       :: Applicative f => f open -> f close -> f a -> f a
-
-sepBy         :: Alternative f => f a -> f sep -> f [a]
-sepByNonEmpty :: Alternative f => f a -> f sep -> f (NonEmpty a)
 
 
 
 
 
-> list :: Parser a -> Parser [a]
-> list element = between (char '[') (char ']')
->              $ sepBy element (char ',')
+                  Parser Combinators
+
+               1. alternatives
+               2. libraries
+             > 3. combinators
+               4. common pitfalls
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -58,5 +75,4 @@ sepByNonEmpty :: Alternative f => f a -> f sep -> f (NonEmpty a)
 
 
 > main :: IO ()
-> main = do
->   parseTest (list integer) "[1,2,3]"
+> main = putStrLn "typechecks."
