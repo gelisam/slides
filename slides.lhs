@@ -1,30 +1,28 @@
-tokens consume following whitespace
+separate lexing and parsing phase
 
-> import Control.Applicative
-> import Text.Trifecta
+> import Control.Monad
+> import Text.Parsec
 
-> bool :: Parser Bool
-> bool = (True  <$ trueToken)
->    <|> (False <$ falseToken)
+> bool :: Parsec [MyToken] () Bool
+> bool = (True  <$ myToken TrueToken)
+>    <|> (False <$ myToken FalseToken)
 
-> list :: Parser a -> Parser [a]
-> list element = between lbracketToken rbracketToken
->              $ sepBy element commaToken
+> list :: Parsec [MyToken] () a -> Parsec [MyToken] () [a]
+> list element = between (myToken LBracketToken) (myToken RBracketToken)
+>              $ sepBy element (myToken CommaToken)
 
-> trueToken     = string "True"  <* many (char ' ')
-> falseToken    = string "False" <* many (char ' ')
-> lbracketToken = char '['       <* many (char ' ')
-> rbracketToken = char ']'       <* many (char ' ')
-> commaToken    = char ','       <* many (char ' ')
+> myTokens :: Parsec [Char] () [MyToken]
+> myTokens = flip sepBy (many (char ' ')) $ (TrueToken     <$ string "True")
+>                                       <|> (FalseToken    <$ string "False")
+>                                       <|> (LBracketToken <$ char '[')
+>                                       <|> (RBracketToken <$ char ']')
+>                                       <|> (CommaToken    <$ char ',')
 
-
-
-
-
-
-
-
-
+> lexAndParse :: Parsec [Char]  () [token]
+              -> Parsec [token] () a
+              -> String -> Either ParseError a
+> lexAndParse lexer parser = parse lexer  "interactive"
+>                        >=> parse parser "interactive"
 
 
 
@@ -53,12 +51,29 @@ tokens consume following whitespace
 
 
 
-> trueToken     :: Parser String
-> falseToken    :: Parser String
-> lbracketToken :: Parser Char
-> rbracketToken :: Parser Char
-> commaToken    :: Parser Char
+
+
+
+
+
+
+> data MyToken
+>   = TrueToken
+>   | FalseToken
+>   | LBracketToken
+>   | RBracketToken
+>   | CommaToken
+>   deriving (Show, Eq, Ord)
+
+> myToken :: MyToken -> Parsec [MyToken] () MyToken
+> myToken expected = try $ do
+>   actual <- anyToken
+>   if actual == expected
+>   then pure actual
+>   else parserFail $ "found " ++ show actual ++ ", expected " ++ show expected
 
 > main :: IO ()
 > main = do
->   parseTest (list bool) "[True, False, True]"
+>   case lexAndParse myTokens (list bool) "[True, False, True]" of
+>     Left  e -> print
+>     Right x -> print x
