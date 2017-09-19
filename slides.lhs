@@ -9,7 +9,7 @@ failing without an error message
 > bool = do s <- many (satisfy isAlpha)
 >           case readMaybe s of
 >             Just b -> pure b
->             Nothing -> empty
+>             Nothing -> empty <?> "boolean"
 
 
 
