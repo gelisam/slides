@@ -6,7 +6,7 @@ prioritized choice
 
 
 > sepBy :: Parser a -> Parser sep -> Parser [a]
-> sepBy element sep = pure [] <|> go
+> sepBy element sep = go <|> pure []
 >   where
 >     go = ((:) <$> element <*> pure [])
 >      <|> ((:) <$> element <*> (sep *> go))
