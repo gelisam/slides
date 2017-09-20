@@ -1,25 +1,23 @@
-import Range.Shared.Utils
+greedy vs non-greedy
 
-> import Control.Applicative
-> import Text.Trifecta hiding (sepBy)
 
-> data SnocList a = Nil | Snoc (SnocList a) a deriving Show
 
-> sepBy :: Parser a -> Parser sep -> Parser (SnocList a)
-> sepBy element sep = go <|> pure Nil
->   where
->     go = leftRecursiveParser (Snoc Nil <$> element) $ \xs
->                           -> (Snoc xs  <$> (sep *> element))
 
-> leftRecursiveParser :: Parser a -> (a -> Parser a) -> Parser a
-> leftRecursiveParser nonRecursiveCases mkRecursiveCases = allCases nonRecursiveCases
->   where
->     -- Depth N+1 looks like depth N followed by more stuff. So if we can't parse
->     -- with depth N, give up early, thereby breaking the infinite recursion.
->     allCases smallCases = do
->       lhs <- smallCases
->       allCases (mkRecursiveCases lhs) <|> pure lhs
 
+
+
+greedy    :: Parser a -> Parser [a]
+nonGreedy :: Parser a -> Parser [a]
+
+a :: Parser Char
+b :: Parser Char
+
+
+parse (greedy    a <* b) "aaab" = Right "aaa"
+parse (nonGreedy a <* b) "aaab" = Right "aaa"
+
+parse (greedy    a <* many a <* b) "aaab" = Right "aaa"
+parse (nonGreedy a <* many a <* b) "aaab" = Right ""
 
 
 
@@ -57,10 +55,13 @@ import Range.Shared.Utils
 
 
 
-> list :: Parser a -> Parser (SnocList a)
-> list element = between (char '[') (char ']')
->              $ sepBy element (char ',')
+
+
+
+
+
+
 
 > main :: IO ()
 > main = do
->   parseTest (list integer) "[1,2,3]"
+>   putStrLn "typechecks."
