@@ -5,12 +5,12 @@ greedy vs non-greedy
 > import Text.Trifecta
 
 > greedy :: Parser a -> Parser [a]
-> greedy element = ((:) <$> element <*> greedy element)
->              <|> pure []
+> greedy element = many element
+
 
 > nonGreedy :: Parser a -> Parser Char -> Parser [a]
-> nonGreedy element next = ([] <$ followedBy next)
->                      <|> ((:) <$> element <*> nonGreedy element next)
+> nonGreedy element next = manyTill element (followedBy next)
+
 
 
 parse (greedy    a   <* b) "aaab" = Right "aaa"
