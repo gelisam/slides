@@ -12,8 +12,8 @@ instance Eq Pizza where
           && (extras   p1 == extras   p2)
 
 instance Ord Pizza where
-  p1 <= p2 = toppings p1 <= toppings p2
-          && extras   p1 <= extras   p2
+  p1 <= p2 = toppings p1 <  toppings p2
+         || (toppings p1 == toppings p2 && extras p1 <= extras p2)
 
 instance ToJSON Pizza where
   toJSON (Pizza {..}) = object [ "toppings" .= toppings
