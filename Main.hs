@@ -17,5 +17,5 @@ instance Ord Pizza where
 
 instance ToJSON Pizza where
   toJSON (Pizza {..}) = object [ "toppings" .= toppings
+                               , "extras"   .= extras
                                ]
-
