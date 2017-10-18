@@ -4,8 +4,8 @@ data Pizza = Pizza
   }
 
 instance Show Pizza where
-  show (Pizza {..}) = "Pizza { toppings = " ++ show toppings ++ " }"
-
+  show (Pizza {..}) = "Pizza { toppings = " ++ show toppings
+                         ++ ", extras   = " ++ show extras ++ " }"
 
 instance Eq Pizza where
   p1 == p2 = (toppings p1 == toppings p2)
