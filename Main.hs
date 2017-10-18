@@ -1,12 +1,12 @@
 ---------------------------------------------------------------------------
 --                                                                       --
+--  What is an incidental dependency?                                    --
 --                                                                       --
 --                                                                       --
+--    incidental (adj.): accompanying but not a major                    --
+--                       part of something.                              --
 --                                                                       --
 --                                                                       --
---         Incidental dependencies in a client/server architecture       --
---         ‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾                                       --
---                     presented by Samuel Gélineau                      --
 --                                                                       --
 --                                                                       --
 --                                                                       --
