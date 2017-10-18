@@ -3,19 +3,19 @@ data Pizza = Pizza
   , extras   :: Set Topping
   }
 
-addExtra :: Topping -> Pizza -> Pizza
-addExtra topping pizza@(Pizza {..}) = do
-  pizza { extras = insert topping extras }
-
-priceOrder :: Map Pizza Int -> Int
-priceOrder order = [price pizza * count | (pizza, count) <- toList order]
-
-pricePizza :: Pizza -> Int
-pricePizza (Pizza {..}) = 10 + 2 * length extras
+instance Show Pizza where
+  show (Pizza {..}) = "Pizza { toppings = " ++ show toppings ++ " }"
 
 
+instance Eq Pizza where
+  p1 == p2 = (toppings p1 == toppings p2)
 
 
+instance Ord Pizza where
+  p1 <= p2 = toppings p1 <= toppings p2
 
 
+instance ToJSON Pizza where
+  toJSON (Pizza {..}) = object [ "toppings" .= toppings
+                               ]
 
