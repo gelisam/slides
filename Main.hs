@@ -8,10 +8,10 @@ addExtra topping pizza@(Pizza {..}) = do
   pizza { extras = insert topping extras }
 
 priceOrder :: Map Pizza Int -> Int
-priceOrder order = [10 * count | (pizza, count) <- toList order]
+priceOrder order = [price pizza * count | (pizza, count) <- toList order]
 
-
-
+pricePizza :: Pizza -> Int
+pricePizza (Pizza {..}) = 10 + 2 * length extras
 
 
 
