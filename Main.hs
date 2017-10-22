@@ -1,21 +1,21 @@
-data Pizza = Pizza
-  { toppings :: Set Topping
-  , extras   :: Set Topping
-  }
-
-
-data PizzaUpdate
-  = AddTopping Topping
-  | AddExtra   Topping
-
-applyPizzaUpdate :: Pizza -> PizzaUpdate -> Pizza
-applyPizzaUpdate pizza@(Pizza {..}) = \case
-  AddTopping topping -> pizza { toppings = insert topping toppings }
-  AddExtra   topping -> pizza { extras   = insert topping extras   }
-
-instance Show   PizzaUpdate
-instance Eq     PizzaUpdate
-instance Ord    PizzaUpdate
-instance ToJSON PizzaUpdate
-
-
+---------------------------------------------------------------------------
+--                                                                       --
+--                                                                       --
+--                                                                       --
+--                                                                       --
+--                                                                       --
+--         Incidental dependencies in a client/server architecture       --
+--                                                                       --
+--           1. Incidental dependencies                                  --
+--         > 2. Serializable updates                                     --
+--           3. Datatype-generic programming                             --
+--           4. Type-safe diff for families of datatypes (gdiff)         --
+--           5. Datatype-generic diff                                    --
+--                                                                       --
+--                                                                       --
+--                                                                       --
+--                                                                       --
+--                                                                       --
+--                                                                       --
+--                                                                       --
+---------------------------------------------------------------------------
