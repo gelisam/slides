@@ -5,7 +5,7 @@
 --                                                                       --
 --                                                                       --
 --         Incidental dependencies in a client/server architecture       --
---         ‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾                                       --
+--                                      ‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾       --
 --                                                                       --
 --                                                                       --
 --                                                                       --
