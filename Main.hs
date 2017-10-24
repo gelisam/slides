@@ -6,12 +6,12 @@ data Pizza = Pizza
 
 
 
-data PizzaUpdate = AddTopping Topping | AddExtra Topping
+type PizzaUpdate = EditScript [Pizza] [Pizza]
 
-applyPizzaUpdate :: Pizza -> PizzaUpdate -> Pizza
-applyPizzaUpdate pizza@(Pizza {..}) = \case
-  AddTopping topping -> pizza { toppings = insert topping toppings }
-  AddExtra   topping -> pizza { extras   = insert topping extras   }
+applyPizzaUpdate :: Pizza -> PizzaUpdate -> Maybe Pizza
+applyPizzaUpdate = genericApply
+
+
 
 
 
