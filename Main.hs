@@ -3,19 +3,19 @@ data Pizza = Pizza
   , extras   :: Set Topping
   } deriving Generic
 
-instance Show Pizza where
-  show = genericShow
+genericEq :: Generic a => a -> a -> Bool
+genericEq x y = toRep p1 == toRep p2
+
+instance (Eq a, Eq b) => Eq (a, b) where
+  (x1,y1) == (x2,y2) = (x1 == x2) && (y1 == y2)
+
+instance (Eq a, Eq b) => Eq (Either a b) where
+  Left  x1 == Left  x2 = x1 == x2
+  Right y1 == Right y2 = y1 == y2
+  _        == _        = False
 
 
-instance Eq Pizza where
-  (==) = genericEq
 
 
-instance Ord Pizza where
-  (<=) = genericLeq
-
-
-instance ToJSON Pizza where
-  toJSON = genericToJSON
 
 
