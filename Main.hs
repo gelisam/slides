@@ -13,8 +13,8 @@ data EditScript :: [*] -> [*] -> * where
 Just True : []  ==> (True, False) : []
   Del JustCtor
 True : []       ==> (True, False) : []
-
-
+  Ins PairCtor
+True : []       ==> True : False : []
 
 
 
