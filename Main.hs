@@ -15,7 +15,7 @@ Just True : []  ==> (True, False) : []
 True : []       ==> (True, False) : []
   Ins PairCtor
 True : []       ==> True : False : []
-
-
+  Cpy TrueCtor
+[]              ==> False : []
 
 
