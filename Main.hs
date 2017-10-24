@@ -1,16 +1,16 @@
--- type-safe diff for families of datatypes (gdiff)
+data EditScript :: [*] -> [*] -> * where
+  Ins :: DataCtor  -- :: T1 -> T2 -> ... -> S
+      -> EditScript ts (T1:T2:...:ts')
+      -> EditScript ts (S:ts')
+  Del :: DataCtor  -- :: T1 -> T2 -> ... -> S
+      -> EditScript (T1:T2:...:ts) ts'
+      -> EditScript (S:ts) ts'
+  Cpy :: DataCtor  -- :: T1 -> T2 -> ... -> S
+      -> EditScript (T1:T2:...:ts) (T1:T2:...:ts')
+      -> EditScript (S:ts) (S:ts')
+  End :: EditScript [] []
 
-data DataCtor
-  -- Bool
-  = TrueCtor     -- :: Bool
-  | FalseCtor    -- :: Bool
 
-  -- Maybe a
-  | NothingCtor  -- :: Maybe a
-  | JustCtor     -- :: a -> Maybe a
-
-  -- (a, b)
-  | PairCtor     -- :: a -> b -> (a, b)
 
 
 
