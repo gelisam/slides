@@ -3,7 +3,7 @@ data Pizza = Pizza
   , extras   :: Set Topping
   }
 
-
+data DataCtor = PizzaCtor | ...
 
 
 type PizzaUpdate = EditScript [Pizza] [Pizza]
