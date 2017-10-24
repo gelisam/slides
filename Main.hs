@@ -4,13 +4,13 @@ class Diff a where
 
 
 Cons 1 (Cons 2 (Cons 3 Nil)) ==> Cons 1 (Cons 3 Nil)
-       .----------- Keep ----------.
-      /                             \
-  1 ==> 1       Cons 2 (Cons 3 Nil) ==> Cons 3 Nil
- no change             .------- Keep ------.
-                      /                     \
-                  2 ==> 3        Cons 3 Nil ==> Nil
-                 Replace 3          Replace Nil
+       .----------- Keep ----------.                       Cpy ConsCtor
+      /                             \                      Cpy 1
+  1 ==> 1       Cons 2 (Cons 3 Nil) ==> Cons 3 Nil         Del ConsCtor
+ no change             .------- Keep ------.          vs   Del 2
+                      /                     \              Cpy ConsCtor
+                  2 ==> 3        Cons 3 Nil ==> Nil        Cpy 3
+                 Replace 3          Replace Nil            Cpy NilCtor
 
 
 
