@@ -10,12 +10,12 @@ data EditScript :: [*] -> [*] -> * where
       -> EditScript (S:ts) (S:ts')
   End :: EditScript [] []
 
-Just True : []  ==> (True, False) : []
+Maybe Bool: []  ==> (Bool, Bool ) : []
   Del JustCtor
-True : []       ==> (True, False) : []
+Bool : []       ==> (Bool, Bool ) : []
   Ins PairCtor
-True : []       ==> True : False : []
+Bool : []       ==> Bool : Bool  : []
   Cpy TrueCtor
-[]              ==> False : []
+[]              ==> Bool  : []
   Ins FalseCtor
 []              ==> []
