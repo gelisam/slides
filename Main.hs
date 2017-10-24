@@ -17,5 +17,5 @@ True : []       ==> (True, False) : []
 True : []       ==> True : False : []
   Cpy TrueCtor
 []              ==> False : []
-
-
+  Ins FalseCtor
+[]              ==> []
