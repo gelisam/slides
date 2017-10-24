@@ -1,21 +1,21 @@
----------------------------------------------------------------------------
---                                                                       --
---                                                                       --
---                                                                       --
---                                                                       --
---                                                                       --
---         Incidental dependencies in a client/server architecture       --
---                                                                       --
---           1. Incidental dependencies                                  --
---           2. Serializable updates                                     --
---           3. Datatype-generic programming                             --
---         > 4. Type-safe diff for families of datatypes (gdiff)         --
---           5. Datatype-generic diff                                    --
---                                                                       --
---                                                                       --
---                                                                       --
---                                                                       --
---                                                                       --
---                                                                       --
---                                                                       --
----------------------------------------------------------------------------
+-- type-safe diff for families of datatypes (gdiff)
+
+data DataCtor
+  -- Bool
+  = TrueCtor     -- :: Bool
+  | FalseCtor    -- :: Bool
+
+  -- Maybe a
+  | NothingCtor  -- :: Maybe a
+  | JustCtor     -- :: a -> Maybe a
+
+  -- (a, b)
+  | PairCtor     -- :: a -> b -> (a, b)
+
+
+
+
+
+
+
+
