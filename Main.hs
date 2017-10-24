@@ -13,9 +13,9 @@ applyPizzaUpdate = genericApply
 
 
 
-
-
-
-
+instance Show   PizzaUpdate
+instance Eq     PizzaUpdate
+instance Ord    PizzaUpdate
+instance ToJSON PizzaUpdate
 
 
