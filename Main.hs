@@ -10,7 +10,7 @@ data EditScript :: [*] -> [*] -> * where
       -> EditScript (S:ts) (S:ts')
   End :: EditScript [] []
 
-
+Just True ==> (True, False)
 
 
 
