@@ -3,7 +3,7 @@ data Pizza = Pizza
   , extras   :: Set Topping
   }
 
-data DataCtor = PizzaCtor | ...
+$(generateDataCtor [''Pizza, 'Set, ''Topping])
 
 
 type PizzaUpdate = EditScript [Pizza] [Pizza]
