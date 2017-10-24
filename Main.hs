@@ -14,8 +14,8 @@ instance (Eq a, Eq b) => Eq (Either a b) where
   Right y1 == Right y2 = y1 == y2
   _        == _        = False
 
-
-
-
+data Set a = Set [a]
+instance Ord a => Eq (Set a) where
+  Set xs == Set ys = nub (sort xs) == nub (sort ys)
 
 
