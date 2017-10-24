@@ -11,8 +11,8 @@ data EditScript :: [*] -> [*] -> * where
   End :: EditScript [] []
 
 Just True : []  ==> (True, False) : []
-
-
+  Del JustCtor
+True : []       ==> (True, False) : []
 
 
 
