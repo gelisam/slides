@@ -3,8 +3,8 @@
 gdiff   :: VanillaType -> FancyType
 generic :: VanillaType -> [Instance]
 
-
-
+???     :: VanillaType -> VanillaType
+generic :: VanillaType -> [Instance]
 
 
 
