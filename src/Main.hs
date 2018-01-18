@@ -1,13 +1,11 @@
-{-# LANGUAGE RankNTypes #-}
+{-# LANGUAGE InstanceSigs, RankNTypes #-}
+import Control.Comonad
 
----- Back      s   a   =                                    a  ->         s
----- Setter'   s   a   =                            (a ->   a) -> (s ->   s)
----- Setter    s t a b =                            (a ->   b) -> (s ->   t)
----- Fold      s   a   = forall m. Monoid m      => (a ->   m) -> (s ->   m)
-type Getter    s   a   = forall e.                  (a ->   e) -> (s ->   e)
----- Traversal s t a b = forall f. Applicative f => (a -> f b) -> (s -> f t)
----- Lens      s t a b = forall f. Functor f     => (a -> f b) -> (s -> f t)
 
+
+instance Comonad G where
+  extract :: G a -> a
+  extract (G x1) = x1                                                                                                  ; duplicate = G
 
 
 
@@ -16,7 +14,7 @@ type Getter    s   a   = forall e.                  (a ->   e) -> (s ->   e)
 
 
 
-
+eeextract = extract . extract . extract :: FGH a -> a
 
 
 
@@ -56,7 +54,47 @@ type Getter    s   a   = forall e.                  (a ->   e) -> (s ->   e)
 
 
 
-data Const m a = Const m
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+data F a = F a
+data G a = G a
+data H a = H a
+
+type FGH a = F (G (H a))
+type  GH a =    G (H a)
+
+instance Functor F where
+  fmap f (F x) = F (f x)
+
+instance Functor G where
+  fmap f (G x) = G (f x)
+
+instance Functor H where
+  fmap f (H x) = H (f x)
+
+instance Comonad F where
+  extract (F x) = x
+  duplicate = F
+
+instance Comonad H where
+  extract (H x) = x
+  duplicate = H
 
 main :: IO ()
 main = putStrLn "done."
