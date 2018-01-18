@@ -1,12 +1,5 @@
-{-# LANGUAGE RankNTypes #-}
-
----- Back      s   a   =                                    a  ->         s
-type Setter'   s   a   =                            (a ->   a) -> (s ->   s)
----- Setter    s t a b =                            (a ->   b) -> (s ->   t)
----- Fold      s   a   = forall m. Monoid m      => (a ->   m) -> (s ->   m)
----- Getter    s   a   = forall e.                  (a ->   e) -> (s ->   e)
----- Traversal s t a b = forall f. Applicative f => (a -> f b) -> (s -> f t)
----- Lens      s t a b = forall f. Functor f     => (a -> f b) -> (s -> f t)
+{-# LANGUAGE RankNTypes #-}                                                                                            {-# LANGUAGE RecordWildCards #-}
+import Control.Monad.Trans.State
 
 
 
@@ -14,9 +7,14 @@ type Setter'   s   a   =                            (a ->   a) -> (s ->   s)
 
 
 
+data Game   = Game   { _player :: Player }
+data Player = Player { _pos    :: Vec2D  }
+data Vec2D  = Vec2D  { _x, _y  :: Int    }
 
 
-
+movePlayer (dx, dy) = do
+  player.pos.x += dx
+  player.pos.y += dy
 
 
 
@@ -56,7 +54,23 @@ type Setter'   s   a   =                            (a ->   a) -> (s ->   s)
 
 
 
-data Const m a = Const m
+
+infix 4 +=
+(+=) :: Num a => Setter' s a -> a -> State s ()
+setter += dx = modify $ setter (+ dx)
+
+
+type Setter' s a = (a -> a) -> (s -> s)
+
+player :: Setter' Game   Player
+pos    :: Setter' Player Vec2D
+x      :: Setter' Vec2D  Int
+y      :: Setter' Vec2D  Int
+player f (Game   {..}) = Game   { _player = f _player, .. }
+pos    f (Player {..}) = Player { _pos    = f _pos   , .. }
+x      f (Vec2D  {..}) = Vec2D  { _x      = f _x     , .. }
+y      f (Vec2D  {..}) = Vec2D  { _y      = f _y     , .. }
+
 
 
 main :: IO ()
