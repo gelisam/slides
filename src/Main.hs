@@ -10,9 +10,9 @@ instance Comonad G where
 
 
 
-
-
-
+-- type Getter s a = s -> a
+-- 
+-- (.) :: Getter u a -> Getter s u -> Getter s a
 
 eeextract = extract . extract . extract :: FGH a -> a
 
