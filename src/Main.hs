@@ -1,20 +1,31 @@
 {-# LANGUAGE InstanceSigs, RankNTypes #-}
-import Prelude hiding (Foldable, toList)
-import Control.Monad
+import Data.Monoid
 
+type Fold s a = forall m. Monoid m => (a -> m) -> (s -> m)
 
 instance Foldable G where
-  toList :: G a -> [a]
-  toList (G x1 x2) = [x1, x2]
+  foldMap :: Monoid m => (a -> m) -> G a -> m
+  foldMap f (G x1 x2) = f x1 <> f x2
 
+--     FGH a -> m
+--           |
+--           |    GH a -> m
+--           |         |
+--           |         |     H a -> m
+--           |         |         |
+--           v         v         v
+-- fffoldMap = foldMap . foldMap . foldMap :: (a -> m) -> (FGH a -> m)
+-- fffoldMap = foldMap . foldMap . foldMap :: Fold (FGH a) a
+--           ^         ^         ^         ^
+--           |         |         |         |
+--         FGH a      GH a      H a        a  ----.
+--             m         m        m        m  <---'
 
 
 
 
 
--- (>=>) :: Monad m => (a -> m b) -> (b -> m c) -> (a -> m c)
 
-tttoList = toList >=> toList >=> toList :: FGH a -> [a]
 
 
 
@@ -66,29 +77,12 @@ tttoList = toList >=> toList >=> toList :: FGH a -> [a]
 
 
 
-
-
-
-
-
-
-data F a = F a a
+data F a
 data G a = G a a
-data H a = H a a
+data H a
 
 type FGH a = F (G (H a))
 type  GH a =    G (H a)
-
-class Foldable f where
-  toList :: f a -> [a]
-
-instance Foldable F where
-  toList :: F a -> [a]
-  toList (F x1 x2) = [x1, x2]
-
-instance Foldable H where
-  toList :: H a -> [a]
-  toList (H x1 x2) = [x1, x2]
 
 main :: IO ()
 main = putStrLn "done."
