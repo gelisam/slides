@@ -1,25 +1,12 @@
-{-# LANGUAGE InstanceSigs, RankNTypes #-}
-import Control.Comonad
+{-# LANGUAGE RankNTypes #-}
 
-type Getter s a = forall e. (a -> e) -> (s -> e)
-
-getMap :: Comonad w => (a -> e) -> (w a -> e)
-getMap f = f . extract
-
-
---    FGH a -> e
---          |
---          |   GH a -> e
---          |        |
---          |        |    H a -> e
---          |        |        |
---          v        v        v
--- gggetMap = getMap . getMap . getMap :: (a -> e) -> (FGH a -> e)
--- gggetMap = getMap . getMap . getMap :: Getter (FGH a) a
---          ^        ^        ^        ^
---          |        |        |        |
---        FGH a     GH a     H a       a  ----.
---            e        e       e       e  <---'
+---- Back      s   a   =                                    a  ->         s
+---- Setter'   s   a   =                            (a ->   a) -> (s ->   s)
+---- Setter    s t a b =                            (a ->   b) -> (s ->   t)
+---- Fold      s   a   = forall m. Monoid m      => (a ->   m) -> (s ->   m)
+type Getter    s   a   = forall e.                  (a ->   e) -> (s ->   e)
+---- Traversal s t a b = forall f. Applicative f => (a -> f b) -> (s -> f t)
+---- Lens      s t a b = forall f. Functor f     => (a -> f b) -> (s -> f t)
 
 
 
@@ -69,20 +56,7 @@ getMap f = f . extract
 
 
 
-
-
-
-
-
-
-
-
-data F a
-data G a
-data H a
-
-type FGH a = F (G (H a))
-type  GH a =    G (H a)
+data Const m a = Const m
 
 main :: IO ()
 main = putStrLn "done."
