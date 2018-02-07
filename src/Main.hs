@@ -8,7 +8,9 @@ accessRequiredFor edit doc = writeAccessTo doc
 documentsReferencedBy :: DocumentEdit -> [Document]
 documentsReferencedBy = toListOf (_EditImportList . _ImportListEdit . _Add)
 
-
+_EditImportList :: Fold DocumentEdit ImportListEdit
+_ImportListEdit :: Fold ImportListEdit (ListEdit Document)
+_Add            :: Fold (ListEdit a) a
 
 
 
@@ -77,6 +79,15 @@ data DocumentEdit
 data ImportListEdit
   = AddImport Document
   | SomeOtherImportListEdit
+
+noEffect :: (Contravariant f, Applicative f) => f a
+noEffect = contramap (const ()) (pure ())
+
+_EditImportList f (EditImportList x) = EditImportList <$> f x
+_EditImportList _ _                  = noEffect
+
+_AddImport f (AddImport x) = AddImport <$> f x
+_AddImport _ _             = noEffect
 
 
 (<>) :: Monoid a => a -> a -> a
