@@ -10,8 +10,11 @@ documentsReferencedBy (EditImportList edit) = documentsReferencedBy' edit
 documentsReferencedBy _                     = []
 
 documentsReferencedBy' :: ImportListEdit -> [Document]
-documentsReferencedBy' (AddImport doc) = [doc]
-documentsReferencedBy' _               = []
+documentsReferencedBy' (ImportListEdit edit) = documentsReferencedBy'' edit
+
+documentsReferencedBy'' :: ListEdit Document -> [Document]
+documentsReferencedBy'' (Add doc) = [doc]
+documentsReferencedBy'' _         = []
 
 
 
