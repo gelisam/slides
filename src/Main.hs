@@ -1,11 +1,7 @@
 
-SimSpace
 
-- Haskell!
-- Remote (3 in Boston, 1 in Florida, 3 in California, 1 in Michigan, 1 in Montréal)
-- Startup (3 years old)
-- Cyber Security (training security personel to evict attackers)
-- Concretely: micro-services and web apps
+accessRequiredFor :: DocumentEdit -> Document -> Access
+accessRequiredFor edit doc = writeAccessTo doc
 
 
 
