@@ -3,6 +3,7 @@ Samuel Gélineau
 
 - Lambda Montréal
 - Haskellers Montréal
+- Used Haskell for personal projects since 2006
 
 
 
