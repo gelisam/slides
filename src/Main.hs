@@ -3,23 +3,20 @@ import Data.Monoid
 
 type Fold s a = forall m. Monoid m => (a -> m) -> (s -> m)
 
-instance Foldable G where
-  foldMap :: Monoid m => (a -> m) -> G a -> m
-  foldMap f (G x1 x2) = f x1 <> f x2
+data DocumentEdit
+  = EditImportList ImportListEdit
+  | ...
 
---     FGH a -> m
---           |
---           |    GH a -> m
---           |         |
---           |         |     H a -> m
---           |         |         |
---           v         v         v
--- fffoldMap = foldMap . foldMap . foldMap :: (a -> m) -> (FGH a -> m)
--- fffoldMap = foldMap . foldMap . foldMap :: Fold (FGH a) a
---           ^         ^         ^         ^
---           |         |         |         |
---         FGH a      GH a      H a        a  ----.
---             m         m        m        m  <---'
+importListEdits :: DocumentEdit -> [ImportListEdit]
+importListEdits (EditImportList x) = [x]
+importListEdits _                  = []
+
+--              :: Fold DocumentEdit ImportListEdit
+_EditImportList :: forall m. Monoid m
+                => (ImportListEdit -> m)
+                -> (DocumentEdit -> m)
+_EditImportList f (EditImportList x) = f x
+_EditImportList _ _                  = mempty
 
 
 
@@ -71,18 +68,19 @@ instance Foldable G where
 
 
 
+data Document = Document
+data Access = Access
 
+data ImportListEdit
+  = AddImport Document
+  | SomeOtherImportListEdit
 
+readAccessTo :: Document -> Access
+readAccessTo = undefined
 
+writeAccessTo :: Document -> Access
+writeAccessTo = undefined
 
-
-
-data F a
-data G a = G a a
-data H a
-
-type FGH a = F (G (H a))
-type  GH a =    G (H a)
 
 main :: IO ()
 main = putStrLn "done."
