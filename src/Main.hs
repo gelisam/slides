@@ -7,8 +7,9 @@ type Fold      s   a   = forall m. Monoid m      => (a ->   m) -> (s ->   m)
 type Getter    s   a   = forall e.                  (a ->   e) -> (s ->   e)
 type Traversal s t a b = forall f. Applicative f => (a -> f b) -> (s -> f t)
 type Lens      s t a b = forall f. Functor f     => (a -> f b) -> (s -> f t)
-
-
+--                ^
+--                |
+-- Why s t a b? --'
 
 
 
