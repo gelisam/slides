@@ -2,6 +2,7 @@
 Samuel Gélineau
 
 - Lambda Montréal
+- Haskellers Montréal
 
 
 
