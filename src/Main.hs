@@ -1,14 +1,20 @@
-{-# LANGUAGE GADTs, RankNTypes, ScopedTypeVariables #-}
 
-type Setter    s t a b = forall f. f ~ Identity  => (a -> f b) -> (s -> f t)
-type Fold      s   a   = forall m. Monoid m      => (a ->   m) -> (s ->   m)
-type Getter    s   a   = forall e.                  (a ->   e) -> (s ->   e)
-type Traversal s t a b = forall f. Applicative f => (a -> f b) -> (s -> f t)
-type Lens      s t a b = forall f. Functor f     => (a -> f b) -> (s -> f t)
 
-toSetter :: forall s t a b
-          . Traversal s t a b -> Setter s t a b
-toSetter traversal = traversal
+
+
+                  +--------------+               Fold      Setter
+                  |   actions    |                 ^         ^
+      +-----------+--------------+                 |_________|
+      | Setter    |        set n |                      |
+      | Fold      | get n        |        Getter    Traversal     
+      | Getter    | get 1        |          ^           ^         
+      | Traversal | get n  set n |          |___________|
+      | Lens      | get 1  set 1 |                |
+      +-----------+--------------+               Lens
+
+
+
+
 
 
 
