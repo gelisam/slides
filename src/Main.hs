@@ -1,15 +1,9 @@
-{-# LANGUAGE RankNTypes #-}
+
 
 type Func a b = a -> b
-type Setter'   s   a   =                            (a ->   a) -> (s ->   s)
-type Setter    s t a b =                            (a ->   b) -> (s ->   t)
-type Fold      s   a   = forall m. Monoid m      => (a ->   m) -> (s ->   m)
-type Getter    s   a   = forall e.                  (a ->   e) -> (s ->   e)
-type Traversal s t a b = forall f. Applicative f => (a -> f b) -> (s -> f t)
-type Lens      s t a b = forall f. Functor f     => (a -> f b) -> (s -> f t)
---                ^
---                |
--- Why s t a b? --'
+
+(.) :: (a -> b) -> (b -> c) -> (a -> c)
+(.) f g x = f (g x)
 
 
 
@@ -55,11 +49,6 @@ type Lens      s t a b = forall f. Functor f     => (a -> f b) -> (s -> f t)
 
 
 
-
-
-
-
-data Const m a = Const m
 
 
 main :: IO ()
