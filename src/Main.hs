@@ -2,6 +2,8 @@
 
 accessRequiredFor :: DocumentEdit -> Document -> Access
 accessRequiredFor edit doc = writeAccessTo doc
+                          <> foldMap readAccessTo
+                                     (documentsReferencedBy edit)
 
 
 
@@ -58,8 +60,8 @@ accessRequiredFor edit doc = writeAccessTo doc
 
 
 
-data Document
-data Access
+data Document = Document
+data Access = Access
 
 readAccessTo :: Document -> Access
 readAccessTo = undefined
@@ -75,6 +77,14 @@ data DocumentEdit
 data ImportListEdit
   = AddImport Document
   | SomeOtherImportListEdit
+
+
+(<>) :: Monoid a => a -> a -> a
+(<>) = mappend
+
+instance Monoid Access where
+  mempty = Access
+  mappend Access Access = Access
 
 
 main :: IO ()
