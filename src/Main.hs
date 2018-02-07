@@ -1,4 +1,4 @@
-
+import Control.Lens
 
 accessRequiredFor :: DocumentEdit -> Document -> Access
 accessRequiredFor edit doc = writeAccessTo doc
@@ -6,15 +6,7 @@ accessRequiredFor edit doc = writeAccessTo doc
                                      (documentsReferencedBy edit)
 
 documentsReferencedBy :: DocumentEdit -> [Document]
-documentsReferencedBy (EditImportList edit) = documentsReferencedBy' edit
-documentsReferencedBy _                     = []
-
-documentsReferencedBy' :: ImportListEdit -> [Document]
-documentsReferencedBy' (ImportListEdit edit) = documentsReferencedBy'' edit
-
-documentsReferencedBy'' :: ListEdit Document -> [Document]
-documentsReferencedBy'' (Add doc) = [doc]
-documentsReferencedBy'' _         = []
+documentsReferencedBy = toListOf (_EditImportList . _ImportListEdit . _Add)
 
 
 
