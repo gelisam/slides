@@ -1,22 +1,12 @@
-{-# LANGUAGE InstanceSigs, RankNTypes #-}
-import Data.Monoid
+{-# LANGUAGE RankNTypes #-}
 
-type Fold s a = forall m. Monoid m => (a -> m) -> (s -> m)
-
-data DocumentEdit
-  = EditImportList ImportListEdit
-  | ...
-
-importListEdits :: DocumentEdit -> [ImportListEdit]
-importListEdits (EditImportList x) = [x]
-importListEdits _                  = []
-
---              :: Fold DocumentEdit ImportListEdit
-_EditImportList :: forall m. Monoid m
-                => (ImportListEdit -> m)
-                -> (DocumentEdit -> m)
-_EditImportList f (EditImportList x) = f x
-_EditImportList _ _                  = mempty
+---- Back      s   a   =                                    a  ->         s
+---- Setter'   s   a   =                            (a ->   a) -> (s ->   s)
+---- Setter    s t a b =                            (a ->   b) -> (s ->   t)
+type Fold      s   a   = forall m. Monoid m      => (a ->   m) -> (s ->   m)
+---- Getter    s   a   = forall e.                  (a ->   e) -> (s ->   e)
+---- Traversal s t a b = forall f. Applicative f => (a -> f b) -> (s -> f t)
+---- Lens      s t a b = forall f. Functor f     => (a -> f b) -> (s -> f t)
 
 
 
@@ -66,21 +56,7 @@ _EditImportList _ _                  = mempty
 
 
 
-
-
-data Document = Document
-data Access = Access
-
-data ImportListEdit
-  = AddImport Document
-  | SomeOtherImportListEdit
-
-readAccessTo :: Document -> Access
-readAccessTo = undefined
-
-writeAccessTo :: Document -> Access
-writeAccessTo = undefined
-
+data Const m a = Const m
 
 main :: IO ()
 main = putStrLn "done."
