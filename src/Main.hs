@@ -5,6 +5,11 @@ accessRequiredFor edit doc = writeAccessTo doc
                           <> foldMap readAccessTo
                                      (documentsReferencedBy edit)
 
+documentsReferencedBy :: DocumentEdit -> [Document]
+documentsReferencedBy (EditImportList edit) = documentsReferencedBy' edit
+documentsReferencedBy _                     = []
+
+
 
 
 
