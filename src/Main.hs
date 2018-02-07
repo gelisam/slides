@@ -1,6 +1,6 @@
 {-# LANGUAGE RankNTypes #-}
 
-
+type Func a b = a -> b
 type Setter'   s   a   =                            (a ->   a) -> (s ->   s)
 type Setter    s t a b =                            (a ->   b) -> (s ->   t)
 type Fold      s   a   = forall m. Monoid m      => (a ->   m) -> (s ->   m)
@@ -10,6 +10,8 @@ type Lens      s t a b = forall f. Functor f     => (a -> f b) -> (s -> f t)
 --                ^
 --                |
 -- Why s t a b? --'
+
+
 
 
 
