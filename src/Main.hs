@@ -1,6 +1,6 @@
 {-# LANGUAGE GADTs, RankNTypes, ScopedTypeVariables #-}
 
-type Setter    s t a b =                            (a ->   b) -> (s ->   t)
+type Setter    s t a b = forall f. f ~ Identity  => (a -> f b) -> (s -> f t)
 type Fold      s   a   = forall m. Monoid m      => (a ->   m) -> (s ->   m)
 type Getter    s   a   = forall e.                  (a ->   e) -> (s ->   e)
 type Traversal s t a b = forall f. Applicative f => (a -> f b) -> (s -> f t)
@@ -8,13 +8,7 @@ type Lens      s t a b = forall f. Functor f     => (a -> f b) -> (s -> f t)
 
 toSetter :: forall s t a b
           . Traversal s t a b -> Setter s t a b
-toSetter traversal f s = runIdentity t'
-  where
-    f' :: a -> Identity b
-    f' = Identity . f
-
-    t' :: Identity t
-    t' = traversal f' s
+toSetter traversal = traversal
 
 
 
