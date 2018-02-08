@@ -1,8 +1,8 @@
-{-# LANGUAGE ExistentialQuantification, RankNTypes #-}
+{-# LANGUAGE ExistentialQuantification, RankNTypes, TemplateHaskell #-}
 module Main where
 import Test.DocTest
 
-
+import Control.Lens
 
 
 data Object
@@ -19,11 +19,22 @@ data NetworkCardBrand3 = NetworkCardBrand3 Int Double Double
 data Printer           = Printer
 
 
-data SomeNetworkCard = forall junk. SomeNetworkCard
+data SomeNetworkCard = SomeNetworkCard
   { someNetworkCardMacAddress :: Int
-  , someNetworkCardJunk       :: junk
-  , someNetworkCardToObject   :: Int -> junk -> Object
+  , someNetworkCardToObject   :: Int -> Object
   }
+
+_SomeNetworkCard :: Prism' Object SomeNetworkCard
+_SomeNetworkCard = prism' unfocus focus
+  where
+    unfocus :: SomeNetworkCard -> Object
+    unfocus (SomeNetworkCard i toObject) = toObject i
+
+    focus :: Object -> Maybe SomeNetworkCard
+    focus (ObjectNetworkCardBrand1 (NetworkCardBrand1 i    )) = Just $ SomeNetworkCard i $ \i' -> ObjectNetworkCardBrand1 $ NetworkCardBrand1 i'
+    focus (ObjectNetworkCardBrand2 (NetworkCardBrand2 i x  )) = Just $ SomeNetworkCard i $ \i' -> ObjectNetworkCardBrand2 $ NetworkCardBrand2 i' x
+    focus (ObjectNetworkCardBrand3 (NetworkCardBrand3 i x y)) = Just $ SomeNetworkCard i $ \i' -> ObjectNetworkCardBrand3 $ NetworkCardBrand3 i' x y
+    focus _                                                   = Nothing
 
 
 
