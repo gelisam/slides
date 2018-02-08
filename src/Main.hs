@@ -10,15 +10,17 @@ data Object
   | ObjectNetworkCard  NetworkCard
   | ObjectPrinter      Printer
 
-data NetworkCard
-  = NetworkCard1 NetworkCardBrand1
-  | NetworkCard2 NetworkCardBrand2
-  | NetworkCard3 NetworkCardBrand3
+data NetworkCard = NetworkCard
+  { networkCardMacAddress        :: Int
+  , networkCardBrandSpecificData :: BrandSpecificData
+  }
+
+data BrandSpecificData
+  = BrandSpecificData1
+  | BrandSpecificData2 String
+  | BrandSpecificData3 Double Double
 
 data GraphicsCard      = GraphicsCard
-data NetworkCardBrand1 = NetworkCardBrand1 Int
-data NetworkCardBrand2 = NetworkCardBrand2 Int String
-data NetworkCardBrand3 = NetworkCardBrand3 Int Double Double
 data Printer           = Printer
 
 
