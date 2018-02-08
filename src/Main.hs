@@ -6,7 +6,13 @@ import Control.Lens
 
 
 data AndOr a b = OnlyLeft a | OnlyRight b | Both a b
+  deriving Show
 
+-- |
+-- >>> toListOf (each . _Only) [OnlyLeft "foo?", OnlyRight "bar!", Both "?" "!"]
+-- [Left "foo?",Right "bar!"]
+-- >>> view (_1 . re _Only) (Left "foo", Right "bar")
+-- OnlyLeft "foo"
 _Only :: Prism' (AndOr a b) (Either a b)
 _Only = prism' unfocus focus
   where
