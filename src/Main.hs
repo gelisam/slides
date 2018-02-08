@@ -6,21 +6,16 @@ import Test.DocTest
 
 
 data Object
-  = ObjectGraphicsCard GraphicsCard
-  | ObjectNetworkCard  NetworkCard
-  | ObjectPrinter      Printer
-
-data NetworkCard = NetworkCard
-  { networkCardMacAddress        :: Int
-  , networkCardBrandSpecificData :: BrandSpecificData
-  }
-
-data BrandSpecificData
-  = BrandSpecificData1
-  | BrandSpecificData2 String
-  | BrandSpecificData3 Double Double
+  = ObjectGraphicsCard      GraphicsCard
+  | ObjectNetworkCardBrand1 NetworkCardBrand1
+  | ObjectNetworkCardBrand2 NetworkCardBrand2
+  | ObjectNetworkCardBrand3 NetworkCardBrand3
+  | ObjectPrinter           Printer
 
 data GraphicsCard      = GraphicsCard
+data NetworkCardBrand1 = NetworkCardBrand1 Int
+data NetworkCardBrand2 = NetworkCardBrand2 Int String
+data NetworkCardBrand3 = NetworkCardBrand3 Int Double Double
 data Printer           = Printer
 
 
