@@ -6,11 +6,14 @@ import Test.DocTest
 
 
 data Object
-  = ObjectGraphicsCard      GraphicsCard
-  | ObjectNetworkCardBrand1 NetworkCardBrand1
-  | ObjectNetworkCardBrand2 NetworkCardBrand2
-  | ObjectNetworkCardBrand3 NetworkCardBrand3
-  | ObjectPrinter           Printer
+  = ObjectGraphicsCard GraphicsCard
+  | ObjectNetworkCard  NetworkCard
+  | ObjectPrinter      Printer
+
+data NetworkCard
+  = NetworkCard1 NetworkCardBrand1
+  | NetworkCard2 NetworkCardBrand2
+  | NetworkCard3 NetworkCardBrand3
 
 data GraphicsCard      = GraphicsCard
 data NetworkCardBrand1 = NetworkCardBrand1
