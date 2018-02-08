@@ -5,7 +5,7 @@ import Test.DocTest
 
 
 
-data These a b = This a | That b | These a b
+data AndOr a b = OnlyLeft a | OnlyRight b | Both a b
 
 
 
