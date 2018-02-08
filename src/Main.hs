@@ -19,6 +19,13 @@ data NetworkCardBrand3 = NetworkCardBrand3 Int Double Double
 data Printer           = Printer
 
 
+data SomeNetworkCard = forall junk. SomeNetworkCard
+  { someNetworkCardMacAddress :: Int
+  , someNetworkCardJunk       :: junk
+  , someNetworkCardToObject   :: Int -> junk -> Object
+  }
+
+
 
 
 
