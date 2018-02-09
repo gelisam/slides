@@ -50,6 +50,15 @@ _SomeNetworkCard = prism' unfocus focus
     focus (ObjectNetworkCardBrand3 n) = Just $ SomeNetworkCard n ObjectNetworkCardBrand3
     focus _                           = Nothing
 
+-- |
+-- >>> :{
+-- toListOf (each . _SomeNetworkCard . macAddress)
+--   [ ObjectNetworkCardBrand1 (NetworkCardBrand1 1)
+--   , ObjectNetworkCardBrand2 (NetworkCardBrand2 2 "foo")
+--   , ObjectNetworkCardBrand3 (NetworkCardBrand3 3 1.5 4.2)
+--   ]
+-- :}
+-- [1,2,3]
 instance HasMacAddress SomeNetworkCard where
   macAddress f (SomeNetworkCard n toObject) = (\n' -> SomeNetworkCard n' toObject) <$> macAddress f n
 
