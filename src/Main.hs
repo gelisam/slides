@@ -20,10 +20,21 @@ data Printer           = Printer
 
 
 data SomeNetworkCard = SomeNetworkCard
-  { someNetworkCardMacAddress :: Int
-  , someNetworkCardToObject   :: Int -> Object
+  { _someNetworkCardMacAddress :: Int
+  , _someNetworkCardToObject   :: Int -> Object
   }
 
+makeLenses ''SomeNetworkCard
+
+-- |
+-- >>> :{
+-- toListOf (each . _SomeNetworkCard . someNetworkCardMacAddress)
+--   [ ObjectNetworkCardBrand1 (NetworkCardBrand1 1)
+--   , ObjectNetworkCardBrand2 (NetworkCardBrand2 2 "foo")
+--   , ObjectNetworkCardBrand3 (NetworkCardBrand3 3 1.5 4.2)
+--   ]
+-- :}
+-- [1,2,3]
 _SomeNetworkCard :: Prism' Object SomeNetworkCard
 _SomeNetworkCard = prism' unfocus focus
   where
