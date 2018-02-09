@@ -50,6 +50,8 @@ _SomeNetworkCard = prism' unfocus focus
     focus (ObjectNetworkCardBrand3 n) = Just $ SomeNetworkCard n ObjectNetworkCardBrand3
     focus _                           = Nothing
 
+instance HasMacAddress SomeNetworkCard where
+  macAddress f (SomeNetworkCard n toObject) = (\n' -> SomeNetworkCard n' toObject) <$> macAddress f n
 
 
 
