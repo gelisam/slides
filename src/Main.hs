@@ -38,6 +38,18 @@ data SomeNetworkCard = forall n. HasMacAddress n =>
   , someNetworkCardToObject    :: n -> Object
   }
 
+_SomeNetworkCard :: Prism' Object SomeNetworkCard
+_SomeNetworkCard = prism' unfocus focus
+  where
+    unfocus :: SomeNetworkCard -> Object
+    unfocus (SomeNetworkCard n toObject) = toObject n
+
+    focus :: Object -> Maybe SomeNetworkCard
+    focus (ObjectNetworkCardBrand1 n) = Just $ SomeNetworkCard n ObjectNetworkCardBrand1
+    focus (ObjectNetworkCardBrand2 n) = Just $ SomeNetworkCard n ObjectNetworkCardBrand2
+    focus (ObjectNetworkCardBrand3 n) = Just $ SomeNetworkCard n ObjectNetworkCardBrand3
+    focus _                           = Nothing
+
 
 
 
