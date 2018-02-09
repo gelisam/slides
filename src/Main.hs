@@ -32,6 +32,13 @@ instance HasMacAddress NetworkCardBrand3 where
   macAddress f (NetworkCardBrand3 x y z) = (\x' -> NetworkCardBrand3 x' y z) <$> f x
 
 
+data SomeNetworkCard = SomeNetworkCard
+  { someNetworkCardMacAddress :: Int
+  , someNetworkCardToObject   :: Int -> Object
+  }
+
+
+
 
 
 
