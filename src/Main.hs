@@ -59,6 +59,17 @@ _SomeNetworkCard = prism' unfocus focus
 --   ]
 -- :}
 -- [1,2,3]
+--
+-- >>> :{
+-- mapM_ print $ over (each . _SomeNetworkCard . macAddress) (+100)
+--   [ ObjectNetworkCardBrand1 (NetworkCardBrand1 1)
+--   , ObjectNetworkCardBrand2 (NetworkCardBrand2 2 "foo")
+--   , ObjectNetworkCardBrand3 (NetworkCardBrand3 3 1.5 4.2)
+--   ]
+-- :}
+-- ObjectNetworkCardBrand1 (NetworkCardBrand1 101)
+-- ObjectNetworkCardBrand2 (NetworkCardBrand2 102 "foo")
+-- ObjectNetworkCardBrand3 (NetworkCardBrand3 103 1.5 4.2)
 instance HasMacAddress SomeNetworkCard where
   macAddress f (SomeNetworkCard n toObject) = (\n' -> SomeNetworkCard n' toObject) <$> macAddress f n
 
