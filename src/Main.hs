@@ -11,12 +11,13 @@ data Object
   | ObjectNetworkCardBrand2 NetworkCardBrand2
   | ObjectNetworkCardBrand3 NetworkCardBrand3
   | ObjectPrinter           Printer
+  deriving Show
 
-data GraphicsCard      = GraphicsCard
-data NetworkCardBrand1 = NetworkCardBrand1 Int
-data NetworkCardBrand2 = NetworkCardBrand2 Int String
-data NetworkCardBrand3 = NetworkCardBrand3 Int Double Double
-data Printer           = Printer
+data GraphicsCard      = GraphicsCard                         deriving Show
+data NetworkCardBrand1 = NetworkCardBrand1 Int                deriving Show
+data NetworkCardBrand2 = NetworkCardBrand2 Int String         deriving Show
+data NetworkCardBrand3 = NetworkCardBrand3 Int Double Double  deriving Show
+data Printer           = Printer                              deriving Show
 
 
 data SomeNetworkCard = SomeNetworkCard
@@ -35,6 +36,17 @@ makeLenses ''SomeNetworkCard
 --   ]
 -- :}
 -- [1,2,3]
+--
+-- >>> :{
+-- mapM_ print $ over (each . _SomeNetworkCard . someNetworkCardMacAddress) (+100)
+--   [ ObjectNetworkCardBrand1 (NetworkCardBrand1 1)
+--   , ObjectNetworkCardBrand2 (NetworkCardBrand2 2 "foo")
+--   , ObjectNetworkCardBrand3 (NetworkCardBrand3 3 1.5 4.2)
+--   ]
+-- :}
+-- ObjectNetworkCardBrand1 (NetworkCardBrand1 101)
+-- ObjectNetworkCardBrand2 (NetworkCardBrand2 102 "foo")
+-- ObjectNetworkCardBrand3 (NetworkCardBrand3 103 1.5 4.2)
 _SomeNetworkCard :: Prism' Object SomeNetworkCard
 _SomeNetworkCard = prism' unfocus focus
   where
