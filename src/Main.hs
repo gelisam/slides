@@ -1,22 +1,21 @@
 module Main where
 import Test.DocTest
 
-import Control.Monad.IO.Class
-import Control.Monad.State
+
+
+
 
 -- |
--- >>> openFile "myfile"
+-- >>> withFile "myfile" $ putStrLn "doing stuff with myfile"
 -- opening myfile
-openFile :: FilePath -> IO ()
-openFile filePath = putStrLn ("opening " ++ filePath)
-
--- |
--- >>> flip execStateT "foo" $ liftedOpenFile "myfile"
--- opening myfile
--- "foo"
-liftedOpenFile :: MonadIO m => FilePath -> m ()
-liftedOpenFile = liftIO    -- IO ()    -> m ()
-               . openFile  -- FilePath -> IO ()
+-- doing stuff with myfile
+-- closing myfile
+withFile :: FilePath -> IO a -> IO a
+withFile filePath body = do
+  putStrLn ("opening " ++ filePath)
+  x <- body
+  putStrLn ("closing " ++ filePath)
+  pure x
 
 
 main :: IO ()
