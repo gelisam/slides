@@ -15,7 +15,7 @@ test1 = mapConcurrently_ tell [["abc"], ["def"]]
 
 -- |
 -- >>> execStateT test2 "foo"
--- ...
+-- "foo"
 test2 :: StateT String IO ()
 test2 = mapConcurrently_ modify [(++"!"), (++"?")]
 
