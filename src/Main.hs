@@ -21,7 +21,7 @@ test2 = mapConcurrently_ modify [(++"!"), (++"?")]
 
 -- |
 -- >>> execWriterT test3
--- ...
+-- ["abc"]
 test3 :: WriterT [String] IO ()
 test3 = tell ["abc"] `finally` tell ["def"]
 
