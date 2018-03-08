@@ -1,33 +1,44 @@
 module Main where
 import Test.DocTest
 
+import Control.Concurrent.Async.Lifted
+import Control.Exception.Lifted
 import Control.Monad.IO.Class
 import Control.Monad.State
 import Control.Monad.Writer
 
-
-withFile :: FilePath -> IO a -> IO a
-withFile filePath body = do
-  putStrLn ("opening " ++ filePath)
-  x <- body
-  putStrLn ("closing " ++ filePath)
-  pure x
+-- |
+-- >>> execWriterT test1
+-- ...
+test1 :: WriterT [String] IO ()
+test1 = mapConcurrently_ tell [["abc"], ["def"]]
 
 -- |
--- >>> execWriterT $ liftedWithFile "myfile" $ tell ["abc"]
--- opening myfile
--- closing myfile
--- ["abc"]
--- >>> flip execStateT "foo" $ liftedWithFile "myfile" $ modify (++ "!")
--- opening myfile
--- closing myfile
--- "foo!"
-liftedWithFile :: MonadIO m => FilePath -> m a -> m a
-liftedWithFile filePath body = do
-  liftIO $ putStrLn ("opening " ++ filePath)
-  x <- body
-  liftIO $ putStrLn ("closing " ++ filePath)
-  pure x
+-- >>> execStateT test2 "foo"
+-- ...
+test2 :: StateT String IO ()
+test2 = mapConcurrently_ modify [(++"!"), (++"?")]
+
+-- |
+-- >>> execWriterT test3
+-- ...
+test3 :: WriterT [String] IO ()
+test3 = tell ["abc"] `finally` tell ["def"]
+
+-- |
+-- >>> execStateT test4 "foo"
+-- ...
+test4 :: StateT String IO ()
+test4 = modify (++"!") `finally` modify (++"?")
+
+-- |
+-- >>> execStateT test5 "foo"
+-- ...
+-- ...
+test5 :: StateT String IO ()
+test5 = modify (++"!") `finally` do
+  s <- get
+  liftIO $ print s
 
 
 main :: IO ()
