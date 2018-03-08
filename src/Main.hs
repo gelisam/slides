@@ -33,7 +33,7 @@ test4 = modify (++"!") `finally` modify (++"?")
 
 -- |
 -- >>> execStateT test5 "foo"
--- ...
+-- "foo"
 -- "foo!"
 test5 :: StateT String IO ()
 test5 = modify (++"!") `finally` do
