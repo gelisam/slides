@@ -13,6 +13,77 @@ class MonadIO m => ToIO m where
   toIO :: m a
        -> Captured m -> IO (a, Captured m)
 
+-- |
+-- >>> :{
+-- flip execStateT "foo" $ do
+--   liftedWithFile "myfile" $ modify (++ "!")
+-- :}
+-- opening myfile
+-- closing myfile
+-- "foo!"
+liftedWithFile :: (MonadIO m, ToIO m) => FilePath -> m a -> m a
+liftedWithFile filePath body = do
+  captured <- capture
+  (x, captured') <- liftIO $ withFile filePath (toIO body captured)
+  restore captured'
+  pure x
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+withFile :: FilePath -> IO a -> IO a
+withFile filePath body = do
+  putStrLn ("opening " ++ filePath)
+  x <- body
+  putStrLn ("closing " ++ filePath)
+  pure x
+
+
+
 instance ToIO IO where
   type Captured IO = ()
   capture = pure ()
