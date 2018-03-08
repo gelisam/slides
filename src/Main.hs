@@ -31,8 +31,12 @@ liftedWithFile filePath body = do
 -- |
 -- >>> :{
 -- flip execStateT "foo" $ do
---   modify (++ "!") `liftedFinally` modify (++ "?")
+--   modify (++ "!") `liftedFinally` do
+--     s <- get
+--     liftIO $ print s
+--     modify (++ "?")
 -- :}
+-- "foo"
 -- "foo!"
 liftedFinally :: (MonadIO m, ToIO m) => m a -> m b -> m a
 liftedFinally body finalizer = do
