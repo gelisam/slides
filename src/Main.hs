@@ -9,7 +9,7 @@ import Control.Monad.Writer
 
 -- |
 -- >>> execWriterT test1
--- ...
+-- ["abc","def"]
 test1 :: WriterT [String] IO ()
 test1 = mapConcurrently_ tell [["abc"], ["def"]]
 
