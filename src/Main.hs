@@ -10,6 +10,17 @@ import Data.Complex
 showInt :: Int -> String
 showInt = show
 
+-- |
+-- >>> liftedShowInt (42.0 :: Double)
+-- ...undefined
+-- ...
+-- >>> liftedShowInt (42.0 :+ 0.0 :: Complex Double)
+-- ...undefined
+-- ...
+liftedShowInt :: Num a => a -> String
+liftedShowInt = showInt    -- Int -> String
+              . undefined  -- a   -> Int
+
 
 main :: IO ()
 main = doctest ["src/Main.hs"]
