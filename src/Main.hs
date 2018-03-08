@@ -1,32 +1,12 @@
-{-# LANGUAGE TypeFamilies #-}
+{-# LANGUAGE InstanceSigs, ScopedTypeVariables #-}
 module Main where
 import Test.DocTest
 
 import Control.Exception
 import Control.Monad.IO.Class
 import Control.Monad.State
+import Data.IORef
 
-class MonadIO m => ToIO m where
-  type Captured m
-  capture :: m (Captured m)
-  restore :: Captured m -> m ()
-  toIO :: m a
-       -> Captured m -> IO (a, Captured m)
-
--- |
--- >>> :{
--- flip execStateT "foo" $ do
---   liftedWithFile "myfile" $ modify (++ "!")
--- :}
--- opening myfile
--- closing myfile
--- "foo!"
-liftedWithFile :: (MonadIO m, ToIO m) => FilePath -> m a -> m a
-liftedWithFile filePath body = do
-  captured <- capture
-  (x, captured') <- liftIO $ withFile filePath (toIO body captured)
-  restore captured'
-  pure x
 
 -- |
 -- >>> :{
@@ -36,15 +16,52 @@ liftedWithFile filePath body = do
 --     liftIO $ print s
 --     modify (++ "?")
 -- :}
--- "foo"
 -- "foo!"
-liftedFinally :: (MonadIO m, ToIO m) => m a -> m b -> m a
-liftedFinally body finalizer = do
-  captured <- capture
-  (x, captured') <- liftIO $ finally (toIO body      captured)
-                                     (toIO finalizer captured)
-  restore captured'
-  pure x
+-- "foo!?"
+class Monad m => MonadFinally m where
+  generalFinally :: m a -> (Maybe a -> m b) -> m (a, b)
+
+liftedFinally :: MonadFinally m
+              => m a -> m b -> m a
+liftedFinally body finalizer = fst <$> generalFinally body (const finalizer)
+
+
+instance MonadFinally IO where
+  generalFinally :: forall a b
+                  . IO a
+                 -> (Maybe a -> IO b)
+                 -> IO (a, b)
+  generalFinally body finalizer = do
+    aRef <- newIORef Nothing
+    bRef <- newIORef undefined
+    let body' :: IO a
+        body' = do
+          a <- body
+          writeIORef aRef (Just a)
+          pure a
+        finalizer' :: IO ()
+        finalizer' = do
+          aMay <- readIORef aRef
+          b <- finalizer aMay
+          writeIORef bRef b
+    a <- finally body' finalizer'
+    b <- readIORef bRef
+    pure (a, b)
+
+instance MonadFinally m => MonadFinally (StateT s m) where
+  generalFinally :: forall  a b
+                  . StateT s m a
+                 -> (Maybe a -> StateT s m b)
+                 -> StateT s m (a, b)
+  generalFinally body finalizer = StateT $ \s0 -> do
+    let body' :: m (a, s)
+        body' = runStateT body s0
+        finalizer' :: Maybe (a, s) -> m (b, s)
+        finalizer' (Just (a, s1)) = runStateT (finalizer (Just a)) s1
+        finalizer' Nothing        = runStateT (finalizer Nothing)  s0
+    ((a, _s1), (b, s2)) <- generalFinally body' finalizer'
+    pure ((a, b), s2)
+
 
 
 
@@ -98,28 +115,6 @@ withFile filePath body = do
   putStrLn ("closing " ++ filePath)
   pure x
 
-
-
-instance ToIO IO where
-  type Captured IO = ()
-  capture = pure ()
-  restore () = pure ()
-  toIO body () = do
-    x <- body
-    pure (x, ())
-
-instance ToIO m => ToIO (StateT s m) where
-  type Captured (StateT s m) = (s, Captured m)
-  capture = do
-    s <- get
-    captured <- lift capture
-    pure (s, captured)
-  restore (s, captured) = do
-    put s
-    lift $ restore captured
-  toIO body (s, captured) = do
-    ((x, s'), captured') <- toIO (runStateT body s) captured
-    pure (x, (s', captured'))
 
 
 main :: IO ()
