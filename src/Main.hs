@@ -27,7 +27,7 @@ test3 = tell ["abc"] `finally` tell ["def"]
 
 -- |
 -- >>> execStateT test4 "foo"
--- ...
+-- "foo!"
 test4 :: StateT String IO ()
 test4 = modify (++"!") `finally` modify (++"?")
 
