@@ -2,9 +2,9 @@
 module Main where
 import Test.DocTest
 
+import Control.Exception
 import Control.Monad.IO.Class
 import Control.Monad.State
-
 
 class MonadIO m => ToIO m where
   type Captured m
@@ -28,7 +28,19 @@ liftedWithFile filePath body = do
   restore captured'
   pure x
 
-
+-- |
+-- >>> :{
+-- flip execStateT "foo" $ do
+--   modify (++ "!") `liftedFinally` modify (++ "?")
+-- :}
+-- "foo!"
+liftedFinally :: (MonadIO m, ToIO m) => m a -> m b -> m a
+liftedFinally body finalizer = do
+  captured <- capture
+  (x, captured') <- liftIO $ finally (toIO body      captured)
+                                     (toIO finalizer captured)
+  restore captured'
+  pure x
 
 
 
