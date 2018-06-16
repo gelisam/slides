@@ -1,25 +1,31 @@
-----------------------------------------------------------------------------
---                                                                        --
---                                                                        --
---                                                                        --
---                                                                        --
---                                                                        --
---                                                                        --
---                        PART I: Difference lists                        --
---                                                                        --
---                                                                        --
---                                                                        --
---                                                                        --
---                                                                        --
---                                                                        --
---                                                                        --
---                                                                        --
---                                                                        --
---                                                                        --
---                                                                        --
---                                                                        --
---                                                                        --
-----------------------------------------------------------------------------
+import Control.DeepSeq
+import Data.List
+import Test.DocTest
+
+-- |
+-- >>> :set +s
+-- >>> rnf computation
+computation :: Int
+computation = sum [1..10^6]
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -63,4 +69,4 @@
 
 
 main :: IO ()
-main = putStrLn "done."
+main = doctest ["src/Main.hs"]
