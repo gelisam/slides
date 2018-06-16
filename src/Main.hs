@@ -9,7 +9,8 @@ newtype Yoneda f a = Yoneda
 -- "FOO"
 instance Functor (Yoneda f) where
   fmap :: (a -> b) -> Yoneda f a -> Yoneda f b
-  fmap a2b ya = undefined
+  fmap a2b ya = Yoneda $ \b2r
+             -> unYoneda ya (b2r . a2b)
 
 
 
