@@ -1,17 +1,19 @@
-import Control.DeepSeq
-import Data.List
-import Data.Sequence (Seq)
-import Test.DocTest
-import qualified Data.Sequence as Seq
+data Seq a
+  = EmptyT
+  | Single a
+  | Deep Int (Digit a)
+             (Seq (Node a))
+             (Digit a)
 
--- |
--- >>> :set +s
--- >>> rnf computation
-computation :: Seq Int
-computation = myconcat [Seq.singleton x | x <- [0..10000]]
+data Digit a
+  = One   a
+  | Two   a a
+  | Three a a a
+  | Four  a a a a
 
-myconcat :: [Seq a] -> Seq a
-myconcat = foldl' (<>) Seq.empty
+data Node a
+  = Node2 Int a a
+  | Node3 Int a a a
 
 
 
@@ -74,4 +76,4 @@ myconcat = foldl' (<>) Seq.empty
 
 
 main :: IO ()
-main = doctest ["src/Main.hs"]
+main = putStrLn "done."
