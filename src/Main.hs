@@ -1,109 +1,81 @@
-import Control.DeepSeq
-import Test.DocTest
 
--- |
--- >>> :set +s
--- >>> rnf computation
-computation :: Nested Int
-computation = fmapN 1000 (+1) (makeNested 10000 0)
-
-fmapN :: Functor f => Int -> (a -> a) -> f a -> f a
-fmapN n f = fromYoneda
-          . composeN n (fmap f)
-          . makeYoneda
-
--- fromYoneda . fmap (+1) . fmap (+1) . fmap (+1) . makeYoneda
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-data Nested a
-  = Nest (Nested a)
-  | Stop a
-
-instance NFData a => NFData (Nested a) where
-  rnf (Nest x) = rnf x
-  rnf (Stop x) = rnf x
-
-instance Functor Nested where
-  fmap f (Nest nx) = Nest (fmap f nx)
-  fmap f (Stop x)  = Stop (f x)
-
-makeNested :: Int -> a -> Nested a
-makeNested n x = composeN n Nest (Stop x)
-
-
-composeN :: Int -> (a -> a) -> a -> a
-composeN n f x = iterate f x !! n
-
-
-newtype Yoneda f a = Yoneda
-  { unYoneda :: forall r. (a -> r) -> f r }
 
 instance Functor (Yoneda f) where
   fmap :: (a -> b) -> Yoneda f a -> Yoneda f b
   fmap a2b ya = Yoneda $ \b2r
              -> unYoneda ya (b2r . a2b)
 
-makeYoneda :: Functor f => f a -> Yoneda f a
-makeYoneda fa = Yoneda (<$> fa) 
+-- fromYoneda . fmap c2d . fmap b2c . fmap a2b . makeYoneda $ fa
+-- (<$> fa) (id . c2d . b2x . a2b)
 
-fromYoneda :: Yoneda f a -> f a
-fromYoneda ya = unYoneda ya id
 
+instance Functor f => Functor (Sloyeda f) where
+  fmap :: (a -> b) -> Sloyeda f a -> Sloyeda f b
+  fmap a2b ya = Sloyeda $ \b2r
+             -> b2r <$> unSloyeda ya a2b
+
+-- fromSloyeda . fmap c2d . fmap b2c . fmap a2b . makeSloyeda $ fa
+-- id <$> c2r <$> b2c <$> a2b <$> fa
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+newtype Yoneda f a = Yoneda { unYoneda :: forall r. (a -> r) -> f r }
+newtype Sloyeda f a = Sloyeda { unSloyeda :: forall r. (a -> r) -> f r }
 
 main :: IO ()
-main = doctest ["-XInstanceSigs", "-XRankNTypes", "src/Main.hs"]
+main = putStrLn "done."
