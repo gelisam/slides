@@ -5,8 +5,11 @@ import Test.DocTest
 -- |
 -- >>> :set +s
 -- >>> rnf computation
-computation :: Int
-computation = sum [1..10^6]
+computation :: [Int]
+computation = myconcat [[x] | x <- [0..10000]]
+
+myconcat :: [[a]] -> [a]
+myconcat = concat
 
 
 
