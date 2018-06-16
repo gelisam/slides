@@ -8,9 +8,11 @@ computation :: Nested Int
 computation = fmapN 1000 (+1) (makeNested 10000 0)
 
 fmapN :: Functor f => Int -> (a -> a) -> f a -> f a
-fmapN n f = composeN n (fmap f)
+fmapN n f = fromYoneda
+          . composeN n (fmap f)
+          . makeYoneda
 
--- fmap (+1) . fmap (+1) . fmap (+1)
+-- fromYoneda . fmap (+1) . fmap (+1) . fmap (+1) . makeYoneda
 
 
 
