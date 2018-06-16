@@ -7,14 +7,13 @@ newtype DList a = DList
 -- >>> fromDList mempty :: String
 -- ""
 instance Monoid (DList a) where
-  mempty = undefined
+  mempty = DList id
 
 -- |
 -- >>> fromDList (makeDList "foo" <> makeDList "bar")
 -- "foobar"
 instance Semigroup (DList a) where
-  DList f <> DList g = undefined
-
+  DList f <> DList g = DList (f . g)
 
 
 
