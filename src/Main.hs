@@ -3,11 +3,11 @@
 --                                                                        --
 --                                                                        --
 --                                                                        --
---                            Difference lists                            --
---                          + Yoneda                                      --
---                          + Codensity                                   --
 --                                                                        --
---                           by Samuel Gélineau                           --
+--                                                                        --
+--                        PART I: Difference lists                        --
+--                                                                        --
+--                                                                        --
 --                                                                        --
 --                                                                        --
 --                                                                        --
