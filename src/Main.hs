@@ -10,9 +10,8 @@ computation = myconcat [[x] | x <- [0..10000]]
 
 myconcat :: [[a]] -> [a]
 myconcat = fromDList
-         . foldl' (<>) mempty
+         . foldr (<>) mempty
          . fmap makeDList
-
 
 
 
