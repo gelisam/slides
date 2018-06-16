@@ -1,17 +1,25 @@
-import Control.DeepSeq
-import Data.List
-import Test.DocTest
+instance Semigroup (DList a) where
+  DList f <> DList g = DList (f . g)
 
--- |
--- >>> :set +s
--- >>> rnf computation
-computation :: [Int]
-computation = myconcat [[x] | x <- [0..10000]]
+makeDList :: [a] -> DList a
+makeDList xs = DList (xs ++)
 
-myconcat :: [[a]] -> [a]
-myconcat = fromDList
-         . foldr (<>) mempty
-         . fmap makeDList
+-- DList (("foo" ++) . ("bar" ++) . ("baz" ++))
+-- DList (\nil -> ("foo" ++) . ("bar" ++) . ("baz" ++) $ nil)
+-- DList (\nil -> ("foo" ++) (("bar" ++) (("baz" ++) nil)))
+-- DList (\nil -> "foo" ++ ("bar" ++ ("baz" ++ nil)))
+
+
+instance Semigroup (SList a) where
+  SList f <> SList g = SList (g . f)
+
+makeSList :: [a] -> SList a
+makeSList xs = SList (++ xs)
+
+-- SList ((++ "baz") . (++ "bar") . (++ "foo"))
+-- SList (\nil -> (++ "baz") . (++ "bar") . (++ "foo") $ nil)
+-- SList (\nil -> (++ "baz") ((++ "bar") ((++ "foo") nil)))
+-- SList (\nil -> ((nil ++ "foo") ++ "bar") ++ "baz")
 
 
 
@@ -70,19 +78,7 @@ myconcat = fromDList
 
 
 newtype DList a = DList { unDList :: [a] -> [a] }
-
-instance Monoid (DList a) where
-  mempty = DList id
-
-instance Semigroup (DList a) where
-  DList f <> DList g = DList (f . g)
-
-makeDList :: [a] -> DList a
-makeDList xs = DList (xs ++)
-
-fromDList :: DList a -> [a]
-fromDList xs = unDList xs []
-
+newtype SList a = SList { unSList :: [a] -> [a] }
 
 main :: IO ()
-main = doctest ["src/Main.hs"]
+main = putStrLn "done."
