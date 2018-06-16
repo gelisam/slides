@@ -1,76 +1,82 @@
+import Control.DeepSeq
+import Data.List
 import Test.DocTest
 
-newtype DList a = DList
-  { unDList :: [a] -> [a] }
-
 -- |
--- >>> fromDList mempty :: String
--- ""
+-- >>> :set +s
+-- >>> rnf computation
+computation :: [Int]
+computation = myconcat [[x] | x <- [0..10000]]
+
+myconcat :: [[a]] -> [a]
+myconcat = fromDList
+         . foldl' (<>) mempty
+         . fmap makeDList
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+newtype DList a = DList { unDList :: [a] -> [a] }
+
 instance Monoid (DList a) where
   mempty = DList id
 
--- |
--- >>> fromDList (makeDList "foo" <> makeDList "bar")
--- "foobar"
 instance Semigroup (DList a) where
   DList f <> DList g = DList (f . g)
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 makeDList :: [a] -> DList a
 makeDList xs = DList (xs ++)
