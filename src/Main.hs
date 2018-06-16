@@ -1,22 +1,20 @@
 import Control.DeepSeq
 import Data.List
+import Data.Sequence (Seq)
 import Test.DocTest
+import qualified Data.Sequence as Seq
 
 -- |
 -- >>> :set +s
 -- >>> rnf computation
-computation :: [Int]
-computation = myconcat [[x] | x <- [0..10000]]
+computation :: Seq Int
+computation = myconcat [Seq.singleton x | x <- [0..10000]]
 
-myconcat :: [[a]] -> [a]
-myconcat = foldl' (++) []
+myconcat :: [Seq a] -> Seq a
+myconcat = foldl' (<>) Seq.empty
 
--- (((([] ++ [0]) ++ [1]) ++ [2]) ++ [3]) ++ [4]
--- ([0,1,2] ++ [3]) ++ [4]
 
-append :: [a] -> [a] -> [a]
-append []     ys = ys
-append (x:xs) ys = x : append xs ys
+
 
 
 
