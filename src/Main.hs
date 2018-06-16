@@ -4,78 +4,73 @@ import Test.DocTest
 newtype Yoneda f a = Yoneda
   { unYoneda :: forall r. (a -> r) -> f r }
 
--- (<$>)    :: forall a r. (a -> r) -> f a -> f r
--- (<$> fx) :: forall   r. (a -> r) ->        f r
+-- |
+-- >>> fromYoneda . fmap toUpper . makeYoneda $ "foo"
+-- "FOO"
+instance Functor (Yoneda f) where
+  fmap :: (a -> b) -> Yoneda f a -> Yoneda f b
+  fmap a2b ya = undefined
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 makeYoneda :: Functor f => f a -> Yoneda f a
-makeYoneda fa = Yoneda (<$> fa) 
+makeYoneda fx = Yoneda (<$> fx) 
 
 fromYoneda :: Yoneda f a -> f a
-fromYoneda ya = unYoneda ya id
-
--- |
--- >>> unYoneda foo id
--- "foo"
--- >>> unYoneda foo toUpper
--- "FOO"
-foo :: Yoneda [] Char
-foo = makeYoneda "foo"
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+fromYoneda yx = unYoneda yx id
 
 
 main :: IO ()
-main = doctest ["-XRankNTypes", "src/Main.hs"]
+main = doctest ["-XInstanceSigs", "-XRankNTypes", "src/Main.hs"]
