@@ -10,14 +10,11 @@ computation :: Free ((,) Int) ()
 computation = forUpTo 5000 tell
 
 forUpTo :: Monad m => Int -> (Int -> m ()) -> m ()
-forUpTo n act = go 1
-  where
-    go i = unless (i >= n) $ do
-      act i
-      go (i+1)
+forUpTo 0 _   = pure ()
+forUpTo n act = do forUpTo (n-1) act
+                   act n
 
--- tell 1 >> (tell 2 >> (tell 3 >> (tell 4 >> pure ())))
-
+-- (((pure () >> tell 1) >> tell 2) >> tell 3) >> tell 4
 
 
 
