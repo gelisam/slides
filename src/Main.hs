@@ -1,25 +1,19 @@
+import Control.DeepSeq
+import Control.Monad
+import Control.Monad.Free
 import Test.DocTest
 
-data Codensity m a = Codensity
-  { unCodensity :: forall r. (a -> m r) -> m r }
-
--- (>>=)    :: forall a r. m a -> (a -> m r) -> m r
--- (mx >>=) :: forall   r.        (a -> m r) -> m r
-
-makeCodensity :: Monad m => m a -> Codensity m a
-makeCodensity mx = Codensity (mx >>=)
-
-fromCodensity :: Monad m => Codensity m a -> m a
-fromCodensity cx = unCodensity cx pure
-
 -- |
--- >>> unCodensity foo pure
--- foo
--- >>> unCodensity foo (\() -> putStrLn "bar")
--- foo
--- bar
-foo :: Codensity IO ()
-foo = makeCodensity $ putStrLn "foo"
+-- >>> numbers
+-- Free (1,Free (2,Free (3,Free (4,Pure ()))))
+numbers :: Free ((,) Int) ()
+numbers = do tell 1
+             tell 2
+             tell 3
+             tell 4
+
+tell :: w -> Free ((,) w) ()
+tell w = liftF (w, ())
 
 
 
@@ -71,6 +65,9 @@ foo = makeCodensity $ putStrLn "foo"
 
 
 
+instance NFData a => NFData (Free Maybe a) where
+  rnf (Pure x) = rnf x
+  rnf (Free x) = rnf x
 
 
 main :: IO ()
