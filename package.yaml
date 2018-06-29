@@ -1,0 +1,13 @@
+dependencies:
+  - base
+  - conduit
+  - machines
+  - transformers
+library:
+  source-dirs: src
+  default-extensions:
+    - GADTs
+    - KindSignatures
+    - LambdaCase
+    - RankNTypes
+    - ScopedTypeVariables
