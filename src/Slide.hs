@@ -21,6 +21,110 @@ import Data.Machine hiding (zipWith)
 --  listSource [2,4..]
 
 
+-- data PlanT i o m a
+-- data MachineT m i o
+
+
+machine :: MonadIO m
+        => MachineT m i o
+machine = let a :: Monad m
+                => MachineT m i Int
+              a = construct $ listSource [1..]
+              b = construct $ listSource [2..]
+              c = construct $ stutter
+              d = construct $ zipWith max
+              e = construct $ listSource [1,3..]
+              f = construct $ listSource [2,4..]
+              g = construct $ alternate
+              h = construct $ take 4
+              i = construct $ zipWith (+)
+              j = construct $ printAll
+          in capT (capT a (b ~> c) d)
+                  (capT e f (g ~> h))
+                  (i ~> j)
+
+main :: IO ()
+main = runT_ machine
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 listSource :: Monad m
            => [o] -> PlanT i o m ()
 listSource []     = pure ()
@@ -31,13 +135,10 @@ listSource (o:os) = do
 stutter :: Monad m
         => PlanT (Is a) a m ()
 stutter = do
-  maybeA <- (Just <$> await) <|> pure Nothing
-  case maybeA of
-    Nothing -> pure ()
-    Just a  -> do
-      yield a
-      yield a
-      stutter
+  a <- await
+  yield a
+  yield a
+  stutter
 
 printAll :: (MonadIO m, Show i)
          => PlanT (Is i) o m ()
@@ -70,93 +171,3 @@ alternate = do
   aR <- awaits R
   yield aR
   alternate
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-main :: IO ()
-main = putStrLn "typechecks."
