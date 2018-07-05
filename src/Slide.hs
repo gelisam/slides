@@ -21,209 +21,139 @@ import Data.Machine hiding (zipWith)
 --  listSource [2,4..]
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-verboseAwaits :: MonadIO m
-              => String -> k i -> PlanT k o m i
-verboseAwaits label k = do
-  --liftIO $ putStrLn $ label ++ " awaits"
-  r <- (Just <$> awaits k) <|> pure Nothing
-  case r of
-    Just i  -> pure i
-    Nothing -> do
-      verboseStop label ()
-      empty
-
-verboseAwait :: MonadIO m
-             => String -> PlanT (Is i) o m i
-verboseAwait label = verboseAwaits label Refl
-
-verboseYield :: (Show o, MonadIO m)
-             => String -> o -> PlanT i o m ()
-verboseYield label o = do
-  liftIO $ putStrLn $ label ++ " yields " ++ show o
+listSource :: Monad m
+           => [o] -> PlanT i o m ()
+listSource []     = pure ()
+listSource (o:os) = do
   yield o
+  listSource os
 
-verboseStop :: (Show a, MonadIO m)
-            => String -> a -> PlanT i o m a
-verboseStop label a = do
-  --liftIO $ putStrLn $ label ++ " stops"
-  pure a
-
-
-listSource :: (Show o, MonadIO m)
-           => String -> [o] -> PlanT i o m ()
-listSource label []     = verboseStop label ()
-listSource label (o:os) = do
-  verboseYield label o
-  listSource label os
-
-stutter :: (Show a, MonadIO m)
-        => String -> PlanT (Is a) a m ()
-stutter label = do
-  a <- verboseAwait label
-  verboseYield label a
-  verboseYield label a
-  stutter label
+stutter :: Monad m
+        => PlanT (Is a) a m ()
+stutter = do
+  a <- await
+  yield a
+  yield a
+  stutter
 
 printAll :: (MonadIO m, Show i)
-         => String -> PlanT (Is i) o m ()
-printAll label = do
-  i <- verboseAwait label
+         => PlanT (Is i) o m ()
+printAll = do
+  i <- await
   liftIO $ print i
-  printAll label
+  printAll
 
-take :: (Show a, MonadIO m)
-     => String -> Int -> PlanT (Is a) a m ()
-take label 0 = verboseStop label ()
-take label n = do
-  a <- verboseAwait label
-  verboseYield label a
-  take label (n-1)
+take :: Monad m
+     => Int -> PlanT (Is a) a m ()
+take 0 = pure ()
+take n = do
+  a <- await
+  yield a
+  take (n-1)
 
-zipWith :: (Show a, Show b, Show c, MonadIO m)
-        => String -> (a -> b -> c) -> PlanT (T a b) c m ()
-zipWith label f = do
-  a <- verboseAwaits label L
-  b <- verboseAwaits label R
-  verboseYield label (f a b)
-  zipWith label f
+zipWith :: Monad m
+        => (a -> b -> c) -> PlanT (T a b) c m ()
+zipWith f = do
+  a <- awaits L
+  b <- awaits R
+  yield (f a b)
+  zipWith f
 
-alternate :: (Show a, MonadIO m)
-          => String -> PlanT (T a a) a m ()
-alternate label = do
-  aL <- verboseAwaits label L
-  verboseYield label aL
-  aR <- verboseAwaits label R
-  verboseYield label aR
-  alternate label
-
-
-machineA :: MonadIO m
-         => MachineT m i Int
-machineA = construct $ listSource "A" [1..]
-
-machineB :: MonadIO m
-         => MachineT m i Int
-machineB = construct $ listSource "B" [2..]
-
-machineC :: MonadIO m
-         => MachineT m (Is Int) Int
-machineC = construct $ stutter "C"
-
-machineD :: MonadIO m
-         => MachineT m (T Int Int) Int
-machineD = construct $ zipWith "D" max
-
-machineE :: MonadIO m
-         => MachineT m i Int
-machineE = construct $ listSource "E" [1,3..]
-
-machineF :: MonadIO m
-         => MachineT m i Int
-machineF = construct $ listSource "F" [2,4..]
-
-machineG :: MonadIO m
-         => MachineT m (T Int Int) Int
-machineG = construct $ alternate "G"
-
-machineH :: MonadIO m
-         => MachineT m (Is Int) Int
-machineH = construct $ take "H" 4
-
-machineI :: MonadIO m
-         => MachineT m (T Int Int) Int
-machineI = construct $ zipWith "I" (+)
-
-machineJ :: MonadIO m
-         => MachineT m (Is Int) o
-machineJ = construct $ printAll "J"
+alternate :: Monad m
+          => PlanT (T a a) a m ()
+alternate = do
+  aL <- awaits L
+  yield aL
+  aR <- awaits R
+  yield aR
+  alternate
 
 
-machine :: MonadIO m
-        => MachineT m i o
-machine = capT (capT machineA
-                     (machineB ~> machineC)
-                     machineD)
-               (capT machineE
-                     machineF
-                     (machineG ~> machineH))
-               (machineI ~> machineJ)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 main :: IO ()
-main = runT_ machine
+main = putStrLn "typechecks."
