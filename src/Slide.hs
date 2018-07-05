@@ -5,19 +5,19 @@ import Control.Monad.IO.Class
 import Data.Machine hiding (zipWith)
 
 --             listSource [1..]
---             [1,2,3,4...]    \
---                              \[2,2,3,4...]
+--                   A         \
+--                              \
 --                               zipWith max
---                              /           \
--- [2,3,4,5...]                /             \
+--                              /     D     \
+--        B                C   /             \
 -- listSource [2..] --- stutter               \
---                      [2,2,3,3...]           zipWith (+) --- printAll
---  listSource [1,3..]                        /[3,4,6,8]
---  [1,3,5,7...]      \                      /
+--                                             zipWith (+) --- printAll
+--  listSource [1,3..]                        /   I               J
+--        E           \                      /
 --                     \                    /
 --                      alternate --- take 4
---                     /[1,2,3,4...]  [1,2,3,4]
---  [2,4,6,8...]      /
+--                     /    G           H
+--        F           /
 --  listSource [2,4..]
 
 
@@ -97,62 +97,121 @@ import Data.Machine hiding (zipWith)
 
 
 
+verboseAwaits :: MonadIO m
+              => String -> k i -> PlanT k o m i
+verboseAwaits label k = do
+  --liftIO $ putStrLn $ label ++ " awaits"
+  r <- (Just <$> awaits k) <|> pure Nothing
+  case r of
+    Just i  -> pure i
+    Nothing -> do
+      verboseStop label ()
+      empty
+
+verboseAwait :: MonadIO m
+             => String -> PlanT (Is i) o m i
+verboseAwait label = verboseAwaits label Refl
+
+verboseYield :: (Show o, MonadIO m)
+             => String -> o -> PlanT i o m ()
+verboseYield label o = do
+  liftIO $ putStrLn $ label ++ " yields " ++ show o
+  yield o
+
+verboseStop :: (Show a, MonadIO m)
+            => String -> a -> PlanT i o m a
+verboseStop label a = do
+  --liftIO $ putStrLn $ label ++ " stops"
+  pure a
 
 
+listSource :: (Show o, MonadIO m)
+           => String -> [o] -> PlanT i o m ()
+listSource label []     = verboseStop label ()
+listSource label (o:os) = do
+  verboseYield label o
+  listSource label os
+
+stutter :: (Show a, MonadIO m)
+        => String -> PlanT (Is a) a m ()
+stutter label = do
+  a <- verboseAwait label
+  verboseYield label a
+  verboseYield label a
+  stutter label
+
+printAll :: (MonadIO m, Show i)
+         => String -> PlanT (Is i) o m ()
+printAll label = do
+  i <- verboseAwait label
+  liftIO $ print i
+  printAll label
+
+take :: (Show a, MonadIO m)
+     => String -> Int -> PlanT (Is a) a m ()
+take label 0 = verboseStop label ()
+take label n = do
+  a <- verboseAwait label
+  verboseYield label a
+  take label (n-1)
+
+zipWith :: (Show a, Show b, Show c, MonadIO m)
+        => String -> (a -> b -> c) -> PlanT (T a b) c m ()
+zipWith label f = do
+  a <- verboseAwaits label L
+  b <- verboseAwaits label R
+  verboseYield label (f a b)
+  zipWith label f
+
+alternate :: (Show a, MonadIO m)
+          => String -> PlanT (T a a) a m ()
+alternate label = do
+  aL <- verboseAwaits label L
+  verboseYield label aL
+  aR <- verboseAwaits label R
+  verboseYield label aR
+  alternate label
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-machineA :: Monad m
+machineA :: MonadIO m
          => MachineT m i Int
-machineA = construct $ listSource [1..]
+machineA = construct $ listSource "A" [1..]
 
-machineB :: Monad m
+machineB :: MonadIO m
          => MachineT m i Int
-machineB = construct $ listSource [2..]
+machineB = construct $ listSource "B" [2..]
 
-machineC :: Monad m
+machineC :: MonadIO m
          => MachineT m (Is Int) Int
-machineC = construct stutter
+machineC = construct $ stutter "C"
 
-machineD :: Monad m
+machineD :: MonadIO m
          => MachineT m (T Int Int) Int
-machineD = construct $ zipWith max
+machineD = construct $ zipWith "D" max
 
-machineE :: Monad m
+machineE :: MonadIO m
          => MachineT m i Int
-machineE = construct $ listSource [1,3..]
+machineE = construct $ listSource "E" [1,3..]
 
-machineF :: Monad m
+machineF :: MonadIO m
          => MachineT m i Int
-machineF = construct $ listSource [2,4..]
+machineF = construct $ listSource "F" [2,4..]
 
-machineG :: Monad m
+machineG :: MonadIO m
          => MachineT m (T Int Int) Int
-machineG = construct alternate
+machineG = construct $ alternate "G"
 
-machineH :: Monad m
+machineH :: MonadIO m
          => MachineT m (Is Int) Int
-machineH = construct $ take 4
+machineH = construct $ take "H" 4
 
-machineI :: Monad m
+machineI :: MonadIO m
          => MachineT m (T Int Int) Int
-machineI = construct $ zipWith (+)
+machineI = construct $ zipWith "I" (+)
 
 machineJ :: MonadIO m
          => MachineT m (Is Int) o
-machineJ = construct printAll
+machineJ = construct $ printAll "J"
 
 
 machine :: MonadIO m
@@ -164,131 +223,6 @@ machine = capT (capT machineA
                      machineF
                      (machineG ~> machineH))
                (machineI ~> machineJ)
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-listSource :: Monad m
-           => [o] -> PlanT i o m ()
-listSource []     = pure ()
-listSource (o:os) = do
-  yield o
-  listSource os
-
-stutter :: Monad m
-        => PlanT (Is a) a m ()
-stutter = do
-  a <- await
-  yield a
-  yield a
-  stutter
-
-printAll :: (MonadIO m, Show i)
-         => PlanT (Is i) o m ()
-printAll = do
-  i <- await
-  liftIO $ print i
-  printAll
-
-take :: Monad m
-     => Int -> PlanT (Is a) a m ()
-take 0 = pure ()
-take n = do
-  a <- await
-  yield a
-  take (n-1)
-
-zipWith :: Monad m
-        => (a -> b -> c) -> PlanT (T a b) c m ()
-zipWith f = do
-  a <- awaits L
-  b <- awaits R
-  yield (f a b)
-  zipWith f
-
-alternate :: Monad m
-          => PlanT (T a a) a m ()
-alternate = do
-  aL <- awaits L
-  yield aL
-  aR <- awaits R
-  yield aR
-  alternate
 
 
 main :: IO ()
