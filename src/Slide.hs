@@ -31,10 +31,13 @@ listSource (o:os) = do
 stutter :: Monad m
         => PlanT (Is a) a m ()
 stutter = do
-  a <- await
-  yield a
-  yield a
-  stutter
+  maybeA <- (Just <$> await) <|> pure Nothing
+  case maybeA of
+    Nothing -> pure ()
+    Just a  -> do
+      yield a
+      yield a
+      stutter
 
 printAll :: (MonadIO m, Show i)
          => PlanT (Is i) o m ()
