@@ -22,11 +22,10 @@ concat :: [String] -> String
 concat []     = ""
 concat (x:xs) = x ++ concat xs
 
-
-
-
-
-
+fold :: (a -> a -> a) -> a -> [a] -> a
+fold cons nil = go where
+  go []     = nil
+  go (a:as) = a `cons` go as
 
 
 
