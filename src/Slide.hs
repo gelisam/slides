@@ -10,10 +10,10 @@ import Test.DocTest
 -- Nothing
 lookup :: forall k a. Eq k
        => k -> [(k,a)] -> Maybe a
-lookup key = go where
-  go :: [(k,a)] -> Maybe a
-  go []           = Nothing
-  go ((k,a):rest) = (k,a) `cons` go rest
+lookup key = fold cons Nothing where
+
+
+
 
 
   cons :: (k,a) -> Maybe a -> Maybe a
