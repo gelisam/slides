@@ -16,9 +16,9 @@ lookup key = go where
   go ((k,a):rest) = if k == key then Just a
                                 else go rest
 
-
-
-
+  cons :: (k,a) -> Maybe a -> Maybe a
+  cons (k,a) keepLooking = if k == key then Just a
+                                       else keepLooking
 
 
 fold :: (a -> a -> a) -> a -> [a] -> a
