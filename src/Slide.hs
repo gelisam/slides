@@ -13,8 +13,8 @@ lookup :: forall k a. Eq k
 lookup key = go where
   go :: [(k,a)] -> Maybe a
   go []           = Nothing
-  go ((k,a):rest) = if k == key then Just a
-                                else go rest
+  go ((k,a):rest) = (k,a) `cons` go rest
+
 
   cons :: (k,a) -> Maybe a -> Maybe a
   cons (k,a) keepLooking = if k == key then Just a
