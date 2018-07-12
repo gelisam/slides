@@ -1,0 +1,13 @@
+dependencies:
+  - base
+  - doctest
+library:
+  source-dirs: src
+  default-extensions:
+    - DeriveFunctor
+    - GADTs
+    - KindSignatures
+    - LambdaCase
+    - MultiParamTypeClasses
+    - RankNTypes
+    - ScopedTypeVariables
