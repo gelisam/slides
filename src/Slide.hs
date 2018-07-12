@@ -11,16 +11,16 @@ import Test.DocTest
 -- "foobarbaz"
 
 sum :: [Int] -> Int
-sum []     = 0
-sum (x:xs) = x + sum xs
+sum = fold (+) 0
+
 
 product :: [Int] -> Int
-product []     = 1
-product (x:xs) = x * product xs
+product = fold (*) 1
+
 
 concat :: [String] -> String
-concat []     = ""
-concat (x:xs) = x ++ concat xs
+concat = fold (++) ""
+
 
 fold :: (a -> a -> a) -> a -> [a] -> a
 fold cons nil = go where
