@@ -1,24 +1,24 @@
 module Slide where
-import Prelude hiding (lookup, foldr)
+import Prelude hiding (map, foldr)
 import Test.DocTest
 
 
 -- |
--- >>> lookup "bar" [("foo",1), ("bar",2), ("baz",3)]
--- Just 2
--- >>> lookup "lol" [("foo",1), ("bar",2), ("baz",3)]
--- Nothing
-lookup :: forall k a. Eq k
-       => k -> [(k,a)] -> Maybe a
-lookup key = foldr cons Nothing where
+-- >>> map (+10) [1,2,3]
+-- [11,12,13]
+map :: forall a b. (a -> b) -> [a] -> [b]
+map f = go where
+  go :: [a] -> [b]
+  go []     = []
+  go (a:as) = f a : go as
 
 
 
 
 
-  cons :: (k,a) -> Maybe a -> Maybe a
-  cons (k,a) keepLooking = if k == key then Just a
-                                       else keepLooking
+
+
+
 
 
 foldr :: (a -> r -> r) -> r -> [a] -> r
