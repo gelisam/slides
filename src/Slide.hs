@@ -17,7 +17,7 @@ fold :: forall t tF r. Functor tF
      => (t -> tF t) -> (tF r -> r) -> t -> r
 fold project foldF = go where
   go :: t -> r
-  go = _
+  go = project >>> fmap go >>> foldF
 
 
 
