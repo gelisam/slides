@@ -5,12 +5,44 @@ import Control.Arrow
 type Input  a = SearchTree a
 type Output a = SearchTree a
 
---        2               2           2    
---       / \             / \         / \
---      /   \           /   \       /   \
--- go  0     4   ->  ( 0     4  ,  0     4  )
---          / \             / \     \   / \
---         3   5           3   5     1 3   5
+--        2     
+--       / \    
+--      /   \   
+-- go  0     4  
+--          / \ 
+--         3   5
+--     v
+--   project
+--     v
+-- BranchF  0   2   4
+--                 / \
+--                3   5
+--     v
+--   fmap go
+--     v
+-- BranchF ( 0 , 0 )  2 (  4  ,  4  )
+--                \       / \   / \
+--                 1     3   5 3   5
+--                            /
+--                           1
+--     v
+--   (insertF &&& id)
+--     v
+--        2        BranchF ( 0 , 0 )  2  (  4  ,  4  )
+--       / \                      \        / \   / \
+-- (    /   \    ,                 1      3   5 3   5   )
+--     0     4                                 /
+--      \   / \                               1
+--       1 3   5
+--     v
+--   uncurry gather
+--     v
+--      2           2    
+--     / \         / \
+--    /   \       /   \
+-- ( 0     4  ,  0     4  )
+--        / \     \   / \
+--       3   5     1 3   5
 insert :: forall a. Ord a
        => a -> Input a -> Output a
 insert new = gcata project gather insertF where
