@@ -1,7 +1,7 @@
 module Slide where
 import Prelude
+import Control.Arrow
 import Test.DocTest
-
 
 foldList :: (ListF a r -> r) -> List a -> r
 foldList = fold $ \case
@@ -13,10 +13,11 @@ foldTree = fold $ \case
   Leaf a     -> LeafF a
   Branch l r -> BranchF l r
 
-fold     :: Functor tF
-         => (t -> tF t)
-         -> (tF      r -> r) -> t      -> r
-
+fold :: forall t tF r. Functor tF
+     => (t -> tF t) -> (tF r -> r) -> t -> r
+fold project foldF = go where
+  go :: t -> r
+  go = _
 
 
 
@@ -116,7 +117,6 @@ data Tree a
   | Branch (Tree a) (Tree a)
 
 
-fold = undefined
 
 
 main :: IO ()
