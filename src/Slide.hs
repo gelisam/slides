@@ -1,5 +1,5 @@
 module Slide where
-import Prelude hiding (map, foldr)
+import Prelude hiding (map, (++), foldr)
 import Test.DocTest
 
 
@@ -11,12 +11,12 @@ map f = foldr cons [] where
   cons :: a -> [b] -> [b]
   cons a bs = f a : bs
 
-
-
-
-
-
-
+-- |
+-- >>> "foo" ++ "bar"
+-- "foobar"
+(++) :: [a] -> [a] -> [a]
+[]     ++ ys = ys
+(x:xs) ++ ys = x : (xs ++ ys)
 
 
 
