@@ -12,8 +12,8 @@ module Slide where
 --                                                                             --
 --                                - example                                    --
 --                                - generalize                                 --
---                                > generalize                                 --
 --                                - generalize                                 --
+--                                > generalize                                 --
 --                                - generalize                                 --
 --                                - generalize                                 --
 --                                                                             --
