@@ -3,6 +3,95 @@ import Prelude
 import Test.DocTest
 
 
+foldList :: (ListF a r -> r) -> List a -> r
+
+
+
+
+foldTree :: (TreeF a r -> r) -> Tree a -> r
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 data ListF a r
   = NilF
   | ConsF a r
@@ -15,10 +104,12 @@ data List a
 --              v
 --              v
 -- cons 1 (cons 2 (cons 3 nil))
-foldList :: (ListF a r -> r) -> List a -> r
 foldList foldF = go where
-  go Nil         = foldF $ NilF
-  go (Cons a as) = foldF $ ConsF a (go as)
+  go Nil         = nil
+  go (Cons a as) = cons a (go as)
+
+  nil      = foldF NilF
+  cons a r = foldF (ConsF a r)
 
 
 data TreeF a r
@@ -33,92 +124,12 @@ data Tree a
 --                     v
 --                     v
 -- branch (leaf 1) (branch (leaf 2) (leaf 3))
-foldTree :: (TreeF a r -> r) -> Tree a -> r
 foldTree foldF = go where
-  go (Leaf a)             = foldF $ LeafF a
-  go (Branch treeL treeR) = foldF $ BranchF (go treeL) (go treeR)
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+  go (Leaf a)             = leaf a
+  go (Branch treeL treeR) = branch (go treeL) (go treeR)
+
+  leaf a       = foldF (LeafF a)
+  branch rL rR = foldF (BranchF rL rR)
 
 
 main :: IO ()
