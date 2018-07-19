@@ -17,6 +17,17 @@ zygo   :: forall s f i r. Functor f
        =>               (f     i  -> i)
        -> (s -> f s) -> (f (i, r) -> r) -> s -> r
 
+zygo2  :: forall s f i j r. Functor f
+       =>               (f        i  -> i)
+       ->               (f        j  -> j)
+       -> (s -> f s) -> (f (i, j, r) -> r) -> s -> r
+
+zygo3  :: forall s f i j k r. Functor f
+       =>               (f           i  -> i)
+       ->               (f           j  -> j)
+       ->               (f           k  -> k)
+       -> (s -> f s) -> (f (i, j, k, r) -> r) -> s -> r
+
 
 
 
@@ -108,6 +119,8 @@ para   = undefined
 unfold = undefined
 hylo   = undefined
 zygo   = undefined
+zygo2  = undefined
+zygo3  = undefined
 
 
 main :: IO ()
