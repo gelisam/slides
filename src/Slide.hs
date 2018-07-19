@@ -7,10 +7,10 @@ import Test.DocTest
 -- >>> map (+10) [1,2,3]
 -- [11,12,13]
 map :: forall a b. (a -> b) -> [a] -> [b]
-map f = go where
-  go :: [a] -> [b]
-  go []     = []
-  go (a:as) = f a : go as
+map f = foldr cons [] where
+  cons :: a -> [b] -> [b]
+  cons a bs = f a : bs
+
 
 
 
