@@ -7,9 +7,9 @@ fold :: forall t tF r. Functor tF
      => (t -> tF t) -> (tF r -> r) -> t -> r
 fold project foldF = hylo project foldF
 
-
-
-
+unfold :: forall s tF t. Functor tF
+       => (s -> tF s) -> (tF t -> t) -> a -> t
+unfold unfoldF embed = hylo unfoldF embed
 
 
 
