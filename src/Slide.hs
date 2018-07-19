@@ -22,10 +22,10 @@ insert new (Branch l a r)
 
 
 fold :: forall t tF r. Functor tF
-     => (t -> tF t) -> (tF r -> r) -> t -> r
+     => (t -> tF t) -> (tF (t, r) -> r) -> t -> r
 fold project foldF = go where
   go :: t -> r
-  go = project >>> fmap go >>> foldF
+  go = project >>> fmap (id &&& go) >>> foldF
 
 
 
