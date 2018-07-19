@@ -11,7 +11,7 @@ module Slide where
 --                               Recursion Schemes                             --
 --                                                                             --
 --                                - example                                    --
---                                                                             --
+--                                - generalize                                 --
 --                                                                             --
 --                                                                             --
 --                                                                             --
