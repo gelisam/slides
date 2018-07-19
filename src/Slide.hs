@@ -14,11 +14,11 @@ data SearchTree a
 --               3   5       1 3   5
 insert :: Ord a
        => a -> SearchTree a -> SearchTree a
-insert new Leaf = Branch Leaf new Leaf
-insert new (Branch l a r)
-  | new <= a  = Branch (insert new l) a r
-             -- Branch (insert new l) a (insert new r)
-  | otherwise = Branch l a (insert new r)
+insert new = fold projectSearchTree $ \case
+  LeafF -> Branch Leaf new Leaf
+  BranchF (treeL, insertL) a (treeR, insertR)
+    | new <= a  -> Branch insertL a treeR
+    | otherwise -> Branch treeL a insertR
 
 
 fold :: forall t tF r. Functor tF
@@ -38,12 +38,6 @@ data SearchTreeF a r
 projectSearchTree :: SearchTree a -> SearchTreeF a (SearchTree a)
 projectSearchTree Leaf           = LeafF
 projectSearchTree (Branch l a r) = BranchF l a r
-
-
-
-
-
-
 
 
 
