@@ -12,8 +12,8 @@ zygo   :: forall s f i r. Functor f
 
 -- m ~ Identity
 ghylo :: (Functor f, Comonad w)
-      => (s -> f (Identity s))
-      -> (forall x. Identity (f x) -> f (Identity x))
+      => (s -> f           s )
+      -> (forall x.           f x  -> f           x )
       -> (forall x. f (w x) -> w (f x))
       -> (f (w r) -> r)
       -> s -> r
