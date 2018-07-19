@@ -10,11 +10,11 @@ zygo   :: forall s f i r. Functor f
        =>               (f     i  -> i)
        -> (s -> f s) -> (f (i, r) -> r) -> s -> r
 
--- z ~ r
+-- z ~ (i, r)
 gcata :: Functor f
       => (s -> f s)
-      -> (r -> f r -> r)
-      -> (f r -> r)
+      -> (r -> f (i, r) -> (i, r))
+      -> (f (i, r) -> r)
       -> s -> r
 
 
