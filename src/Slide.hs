@@ -14,8 +14,8 @@ module Slide where
 --                                - generalize                                 --
 --                                - generalize                                 --
 --                                - generalize                                 --
---                                > generalize                                 --
 --                                - generalize                                 --
+--                                > generalize                                 --
 --                                                                             --
 --                                                                             --
 --                                                                             --
