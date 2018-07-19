@@ -60,7 +60,10 @@ fmap f = go where
   go (Branch treeL treeR) = Branch (go treeL) (go treeR)
 
 
-
+foldTree :: (r -> r -> r) -> (a -> r) -> Tree a -> r
+foldTree branch leaf = go where
+  go (Leaf a)             = leaf a
+  go (Branch treeL treeR) = branch (go treeL) (go treeR)
 
 
 
