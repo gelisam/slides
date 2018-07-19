@@ -1,23 +1,34 @@
 module Slide where
-import Prelude
+import Prelude hiding (sum)
 import Control.Arrow
 import Test.DocTest
 
-foldList :: (ListF a r -> r) -> List a -> r
-foldList = fold $ \case
-  Nil       -> NilF
-  Cons a as -> ConsF a as
+-- Cons 1 (Cons 2 (Cons 3 Nil))
+--     v
+--   projectList
+--     v
+-- ConsF 1 (Cons 2 (Cons 3 Nil))
+--     v
+--   fmap go
+--     v
+-- ConsF 1 5
+--     v
+--   sumF
+--     v
+-- 6
+sum :: forall a. Num a
+    => List a -> a
+sum = go where
+  go :: List a -> a
+  go = projectList >>> fmap go >>> sumF
 
-foldTree :: (TreeF a r -> r) -> Tree a -> r
-foldTree = fold $ \case
-  Leaf a     -> LeafF a
-  Branch l r -> BranchF l r
+  projectList :: List a -> ListF a (List a)
+  projectList Nil         = NilF
+  projectList (Cons a as) = ConsF a as
 
-fold :: forall t tF r. Functor tF
-     => (t -> tF t) -> (tF r -> r) -> t -> r
-fold project foldF = go where
-  go :: t -> r
-  go = project >>> fmap go >>> foldF
+  sumF :: ListF a a -> a
+  sumF NilF              = 0
+  sumF (ConsF a sumRest) = a + sumRest
 
 
 
