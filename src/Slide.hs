@@ -8,15 +8,15 @@ import Data.List
 -- [1,2,3,4,5,6,7,8]
 quickSort :: forall a. Ord a
           => [a] -> [a]
-quickSort []     = []
-quickSort (a:as) = let (lower, higher) = partition (<= a) as
-                   in quickSort lower ++ [a] ++ quickSort higher
-
-
-
-
-
-
+quickSort = fold divide conquer where
+  divide :: [a] -> SearchTreeF a [a]
+  divide []     = LeafF
+  divide (a:as) = let (lower, higher) = partition (<= a) as
+                  in BranchF lower a higher
+  
+  conquer :: SearchTreeF a [a] -> [a]
+  conquer LeafF = []
+  conquer (BranchF l a r) = l ++ [a] ++ r
 
 
 fold :: forall t tF r. Functor tF
@@ -103,6 +103,14 @@ fold project foldF = go where
 
 
 
+data SearchTreeF a r
+  = LeafF
+  | BranchF r a r
+  deriving Functor
+
+data SearchTree a
+  = Leaf
+  | Branch (SearchTree a) a (SearchTree a)
 
 
 main :: IO ()
