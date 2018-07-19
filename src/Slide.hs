@@ -14,18 +14,18 @@ data SearchTree a
 --               3   5       1 3   5
 insert :: Ord a
        => a -> SearchTree a -> SearchTree a
-insert new = fold projectSearchTree $ \case
+insert new = para projectSearchTree $ \case
   LeafF -> Branch Leaf new Leaf
   BranchF (treeL, insertL) a (treeR, insertR)
     | new <= a  -> Branch insertL a treeR
     | otherwise -> Branch treeL a insertR
 
 
-fold :: forall t tF r. Functor tF
+para :: forall t tF r. Functor tF
      => (t -> tF t) -> (tF (t, r) -> r) -> t -> r
-fold project foldF = go where
+para project paraF = go where
   go :: t -> r
-  go = project >>> fmap (id &&& go) >>> foldF
+  go = project >>> fmap (id &&& go) >>> paraF
 
 
 
