@@ -15,8 +15,8 @@ map f = foldr cons [] where
 -- >>> "foo" ++ "bar"
 -- "foobar"
 (++) :: [a] -> [a] -> [a]
-[]     ++ ys = ys
-(x:xs) ++ ys = x : (xs ++ ys)
+xs ++ ys = foldr (:) ys xs
+
 
 
 
