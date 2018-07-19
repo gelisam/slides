@@ -10,14 +10,14 @@ zygo   :: forall s f i r. Functor f
        =>               (f     i  -> i)
        -> (s -> f s) -> (f (i, r) -> r) -> s -> r
 
--- w ~ (i,)
+-- w ~ EnvT i Identity
 gcata :: Functor f
       => (s -> f s)
       -> (forall x. f       (i, x) ->       (i, f x))
       -> (f       (i, r) -> r)
       -> s -> r
 
-
+data EnvT i f a = EnvT i (f a)
 
 
 
