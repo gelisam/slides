@@ -56,10 +56,10 @@ depth = foldTree cons (const 1) where
 fmap :: forall a b. (a -> b) -> Tree a -> Tree b
 fmap f = foldTree Branch (Leaf . f)
 
-
-
-
-
+-- Branch (Leaf 1) (Branch (Leaf 2) (Leaf 3))
+--                     v
+--                     v
+-- branch (leaf 1) (branch (leaf 2) (leaf 3))
 foldTree :: (r -> r -> r) -> (a -> r) -> Tree a -> r
 foldTree branch leaf = go where
   go (Leaf a)             = leaf a
