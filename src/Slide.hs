@@ -17,10 +17,10 @@ map f = foldr cons [] where
 (++) :: [a] -> [a] -> [a]
 xs ++ ys = foldr (:) ys xs
 
-
-
-
-
+-- 1   :    2   :    3   :    []
+--              v
+--              v
+-- 1 `cons` 2 `cons` 3 `cons` nil))
 foldr :: (a -> r -> r) -> r -> [a] -> r
 foldr cons nil = go where
   go []     = nil
