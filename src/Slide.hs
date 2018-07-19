@@ -1,22 +1,22 @@
 module Slide where
 import Test.DocTest
 import Control.Arrow
-import Data.List
+import Data.List hiding (unfoldr)
 
 fold :: forall t tF r. Functor tF
      => (t -> tF t) -> (tF r -> r) -> t -> r
 fold project foldF = hylo project foldF
 
 unfold :: forall s tF t. Functor tF
-       => (s -> tF s) -> (tF t -> t) -> a -> t
+       => (s -> tF s) -> (tF t -> t) -> s -> t
 unfold unfoldF embed = hylo unfoldF embed
 
 
-
-
-
-
-
+-- unfoldr :: (s -> Maybe (a, s)) -> s -> [a]
+unfoldr :: (s -> ListF a s) -> s -> List a
+unfoldr unfoldF = unfold unfoldF $ \case
+  NilF       -> Nil
+  ConsF b bs -> Cons b bs
 
 
 hylo :: forall s f r. Functor f
@@ -101,6 +101,16 @@ hylo divide conquer = go where
 
 
 
+
+
+data ListF a r
+  = NilF
+  | ConsF a r
+  deriving Functor
+
+data List a
+  = Nil
+  | Cons a (List a)
 
 
 data SearchTreeF a r
