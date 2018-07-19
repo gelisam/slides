@@ -11,7 +11,7 @@ zygo   :: forall s f i r. Functor f
        -> (s -> f s) -> (f (i, r) -> r) -> s -> r
 
 
-ghylo :: (Functor f, Comonad w)
+gcata :: (Functor f, Comonad w)
       => (s -> f s)
       -> (forall x. f (w x) -> w (f x))
       -> (f (w r) -> r)
