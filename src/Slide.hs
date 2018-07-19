@@ -10,9 +10,9 @@ module Slide where
 --                                                                             --
 --                               Recursion Schemes                             --
 --                                                                             --
+--                                - example                                    --
 --                                                                             --
---                                           presented by                      --
---                                        Samuel Gélineau                      --
+--                                                                             --
 --                                                                             --
 --                                                                             --
 --                                                                             --
