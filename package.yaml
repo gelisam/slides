@@ -1,6 +1,8 @@
 dependencies:
   - base
   - doctest
+  - comonad
+  - recursion-schemes
 library:
   source-dirs: src
   default-extensions:

@@ -1,35 +1,14 @@
 module Slide where
----------------------------------------------------------------------------------
---                                                                             --
---                                                                             --
---                                                                             --
---                                                                             --
---                                                                             --
---                                                                             --
---                                                                             --
---                                                                             --
---                               Recursion Schemes                             --
---                                                                             --
---                                - example                                    --
---                                - generalize                                 --
---                                - generalize                                 --
---                                - generalize                                 --
---                                - generalize                                 --
---                                > generalize                                 --
---                                                                             --
---                                                                             --
---                                                                             --
---                                                                             --
---                                                                             --
---                                                                             --
---                                                                             --
---                                                                             --
---                                                                             --
---                                                                             --
----------------------------------------------------------------------------------
+import Test.DocTest
 
+fold   :: forall s f r. Functor f
+       => (s -> f s) -> (f     r  -> r) -> s -> r
 
+unfold :: forall s f r. Functor f
+       => (s -> f s) -> (f     r  -> r) -> s -> r
 
+hylo   :: forall s f r. Functor f
+       => (s -> f s) -> (f     r  -> r) -> s -> r
 
 
 
@@ -114,7 +93,19 @@ module Slide where
 
 
 
+
+
+
+
+
+
+
+
+
+fold   = undefined
+unfold = undefined
+hylo   = undefined
 
 
 main :: IO ()
-main = putStrLn "typechecks."
+main = doctest ["-XDeriveFunctor", "-XGADTs", "-XKindSignatures", "-XLambdaCase", "-XMultiParamTypeClasses", "-XRankNTypes", "-XScopedTypeVariables", "src/Slide.hs"]
