@@ -19,6 +19,12 @@ quickSort (a:as) = let (lower, higher) = partition (<= a) as
 
 
 
+fold :: forall t tF r. Functor tF
+     => (t -> tF t) -> (tF r -> r) -> t -> r
+fold project foldF = go where
+  go :: t -> r
+  go = project >>> fmap go >>> foldF
+
 
 
 
