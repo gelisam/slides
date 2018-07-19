@@ -10,7 +10,8 @@ unfold :: forall s f r. Functor f
 hylo   :: forall s f r. Functor f
        => (s -> f s) -> (f     r  -> r) -> s -> r
 
-
+para   :: forall s f r. Functor f
+       => (s -> f s) -> (f (s, r) -> r) -> s -> r
 
 
 
@@ -103,8 +104,10 @@ hylo   :: forall s f r. Functor f
 
 
 fold   = undefined
+para   = undefined
 unfold = undefined
 hylo   = undefined
+zygo   = undefined
 
 
 main :: IO ()
