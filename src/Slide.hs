@@ -13,8 +13,8 @@ zygo   :: forall s f i r. Functor f
 -- w ~ Identity
 gcata :: Functor f
       => (s -> f s)
-      -> (forall x. f (Identity x) -> Identity (f x))
-      -> (f (Identity r) -> r)
+      -> (forall x. f           x  ->           f x )
+      -> (f           r  -> r)
       -> s -> r
 
 
