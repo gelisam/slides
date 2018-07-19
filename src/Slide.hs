@@ -1,6 +1,6 @@
 module Slide where
 import Test.DocTest
-import Control.Comonad
+
 
 
 fold   :: forall s f r. Functor f
@@ -11,10 +11,10 @@ zygo   :: forall s f i r. Functor f
        -> (s -> f s) -> (f (i, r) -> r) -> s -> r
 
 
-gcata :: (Functor f, Comonad w)
+gcata :: Functor f
       => (s -> f s)
-      -> (forall x. f (w x) -> w (f x))
-      -> (f (w r) -> r)
+      -> (r -> f z -> z)
+      -> (f z -> r)
       -> s -> r
 
 
