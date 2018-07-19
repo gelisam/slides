@@ -1,60 +1,33 @@
 module Slide where
-import Prelude hiding (fmap)
+import Prelude
 import Test.DocTest
+
+
+
+
+
+
+data List a
+  = Nil
+  | Cons a (List a)
+
+-- Cons 1 (Cons 2 (Cons 3 Nil))
+--              v
+--              v
+-- cons 1 (cons 2 (cons 3 nil))
+foldList :: (a -> r -> r) -> r -> List a -> r
+foldList cons nil = go where
+  go Nil         = nil
+  go (Cons a as) = cons a (go as)
+
+
+
+
 
 
 data Tree a
   = Leaf a
   | Branch (Tree a) (Tree a)
-
---      *
---     / \
---    /   *
--- "foo" / \
---      /   \
---   "bar" "baz"
-myTree :: Tree String
-myTree = Branch
-           (Leaf "foo")
-           (Branch (Leaf "bar") (Leaf "baz"))
-
-
--- |
--- >>> mapM_ putStrLn $ showTree myTree
--- Branch
---   Leaf "foo"
---   Branch
---     Leaf "bar"
---     Leaf "baz"
-showTree :: Show a => Tree a -> [String]
-showTree = foldTree branch leaf where
-  leaf a     = ["Leaf " ++ show a]
-  branch l r = ["Branch"]
-            ++ map ("  " ++) l
-            ++ map ("  " ++) r
-
--- |
--- >>> concatTree myTree
--- "foobarbaz"
-concatTree :: Tree String -> String
-concatTree = foldTree (++) id
-
--- |
--- >>> depth myTree
--- 3
-depth :: Tree a -> Int
-depth = foldTree cons (const 1) where
-  cons l r = 1 + max r l
-
--- |
--- >>> mapM_ putStrLn $ showTree $ fmap (++"!") myTree
--- Branch
---   Leaf "foo!"
---   Branch
---     Leaf "bar!"
---     Leaf "baz!"
-fmap :: forall a b. (a -> b) -> Tree a -> Tree b
-fmap f = foldTree Branch (Leaf . f)
 
 -- Branch (Leaf 1) (Branch (Leaf 2) (Leaf 3))
 --                     v
