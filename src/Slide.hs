@@ -8,7 +8,7 @@ import Data.List
 -- [1,2,3,4,5,6,7,8]
 quickSort :: forall a. Ord a
           => [a] -> [a]
-quickSort = fold divide conquer where
+quickSort = hylo divide conquer where
   divide :: [a] -> SearchTreeF a [a]
   divide []     = LeafF
   divide (a:as) = let (lower, higher) = partition (<= a) as
@@ -19,11 +19,11 @@ quickSort = fold divide conquer where
   conquer (BranchF l a r) = l ++ [a] ++ r
 
 
-fold :: forall t tF r. Functor tF
-     => (t -> tF t) -> (tF r -> r) -> t -> r
-fold project foldF = go where
-  go :: t -> r
-  go = project >>> fmap go >>> foldF
+hylo :: forall s f r. Functor f
+     => (s -> f s) -> (f r -> r) -> s -> r
+hylo divide conquer = go where
+  go :: s -> r
+  go = divide >>> fmap go >>> conquer
 
 
 
