@@ -15,10 +15,10 @@ data List a
 --              v
 --              v
 -- cons 1 (cons 2 (cons 3 nil))
-foldList :: ((a, r) -> r) -> (() -> r) -> List a -> r
-foldList cons nil = go where
-  go Nil         = nil ()
-  go (Cons a as) = cons (a, go as)
+foldList :: (Either (a, r) () -> r) -> List a -> r
+foldList foldF = go where
+  go Nil         = foldF $ Right ()
+  go (Cons a as) = foldF $ Left (a, go as)
 
 
 
@@ -33,10 +33,10 @@ data Tree a
 --                     v
 --                     v
 -- branch (leaf 1) (branch (leaf 2) (leaf 3))
-foldTree :: ((r, r) -> r) -> (a -> r) -> Tree a -> r
-foldTree branch leaf = go where
-  go (Leaf a)             = leaf a
-  go (Branch treeL treeR) = branch (go treeL, go treeR)
+foldTree :: (Either (r, r) a -> r) -> Tree a -> r
+foldTree foldF = go where
+  go (Leaf a)             = foldF $ Right a
+  go (Branch treeL treeR) = foldF $ Left (go treeL, go treeR)
 
 
 
