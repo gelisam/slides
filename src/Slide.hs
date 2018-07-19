@@ -13,9 +13,9 @@ hylo   :: forall s f r. Functor f
 para   :: forall s f r. Functor f
        => (s -> f s) -> (f (s, r) -> r) -> s -> r
 
-
-
-
+zygo   :: forall s f i r. Functor f
+       =>               (f     i  -> i)
+       -> (s -> f s) -> (f (i, r) -> r) -> s -> r
 
 
 
