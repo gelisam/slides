@@ -27,24 +27,24 @@ myTree = Branch
 --     Leaf "bar"
 --     Leaf "baz"
 showTree :: Show a => Tree a -> [String]
-showTree (Leaf a)             = ["Leaf " ++ show a]
-showTree (Branch treeL treeR) = ["Branch"]
-                             ++ map ("  " ++) (showTree treeL)
-                             ++ map ("  " ++) (showTree treeR)
+showTree = foldTree branch leaf where
+  leaf a     = ["Leaf " ++ show a]
+  branch l r = ["Branch"]
+            ++ map ("  " ++) l
+            ++ map ("  " ++) r
 
 -- |
 -- >>> concatTree myTree
 -- "foobarbaz"
 concatTree :: Tree String -> String
-concatTree (Leaf s)             = s
-concatTree (Branch treeL treeR) = concatTree treeL ++ concatTree treeR
+concatTree = foldTree (++) id
 
 -- |
 -- >>> depth myTree
 -- 3
 depth :: Tree a -> Int
-depth (Leaf _)             = 1
-depth (Branch treeL treeR) = 1 + max (depth treeL) (depth treeR)
+depth = foldTree cons (const 1) where
+  cons l r = 1 + max r l
 
 -- |
 -- >>> mapM_ putStrLn $ showTree $ fmap (++"!") myTree
@@ -54,10 +54,10 @@ depth (Branch treeL treeR) = 1 + max (depth treeL) (depth treeR)
 --     Leaf "bar!"
 --     Leaf "baz!"
 fmap :: forall a b. (a -> b) -> Tree a -> Tree b
-fmap f = go where
-  go :: Tree a -> Tree b
-  go (Leaf a)             = Leaf (f a)
-  go (Branch treeL treeR) = Branch (go treeL) (go treeR)
+fmap f = foldTree Branch (Leaf . f)
+
+
+
 
 
 foldTree :: (r -> r -> r) -> (a -> r) -> Tree a -> r
