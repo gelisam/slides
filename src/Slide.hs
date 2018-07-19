@@ -21,6 +21,23 @@ insert new (Branch l a r)
   | otherwise = Branch l a (insert new r)
 
 
+fold :: forall t tF r. Functor tF
+     => (t -> tF t) -> (tF r -> r) -> t -> r
+fold project foldF = go where
+  go :: t -> r
+  go = project >>> fmap go >>> foldF
+
+
+
+
+data SearchTreeF a r
+  = LeafF
+  | BranchF r a r
+  deriving Functor
+
+projectSearchTree :: SearchTree a -> SearchTreeF a (SearchTree a)
+projectSearchTree Leaf           = LeafF
+projectSearchTree (Branch l a r) = BranchF l a r
 
 
 
