@@ -15,9 +15,9 @@ data List a
 --              v
 --              v
 -- cons 1 (cons 2 (cons 3 nil))
-foldList :: ((a, r) -> r) -> r -> List a -> r
+foldList :: ((a, r) -> r) -> (() -> r) -> List a -> r
 foldList cons nil = go where
-  go Nil         = nil
+  go Nil         = nil ()
   go (Cons a as) = cons (a, go as)
 
 
