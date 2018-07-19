@@ -1,5 +1,5 @@
 module Slide where
-import Prelude hiding (lookup)
+import Prelude hiding (lookup, foldr)
 import Test.DocTest
 
 
@@ -10,7 +10,7 @@ import Test.DocTest
 -- Nothing
 lookup :: forall k a. Eq k
        => k -> [(k,a)] -> Maybe a
-lookup key = fold cons Nothing where
+lookup key = foldr cons Nothing where
 
 
 
@@ -21,8 +21,8 @@ lookup key = fold cons Nothing where
                                        else keepLooking
 
 
---fold :: (a -> a -> a) -> a -> [a] -> a
-fold cons nil = go where
+foldr :: (a -> r -> r) -> r -> [a] -> r
+foldr cons nil = go where
   go []     = nil
   go (a:as) = a `cons` go as
 
