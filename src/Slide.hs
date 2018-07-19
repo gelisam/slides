@@ -21,7 +21,7 @@ lookup key = fold cons Nothing where
                                        else keepLooking
 
 
-fold :: (a -> a -> a) -> a -> [a] -> a
+--fold :: (a -> a -> a) -> a -> [a] -> a
 fold cons nil = go where
   go []     = nil
   go (a:as) = a `cons` go as
