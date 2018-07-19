@@ -3,9 +3,9 @@ import Prelude
 import Test.DocTest
 
 
-
-
-
+data ListF a r
+  = NilF
+  | ConsF a r
 
 data List a
   = Nil
@@ -15,15 +15,15 @@ data List a
 --              v
 --              v
 -- cons 1 (cons 2 (cons 3 nil))
-foldList :: (Either (a, r) () -> r) -> List a -> r
+foldList :: (ListF a r -> r) -> List a -> r
 foldList foldF = go where
-  go Nil         = foldF $ Right ()
-  go (Cons a as) = foldF $ Left (a, go as)
+  go Nil         = foldF $ NilF
+  go (Cons a as) = foldF $ ConsF a (go as)
 
 
-
-
-
+data TreeF a r
+  = LeafF a
+  | BranchF r r
 
 data Tree a
   = Leaf a
@@ -33,10 +33,10 @@ data Tree a
 --                     v
 --                     v
 -- branch (leaf 1) (branch (leaf 2) (leaf 3))
-foldTree :: (Either (r, r) a -> r) -> Tree a -> r
+foldTree :: (TreeF a r -> r) -> Tree a -> r
 foldTree foldF = go where
-  go (Leaf a)             = foldF $ Right a
-  go (Branch treeL treeR) = foldF $ Left (go treeL, go treeR)
+  go (Leaf a)             = foldF $ LeafF a
+  go (Branch treeL treeR) = foldF $ BranchF (go treeL) (go treeR)
 
 
 
