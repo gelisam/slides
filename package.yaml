@@ -1,0 +1,29 @@
+dependencies:
+  - base
+  - doctest
+  - fltkhs
+  - text
+  - transformers
+  - mtl
+executable:
+  main: Slide
+  source-dirs: src
+  default-extensions:
+    - DataKinds
+    - FlexibleContexts
+    - FlexibleInstances
+    - GADTs
+    - InstanceSigs
+    - KindSignatures
+    - LambdaCase
+    - MultiParamTypeClasses
+    - OverloadedStrings
+    - RankNTypes
+    - RecordWildCards
+    - ScopedTypeVariables
+    - TemplateHaskell
+    - TupleSections
+    - TypeOperators
+    - ViewPatterns
+  ghc-options:
+    - "-optl-Wl,-lfltkc"

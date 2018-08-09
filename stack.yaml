@@ -1,0 +1,8 @@
+resolver: lts-13.7
+packages:
+  - .
+  - ../../github/fltkhs
+extra-deps: []
+flags:
+  fltkhs:
+    bundled: true
