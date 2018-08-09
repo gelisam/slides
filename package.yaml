@@ -1,0 +1,24 @@
+name: write-your-own-frp
+dependencies:
+  - array
+  - base
+  - deepseq
+  - doctest
+  - gloss
+  - gloss-juicy
+  - lens
+  - process
+executable:
+  main: Slide
+  source-dirs: src
+  default-extensions:
+    - GADTs
+    - InstanceSigs
+    - LambdaCase
+    - PatternSynonyms
+    - RankNTypes
+    - RecordWildCards
+    - ScopedTypeVariables
+    - TemplateHaskell
+    - TupleSections
+    - ViewPatterns
