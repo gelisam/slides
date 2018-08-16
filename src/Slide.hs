@@ -3,8 +3,13 @@ import Test.DocTest                                                             
 
 
 type DiscreteImage = Array (Int,Int) RGB
+type ContinuousImage = (Float,Float) -> RGB
 
+translateC :: (Float, Float) -> ContinuousImage -> ContinuousImage
+translateC (dx, dy) f = \(x, y) -> f (x - dx, y - dy)
 
+scaleC :: (Float, Float) -> ContinuousImage -> ContinuousImage
+scaleC (sx, sy) f = \(x, y) -> f (x / sx, y / sy)
 
 
 
@@ -83,7 +88,6 @@ type DiscreteImage = Array (Int,Int) RGB
 
 
 type RGB = PixelRGBA8
-type ContinuousImage = (Float,Float) -> RGB
 
 blackRGB, whiteRGB :: RGB
 (blackRGB, whiteRGB) = (PixelRGBA8 0 0 0 255, PixelRGBA8 255 255 255 255)
@@ -147,9 +151,9 @@ initialWorld = World initialCamera initialKeyboard
 
 
 draw :: Camera -> Picture
-draw (Camera {..}) = scale _cameraZoom _cameraZoom
-                   $ translate (-_cameraX) (-_cameraY)
-                   $ discretizeImage
+draw (Camera {..}) = discretizeImage
+                   $ scaleC (_cameraZoom, _cameraZoom)
+                   $ translateC (-_cameraX, -_cameraY)
                    $ continuousImage
 
 onEvent :: Event -> Keyboard -> Keyboard
