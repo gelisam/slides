@@ -3,11 +3,16 @@ import Test.DocTest                                                             
 
 
 type DiscreteAnimation = [Image]
-type ContinuousAnimation = Float -> Image
 
+type Animated a = Float -> a
+type ContinuousAnimation = Animated Image
+type Trajectory          = Animated (Float, Float)
 
+rotating :: Float -> Trajectory
+rotating r = \t -> (r * cos t, r * sin t)
 
-
+moving :: Image -> Trajectory -> ContinuousAnimation
+moving image f = \t -> translateC (f t) image
 
 
 
@@ -85,11 +90,11 @@ type RGB = PixelRGBA8
 type ContinuousImage = (Float,Float) -> RGB
 type Image = ContinuousImage
 
-translateC :: Float -> Float -> ContinuousImage -> ContinuousImage
-translateC dx dy f = \(x, y) -> f (x - dx, y - dy)
+translateC :: (Float, Float) -> ContinuousImage -> ContinuousImage
+translateC (dx, dy) f = \(x, y) -> f (x - dx, y - dy)
 
-scaleC :: Float -> Float -> ContinuousImage -> ContinuousImage
-scaleC sx sy f = \(x, y) -> f (x / sx, y / sy)
+scaleC :: (Float, Float) -> ContinuousImage -> ContinuousImage
+scaleC (sx, sy) f = \(x, y) -> f (x / sx, y / sy)
 
 blackRGB, whiteRGB :: RGB
 (blackRGB, whiteRGB) = (PixelRGBA8 0 0 0 255, PixelRGBA8 255 255 255 255)
@@ -117,8 +122,9 @@ discretizeTime :: Float -> Float
 discretizeTime = (/ fps) . fromIntegral . round . (* fps)
 
 continuousAnimation :: Float -> ContinuousImage
-continuousAnimation t = translateC (100 * cos (-t/2 * 2*pi))
-                                   (100 * sin (-t/2 * 2*pi))
+continuousAnimation t = translateC ( 100 * cos (-t/2 * 2*pi)
+                                   , 100 * sin (-t/2 * 2*pi)
+                                   )
                       $ circleC 25
 
 
@@ -164,10 +170,12 @@ initialWorld = World initialCamera initialKeyboard 0 1
 
 draw :: World -> Picture
 draw world = discretizeImage
-           $ scaleC (world ^. worldCamera . cameraZoom)
-                    (world ^. worldCamera . cameraZoom)
-           $ translateC (world ^. worldCamera . cameraX . to negate)
-                        (world ^. worldCamera . cameraY . to negate)
+           $ scaleC ( world ^. worldCamera . cameraZoom
+                    , world ^. worldCamera . cameraZoom
+                    )
+           $ translateC ( world ^. worldCamera . cameraX . to negate
+                        , world ^. worldCamera . cameraY . to negate
+                        )
            $ continuousAnimation
            $ world ^. worldTime
 
@@ -213,9 +221,7 @@ onTimeDelta dt world = whenDown keyboardQ (worldSpeed //~ zoomingSpeed ** dt)
       = id
 
 test :: IO ()
-test = do
-  _ <- system "stack build && write-your-own-frp"
-  putStrLn "done."
+test = putStrLn "typechecks."
 
 main :: IO ()
 main = play (InWindow "gloss" (windowWidth, windowHeight) (800, 0))
