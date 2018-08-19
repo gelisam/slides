@@ -3,13 +3,16 @@ import Test.DocTest                                                             
 
 
 type DiscreteImage = Array (Int,Int) RGB
-type ContinuousImage = (Float,Float) -> RGB
 
-translateC :: (Float, Float) -> ContinuousImage -> ContinuousImage
-translateC (dx, dy) f = \(x, y) -> f (x - dx, y - dy)
+type Plane a = (Float,Float) -> a
+type ContinuousImage = Plane RGB
+type Shape           = Plane Bool
 
-scaleC :: (Float, Float) -> ContinuousImage -> ContinuousImage
-scaleC (sx, sy) f = \(x, y) -> f (x / sx, y / sy)
+circleC :: Float -> Shape
+circleC r = \(x,y) -> x*x + y*y < r*r
+
+blackShape :: Shape -> ContinuousImage
+blackShape f = \(x,y) -> if f (x,y) then blackRGB else whiteRGB
 
 
 
@@ -92,8 +95,11 @@ type RGB = PixelRGBA8
 blackRGB, whiteRGB :: RGB
 (blackRGB, whiteRGB) = (PixelRGBA8 0 0 0 255, PixelRGBA8 255 255 255 255)
 
-circleC :: Float -> ContinuousImage
-circleC r (x,y) = if x*x + y*y < r*r then blackRGB else whiteRGB
+translateC :: (Float, Float) -> ContinuousImage -> ContinuousImage
+translateC (dx, dy) f = \(x, y) -> f (x - dx, y - dy)
+
+scaleC :: (Float, Float) -> ContinuousImage -> ContinuousImage
+scaleC (sx, sy) f = \(x, y) -> f (x / sx, y / sy)
 
 
 windowWidth, windowHeight :: Int
@@ -109,7 +115,7 @@ discretizeImage f = fromImageRGBA8 $ generateImage f' windowWidth windowHeight
 
 
 continuousImage :: ContinuousImage
-continuousImage = circleC 100
+continuousImage = blackShape (circleC 100)
 
 
 data Camera = Camera
@@ -197,9 +203,7 @@ onTimeDelta dt world = whenDown keyboardQ (cameraZoom //~ zoomingSpeed ** dt)
       = id
 
 test :: IO ()
-test = do
-  _ <- system "stack build && write-your-own-frp"
-  putStrLn "done."
+test = putStrLn "typechecks."
 
 main :: IO ()
 main = play (InWindow "gloss" (windowWidth, windowHeight) (800, 0))
