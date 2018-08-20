@@ -18,6 +18,11 @@ predictClick f = \t -> if isClick (f (t + 1.0))
                        then textC "you will click in 1 second"
                        else textC ""
 
+acknowledgeClick :: ContinuousApp
+acknowledgeClick f = \t -> if any (isClick . f) [0,0.1..t]
+                           then textC "you have clicked!"
+                           else textC "you have not clicked yet"
+
 
 
 
