@@ -11,10 +11,12 @@ data DiscreteApp state = DiscreteApp
 type Animated a = Float -> a
 type ContinuousApp = Animated (Maybe Event) -> Animated Image
 
+isClick :: Maybe Event -> Bool
 
-
-
-
+predictClick :: ContinuousApp
+predictClick f = \t -> if isClick (f (t + 1.0))
+                       then textC "you will click in 1 second"
+                       else textC ""
 
 
 
@@ -95,6 +97,8 @@ data Array i a
 
 type ContinuousImage = (Float,Float) -> RGB
 type Image = ContinuousImage
+
+isClick = undefined
 
 textC :: String -> ContinuousImage
 textC = undefined
