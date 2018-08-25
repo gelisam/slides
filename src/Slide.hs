@@ -3,6 +3,7 @@ import Test.DocTest                                                             
 
 
 type DiscreteAnimation = [Image]
+type ContinuousAnimation = Float -> Image
 
 
 
@@ -83,7 +84,6 @@ type DiscreteAnimation = [Image]
 type RGB = PixelRGBA8
 type ContinuousImage = (Float,Float) -> RGB
 type Image = ContinuousImage
-type ContinuousAnimation = Float -> ContinuousImage
 
 translateC :: Float -> Float -> ContinuousImage -> ContinuousImage
 translateC dx dy f = \(x, y) -> f (x - dx, y - dy)
@@ -163,13 +163,12 @@ initialWorld = World initialCamera initialKeyboard 0 1
 
 
 draw :: World -> Picture
-draw world = scale (world ^. worldCamera . cameraZoom)
-                   (world ^. worldCamera . cameraZoom)
-           $ translate (world ^. worldCamera . cameraX . to negate)
-                       (world ^. worldCamera . cameraY . to negate)
-           $ discretizeImage
+draw world = discretizeImage
+           $ scaleC (world ^. worldCamera . cameraZoom)
+                    (world ^. worldCamera . cameraZoom)
+           $ translateC (world ^. worldCamera . cameraX . to negate)
+                        (world ^. worldCamera . cameraY . to negate)
            $ continuousAnimation
-           $ discretizeTime
            $ world ^. worldTime
 
 onEvent :: Event -> Keyboard -> Keyboard
