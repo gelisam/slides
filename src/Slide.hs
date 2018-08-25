@@ -11,19 +11,15 @@ data DiscreteApp state = DiscreteApp
 data Signal a
 type ContinuousApp = Signal (Maybe Event) -> Signal Image
 
-fmap :: (a -> b) -> Signal a -> Signal b
+fromDiscreteApp :: DiscreteApp state -> ContinuousApp
+fromDiscreteApp (DiscreteApp {..}) = fmap render
+                                   . scanS handleEvent initialState
 
-pure  :: a -> Signal a
-(<*>) :: Signal (a -> b) -> Signal a -> Signal b
 
 -- |
 -- >>> scanl (+) 0 [1,20,300]
 -- [0,1,21,321]
 scanS :: (a -> b -> a) -> a -> Signal (Maybe b) -> Signal a
-
-
-
-
 
 
 
@@ -101,14 +97,19 @@ textC = undefined
 type Animated a = Float -> a
 type ContinuousAnimation = Animated ContinuousImage
 
-fmap  = undefined
-pure  = undefined
-(<*>) = undefined
+
+instance Functor Signal where
+  fmap = undefined
+
+instance Applicative Signal where
+  pure  = undefined
+  (<*>) = undefined
+
 scanS = undefined
 
 
 test :: IO ()
-test = doctest ["src/Slide.hs"]
+test = main
 
 main :: IO ()
 main = putStrLn "typechecks."
