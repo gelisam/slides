@@ -13,8 +13,8 @@ type ContinuousApp = Signal (Maybe Event) -> Signal Image
 
 fmap :: (a -> b) -> Signal a -> Signal b
 
-
-
+pure  :: a -> Signal a
+(<*>) :: Signal (a -> b) -> Signal a -> Signal b
 
 
 
@@ -102,8 +102,8 @@ type Animated a = Float -> a
 type ContinuousAnimation = Animated ContinuousImage
 
 fmap  = undefined
-
-
+pure  = undefined
+(<*>) = undefined
 
 
 
