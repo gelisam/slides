@@ -16,10 +16,10 @@ fmap :: (a -> b) -> Signal a -> Signal b
 pure  :: a -> Signal a
 (<*>) :: Signal (a -> b) -> Signal a -> Signal b
 
-
-
-
-
+-- |
+-- >>> scanl (+) 0 [1,20,300]
+-- [0,1,21,321]
+scanS :: (a -> b -> a) -> a -> Signal (Maybe b) -> Signal a
 
 
 
@@ -104,11 +104,11 @@ type ContinuousAnimation = Animated ContinuousImage
 fmap  = undefined
 pure  = undefined
 (<*>) = undefined
-
+scanS = undefined
 
 
 test :: IO ()
-test = main
+test = doctest ["src/Slide.hs"]
 
 main :: IO ()
 main = putStrLn "typechecks."
