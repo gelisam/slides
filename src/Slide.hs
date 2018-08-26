@@ -11,6 +11,16 @@ data DiscreteApp state = DiscreteApp
 data Signal a
 type ContinuousApp = Signal (Maybe Event) -> Signal Image
 
+fmap :: (a -> b) -> Signal a -> Signal b
+
+
+
+
+
+
+
+
+
 
 
 
@@ -90,6 +100,11 @@ textC = undefined
 
 type Animated a = Float -> a
 type ContinuousAnimation = Animated ContinuousImage
+
+fmap  = undefined
+
+
+
 
 
 test :: IO ()
