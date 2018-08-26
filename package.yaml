@@ -1,5 +1,6 @@
 name: write-your-own-frp
 dependencies:
+  - JuicyPixels
   - array
   - base
   - deepseq
