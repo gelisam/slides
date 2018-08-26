@@ -2,23 +2,20 @@ module Slide where
 import Control.Applicative
 scanS            :: (a -> b -> a) -> a -> Signal (Maybe b) -> Signal a
 mapMaybeS        :: (a -> Maybe b) -> Signal (Maybe a) -> Signal (Maybe b)
+neverS           :: Signal (Maybe a)
+unionS           :: Signal (Maybe a) -> Signal (Maybe a) -> Signal (Maybe a)
 
 events           :: Signal (Maybe Event)
 clicks           :: Signal (Maybe Pos)
 buttonClicks     :: Button -> Signal (Maybe Color)
+colorPicks       :: Signal (Maybe Color)
 
 
-neverS :: Signal (Maybe a)
-neverS = pure Nothing
+lastS :: a -> Signal (Maybe a) -> Signal a
+lastS = scanS (\_ x -> x)
 
-unionS :: Signal (Maybe a) -> Signal (Maybe a) -> Signal (Maybe a)
-unionS = liftA2 (<|>)
-
-colorButtons :: [Button]
-
-colorPicks :: Signal (Maybe Color)
-colorPicks = foldr unionS neverS (fmap buttonClicks colorButtons)
-
+currentColor :: Signal Color
+currentColor = lastS black colorPicks
 
 
 
@@ -84,8 +81,12 @@ colorPicks = foldr unionS neverS (fmap buttonClicks colorButtons)
 
 data RGB
 data Array i a
-data Color
 data Event
+
+data Color
+
+black :: Color
+black = undefined
 
 type ContinuousImage = (Float,Float) -> RGB
 type Image = ContinuousImage
@@ -120,6 +121,7 @@ data Button = Button
   , buttonRect  :: Rect
   }
 
+colorButtons :: [Button]
 colorButtons = undefined
 
 matchClick :: Event -> Maybe Pos
@@ -139,6 +141,12 @@ buttonClicks (Button {..}) = mapMaybeS f clicks
     f pos = if pos `isInside` buttonRect
             then Just buttonColor
             else Nothing
+
+neverS = pure Nothing
+
+unionS = liftA2 (<|>)
+
+colorPicks = foldr unionS neverS (fmap buttonClicks colorButtons)
 
 
 test :: IO ()
