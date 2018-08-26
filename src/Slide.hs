@@ -1,31 +1,15 @@
 module Slide where
+import Test.DocTest
 
---------------------------------------------------------------------------------
---                                                                            --
---                                                                            --
---                                                                            --
---                                                                            --
---                                                                            --
---                                                                            --
---                                                                            --
---                               Write your own                               --
---                      Functional-Reactive-Programming                       --
---                                   library                                  --
---                                                                            --
---                            1. What is FRP?                                 --
---                            2. Example FRP program                          --
---                            3. Your own FRP library                         --
---                             > step 1: test first!                          --
---                               step 2: streams                              --
---                               step 3: lazy streams                         --
---                               step 4: input stream                         --
---                                                                            --
---                                                                            --
---                                                                            --
---------------------------------------------------------------------------------
+data Event = Color String | Click Int
+data Segment = Segment String (Int,Int)
+  deriving Show
 
-
-
+-- |
+-- >>> transform [Color "Red", Click 1, Click 2, Color "Blue", Click 3, Click 4]
+-- [Segment "Red" (1,2),Segment "Blue" (3,4)]
+transform :: [Event] -> [Segment]
+transform = undefined
 
 
 
@@ -114,7 +98,7 @@ module Slide where
 
 
 test :: IO ()
-test = main
+test = doctest ["src/Slide.hs"]
 
 main :: IO ()
 main = putStrLn "typechecks."
