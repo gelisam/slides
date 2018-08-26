@@ -12,10 +12,10 @@ module Slide where
 --                      Functional-Reactive-Programming                       --
 --                                   library                                  --
 --                                                                            --
+--                            1. What is FRP?                                 --
+--                            2. Example FRP program                          --
+--                            3. Your own FRP library                         --
 --                                                                            --
---                                                                            --
---                                               presented by                 --
---                                            Samuel Gélineau                 --
 --                                                                            --
 --                                                                            --
 --                                                                            --
