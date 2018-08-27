@@ -18,24 +18,29 @@ data Signal a = Signal
   }
 
 fromList :: [a] -> Signal a
-fromList = undefined
+fromList []     = error "fromList: empty list"
+fromList [x]    = Signal x (fromList [x])
+fromList (x:xs) = Signal x (fromList xs)
 
 takeS :: Int -> Signal a -> [a]
-takeS = undefined
+takeS 0 _             = []
+takeS n (Signal x xs) = x : takeS (n-1) xs
 
 instance Functor Signal where
   fmap :: (a -> b) -> Signal a -> Signal b
-  fmap = undefined
+  fmap f (Signal x xs) = Signal (f x) (fmap f xs)
 
 instance Applicative Signal where
   pure :: a -> Signal a
-  pure = undefined
+  pure x = fromList [x]
 
   (<*>) :: Signal (a -> b) -> Signal a -> Signal b
-  (<*>) = undefined
+  Signal f fs <*> Signal x xs = Signal (f x) (fs <*> xs)
 
 scanS :: (a -> b -> a) -> a -> Signal (Maybe b) -> Signal a
-scanS = undefined
+scanS f x ys = Signal x $ case signalHead ys of
+  Nothing -> scanS f x       $ signalTail ys
+  Just y  -> scanS f (f x y) $ signalTail ys
 
 
 
