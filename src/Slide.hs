@@ -9,7 +9,14 @@ data Segment = Segment String (Int,Int)
 -- >>> transform [Color "Red", Click 1, Click 2, Color "Blue", Click 3, Click 4]
 -- [Segment "Red" (1,2),Segment "Blue" (3,4)]
 transform :: [Event] -> [Segment]
-transform = undefined
+transform = go "" Nothing
+  where
+    go :: String -> Maybe Int -> [Event] -> [Segment]
+    go _     _        []                     = []
+    go _     _        (Color color : events) = go color Nothing  events
+    go color Nothing  (Click x     : events) = go color (Just x) events
+    go color (Just x) (Click y     : events) = Segment color (x,y)
+                                             : go color Nothing events
 
 
 
