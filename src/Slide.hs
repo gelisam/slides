@@ -13,14 +13,17 @@ colorPicks       :: Signal (Maybe Color)
 currentColor     :: Signal Color
 
 
-movingButtonClicks :: Signal Button -> Signal (Maybe Color)
+pairS :: forall a. Signal (Maybe a) -> Signal (Maybe (a,a))
+pairS inputs = liftA2 (,) <$> prevs <*> inputs
+  where
+    prevs :: Signal (Maybe a)
+    prevs = scanS f Nothing inputs
 
-movingToggleButton :: Signal Button
-movingToggleButton = (\b -> if b then upperButton else lowerButton)
-                 <$> toggled
+    f :: Maybe a -> a -> Maybe a
+    f Nothing  x = Just x
+    f (Just _) _ = Nothing
 
-toggled :: Signal Bool
-toggled = scanS (\b _ -> not b) False (movingButtonClicks movingToggleButton)
+
 
 
 
@@ -152,9 +155,7 @@ lastS = scanS (curry snd)
 
 currentColor = lastS black colorPicks
 
-upperButton = undefined
-lowerButton = undefined
-movingButtonClicks = undefined
+canvasClicks = undefined
 
 
 test :: IO ()
