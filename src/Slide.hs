@@ -5,6 +5,7 @@ mapMaybeS        :: (a -> Maybe b) -> Signal (Maybe a) -> Signal (Maybe b)
 neverS           :: Signal (Maybe a)
 unionS           :: Signal (Maybe a) -> Signal (Maybe a) -> Signal (Maybe a)
 lastS            :: a -> Signal (Maybe a) -> Signal a
+pairS            :: Signal (Maybe a) -> Signal (Maybe (a,a))
 
 events           :: Signal (Maybe Event)
 clicks           :: Signal (Maybe Pos)
@@ -13,15 +14,15 @@ colorPicks       :: Signal (Maybe Color)
 currentColor     :: Signal Color
 
 
-pairS :: forall a. Signal (Maybe a) -> Signal (Maybe (a,a))
-pairS inputs = liftA2 (,) <$> prevs <*> inputs
-  where
-    prevs :: Signal (Maybe a)
-    prevs = scanS f Nothing inputs
+canvasClicks :: Signal (Maybe Pos)
 
-    f :: Maybe a -> a -> Maybe a
-    f Nothing  x = Just x
-    f (Just _) _ = Nothing
+data Segment = Segment { segmentColor  :: Color
+                       , segmentPoints :: (Pos, Pos) }
+
+segmentAdditions :: Signal (Maybe Segment)
+segmentAdditions = (\c maybePts -> Segment c <$> maybePts)
+               <$> currentColor
+               <*> pairS canvasClicks
 
 
 
@@ -154,6 +155,13 @@ colorPicks = foldr unionS neverS (fmap buttonClicks colorButtons)
 lastS = scanS (curry snd)
 
 currentColor = lastS black colorPicks
+
+pairS inputs = liftA2 (,) <$> prevs <*> inputs
+  where
+    toggle Nothing  x = Just x
+    toggle (Just _) _ = Nothing
+
+    prevs = scanS toggle Nothing inputs
 
 canvasClicks = undefined
 
