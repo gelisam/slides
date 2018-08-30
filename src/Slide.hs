@@ -4,23 +4,23 @@ scanS            :: (a -> b -> a) -> a -> Signal (Maybe b) -> Signal a
 mapMaybeS        :: (a -> Maybe b) -> Signal (Maybe a) -> Signal (Maybe b)
 neverS           :: Signal (Maybe a)
 unionS           :: Signal (Maybe a) -> Signal (Maybe a) -> Signal (Maybe a)
+lastS            :: a -> Signal (Maybe a) -> Signal a
 
 events           :: Signal (Maybe Event)
 clicks           :: Signal (Maybe Pos)
 buttonClicks     :: Button -> Signal (Maybe Color)
 colorPicks       :: Signal (Maybe Color)
+currentColor     :: Signal Color
 
 
-lastS :: a -> Signal (Maybe a) -> Signal a
-lastS = scanS (\_ x -> x)
+movingButtonClicks :: Signal Button -> Signal (Maybe Color)
 
-currentColor :: Signal Color
-currentColor = lastS black colorPicks
+movingToggleButton :: Signal Button
+movingToggleButton = (\b -> if b then upperButton else lowerButton)
+                 <$> toggled
 
-
-
-
-
+toggled :: Signal Bool
+toggled = scanS (\b _ -> not b) False (movingButtonClicks movingToggleButton)
 
 
 
@@ -147,6 +147,14 @@ neverS = pure Nothing
 unionS = liftA2 (<|>)
 
 colorPicks = foldr unionS neverS (fmap buttonClicks colorButtons)
+
+lastS = scanS (curry snd)
+
+currentColor = lastS black colorPicks
+
+upperButton = undefined
+lowerButton = undefined
+movingButtonClicks = undefined
 
 
 test :: IO ()
