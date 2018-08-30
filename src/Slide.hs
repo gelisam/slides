@@ -12,17 +12,8 @@ clicks           :: Signal (Maybe Pos)
 buttonClicks     :: Button -> Signal (Maybe Color)
 colorPicks       :: Signal (Maybe Color)
 currentColor     :: Signal Color
-
-
-canvasClicks :: Signal (Maybe Pos)
-
-data Segment = Segment { segmentColor  :: Color
-                       , segmentPoints :: (Pos, Pos) }
-
+canvasClicks     :: Signal (Maybe Pos)
 segmentAdditions :: Signal (Maybe Segment)
-segmentAdditions = (\c maybePts -> Segment c <$> maybePts)
-               <$> currentColor
-               <*> pairS canvasClicks
 
 
 
@@ -125,6 +116,11 @@ data Button = Button
   , buttonRect  :: Rect
   }
 
+data Segment = Segment
+  { segmentColor  :: Color
+  , segmentPoints :: (Pos, Pos)
+  }
+
 colorButtons :: [Button]
 colorButtons = undefined
 
@@ -155,6 +151,9 @@ colorPicks = foldr unionS neverS (fmap buttonClicks colorButtons)
 lastS = scanS (curry snd)
 
 currentColor = lastS black colorPicks
+
+segmentAdditions = liftA2 Segment <$> (Just <$> currentColor)
+                                  <*> pairS canvasClicks
 
 pairS inputs = liftA2 (,) <$> prevs <*> inputs
   where
