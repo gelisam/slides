@@ -5,13 +5,13 @@ scanS            :: (a -> b -> a) -> a -> Signal (Maybe b) -> Signal a
 events           :: Signal (Maybe Event)
 
 
+mapMaybeS :: (a -> Maybe b) -> Signal (Maybe a) -> Signal (Maybe b)
+mapMaybeS f = fmap (>>= f)
 
+matchClick :: Event -> Maybe Pos
 
-
-
-
-
-
+clicks :: Signal (Maybe Pos)
+clicks = mapMaybeS matchClick events
 
 
 
@@ -107,6 +107,8 @@ events = undefined
 scanS = undefined
 
 data Pos
+
+matchClick = undefined
 
 
 test :: IO ()
