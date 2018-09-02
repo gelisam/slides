@@ -14,7 +14,7 @@ module Slide where
 
 data Signal a = Signal
   { signalHead :: a
-  , signalTail :: () -> Signal a
+  , signalTail :: Signal a
   }
 
 
