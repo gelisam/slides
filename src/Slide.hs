@@ -13,6 +13,14 @@ import Test.DocTest                                                             
 -- >>> let lazyY () = trace "evaluating" (2+2::Int) in 42 + lazyY ()
 -- evaluating
 -- 46
+--
+-- >>> let lazyY    = trace "evaluating" (2+2::Int) in 42 + lazyY    + lazyY
+-- evaluating
+-- 50
+-- >>> let lazyY () = trace "evaluating" (2+2::Int) in 42 + lazyY () + lazyY ()
+-- evaluating
+-- evaluating
+-- 50
 
 
 
