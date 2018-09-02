@@ -1,16 +1,18 @@
 module Slide where
 import Test.DocTest                                                                                                                                                                                    ; import Debug.Trace
 
-data Signal a = Signal
-  { signalHead :: a
-  , signalTail :: () -> Signal a
-  }
-
-
-
-
-
-
+-- |
+-- >>> let lazyY    = trace "evaluating" (2+2::Int) in 42
+-- 42
+-- >>> let lazyY () = trace "evaluating" (2+2::Int) in 42
+-- 42
+--
+-- >>> let lazyY    = trace "evaluating" (2+2::Int) in 42 + lazyY
+-- evaluating
+-- 46
+-- >>> let lazyY () = trace "evaluating" (2+2::Int) in 42 + lazyY ()
+-- evaluating
+-- 46
 
 
 
