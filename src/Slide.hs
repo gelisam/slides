@@ -1,15 +1,15 @@
 module Slide where
-import Test.DocTest                                                                                                                                                                                    ; import Data.IORef; import Debug.Trace
+import Test.DocTest                                                                                                                                                                                    ; import Data.IORef
 
 -- |
--- >>> lazyInt <- memoize $ \() -> trace "evaluating" (2+2::Int)
+-- >>> lazyInt <- memoize $ putStrLn "evaluating" >> pure (2 + 2)
 -- >>> runMemoized lazyInt
 -- evaluating
 -- 4
 -- >>> runMemoized lazyInt
 -- 4
 newtype Memoized a = Memoized
-  { unMemoized :: IORef (Either a (() -> a))
+  { unMemoized :: IORef (Either a (IO a))
   }
 
 
@@ -112,20 +112,8 @@ scanS f x ys = Signal x $ \() -> case signalHead ys of
   Just y  -> scanS f (f x y) $ signalTail ys ()
 
 
-memoize :: (() -> a) -> IO (Memoized a)
-memoize action = Memoized <$> newIORef (Right action)
-
-runMemoized :: Memoized a -> IO a
-runMemoized (Memoized ref) = readIORef ref >>= \case
-  Left x -> pure x
-  Right action -> do
-    let x = action ()
-    writeIORef ref (Left x)
-    pure x
-
-
 test :: IO ()
-test = doctest ["-XLambdaCase", "src/Slide.hs"]
+test = main
 
 main :: IO ()
 main = putStrLn "typechecks."
