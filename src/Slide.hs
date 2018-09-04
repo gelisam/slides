@@ -13,10 +13,15 @@ newtype Memoized a = Memoized
   }
 
 memoize :: IO a -> IO (Memoized a)
-memoize action = undefined
+memoize action = Memoized <$> newIORef (Right action)
 
 runMemoized :: Memoized a -> IO a
-runMemoized (Memoized ref) = undefined
+runMemoized (Memoized ref) = readIORef ref >>= \case
+  Left x -> pure x
+  Right action -> do
+    x <- action
+    writeIORef ref (Left x)
+    pure x
 
 
 
