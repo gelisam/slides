@@ -7,13 +7,16 @@ import Test.DocTest                                                             
 -- 100---101---202---404---808--> b
 
 
---  a    a02---a03---a04
---  |         /     /
---  |       /     /
---  b    b02---b03
+--  a    a02---a03---a04---a05
+--  |         /     /     /
+--  |       /     /     /
+--  b    b02---b03---b04
+--            /     /
+--          /     /
+--       a02---a03
 --            /
 --          /
---       a02
+--       b02
 a, b :: Signal (Maybe Int)
 a = Just <$> scanS (+) 1   b
 b = Just <$> scanS (+) 100 a
@@ -137,8 +140,8 @@ scanS f x ys = Signal x $ \() -> case signalHead ys of
 test :: IO ()
 test = do
   putStrLn "a:"
-  mapM_ (hPutStrLn stderr . show . force) $ takeS 4 verboseA
-  replicateM_ 5 $ hPutStrLn stderr ""
+  mapM_ (hPutStrLn stderr . show . force) $ takeS 5 verboseA
+  replicateM_ 0 $ hPutStrLn stderr ""
 
 main :: IO ()
 main = putStrLn "typechecks."
