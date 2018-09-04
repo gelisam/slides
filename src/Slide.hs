@@ -1,27 +1,16 @@
 module Slide where
-import Test.DocTest                                                                                                                                                                                    ; import Control.Applicative; import Control.DeepSeq; import Control.Monad; import Data.Maybe; import Debug.Trace; import System.IO
---                   numbers02     numbers03
---   numbers   numbers02 |   numbers03 |
---      |          |     |       |     |
---      a         a02   a02     a03   a03
---    /   \        |     |       |     |   ...
---   b     c      b02   c02     b03   c03
---    \   /         \   /         \   /
---      d            d02           d03
-numbers :: Signal (Maybe Int)
-numbers = Just <$> fromList [1..]
+import Test.DocTest                                                                                                                                                                                    ; import Control.Applicative; import Control.DeepSeq; import Control.Monad; import Debug.Trace; import System.IO
 
-a :: Signal (Maybe Int)
-a = mapMaybeS isEven numbers
+--   1---101---202---404---808--> a
+--    \ /   \ /   \ /   \ /
+--    / \   / \   / \   / \
+-- 100---101---202---404---808--> b
 
-b :: Signal Int
-b = fromMaybe 0 <$> a
 
-c :: Signal Int
-c = fromMaybe 0 <$> a
+a, b :: Signal (Maybe Int)
+a = Just <$> scanS (+) 1   b
+b = Just <$> scanS (+) 100 a
 
-d :: Signal Int
-d = (+) <$> b <*> c
 
 
 
@@ -94,8 +83,15 @@ d = (+) <$> b <*> c
 
 
 
+verboseAdd :: String -> Int -> Int -> Int
+verboseAdd label x y = trace ( "(" ++ label ++ " adds "
+                            ++ show x ++ " + " ++ show y ++ ")"
+                             )
+                     $ x + y
 
-
+verboseA, verboseB :: Signal (Maybe Int)
+verboseA = Just <$> scanS (verboseAdd "a") 1   verboseB
+verboseB = Just <$> scanS (verboseAdd "b") 100 verboseA
 
 
 data Event = Color String | Click Int
@@ -130,21 +126,12 @@ scanS f x ys = Signal x $ \() -> case signalHead ys of
   Nothing -> scanS f x       $ signalTail ys ()
   Just y  -> scanS f (f x y) $ signalTail ys ()
 
-mapMaybeS :: (a -> Maybe b) -> Signal (Maybe a) -> Signal (Maybe b)
-mapMaybeS f = fmap (>>= f)
-
-isEven :: Int -> Maybe Int
-isEven x = trace ( "(is " ++ show x ++ " even? "
-                ++ if even x then "yes.)" else "no.)"
-                 )
-         $ if even x then Just x else Nothing
-
 
 test :: IO ()
 test = do
-  hPutStrLn stderr "d:"
-  mapM_ (hPutStrLn stderr . show . force) $ takeS 6 d
-  replicateM_ 0 $ putStrLn ""
+  putStrLn "a:"
+  mapM_ (hPutStrLn stderr . show . force) $ takeS 5 verboseA
+  replicateM_ 0 $ hPutStrLn stderr ""
 
 main :: IO ()
 main = putStrLn "typechecks."
