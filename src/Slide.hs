@@ -1,13 +1,13 @@
 module Slide where
 import Test.DocTest                                                                                                                                                                                    ; import Control.Applicative; import Control.DeepSeq; import Control.Monad; import Data.Maybe; import Debug.Trace; import System.IO
---                   numbers02
---   numbers   numbers02 |
---      |          |     |
---      a         a02   a02
---    /   \        |     |
---   b     c      b02   c02
---    \   /         \   /
---      d            d02
+--                   numbers02     numbers03
+--   numbers   numbers02 |   numbers03 |
+--      |          |     |       |     |
+--      a         a02   a02     a03   a03
+--    /   \        |     |       |     |   ...
+--   b     c      b02   c02     b03   c03
+--    \   /         \   /         \   /
+--      d            d02           d03
 numbers :: Signal (Maybe Int)
 numbers = Just <$> fromList [1..]
 
@@ -143,8 +143,8 @@ isEven x = trace ( "(is " ++ show x ++ " even? "
 test :: IO ()
 test = do
   hPutStrLn stderr "d:"
-  mapM_ (hPutStrLn stderr . show . force) $ takeS 2 d
-  replicateM_ 12 $ putStrLn ""
+  mapM_ (hPutStrLn stderr . show . force) $ takeS 6 d
+  replicateM_ 0 $ putStrLn ""
 
 main :: IO ()
 main = putStrLn "typechecks."
