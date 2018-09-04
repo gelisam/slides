@@ -1,25 +1,18 @@
 module Slide where
-import Test.DocTest                                                                                                                                                                                    ; import Control.Applicative; import Control.DeepSeq; import Control.Monad; import Debug.Trace; import System.IO
+import Test.DocTest                                                                                                                                                                                    ; import Data.IORef; import Debug.Trace
 
---   1---101---202---404---808--> a
---    \ /   \ /   \ /   \ /
---    / \   / \   / \   / \
--- 100---101---202---404---808--> b
+-- |
+-- >>> lazyInt <- memoize $ \() -> trace "evaluating" (2+2::Int)
+-- >>> runMemoized lazyInt
+-- evaluating
+-- 4
+-- >>> runMemoized lazyInt
+-- 4
+newtype Memoized a = Memoized
+  { unMemoized :: IORef (Either a (() -> a))
+  }
 
 
---  a    a02---a03---a04---a05
---  |         /     /     /
---  |       /     /     /
---  b    b02---b03---b04
---            /     /
---          /     /
---       a02---a03
---            /
---          /
---       b02
-a, b :: Signal (Maybe Int)
-a = Just <$> scanS (+) 1   b
-b = Just <$> scanS (+) 100 a
 
 
 
@@ -84,24 +77,6 @@ b = Just <$> scanS (+) 100 a
 
 
 
-
-
-
-
-
-
-
-
-
-verboseAdd :: String -> Int -> Int -> Int
-verboseAdd label x y = trace ( "(" ++ label ++ " adds "
-                            ++ show x ++ " + " ++ show y ++ ")"
-                             )
-                     $ x + y
-
-verboseA, verboseB :: Signal (Maybe Int)
-verboseA = Just <$> scanS (verboseAdd "a") 1   verboseB
-verboseB = Just <$> scanS (verboseAdd "b") 100 verboseA
 
 
 data Event = Color String | Click Int
@@ -137,11 +112,20 @@ scanS f x ys = Signal x $ \() -> case signalHead ys of
   Just y  -> scanS f (f x y) $ signalTail ys ()
 
 
+memoize :: (() -> a) -> IO (Memoized a)
+memoize action = Memoized <$> newIORef (Right action)
+
+runMemoized :: Memoized a -> IO a
+runMemoized (Memoized ref) = readIORef ref >>= \case
+  Left x -> pure x
+  Right action -> do
+    let x = action ()
+    writeIORef ref (Left x)
+    pure x
+
+
 test :: IO ()
-test = do
-  putStrLn "a:"
-  mapM_ (hPutStrLn stderr . show . force) $ takeS 5 verboseA
-  replicateM_ 0 $ hPutStrLn stderr ""
+test = doctest ["-XLambdaCase", "src/Slide.hs"]
 
 main :: IO ()
 main = putStrLn "typechecks."
