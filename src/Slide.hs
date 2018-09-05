@@ -6,6 +6,13 @@ data Signal a = Signal
   , signalTail :: Memoized (Signal a)
   }
 
+fromList :: [a] -> Signal a
+takeS    :: Int -> Signal a -> [a]
+
+fmap   :: (a -> b) -> Signal a -> Signal b
+pure   :: a -> Signal a
+(<*>)  :: Signal (a -> b) -> Signal a -> Signal b
+scanS  :: (a -> b -> a) -> a -> Signal (Maybe b) -> Signal a
 
 
 
@@ -78,6 +85,15 @@ data Signal a = Signal
 newtype Memoized a = Memoized
   { unMemoized :: IORef (Either a (IO a))
   }
+
+
+fromList = undefined
+takeS    = undefined
+
+fmap  = undefined
+pure  = undefined
+(<*>) = undefined
+scanS = undefined
 
 
 test :: IO ()
