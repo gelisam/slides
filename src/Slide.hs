@@ -1,5 +1,5 @@
 module Slide where
-import Test.DocTest                                                                                                                                                                                    ; import Control.Applicative; import Control.DeepSeq; import Data.Maybe; import Debug.Trace; import System.IO
+import Test.DocTest                                                                                                                                                                                    ; import Control.Applicative; import Control.DeepSeq; import Control.Monad; import Data.Maybe; import Debug.Trace; import System.IO
 
 --   numbers
 --      |
@@ -143,7 +143,8 @@ isEven x = trace ( "(is " ++ show x ++ " even? "
 test :: IO ()
 test = do
   hPutStrLn stderr "d:"
-  mapM_ (hPutStrLn stderr . show . force) $ takeS 6 d
+  mapM_ (hPutStrLn stderr . show . force) $ takeS 1 d
+  replicateM_ 15 $ putStrLn ""
 
 main :: IO ()
 main = putStrLn "typechecks."
