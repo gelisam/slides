@@ -3,7 +3,7 @@ import Test.DocTest                                                             
 
 data Signal a = Signal
   { signalHead :: a
-  , signalTail :: () -> Signal a
+  , signalTail :: Memoized (Signal a)
   }
 
 
