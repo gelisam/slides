@@ -12,7 +12,7 @@ module Slide where
 --                      Functional-Reactive-Programming!                      --
 --                                                                            --
 --                                                                            --
---                            1. What is FRP?                                 --
+--                          > 1. What is FRP?                                 --
 --                            2. Play time!                                   --
 --                                                                            --
 --                                                                            --
