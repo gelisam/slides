@@ -17,43 +17,43 @@ import Test.DocTest                                                             
 -- Nothing
 -- Just (Segment "Blue" (3,4))
 transform :: Signal (Maybe Event) -> IO (Signal (Maybe Segment))
-transform events = outputs
-  where
-    colorPicks :: Signal (Maybe String)
-    colorPicks = mapMaybeS f events
-      where
-        f (Color x) = Just x
-        f _ = Nothing
+transform events = do
+  colorPicks :: Signal (Maybe String)
+             <- let f (Color x) = Just x
+                    f _ = Nothing
+                in mapMaybeS f events
 
-    numberPicks :: Signal (Maybe Int)
-    numberPicks = mapMaybeS f events
-      where
-        f (Click x) = Just x
-        f _ = Nothing
+  numberPicks :: Signal (Maybe Int)
+              <- let f (Click x) = Just x
+                     f _ = Nothing
+                 in mapMaybeS f events
 
-    currentColor :: Signal String
-    currentColor = lastS "" colorPicks
+  currentColor :: Signal String
+               <- lastS "" colorPicks
 
-    outputs :: Signal (Maybe Segment)
-    outputs = liftA2 Segment
-          <$> (Just <$> currentColor)
-          <*> pairS numberPicks
+  outputs :: Signal (Maybe Segment)
+          <- do
+    fs <- fmapS (liftA2 Segment . Just) currentColor
+    xs <- pairS numberPicks
+    applyS fs xs
 
-mapMaybeS :: (a -> Maybe b) -> Signal (Maybe a) -> Signal (Maybe b)
-mapMaybeS f = fmap (>>= f)
+  pure outputs
 
-lastS :: a -> Signal (Maybe a) -> Signal a
+mapMaybeS :: (a -> Maybe b) -> Signal (Maybe a) -> IO (Signal (Maybe b))
+mapMaybeS f = fmapS (>>= f)
+
+lastS :: a -> Signal (Maybe a) -> IO (Signal a)
 lastS = scanS (curry snd)
 
-pairS :: forall a. Signal (Maybe a) -> Signal (Maybe (a,a))
-pairS inputs = liftA2 (,) <$> prevs <*> inputs
-  where
-    toggle :: Maybe a -> a -> Maybe a
-    toggle Nothing  x = Just x
-    toggle (Just _) _ = Nothing
-
-    prevs :: Signal (Maybe a)
-    prevs = scanS toggle Nothing inputs
+pairS :: forall a. Signal (Maybe a) -> IO (Signal (Maybe (a,a)))
+pairS inputs = do
+  let toggle :: Maybe a -> a -> Maybe a
+      toggle Nothing  x = Just x
+      toggle (Just _) _ = Nothing
+  prevs :: Signal (Maybe a)
+        <- scanS toggle Nothing inputs
+  fs <- fmapS (liftA2 (,)) prevs
+  applyS fs inputs
 
 
 
