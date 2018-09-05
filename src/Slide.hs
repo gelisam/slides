@@ -17,8 +17,8 @@ module Slide where
 --                            3. Your own FRP library                         --
 --                               step 1: test first!                          --
 --                               step 2: streams                              --
---                             > step 3: lazy streams                         --
---                               step 4: input stream                         --
+--                               step 3: lazy streams                         --
+--                             > step 4: input stream                         --
 --                                                                            --
 --                                                                            --
 --                                                                            --
