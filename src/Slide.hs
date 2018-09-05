@@ -1,29 +1,29 @@
 module Slide where
-import Test.DocTest                                                                                                                                                                                     ; import Control.Applicative; import Data.IORef
-import Control.Concurrent.Chan
+import Test.DocTest                                                                                                                                                                                     ; import Control.Applicative; import Control.Concurrent.Chan; import Data.IORef
 
--- |
--- >>> chan <- newChan :: IO (Chan String)
--- >>> strings <- fromChan chan
---
--- >>> writeChan chan "foo"
--- >>> takeS 1 =<< runMemoized strings
--- ["foo"]
---
--- >>> writeChan chan "bar"
--- >>> takeS 2 =<< runMemoized strings
--- ["foo","bar"]
---
--- >>> writeChan chan "baz"
--- >>> takeS 3 =<< runMemoized strings
--- ["foo","bar","baz"]
-fromChan :: Chan a -> IO (Memoized (Signal a))
-fromChan chan = memoize $ do
-  x <- readChan chan
-  memo_xs <- fromChan chan
-  pure (Signal x memo_xs)
+data DiscreteApp state = DiscreteApp
+  { initialState :: IO state
+  , handleEvent  :: state -> Event -> IO state
+  , render       :: state -> IO Image }
 
+data MyState = MyState
+  { inputChannel :: Chan (Maybe Event)
+  , outputSignal :: Memoized (Signal Image) }
 
+toApp :: (Signal (Maybe Event) -> IO (Signal Image))
+      -> DiscreteApp MyState
+toApp f = DiscreteApp
+  { initialState = do
+      chan <- newChan
+      memo_inputs <- fromChan chan
+      memo_outputs <- memoize $ f =<< runMemoized memo_inputs
+      pure (MyState chan memo_outputs)
+  , handleEvent = \(MyState chan memo_outputs) event -> do
+      writeChan chan (Just event)
+      Signal _ memo_outputs' <- runMemoized memo_outputs
+      pure (MyState chan memo_outputs')
+  , render = fmap signalHead . runMemoized . outputSignal
+  }
 
 
 
@@ -96,9 +96,52 @@ fromChan chan = memoize $ do
 
 
 
-data Event
-data Image
-data MyState
+
+
+data Event = Color String | Click Int
+data Segment = Segment String (Int,Int)
+  deriving Show
+type Image = String
+
+
+transform :: Signal (Maybe Event) -> IO (Signal (Maybe Segment))
+transform events = do
+  colorPicks :: Signal (Maybe String)
+             <- let f (Color x) = Just x
+                    f _ = Nothing
+                in mapMaybeS f events
+
+  numberPicks :: Signal (Maybe Int)
+              <- let f (Click x) = Just x
+                     f _ = Nothing
+                 in mapMaybeS f events
+
+  currentColor :: Signal String
+               <- lastS "" colorPicks
+
+  outputs :: Signal (Maybe Segment)
+          <- do
+    fs <- fmapS (liftA2 Segment . Just) currentColor
+    xs <- pairS numberPicks
+    applyS fs xs
+
+  pure outputs
+
+mapMaybeS :: (a -> Maybe b) -> Signal (Maybe a) -> IO (Signal (Maybe b))
+mapMaybeS f = fmapS (>>= f)
+
+lastS :: a -> Signal (Maybe a) -> IO (Signal a)
+lastS = scanS (curry snd)
+
+pairS :: forall a. Signal (Maybe a) -> IO (Signal (Maybe (a,a)))
+pairS inputs = do
+  let toggle :: Maybe a -> a -> Maybe a
+      toggle Nothing  x = Just x
+      toggle (Just _) _ = Nothing
+  prevs :: Signal (Maybe a)
+        <- scanS toggle Nothing inputs
+  fs <- fmapS (liftA2 (,)) prevs
+  applyS fs inputs
 
 
 data Signal a = Signal
@@ -107,6 +150,13 @@ data Signal a = Signal
   }
 
 
+fromChan :: Chan a -> IO (Memoized (Signal a))
+fromChan chan = memoize $ do
+  x <- readChan chan
+  memo_xs <- fromChan chan
+  pure (Signal x memo_xs)
+
+fromList :: [a] -> IO (Signal a)
 fromList []  = error "fromList: empty list"
 fromList [x] = fromList [x,x]
 fromList (x:xs) = do
@@ -171,7 +221,18 @@ runMemoized (Memoized ref) = readIORef ref >>= \case
 
 
 test :: IO ()
-test = doctest ["-XLambdaCase", "-XScopedTypeVariables", "src/Slide.hs"]
+test = do
+  let app = toApp $ \inputs -> do
+        outputs <- transform inputs
+        fmapS show outputs
+  state0 <- initialState app
+  let loop _     []             = pure ()
+      loop state (event:events) = do
+        state' <- handleEvent app state event
+        output <- render app state
+        putStrLn output
+        loop state' events
+  loop state0 [Color "Red", Click 1, Click 2, Color "Blue", Click 3, Click 4]
 
 main :: IO ()
 main = putStrLn "typechecks."
