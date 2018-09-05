@@ -4,15 +4,24 @@ import Control.Concurrent.Chan
 
 -- |
 -- >>> chan <- newChan :: IO (Chan String)
+-- >>> strings <- fromChan chan
+--
 -- >>> writeChan chan "foo"
+-- >>> takeS 1 =<< runMemoized strings
+-- ["foo"]
+--
 -- >>> writeChan chan "bar"
--- >>> readChan chan
--- "foo"
+-- >>> takeS 2 =<< runMemoized strings
+-- ["foo","bar"]
+--
 -- >>> writeChan chan "baz"
--- >>> readChan chan
--- "bar"
--- >>> readChan chan
--- "baz"
+-- >>> takeS 3 =<< runMemoized strings
+-- ["foo","bar","baz"]
+fromChan :: Chan a -> IO (Memoized (Signal a))
+fromChan chan = memoize $ do
+  x <- readChan chan
+  memo_xs <- fromChan chan
+  pure (Signal x memo_xs)
 
 
 
