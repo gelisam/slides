@@ -1,40 +1,10 @@
 module Slide where
+import Test.DocTest                                                                                                                                                                                    ; import Debug.Trace
 
---------------------------------------------------------------------------------
---                                                                            --
---                                                                            --
---                                                                            --
---                                                                            --
---                                                                            --
---                                                                            --
---                                                                            --
---                               Write your own                               --
---                      Functional-Reactive-Programming                       --
---                                   library                                  --
---                                                                            --
---                            1. What is FRP?                                 --
---                            2. Example FRP program                          --
---                            3. Your own FRP library                         --
---                               step 1: test first!                          --
---                               step 2: streams                              --
---                             > step 3: lazy streams                         --
---                               step 4: input stream                         --
---                                                                            --
---                                                                            --
---                                                                            --
---------------------------------------------------------------------------------
-
-
-
-
-
-
-
-
-
-
-
-
+data Signal a = Signal
+  { signalHead :: a
+  , signalTail :: () -> Signal a
+  }
 
 
 
@@ -114,7 +84,7 @@ module Slide where
 
 
 test :: IO ()
-test = main
+test = doctest ["src/Slide.hs"]
 
 main :: IO ()
 main = putStrLn "typechecks."
