@@ -1,17 +1,18 @@
 module Slide where
 import Test.DocTest                                                                                                                                                                                     ; import Control.Applicative; import Data.IORef
+import Control.Concurrent.Chan
 
-fromList :: [a] -> IO (Signal a)
-
-data DiscreteApp state = DiscreteApp
-  { initialState :: IO state
-  , handleEvent  :: state -> Event -> IO state
-  , render       :: state -> IO Image
-  }
-
-toApp :: (Signal (Maybe Event) -> IO (Signal Image))
-      -> DiscreteApp MyState
-toApp f = undefined
+-- |
+-- >>> chan <- newChan :: IO (Chan String)
+-- >>> writeChan chan "foo"
+-- >>> writeChan chan "bar"
+-- >>> readChan chan
+-- "foo"
+-- >>> writeChan chan "baz"
+-- >>> readChan chan
+-- "bar"
+-- >>> readChan chan
+-- "baz"
 
 
 
@@ -161,7 +162,7 @@ runMemoized (Memoized ref) = readIORef ref >>= \case
 
 
 test :: IO ()
-test = main
+test = doctest ["-XLambdaCase", "-XScopedTypeVariables", "src/Slide.hs"]
 
 main :: IO ()
 main = putStrLn "typechecks."
