@@ -1,43 +1,35 @@
 module Slide where
 import Test.DocTest                                                                                                                                                                                     ; import Control.Applicative
 
--- |
--- >>> :{
--- let inputs = fromList
---            [ Just (Color "Red"),  Just (Click 1), Just (Click 2)
---            , Just (Color "Blue"), Just (Click 3), Just (Click 4)
---            ]
---     outputs = transform inputs
--- in mapM_ print (takeS 6 outputs)
--- :}
--- Nothing
--- Nothing
--- Just (Segment "Red" (1,2))
--- Nothing
--- Nothing
--- Just (Segment "Blue" (3,4))
-transform :: Signal (Maybe Event) -> Signal (Maybe Segment)
-transform events = outputs
+transform :: [Event] -> [Segment]
+transform = go "" Nothing
   where
-    colorPicks :: Signal (Maybe String)
-    colorPicks = mapMaybeS f events
-      where
-        f (Color x) = Just x
-        f _ = Nothing
+    go :: String -> Maybe Int -> [Event] -> [Segment]
+    go _     _        []                     = []
+    go _     _        (Color color : events) = go color Nothing  events
+    go color Nothing  (Click x     : events) = go color (Just x) events
+    go color (Just x) (Click y     : events) = Segment color (x,y)
+                                             : go color Nothing events
 
-    numberPicks :: Signal (Maybe Int)
-    numberPicks = mapMaybeS f events
-      where
-        f (Click x) = Just x
-        f _ = Nothing
-
-    currentColor :: Signal String
+transformS :: Signal (Maybe Event) -> Signal (Maybe Segment)
+transformS events = outputs
+  where
+    colorPicks   = mapMaybeS isColor events
+    numberPicks  = mapMaybeS isClick events
     currentColor = lastS "" colorPicks
+    outputs      = liftA2 Segment
+               <$> (Just <$> currentColor)
+               <*> pairS numberPicks
 
-    outputs :: Signal (Maybe Segment)
-    outputs = liftA2 Segment
-          <$> (Just <$> currentColor)
-          <*> pairS numberPicks
+
+
+isColor :: Event -> Maybe String
+isColor (Color x) = Just x
+isColor _ = Nothing
+
+isClick :: Event -> Maybe Int
+isClick (Click x) = Just x
+isClick _ = Nothing
 
 mapMaybeS :: (a -> Maybe b) -> Signal (Maybe a) -> Signal (Maybe b)
 mapMaybeS f = fmap (>>= f)
@@ -164,7 +156,7 @@ scanS f x ys = Signal x $ case signalHead ys of
 
 
 test :: IO ()
-test = doctest ["-XScopedTypeVariables", "src/Slide.hs"]
+test = main
 
 main :: IO ()
 main = putStrLn "typechecks."
