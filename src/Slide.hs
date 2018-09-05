@@ -12,6 +12,12 @@ newtype Memoized a = Memoized
   { unMemoized :: IORef (Either a (IO a))
   }
 
+memoize :: IO a -> IO (Memoized a)
+memoize action = undefined
+
+runMemoized :: Memoized a -> IO a
+runMemoized (Memoized ref) = undefined
+
 
 
 
@@ -113,7 +119,7 @@ scanS f x ys = Signal x $ \() -> case signalHead ys of
 
 
 test :: IO ()
-test = main
+test = doctest ["-XLambdaCase", "src/Slide.hs"]
 
 main :: IO ()
 main = putStrLn "typechecks."
