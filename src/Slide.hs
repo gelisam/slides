@@ -1,30 +1,17 @@
 module Slide where
+import Test.DocTest                                                                                                                                                                                     ; import Control.Applicative; import Data.IORef
 
---------------------------------------------------------------------------------
---                                                                            --
---                                                                            --
---                                                                            --
---                                                                            --
---                                                                            --
---                                                                            --
---                                                                            --
---                               Write your own                               --
---                      Functional-Reactive-Programming                       --
---                                   library                                  --
---                                                                            --
---                            1. What is FRP?                                 --
---                            2. Example FRP program                          --
---                            3. Your own FRP library                         --
---                               step 1: test first!                          --
---                               step 2: streams                              --
---                               step 3: lazy streams                         --
---                             > step 4: input stream                         --
---                                                                            --
---                                                                            --
---                                                                            --
---------------------------------------------------------------------------------
+fromList :: [a] -> Signal a
 
+data DiscreteApp state = DiscreteApp
+  { initialState :: state
+  , handleEvent  :: state -> Event -> state
+  , render       :: state -> Image
+  }
 
+toApp :: (Signal (Maybe Event) -> Signal Image)
+      -> DiscreteApp MyState
+toApp f = undefined
 
 
 
@@ -99,18 +86,14 @@ module Slide where
 
 
 
+data Event
+data Image
+data MyState
 
 
+data Signal a
 
-
-
-
-
-
-
-
-
-
+fromList = undefined
 
 
 test :: IO ()
