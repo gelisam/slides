@@ -1,4 +1,4 @@
-module Main where  {- slide 4 of 7 -}
+module Main where  {- slide 5 of 7 -}
 
 
 finally :: IO a -> IO b -> IO a
@@ -11,6 +11,14 @@ class Easy m where
   liftedFinally :: m a -> m b -> m a
 
 
+finally' :: IO a
+         -> (Maybe a -> IO b)
+         -> IO b
+
+class Easier m where
+  liftedFinally' :: m a
+                 -> (Maybe a -> m b)
+                 -> m b
 
 
 
@@ -52,6 +60,7 @@ class Easy m where
 
 
 finally = undefined
+finally' = undefined
 
 
 main :: IO ()
