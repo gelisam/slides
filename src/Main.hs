@@ -1,25 +1,14 @@
-module Main where  {- slide 3 of 7 -}
-import Control.Monad.Catch  {- exceptions-0.10.0 -}                                                                                                                                                                     ; import Test.DocTest; import Control.Monad.Except; import Control.Monad.Reader; import Control.Monad.State
+module Main where  {- slide 4 of 7 -}
 
--- |
--- >>> runReaderT test1 "foo"
--- "foo"
-test1 :: ReaderT String IO ()
-test1 = pure () `finally` do { r <- ask; lift (print r) }
 
--- |
--- >>> execStateT test2 ""
--- "foo"
--- "bar"
-test2 :: StateT String IO ()
-test2 = put "foo" `finally` do { s <- get; lift (print s); put "bar" }
+finally :: IO a -> IO b -> IO a
 
--- |
--- >>> runExceptT test3
--- Left "oops"
-test3 :: ExceptT String IO ()
-test3 = pure () `finally` throwError "oops"
+class Hard m where
+  liftAnything :: (IO a -> IO b -> IO a)
+               -> (m  a -> m  b -> m  a)
 
+class Easy m where
+  liftedFinally :: m a -> m b -> m a
 
 
 
@@ -62,64 +51,8 @@ test3 = pure () `finally` throwError "oops"
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+finally = undefined
 
 
 main :: IO ()
-main = doctest ["src/Main.hs"]
+main = putStrLn "typechecks."
