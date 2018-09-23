@@ -1,4 +1,4 @@
-module Main where  {- slide 6 of 7 -}
+module Main where  {- slide 7 of 7 -}
 
 
 finally :: IO (a, StateM) -> IO (b, StateM) -> IO (a, StateM)
@@ -11,9 +11,9 @@ class Easy m where
   liftedFinally :: m a -> m b -> m a
 
 
-finally' :: IO a
-         -> (Maybe a -> IO b)
-         -> IO b
+finally' :: IO (a, StateM)
+         -> (Maybe (a, StateM) -> IO (b, StateM))
+         -> IO (b, StateM)
 
 class Easier m where
   liftedFinally' :: m a
