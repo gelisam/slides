@@ -12,4 +12,4 @@ Bazel
 * designed for polyglot monorepos
 * distributed caching
 * test caching
-* hard to setup
+* hard to setup: pay Tweag!
