@@ -1,15 +1,9 @@
-Pier
+monoidal-containers
 ===
 
-* alternative to Stack
-* uses stackage
-* rebuilds fewer things
+> import Data.Map
 
+> foo = [(1, ["one"]), (2, ["two"])]
+> bar =               [(2, ["TWO"]), (3, ["THREE"])]
 
-Bazel
-===
-
-* designed for polyglot monorepos
-* distributed caching
-* test caching
-* hard to setup: pay Tweag!
+>>> Map.fromList foo <> Map.fromList bar
