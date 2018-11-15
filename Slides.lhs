@@ -2,14 +2,14 @@ generic-lens
 ===
 
 > import Control.Lens
-> 
+> import Data.Generics.Product
 > 
 > data Person = Person
->   { _name :: String
->   , _age  :: Int
->   } deriving Generic
+>   { name :: String
+>   , age  :: Int
+>   }
+>   deriving Generic
 > 
-> makeLenses ''Person
 > 
 > greet :: Person -> String
-> greet person = "hello, " ++ view name person ++ "!"
+> greet person = "hello, " ++ view (field @"name") person ++ "!"
