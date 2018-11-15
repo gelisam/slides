@@ -1,30 +1,15 @@
-hamm: Modular Maps
+generic-lens
 ===
 
-> data DefaultingT map k a = DefaultingT { unDefaultingT :: map k a }
-> data BoundedT    map k a = BoundedT    { unBoundedT    :: map k a }
+> import Control.Lens
 > 
-> type MyMap = DefaultingT (BoundedT Map) Int String
 > 
-> class IsMap map k a where
->   lookup :: k ->      map k a -> Maybe a
->   insert :: k -> a -> map k a -> map k a
->   size   :: map k a -> Int
+> data Person = Person
+>   { _name :: String
+>   , _age  :: Int
+>   } deriving Generic
 > 
-> instance Ord k => IsMap Map k a where
->   lookup = Map.lookup
->   insert = Map.insert
->   size   = Map.size
+> makeLenses ''Person
 > 
-> instance (IsMap map k a, Monoid a) => IsMap (DefaultingT map) k a where
->   insert k a (DefaultingT inner) = DefaultingT (insert k a inner)
->   size       (DefaultingT inner) = size inner
-> 
->   lookup k   (DefaultingT inner) = Just . fromMaybe mempty . lookup k $ inner
-> 
-> instance IsMap map k a => IsMap (BoundedT map) k a where
->   lookup k   (BoundedT inner) = lookup k inner
->   size       (BoundedT inner) = size inner
-> 
->   insert k a (BoundedT inner) | size inner < 10 = BoundedT (insert k a inner)
->                               | otherwise       = BoundedT inner
+> greet :: Person -> String
+> greet person = "hello, " ++ view name person ++ "!"
