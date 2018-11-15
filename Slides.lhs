@@ -1,15 +1,6 @@
-generic-lens
+generic-deriving: Generalized Abstract GHC.Generics
+kind-generics:    Generic programming of all kinds
+generics-mrsop:   Generic programming for mutually-recursive families
 ===
 
-> import Control.Lens
-> import Data.Generics.Product
-> 
-> data Person = Person
->   { name :: String
->   , age  :: Int
->   }
->   deriving Generic
-> 
-> 
-> greet :: Person -> String
-> greet person = "hello, " ++ view (field @"name") person ++ "!"
+GHC.Generics for GADTs!
