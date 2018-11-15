@@ -4,3 +4,5 @@ generics-mrsop:   Generic programming for mutually-recursive families
 ===
 
 GHC.Generics for GADTs!
+
+Ryan Scott and Alejandro Serrano would be happy to help
