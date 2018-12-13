@@ -16,6 +16,10 @@ makeLenses ''VmTemplate
 makeLenses ''Specification
 
 
+indexedFold :: IndexedFold Int Specification String
+indexedFold = specificationVmTemplate . ifolded <. vmTemplateName
+
+
 
 
 
