@@ -5,9 +5,9 @@ import Control.Lens
 
 -- |
 -- >>> itoListOf indexedFold1 ["foo","bar"]
--- [(0,'f'),(0,'o'),(0,'o'),(1,'b'),(1,'a'),(1,'r')]
-indexedFold1 :: IndexedFold Int [[a]] a
-indexedFold1 = ifolded <. ifolded
+-- [((0,0),'f'),((0,1),'o'),((0,2),'o'),((1,0),'b'),((1,1),'a'),((1,2),'r')]
+indexedFold1 :: IndexedFold (Int,Int) [[a]] a
+indexedFold1 = ifolded <.> ifolded
 
 -- |
 -- >>> itoListOf indexedFold2 ["foo","bar"]
