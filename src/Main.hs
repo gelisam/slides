@@ -19,6 +19,13 @@ makeLenses ''Specification
 indexedFold :: IndexedFold Int Specification String
 indexedFold = specificationVmTemplate . ifolded <. vmTemplateName
 
+-- |
+-- >>> let spec = Specification (Map.fromList [(42, VmTemplate "foo")])
+-- >>> findVmTemplateKeyByName "foo" spec
+-- Just 42
+findVmTemplateKeyByName :: String -> Specification -> Maybe Int
+findVmTemplateKeyByName name = findIndexOf indexedFold (== name)
+
 
 
 
