@@ -1,13 +1,13 @@
 {-# LANGUAGE FlexibleContexts, TemplateHaskell#-}
 import Test.DocTest
-import Control.Lens                                                                                                     hiding (folded)
+import Control.Lens
 
 
-indexedFold :: IndexedFold Int [[a]] a
-indexedFold = ifolded . ifolded
+indexedFold1 :: IndexedFold Int [[a]] a
+indexedFold1 = ifolded . ifolded
 
-fold :: Fold [[a]] a
-fold = ifolded . folded
+indexedFold2 :: IndexedFold Int [[a]] a
+indexedFold2 = folded . ifolded
 
 
 
@@ -101,8 +101,6 @@ fold = ifolded . folded
 
 
 
-folded :: Fold [a] a
-folded = traverse
 
 main :: IO ()
 main = doctest ["src/Main.hs"]
