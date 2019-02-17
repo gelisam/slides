@@ -1,28 +1,18 @@
 module Slide where
-import Test.DocTest                                                                                                    ; import Control.Monad
+import Test.DocTest                                                                                                    ; import Data.Foldable
 
--- >>> helloInputIO
--- What is your name?
--- <user types "Sam">
--- Hello, Sam
-helloInputIO :: IO ()
-helloInputIO = do putStrLn "What is your name?"
-                  name <- getLine
-                  putStrLn ("Hello, " ++ name)
+-- |
+-- >>> helloWorldPure
+-- ["hello","world"]
+helloWorldPure :: [String]
+helloWorldPure = ["hello", "world"]
 
--- >>> manyInputsIO
--- How many numbers?
--- <user types 2>
--- Enter 2 numbers:
--- <user types "100">
--- <user types "200">
--- Their sum is 300
-manyInputsIO :: IO ()
-manyInputsIO = do putStrLn "How many numbers?"
-                  n <- read <$> getLine
-                  putStrLn ("Enter " ++ show n ++ " numbers:")
-                  xs <- replicateM n (read <$> getLine)
-                  putStrLn ("Their sum is " ++ show (sum xs))
+-- |
+-- >>> manyNumbersPure
+-- ["1","2","3","4","5"]
+manyNumbersPure :: [String]
+manyNumbersPure = flip fmap [1..5] $ \i -> do
+                    show i
 
 
 
