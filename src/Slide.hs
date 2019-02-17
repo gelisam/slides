@@ -1,17 +1,28 @@
 module Slide where
-import Test.DocTest                                                                                                    ; import Data.Foldable
+import Test.DocTest                                                                                                    ; import Control.Monad
 
--- helloWorldAST = '(do (putStrLn "hello")
---                      (putStrLn "world"))
-helloWorldIO :: IO ()
-helloWorldIO = do putStrLn "hello"
-                  putStrLn "world"
+-- helloInputAST = '(do (putStrLn   "What is your name?")
+--                      (bind name getLine)
+--                      (putStrLn   (mappend "Hello, " name)))
+helloInputIO :: IO ()
+helloInputIO = do
+  putStrLn "What is your name?"
+  name <- getLine
+  putStrLn ("Hello, " ++ name)
 
--- manyNumbersAST = '(for_ (enumFromTo 1 5) (lambda (i) (do
---                     (putStrLn (show i)))))
-manyNumbersIO :: IO ()
-manyNumbersIO = for_ [1..5] $ \i -> do
-                  putStrLn (show i)
+-- manyInputsAST = '(do (putStrLn   "How many numbers?")
+--                      (bind n (fmap read getLine))
+--                      (putStrLn   (mappend "Enter "
+--                                    (mappend (show n) " numbers:")))
+--                      (bind xs (replicateM n (fmap read getLine)))
+--                      (putStrLn   (mappend "Their sum is " (show (sum xs)))))
+manyInputsIO :: IO ()
+manyInputsIO = do
+  putStrLn "How many numbers?"
+  n <- read <$> getLine
+  putStrLn ("Enter " ++ show n ++ " numbers:")
+  xs <- replicateM n (read <$> getLine)
+  putStrLn ("Their sum is " ++ show (sum xs))
 
 
 
