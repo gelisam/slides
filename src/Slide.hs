@@ -1,28 +1,28 @@
 module Slide where
-import Test.DocTest                                                                                                    ; import Control.Monad
+import Test.DocTest                                                                                                    ; import Control.Monad; import Control.Monad.Fail; import Control.Monad.State; import Control.Monad.Writer; import Text.Read (readMaybe)
 
--- helloInputAST = '(do (putStrLn   "What is your name?")
---                      (bind name getLine)
---                      (putStrLn   (mappend "Hello, " name)))
-helloInputIO :: IO ()
-helloInputIO = do
-  putStrLn "What is your name?"
-  name <- getLine
-  putStrLn ("Hello, " ++ name)
+-- helloInputAST = '(do (sendOutput "What is your name?")
+--                      (bind name nextInput)
+--                      (sendOutput (mappend "Hello, " name)))
+helloInputPure :: [String] -> Maybe [String]
+helloInputPure = evalStateT $ execWriterT $ do
+  sendOutput "What is your name?"
+  name <- nextInput
+  sendOutput ("Hello, " ++ name)
 
--- manyInputsAST = '(do (putStrLn   "How many numbers?")
---                      (bind n (fmap read getLine))
---                      (putStrLn   (mappend "Enter "
+-- manyInputsAST = '(do (sendOutput "How many numbers?")
+--                      (bind n (fmap read nextInput))
+--                      (sendOutput (mappend "Enter "
 --                                    (mappend (show n) " numbers:")))
---                      (bind xs (replicateM n (fmap read getLine)))
---                      (putStrLn   (mappend "Their sum is " (show (sum xs)))))
-manyInputsIO :: IO ()
-manyInputsIO = do
-  putStrLn "How many numbers?"
-  n <- read <$> getLine
-  putStrLn ("Enter " ++ show n ++ " numbers:")
-  xs <- replicateM n (read <$> getLine)
-  putStrLn ("Their sum is " ++ show (sum xs))
+--                      (bind xs (replicateM n (fmap read nextInput)))
+--                      (sendOutput (mappend "Their sum is " (show (sum xs)))))
+manyInputsPure :: [String] -> Maybe [String]
+manyInputsPure = evalStateT $ execWriterT $ do
+  sendOutput "How many numbers?"
+  n <- read <$> nextInput
+  sendOutput ("Enter " ++ show n ++ " numbers:")
+  xs <- replicateM n (read <$> nextInput)
+  sendOutput ("Their sum is " ++ show (sum xs))
 
 
 
@@ -121,6 +121,14 @@ manyInputsIO = do
 
 
 
+sendOutput :: MonadWriter [String] m => String -> m ()
+sendOutput s = tell [s]
+
+nextInput :: (MonadFail m, MonadState [String] m) => m String
+nextInput = do
+  (s:ss) <- get
+  put ss
+  pure s
 
 main :: IO ()
-main = doctest ["src/Slide.hs"]
+main = doctest ["-XFlexibleContexts", "src/Slide.hs"]
