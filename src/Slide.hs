@@ -1,30 +1,28 @@
 module Slide where
-import Test.DocTest                                                                                                    ; import Control.Monad; import Control.Monad.Fail; import Control.Monad.State; import Control.Monad.Writer; import Text.Read (readMaybe)
+import Test.DocTest                                                                                                    ; import Control.Monad; import Data.Maybe; import qualified Data.Text as Text; import qualified Graphics.UI.FLTK.LowLevel.Ask as Ask; import qualified Graphics.UI.FLTK.LowLevel.FL as FL
 
--- helloInputAST = '(do (sendOutput "What is your name?")
---                      (bind name nextInput)
---                      (sendOutput (mappend "Hello, " name)))
-helloInputPure :: [String] -> Maybe [String]
-helloInputPure = evalStateT $ execWriterT $ do
-  sendOutput "What is your name?"
-  name <- nextInput
-  sendOutput ("Hello, " ++ name)
+-- helloInputAST = '(do (bind name (flInput "What is your name?"))
+--
+--                      (flMessage  (mappend "Hello, " name)))
+helloInputUI :: IO ()
+helloInputUI = do name <- flInput "What is your name?"
+                  flMessage ("Hello, " ++ name)
 
--- manyInputsAST = '(do (sendOutput "How many numbers?")
---                      (bind n (fmap read nextInput))
---                      (sendOutput (mappend "Enter "
---                                    (mappend (show n) " numbers:")))
---                      (bind xs (replicateM n (fmap read nextInput)))
---                      (sendOutput (mappend "Their sum is " (show (sum xs)))))
-manyInputsPure :: [String] -> Maybe [String]
-manyInputsPure = evalStateT $ execWriterT $ do
-  sendOutput "How many numbers?"
-  n <- read <$> nextInput
-  sendOutput ("Enter " ++ show n ++ " numbers:")
-  xs <- replicateM n (read <$> nextInput)
-  sendOutput ("Their sum is " ++ show (sum xs))
 
 
+-- manyInputsAST = '(do (fmap read (flInput "How many numbers?"))
+--                      (bind x (fmap read
+--                                (flInput (mappend "Enter "
+--                                           (mappend (show n) " numbers:")))))
+--                      (bind xs (replicateM (subtract n 1)
+--                                 (fmap read (flInput ""))))
+--                      (flMessage  (mappend "Their sum is "
+--                                    (show (sum (cons x xs))))))
+manyInputsUI :: IO ()
+manyInputsUI = do n <- read <$> flInput "How many numbers?"
+                  x <- read <$> flInput ("Enter " ++ show n ++ " numbers:")
+                  xs <- replicateM (n-1) (read <$> flInput "")
+                  flMessage ("Their sum is " ++ show (sum (x:xs)))
 
 
 
@@ -121,14 +119,13 @@ manyInputsPure = evalStateT $ execWriterT $ do
 
 
 
-sendOutput :: MonadWriter [String] m => String -> m ()
-sendOutput s = tell [s]
 
-nextInput :: (MonadFail m, MonadState [String] m) => m String
-nextInput = do
-  (s:ss) <- get
-  put ss
-  pure s
+
+flMessage :: String -> IO ()
+flMessage = Ask.flMessage . Text.pack
+
+flInput :: String -> IO String
+flInput = fmap (Text.unpack . fromJust) . Ask.flInput . Text.pack
 
 main :: IO ()
-main = doctest ["-XFlexibleContexts", "src/Slide.hs"]
+main = doctest ["src/Slide.hs"]
