@@ -4,20 +4,20 @@ data OneOf (hs :: [* -> *]) a where
   Here  :: h a        -> OneOf (h ': hs) a
   There :: OneOf hs a -> OneOf (h ': hs) a
 
-data PutStrLnH a where PutStrLnH :: String -> PutStrLnH ()
-data GetLineH  a where GetLineH  :: GetLineH String
+class Member h hs where
+  theOne :: h a -> OneOf hs a
 
+instance {-# OVERLAPPING #-} Member h (h ': hs) where
+  theOne = Here
 
+instance Member h hs => Member h (h' ': hs) where
+  theOne = There . theOne
 
+putStrLnH :: Member PutStrLnH hs => String -> OneOf hs ()
+putStrLnH s = theOne (PutStrLnH s)
 
-
-
-
-putStrLnH :: String -> OneOf '[PutStrLnH, GetLineH] ()
-putStrLnH s = Here (PutStrLnH s)
-
-getLineH :: OneOf '[PutStrLnH, GetLineH] String
-getLineH = There (Here GetLineH)
+getLineH :: Member GetLineH hs => OneOf hs String
+getLineH = theOne GetLineH
 
 
 
@@ -111,6 +111,9 @@ getLineH = There (Here GetLineH)
 data Freer g a where
   Purer  :: a -> Freer g a
   Deeper :: g x -> (x -> Freer g a) -> Freer g a
+
+data PutStrLnH a where PutStrLnH :: String -> PutStrLnH ()
+data GetLineH  a where GetLineH  :: GetLineH String
 
 
 main :: IO ()
