@@ -1,12 +1,12 @@
 module Slide where
 
-data StmtF a where
-  PutStrLnF :: String -> a -> StmtF a
-  GetLineF  :: (String -> a) -> StmtF a
+data StmtG a where
+  PutStrLnG :: String -> StmtG ()
+  GetLineG  :: StmtG String
 
-data Free  f a where
-  Pure   :: a -> Free  f a
-  Deep   :: f (Free f a) -> Free f a
+data Free  g a where
+  Pure   :: a -> Free  g a
+  Deep   :: g (Free g a) -> Free g a
 
 
 
