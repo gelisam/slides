@@ -3,20 +3,18 @@ import Test.DocTest                                                             
 
 data Free f a = Pure a | Deep (f (Free f a))
 
-instance Functor f => Monad (Free f) where
-  return = Pure
-  Pure a     >>= cc = cc a
-  Deep fFree >>= cc = Deep (fmap (>>= cc) fFree)
+embedInFree :: Functor f
+            => f a -> Free f a
+embedInFree fa = Deep (fmap Pure fa)
 
 
 data Freer g a where
   Purer  :: a -> Freer g a
   Deeper :: g x -> (x -> Freer g a) -> Freer g a
 
-instance Monad (Freer g) where
-  return = Purer
-  Purer a           >>= cc = cc a
-  Deeper gx toFreer >>= cc = Deeper gx (\x -> toFreer x >>= cc)
+embedInFreer :: g a -> Freer g a
+embedInFreer ga = Deeper ga Purer
+
 
 
 
@@ -109,6 +107,11 @@ instance Functor f => Applicative (Free f) where
   pure = Pure
   (<*>) = ap
 
+instance Functor f => Monad (Free f) where
+  return = Pure
+  Pure a     >>= cc = cc a
+  Deep fFree >>= cc = Deep (fmap (>>= cc) fFree)
+
 
 instance Functor (Freer g) where
   fmap g (Purer a)           = Purer (g a)
@@ -117,6 +120,11 @@ instance Functor (Freer g) where
 instance Applicative (Freer g) where
   pure = Purer
   (<*>) = ap
+
+instance Monad (Freer f) where
+  return = Purer
+  Purer a           >>= cc = cc a
+  Deeper fx toFreer >>= cc = Deeper fx (\x -> toFreer x >>= cc)
 
 
 main :: IO ()
