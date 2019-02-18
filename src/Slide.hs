@@ -4,23 +4,22 @@ import Test.DocTest                                                             
 data Stmt = PutStrLn String
           | GetLine                                                                                                    deriving Show
 
--- |
--- >>> evalIO helloWorldList
--- hello
--- world
--- >>> evalIO manyNumbersList
--- 1
--- 2
--- 3
--- 4
--- 5
-evalIO :: [Stmt] -> IO ()
-evalIO = mapM_ go
-  where
-    go :: Stmt -> IO ()
-    go (PutStrLn s) = putStrLn s
-    go GetLine      = void getLine
 
+-- |
+-- >>> evalPure helloWorldList  []
+-- Just ["hello","world"]
+-- >>> evalPure manyNumbersList []
+-- Just ["1","2","3","4","5"]
+evalPure :: [Stmt] -> [String] -> Maybe [String]
+evalPure = evalStateT . execWriterT . mapM go
+  where
+    go :: ( MonadFail            m
+          , MonadState  [String] m
+          , MonadWriter [String] m
+          )
+       => Stmt -> m ()
+    go (PutStrLn s) = sendOutput s
+    go GetLine      = void nextInput
 
 
 
