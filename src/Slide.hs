@@ -6,7 +6,8 @@ highLevel   :: Eff '[GetAccountBalanceH, AskForMoreFundsH] ()
 mediumLevel :: Eff '[QueryDatabaseH, DisplayHtml] ()
 lowLevel    :: Eff '[WriteBytesToFileHandleH] ()
 
-
+evalGetAccountBalanceH :: Member QueryDatabaseH hs => GetAccountBalanceH a -> Eff hs a
+testGetAccountBalanceH :: Member (State MockDb) hs => GetAccountBalanceH a -> Eff hs a
 
 
 
@@ -189,9 +190,14 @@ data QueryDatabaseH          a
 data DisplayHtml             a
 data WriteBytesToFileHandleH a
 
+data MockDb
+
 highLevel   = undefined
 mediumLevel = undefined
 lowLevel    = undefined
+
+evalGetAccountBalanceH = undefined
+testGetAccountBalanceH = undefined
 
 
 main :: IO ()
