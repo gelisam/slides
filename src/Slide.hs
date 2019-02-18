@@ -4,25 +4,24 @@ import Prelude hiding (Maybe(..), Monoid(..), Monad(..))
 -- free Default
 data Maybe a = Nothing | Just a
 
-instance Default (Maybe a) where
-  def = Nothing
+embedInMaybe :: a -> Maybe a
+embedInMaybe a = Just a
 
 
 -- free Monoid
 data List a = Nil | Cons a (List a)
 
-instance Monoid (List a) where
-  mempty = Nil
-  mappend Nil         ys = ys
-  mappend (Cons x xs) ys = Cons x (mappend xs ys)
+embedInList :: a -> List a
+embedInList a = Cons a Nil
+
+
 
 -- free Monad
 data Free f a = Pure a | Deep (f (Free f a))
 
-instance Functor f => Monad (Free f) where
-  return = Pure
-  Pure a     >>= cc = cc a
-  Deep fFree >>= cc = Deep (fmap (>>= cc) fFree)
+embedInFree :: Functor f
+            => f a -> Free f a
+embedInFree fa = Deep (fmap Pure fa)
 
 
 
