@@ -8,18 +8,18 @@ data Stmt = PutStrLn String
       --                                                          --
       --               PutStrLn s1                                --
       --                    |                                     --
-      --                 GetLine      -- binds x1                 --
-      --                    |                                     --
-      --               PutStrLn s2    -- x1 is in scope           --
-      --                    |                                     --
-      --               PutStrLn s3    -- x1 is in scope           --
-      --                    |                                     --
-      --                 GetLine      -- binds x2                 --
-      --                    |                                     --
-      --               PutStrLn s4    -- x1 and x2 are in scopy   --
-      --                    |                                     --
-      --                   Nil                                    --
-      --                                                          --
+      --                 GetLine                                  --
+      --          _________/|\_________                           --
+      --        /           |           \                         --
+      --       |            |            |                        --
+      --       |            |            |                        --
+      --  PutStrLn s2  PutStrLn s2  PutStrLn s2                   --
+      --       |            |            |                        --
+      --      Nil      PutStrLn s3  PutStrLn s3                   --
+      --                    |            |                        --
+      --                   Nil      PutStrLn s4                   --
+      --                                 |                        --
+      --                                Nil                       --
       --                                                          --
       --------------------------------------------------------------
 
