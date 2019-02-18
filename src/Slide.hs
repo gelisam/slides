@@ -17,7 +17,7 @@ data Rose a = Node a [Rose a]
 --     _/|\_     |
 --   /   |   \   |
 --  5    6    7  8
-data Roser a = Leaf a | Noder [Roser a]
+data Roser a = Leaf a | Noder (String -> Roser a)
 
 
 
