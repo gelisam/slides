@@ -10,7 +10,17 @@ evalLayer f = toMonadHomomorphism go
     go (Here hx)     = f hx
     go (There oneOf) = embedInFreer oneOf
 
+evalLayer1 :: forall h m hs a. Member m hs
+           => (forall x. h x -> m x)
+           -> Eff (h ': hs) a -> Eff hs a
+evalLayer1 f = evalLayer (embedInFreer . theOne . f)
 
+finalLayer :: forall m a. Monad m
+           => Eff '[m] a -> m a
+finalLayer = toMonadHomomorphism go
+  where
+    go :: OneOf '[m] x -> m x
+    go (Here mx) = mx
 
 
 
