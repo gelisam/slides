@@ -1,109 +1,110 @@
 module Slide where
 import Test.DocTest                                                                                                    ; import Control.Monad; import Control.Monad.Fail; import Control.Monad.State; import Control.Monad.Writer; import Data.Foldable; import Data.Maybe; import qualified Data.Text as Text; import qualified Graphics.UI.FLTK.LowLevel.Ask as Ask; import qualified Graphics.UI.FLTK.LowLevel.FL as FL
 
+-- >>> evalIO helloInputFreer
+-- What is your name?
+-- <user types "Sam">
+-- Hello, Sam
+-- >>> evalIO manyInputsFreer
+-- How many numbers?
+-- <user types 2>
+-- Enter 2 numbers:
+-- <user types "100">
+-- <user types "200">
+-- Their sum is 300
+evalIO :: Freer StmtG a -> IO a    --  evalIO :: Free StmtF a -> IO a
+evalIO = toMonadHomomorphism go    --  evalIO = toMonadHomomorphism go
+  where                            --    where
+    go :: StmtG a -> IO a          --      go :: StmtF a -> IO a
+    go (PutStrLnG s) = putStrLn s  --      go (PutStrLnF s a) = do putStrLn s
+    go GetLineG      = getLine     --                              return a
+                                   --      go (GetLineF cc)   = do s <- getLine
+                                   --                              return (cc s)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 data StmtF a = PutStrLnF String a
              | GetLineF (String -> a)
-
-helloInputFree :: Free StmtF ()
-helloInputFree = do
-  embedInFree $ PutStrLnF "What is your name?" ()
-  name <- embedInFree $ GetLineF id
-  embedInFree $ PutStrLnF ("Hello, " ++ name) ()
-
-
-data StmtG a where
-  PutStrLnG :: String -> StmtG ()
-  GetLineG  :: StmtG String
-
-helloInputFreer :: Freer StmtG ()
-helloInputFreer = do
-  embedInFreer $ PutStrLnG "What is your name?"
-  name <- embedInFreer GetLineG
-  embedInFreer $ PutStrLnG ("Hello, " ++ name)
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 instance Functor StmtF where
   fmap f (PutStrLnF s a) = PutStrLnF s (f a)
@@ -130,6 +131,11 @@ embedInFree :: Functor f
 embedInFree fa = Deep (fmap Pure fa)
 
 
+data StmtG a where
+  PutStrLnG :: String -> StmtG ()
+  GetLineG  :: StmtG String
+
+
 data Freer g a where
   Purer  :: a -> Freer g a
   Deeper :: g x -> (x -> Freer g a) -> Freer g a
@@ -149,6 +155,29 @@ instance Monad (Freer g) where
 
 embedInFreer :: g a -> Freer g a
 embedInFreer fa = Deeper fa Purer
+
+toMonadHomomorphism :: Monad m
+                    => (forall x. f x -> m x)
+                    -> Freer f a -> m a
+toMonadHomomorphism _ (Purer a)           = return a
+toMonadHomomorphism f (Deeper fx toFreer) = do
+  x <- f fx
+  toMonadHomomorphism f (toFreer x)
+
+
+helloInputFreer :: Freer StmtG ()
+helloInputFreer = do
+  embedInFreer $ PutStrLnG "What is your name?"
+  name <- embedInFreer GetLineG
+  embedInFreer $ PutStrLnG ("Hello, " ++ name)
+
+manyInputsFreer :: Freer StmtG ()
+manyInputsFreer = do
+  embedInFreer $ PutStrLnG "How many numbers?"
+  n <- read <$> embedInFreer GetLineG
+  embedInFreer $ PutStrLnG ("Enter " ++ show n ++ " numbers:")
+  xs <- replicateM n (read <$> embedInFreer GetLineG)
+  embedInFreer $ PutStrLnG ("Their sum is " ++ show (sum xs))
 
 
 main :: IO ()
