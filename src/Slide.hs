@@ -10,6 +10,15 @@ module Slide where
 data Rose a = Node a [Rose a]
 
 
+--               *
+--          ____/|\____
+--        /      |      \
+--       *       *       4
+--     _/|\_     |
+--   /   |   \   |
+--  5    6    7  8
+data Roser a = Leaf a | Noder [Roser a]
+
 
 
 
