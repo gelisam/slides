@@ -1,26 +1,30 @@
 module Slide where
+import Prelude hiding (Maybe(..), Monoid(..), Monad(..))
 
---               1
---          ____/|\____
---        /      |      \
---       2       3       4
---     _/|\_     |
---   /   |   \   |
---  5    6    7  8
-data Rose a = Node a [Rose a]
+-- free Default
+data Maybe a = Nothing | Just a
+
+class Default a where
+  def :: a
 
 
---               *
---          ____/|\____
---        /      |      \
---       *       *       4
---     _/|\_     |
---   /   |   \   |
---  5    6    7  8
-data Free f a = Pure a | Deep (f     (Free f a))
+-- free Monoid
+data List a = Nil | Cons a (List a)
 
-data StmtF a = PutStrLnF String a
-             | GetLineF (String -> a)
+class Monoid a where
+  mempty  :: a
+  mappend :: a -> a -> a
+
+
+-- free Monad
+data Free f a = Pure a | Deep (f (Free f a))
+
+class Functor m => Monad m where
+  return :: a -> m a
+  (>>=)  :: m a -> (a -> m b) -> m b
+
+
+
 
 
 
