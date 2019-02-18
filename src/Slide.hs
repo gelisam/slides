@@ -4,6 +4,8 @@ data StmtG a where
   PutStrLnG :: String -> StmtG ()
   GetLineG  :: StmtG String
 
+data PutStrLnH a where PutStrLnH :: String -> PutStrLnH ()
+data GetLineH  a where GetLineH  :: GetLineH String
 
 
 
