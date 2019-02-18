@@ -17,9 +17,10 @@ data Rose a = Node a [Rose a]
 --     _/|\_     |
 --   /   |   \   |
 --  5    6    7  8
-data Roser a = Leaf a | Noder (String -> Roser a)
+data Roser a = Leaf a | Noder (StmtF (Roser a))
 
-
+data StmtF a = PutStrLnF String a
+             | GetLineF (String -> a)
 
 
 
