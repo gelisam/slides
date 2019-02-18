@@ -20,6 +20,9 @@ getLineH :: Member GetLineH hs => OneOf hs String
 getLineH = theOne GetLineH
 
 
+type Eff hs a = Freer (OneOf hs) a
+
+
 
 
 
