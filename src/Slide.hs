@@ -1,25 +1,27 @@
 module Slide where
-import Test.DocTest                                                                                                    ; import Control.Monad; import Control.Monad.Fail; import Control.Monad.State; import Control.Monad.Writer; import Data.Foldable
+import Test.DocTest                                                                                                    ; import Control.Monad; import Control.Monad.Fail; import Control.Monad.State; import Control.Monad.Writer; import Data.Foldable; import Data.Maybe; import qualified Data.Text as Text; import qualified Graphics.UI.FLTK.LowLevel.Ask as Ask; import qualified Graphics.UI.FLTK.LowLevel.FL as FL
 
 data Stmt = PutStrLn String
           | GetLine                                                                                                    deriving Show
 
 
--- |
--- >>> evalPure helloWorldList  []
--- Just ["hello","world"]
--- >>> evalPure manyNumbersList []
--- Just ["1","2","3","4","5"]
-evalPure :: [Stmt] -> [String] -> Maybe [String]
-evalPure = evalStateT . execWriterT . mapM go
+
+-- >>> evalUI helloWorldList
+-- >>> evalUI manyNumbersList
+evalUI :: [Stmt] -> IO ()
+evalUI stmts = do
+  xs <- execStateT (mapM go stmts) []
+  unless (xs == []) $ do
+    flMessage (unlines xs)
   where
-    go :: ( MonadFail            m
-          , MonadState  [String] m
-          , MonadWriter [String] m
+    go :: ( MonadIO m
+          , MonadState [String] m
           )
        => Stmt -> m ()
-    go (PutStrLn s) = sendOutput s
-    go GetLine      = void nextInput
+    go (PutStrLn s) = modify (++ [s])
+    go GetLine      = do xs <- get
+                         put []
+                         void $ liftIO $ flInput (unlines xs)
 
 
 
@@ -115,6 +117,9 @@ evalPure = evalStateT . execWriterT . mapM go
 
 
 
+isPutStrLn :: Stmt -> Bool
+isPutStrLn (PutStrLn _) = True
+isPutStrLn _            = False
 
 
 helloWorldList :: [Stmt]
@@ -138,5 +143,14 @@ nextInput = do
   pure s
 
 
+flMessage :: String -> IO ()
+flMessage = Ask.flMessage . Text.pack
+
+flInput :: String -> IO String
+flInput = fmap (Text.unpack . fromJust) . Ask.flInput . Text.pack
+
+
 main :: IO ()
-main = doctest ["-XFlexibleContexts", "src/Slide.hs"]
+main = do
+  evalUI helloWorldList
+  evalUI manyNumbersList
