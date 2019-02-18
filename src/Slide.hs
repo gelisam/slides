@@ -4,24 +4,24 @@ import Test.DocTest                                                             
 data StmtF a = PutStrLnF String a
              | GetLineF (String -> a)
 
-
-
--- |
--- >>> evalPure helloInputFree ["Sam"]
--- Just ["What is your name?","Hello, Sam"]
--- >>> evalPure manyInputsFree ["2","100","200"]
--- Just ["How many numbers?","Enter 2 numbers:","Their sum is 300"]
-evalPure :: Free StmtF a -> [String] -> Maybe [String]
-evalPure = evalStateT . execWriterT . toMonadHomomorphism go
+-- >>> evalUI helloInputFree
+-- >>> evalUI manyInputsFree
+evalUI :: Free StmtF a -> IO a
+evalUI stmts = do
+  (a, xs) <- runStateT (toMonadHomomorphism go stmts) []
+  unless (xs == []) $ do
+    flMessage (unlines xs)
+  return a
   where
-    go :: ( MonadFail            m
-          , MonadState  [String] m
-          , MonadWriter [String] m
+    go :: ( MonadIO m
+          , MonadState [String] m
           )
        => StmtF a -> m a
-    go (PutStrLnF s a) = do sendOutput s
+    go (PutStrLnF s a) = do modify (++ [s])
                             return a
-    go (GetLineF cc)   = do s <- nextInput
+    go (GetLineF cc)   = do xs <- get
+                            put []
+                            s <- liftIO $ flInput (unlines xs)
                             return (cc s)
 
 
@@ -161,5 +161,14 @@ nextInput = do
   pure s
 
 
+flMessage :: String -> IO ()
+flMessage = Ask.flMessage . Text.pack
+
+flInput :: String -> IO String
+flInput = fmap (Text.unpack . fromJust) . Ask.flInput . Text.pack
+
+
 main :: IO ()
-main = doctest ["-XFlexibleContexts", "-XRankNTypes", "src/Slide.hs"]
+main = do
+  evalUI helloInputFree
+  evalUI manyInputsFree
