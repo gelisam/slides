@@ -4,9 +4,9 @@ data StmtG a where
   PutStrLnG :: String -> StmtG ()
   GetLineG  :: StmtG String
 
-data Free  g a where
-  Pure   :: a -> Free  g a
-  Deep   :: g (Free g a) -> Free g a
+data Freer g a where
+  Purer  :: a -> Freer g a
+  Deeper :: g x -> (x -> Freer g a) -> Freer g a
 
 
 
