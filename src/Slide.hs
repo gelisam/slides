@@ -1,28 +1,23 @@
 module Slide where
-import Prelude hiding (Maybe(..), Monoid(..), Monad(..))
 
--- free Default
-data Maybe a = Nothing | Just a
+toDefaultHomomorphism :: Default b
+                      => (a -> b) -> Maybe a -> b
+toDefaultHomomorphism _ Nothing  = def
+toDefaultHomomorphism f (Just a) = f a
 
-embedInMaybe :: a -> Maybe a
-embedInMaybe a = Just a
+toMonoidHomomorphism :: Monoid b
+                     => (a -> b) -> List a -> b
+toMonoidHomomorphism _ Nil         = mempty
+toMonoidHomomorphism f (Cons a as) = f a `mappend` toMonoidHomomorphism f as
+
+toMonadHomomorphism :: Monad m
+                    => (forall x. f x -> m x)
+                    -> Free f a -> m a
+toMonadHomomorphism _ (Pure a)     = return a
+toMonadHomomorphism f (Deep fFree) = f fFree >>= toMonadHomomorphism f
 
 
--- free Monoid
-data List a = Nil | Cons a (List a)
-
-embedInList :: a -> List a
-embedInList a = Cons a Nil
-
-
-
--- free Monad
 data Free f a = Pure a | Deep (f (Free f a))
-
-embedInFree :: Functor f
-            => f a -> Free f a
-embedInFree fa = Deep (fmap Pure fa)
-
 
 
 
@@ -112,13 +107,9 @@ embedInFree fa = Deep (fmap Pure fa)
 class Default a where
   def :: a
 
-class Monoid a where
-  mempty  :: a
-  mappend :: a -> a -> a
 
-class Functor m => Monad m where
-  return :: a -> m a
-  (>>=)  :: m a -> (a -> m b) -> m b
+data List a = Nil | Cons a (List a)
+
 
 instance Functor f => Functor (Free f) where
   fmap f (Pure a)     = Pure (f a)
