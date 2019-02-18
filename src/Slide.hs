@@ -1,29 +1,21 @@
 module Slide where
-import Test.DocTest                                                                                                    ; import Control.Monad; import Control.Monad.Fail; import Control.Monad.State; import Control.Monad.Writer; import Text.Read (readMaybe)
+import Test.DocTest                                                                                                    ; import Control.Monad; import Data.Maybe; import qualified Data.Text as Text; import qualified Graphics.UI.FLTK.LowLevel.Ask as Ask; import qualified Graphics.UI.FLTK.LowLevel.FL as FL
 
--- |
--- >>> helloInputPure ["Sam"]
--- Just ["What is your name?","Hello, Sam"]
--- >>> helloInputPure []
--- Nothing
-helloInputPure :: [String] -> Maybe [String]
-helloInputPure = evalStateT $ execWriterT $ do
-  sendOutput "What is your name?"
-  name <- nextInput
-  sendOutput ("Hello, " ++ name)
+helloWorldUI :: IO ()
+helloWorldUI = flMessage (unlines ["hello","world"])
 
--- |
--- >>> manyInputsPure ["2","100","200"]
--- Just ["How many numbers?","Enter 2 numbers:","Their sum is 300"]
-manyInputsPure :: [String] -> Maybe [String]
-manyInputsPure = evalStateT $ execWriterT $ do
-  sendOutput "How many numbers?"
-  n <- read <$> nextInput
-  sendOutput ("Enter " ++ show n ++ " numbers:")
-  xs <- replicateM n (read <$> nextInput)
-  sendOutput ("Their sum is " ++ show (sum xs))
+manyNumbersUI :: IO ()
+manyNumbersUI = flMessage (unlines (fmap show [1..5]))
 
+helloInputUI :: IO ()
+helloInputUI = do name <- flInput "What is your name?"
+                  flMessage ("Hello, " ++ name)
 
+manyInputsUI :: IO ()
+manyInputsUI = do n <- read <$> flInput "How many numbers?"
+                  x <- read <$> flInput ("Enter " ++ show n ++ " numbers:")
+                  xs <- replicateM (n-1) (read <$> flInput "")
+                  flMessage ("Their sum is " ++ show (sum (x:xs)))
 
 
 
@@ -119,14 +111,17 @@ manyInputsPure = evalStateT $ execWriterT $ do
 
 
 
-sendOutput :: MonadWriter [String] m => String -> m ()
-sendOutput s = tell [s]
 
-nextInput :: (MonadFail m, MonadState [String] m) => m String
-nextInput = do
-  (s:ss) <- get
-  put ss
-  pure s
+
+flMessage :: String -> IO ()
+flMessage = Ask.flMessage . Text.pack
+
+flInput :: String -> IO String
+flInput = fmap (Text.unpack . fromJust) . Ask.flInput . Text.pack
 
 main :: IO ()
-main = doctest ["-XFlexibleContexts", "src/Slide.hs"]
+main = do
+  helloWorldUI
+  manyNumbersUI
+  helloInputUI
+  manyInputsUI
