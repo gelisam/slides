@@ -1,27 +1,14 @@
 module Slide where
+import Test.DocTest                                                                                                    ; import Control.Monad; import Control.Monad.Fail; import Control.Monad.State; import Control.Monad.Writer; import Data.Foldable; import Data.Maybe; import qualified Data.Text as Text; import qualified Graphics.UI.FLTK.LowLevel.Ask as Ask; import qualified Graphics.UI.FLTK.LowLevel.FL as FL
 
-data OneOf (hs :: [* -> *]) a where
-  Here  :: h a        -> OneOf (h ': hs) a
-  There :: OneOf hs a -> OneOf (h ': hs) a
-
-class Member h hs where
-  theOne :: h a -> OneOf hs a
-
-instance {-# OVERLAPPING #-} Member h (h ': hs) where
-  theOne = Here
-
-instance Member h hs => Member h (h' ': hs) where
-  theOne = There . theOne
-
-putStrLnH :: Member PutStrLnH hs => String -> OneOf hs ()
-putStrLnH s = theOne (PutStrLnH s)
-
-getLineH :: Member GetLineH hs => OneOf hs String
-getLineH = theOne GetLineH
-
-
-type Eff hs a = Freer (OneOf hs) a
-
+evalLayer :: forall h hs a
+           . (forall x. h x -> Eff hs x)
+          -> Eff (h ': hs) a -> Eff hs a
+evalLayer f = toMonadHomomorphism go
+  where
+    go :: OneOf (h ': hs) x -> Eff hs x
+    go (Here hx)     = f hx
+    go (There oneOf) = embedInFreer oneOf
 
 
 
@@ -115,8 +102,46 @@ data Freer g a where
   Purer  :: a -> Freer g a
   Deeper :: g x -> (x -> Freer g a) -> Freer g a
 
-data PutStrLnH a where PutStrLnH :: String -> PutStrLnH ()
-data GetLineH  a where GetLineH  :: GetLineH String
+instance Functor (Freer g) where
+  fmap g (Purer a)           = Purer (g a)
+  fmap g (Deeper gx toFreer) = Deeper gx (\x -> fmap g (toFreer x))
+
+instance Applicative (Freer g) where
+  pure = Purer
+  (<*>) = ap
+
+instance Monad (Freer g) where
+  return = Purer
+  Purer a           >>= cc = cc a
+  Deeper gx toFreer >>= cc = Deeper gx (\x -> toFreer x >>= cc)
+
+embedInFreer :: g a -> Freer g a
+embedInFreer fa = Deeper fa Purer
+
+toMonadHomomorphism :: Monad m
+                    => (forall x. f x -> m x)
+                    -> Freer f a -> m a
+toMonadHomomorphism _ (Purer a)           = return a
+toMonadHomomorphism f (Deeper fx toFreer) = do
+  x <- f fx
+  toMonadHomomorphism f (toFreer x)
+
+
+data OneOf (hs :: [* -> *]) a where
+  Here  :: h a        -> OneOf (h ': hs) a
+  There :: OneOf hs a -> OneOf (h ': hs) a
+
+class Member h hs where
+  theOne :: h a -> OneOf hs a
+
+instance {-# OVERLAPPING #-} Member h (h ': hs) where
+  theOne = Here
+
+instance Member h hs => Member h (h' ': hs) where
+  theOne = There . theOne
+
+
+type Eff hs a = Freer (OneOf hs) a
 
 
 main :: IO ()
