@@ -1,28 +1,10 @@
 module Slide where
 import Test.DocTest                                                                                                    ; import Control.Arrow ((>>>)); import Control.Monad; import Control.Monad.Fail; import Control.Monad.State; import Control.Monad.Writer; import Data.Foldable; import Data.Maybe; import qualified Data.Text as Text; import qualified Graphics.UI.FLTK.LowLevel.Ask as Ask; import qualified Graphics.UI.FLTK.LowLevel.FL as FL
 
--- >>> evalIO helloInputEff
--- What is your name?
--- <user types "Sam">
--- Hello, Sam
--- >>> evalIO manyInputsEff
--- How many numbers?
--- <user types 2>
--- Enter 2 numbers:
--- <user types "100">
--- <user types "200">
--- Their sum is 300
-evalIO :: Eff '[PutStrLnH, GetLineH, IO] a -> IO a
-evalIO = evalLayer1 evalPutStrLnH
-     >>> evalLayer1 evalGetLineH
-     >>> finalLayer
-
-evalPutStrLnH :: PutStrLnH a -> IO a
-evalPutStrLnH (PutStrLnH s) = putStrLn s
-
-evalGetLineH :: GetLineH a -> IO a
-evalGetLineH GetLineH = getLine
-
+-- the onion architecture
+highLevel   :: Eff '[GetAccountBalanceH, AskForMoreFundsH] ()
+mediumLevel :: Eff '[QueryDatabaseH, DisplayHtml] ()
+lowLevel    :: Eff '[WriteBytesToFileHandleH] ()
 
 
 
@@ -199,6 +181,17 @@ manyInputsEff = do
   embedInEff $ PutStrLnH ("Enter " ++ show n ++ " numbers:")
   xs <- replicateM n (read <$> embedInEff GetLineH)
   embedInEff $ PutStrLnH ("Their sum is " ++ show (sum xs))
+
+
+data GetAccountBalanceH      a
+data AskForMoreFundsH        a
+data QueryDatabaseH          a
+data DisplayHtml             a
+data WriteBytesToFileHandleH a
+
+highLevel   = undefined
+mediumLevel = undefined
+lowLevel    = undefined
 
 
 main :: IO ()
