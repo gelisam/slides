@@ -4,24 +4,24 @@ import Test.DocTest                                                             
 data StmtF a = PutStrLnF String a
              | GetLineF (String -> a)
 
--- >>> evalIO helloInputFree
--- What is your name?
--- <user types "Sam">
--- Hello, Sam
--- >>> evalIO manyInputsFree
--- How many numbers?
--- <user types 2>
--- Enter 2 numbers:
--- <user types "100">
--- <user types "200">
--- Their sum is 300
-evalIO :: Free StmtF a -> IO a
-evalIO = toMonadHomomorphism go
+
+
+-- |
+-- >>> evalPure helloInputFree ["Sam"]
+-- Just ["What is your name?","Hello, Sam"]
+-- >>> evalPure manyInputsFree ["2","100","200"]
+-- Just ["How many numbers?","Enter 2 numbers:","Their sum is 300"]
+evalPure :: Free StmtF a -> [String] -> Maybe [String]
+evalPure = evalStateT . execWriterT . toMonadHomomorphism go
   where
-    go :: StmtF a -> IO a
-    go (PutStrLnF s a) = do putStrLn s
+    go :: ( MonadFail            m
+          , MonadState  [String] m
+          , MonadWriter [String] m
+          )
+       => StmtF a -> m a
+    go (PutStrLnF s a) = do sendOutput s
                             return a
-    go (GetLineF cc)   = do s <- getLine
+    go (GetLineF cc)   = do s <- nextInput
                             return (cc s)
 
 
@@ -151,5 +151,15 @@ manyInputsFree = do
   Deep $ PutStrLnF ("Their sum is " ++ show (sum xs)) (Pure ())
 
 
+sendOutput :: MonadWriter [String] m => String -> m ()
+sendOutput s = tell [s]
+
+nextInput :: (MonadFail m, MonadState [String] m) => m String
+nextInput = do
+  (s:ss) <- get
+  put ss
+  pure s
+
+
 main :: IO ()
-main = putStrLn "typechecks."
+main = doctest ["-XFlexibleContexts", "-XRankNTypes", "src/Slide.hs"]
