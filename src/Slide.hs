@@ -1,21 +1,31 @@
 module Slide where
-import Test.DocTest                                                                                                    ; import Control.Monad; import Data.Maybe; import qualified Data.Text as Text; import qualified Graphics.UI.FLTK.LowLevel.Ask as Ask; import qualified Graphics.UI.FLTK.LowLevel.FL as FL
 
-helloWorldUI :: IO ()
-helloWorldUI = flMessage (unlines ["hello","world"])
+--------------------------------------------------------------------------------
+--                                                                            --
+--                                                                            --
+--                                                                            --
+--                                                                            --
+--                                                                            --
+--                                                                            --
+--                                                                            --
+--                            Freer Monads                                    --
+--                                                                            --
+--                          > 0. Code as Data                                 --
+--                            1. S-Expr                                       --
+--                            2. List                                         --
+--                                                                            --
+--                            3. Free                                         --
+--                            4. Freer                                        --
+--                            5. Eff                                          --
+--                                                                            --
+--                                                                            --
+--                                                                            --
+--                                                                            --
+--                                                                            --
+--------------------------------------------------------------------------------
 
-manyNumbersUI :: IO ()
-manyNumbersUI = flMessage (unlines (fmap show [1..5]))
 
-helloInputUI :: IO ()
-helloInputUI = do name <- flInput "What is your name?"
-                  flMessage ("Hello, " ++ name)
 
-manyInputsUI :: IO ()
-manyInputsUI = do n <- read <$> flInput "How many numbers?"
-                  x <- read <$> flInput ("Enter " ++ show n ++ " numbers:")
-                  xs <- replicateM (n-1) (read <$> flInput "")
-                  flMessage ("Their sum is " ++ show (sum (x:xs)))
 
 
 
@@ -102,26 +112,6 @@ manyInputsUI = do n <- read <$> flInput "How many numbers?"
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-flMessage :: String -> IO ()
-flMessage = Ask.flMessage . Text.pack
-
-flInput :: String -> IO String
-flInput = fmap (Text.unpack . fromJust) . Ask.flInput . Text.pack
 
 main :: IO ()
-main = do
-  helloWorldUI
-  manyNumbersUI
-  helloInputUI
-  manyInputsUI
+main = putStrLn "typechecks."
