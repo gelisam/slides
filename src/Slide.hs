@@ -10,13 +10,13 @@ module Slide where
 --                                                                            --
 --                            Freer Monads                                    --
 --                                                                            --
+--                            0. Code is Data                                 --
+--                            1. S-Expr                                       --
+--                            2. List                                         --
 --                                                                            --
---                                                                            --
---                                                                            --
---                                                                            --
---                                               presented by                 --
---                                            Samuel Gélineau                 --
---                                                                            --
+--                            3. Free                                         --
+--                            4. Freer                                        --
+--                            5. Eff                                          --
 --                                                                            --
 --                                                                            --
 --                                                                            --
