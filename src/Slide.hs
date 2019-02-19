@@ -1,28 +1,26 @@
 module Slide where
+import Test.DocTest                                                                                                    ; import Data.Foldable
 
---------------------------------------------------------------------------------
---                                                                            --
---                                                                            --
---                                                                            --
---                                                                            --
---                                                                            --
---                                                                            --
---                                                                            --
---                            Freer Monads                                    --
---                                                                            --
---                            0. Code as Data                                 --
---                          > 1. S-Expr                                       --
---                            2. List                                         --
---                                                                            --
---                            3. Free                                         --
---                            4. Freer                                        --
---                            5. Eff                                          --
---                                                                            --
---                                                                            --
---                                                                            --
---                                                                            --
---                                                                            --
---------------------------------------------------------------------------------
+-- helloWorldAST = '(do (putStrLn "hello")
+--                      (putStrLn "world"))
+helloWorldIO :: IO ()
+helloWorldIO = do putStrLn "hello"
+                  putStrLn "world"
+
+-- manyNumbersAST = '(for_ (enumFromTo 1 5) (lambda (i) (do
+--                     (putStrLn (show i)))))
+manyNumbersIO :: IO ()
+manyNumbersIO = for_ [1..5] $ \i -> do
+                  putStrLn (show i)
+
+
+
+
+
+
+
+
+
 
 
 
@@ -114,4 +112,4 @@ module Slide where
 
 
 main :: IO ()
-main = putStrLn "typechecks."
+main = doctest ["src/Slide.hs"]
