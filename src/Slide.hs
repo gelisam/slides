@@ -12,9 +12,9 @@ module Slide where
 --                                                                            --
 --                            0. Code as Data                                 --
 --                            1. S-Expr                                       --
---                          > 2. List                                         --
+--                            2. List                                         --
 --                                                                            --
---                            3. Free                                         --
+--                          > 3. Free                                         --
 --                            4. Freer                                        --
 --                            5. Eff                                          --
 --                                                                            --
