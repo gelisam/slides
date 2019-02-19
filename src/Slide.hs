@@ -14,8 +14,8 @@ module Slide where
 --                            1. S-Expr                                       --
 --                            2. List                                         --
 --                                                                            --
---                          > 3. Free                                         --
---                            4. Freer                                        --
+--                            3. Free                                         --
+--                          > 4. Freer                                        --
 --                            5. Eff                                          --
 --                                                                            --
 --                                                                            --
