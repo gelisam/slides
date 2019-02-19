@@ -10,7 +10,7 @@ module Slide where
 --                                                                            --
 --                            Freer Monads                                    --
 --                                                                            --
---                            0. Code is Data                                 --
+--                          > 0. Code is Data                                 --
 --                            1. S-Expr                                       --
 --                            2. List                                         --
 --                                                                            --
