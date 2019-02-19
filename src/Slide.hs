@@ -1,28 +1,30 @@
 module Slide where
+import Test.DocTest                                                                                                    ; import Data.Foldable; import Control.Monad.Writer
 
---------------------------------------------------------------------------------
---                                                                            --
---                                                                            --
---                                                                            --
---                                                                            --
---                                                                            --
---                                                                            --
---                                                                            --
---                            Freer Monads                                    --
---                                                                            --
---                            0. Code as Data                                 --
---                            1. S-Expr                                       --
---                          > 2. List                                         --
---                                                                            --
---                            3. Free                                         --
---                            4. Freer                                        --
---                            5. Eff                                          --
---                                                                            --
---                                                                            --
---                                                                            --
---                                                                            --
---                                                                            --
---------------------------------------------------------------------------------
+data Stmt = PutStrLn String
+          | GetLine                                                                                                    deriving Show
+
+helloWorldList :: [Stmt]
+helloWorldList = [ PutStrLn "hello"
+                 , PutStrLn "world"
+                 ]
+
+-- |
+-- >>> manyNumbersList
+-- [PutStrLn "1",PutStrLn "2",PutStrLn "3",PutStrLn "4",PutStrLn "5"]
+manyNumbersList :: [Stmt]
+manyNumbersList = execWriter $ do
+  for_ [1..5] $ \i -> do
+    tell [PutStrLn (show i)]
+
+
+
+
+
+
+
+
+
 
 
 
@@ -114,4 +116,4 @@ module Slide where
 
 
 main :: IO ()
-main = putStrLn "typechecks."
+main = doctest ["src/Slide.hs"]
