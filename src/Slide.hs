@@ -15,8 +15,8 @@ module Slide where
 --                            2. List                                         --
 --                                                                            --
 --                            3. Free                                         --
---                          > 4. Freer                                        --
---                            5. Eff                                          --
+--                            4. Freer                                        --
+--                          > 5. Eff                                          --
 --                                                                            --
 --                                                                            --
 --                                                                            --
