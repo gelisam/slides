@@ -10,6 +10,10 @@ runFlightsT :: Monad m
             -> FlightsT m a -> m a
 
 
+testFlightsT :: MonadIO m
+             => FlightsT m a -> m (a, Map FlightNo Flight)
+
+
 
 
 
