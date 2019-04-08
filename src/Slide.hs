@@ -6,6 +6,7 @@ import Control.Monad.Reader                                                     
 --                   , HasField2 r
 --                   , HasField3 r
 --                   , HasField4 r)    is too fine-grained
+-- * (MonadFlights m, MonadPayment m)  is just right
 
 
 
