@@ -5,6 +5,11 @@ listAvailableFlights :: MonadFlights m
                      => m (Map FlightNo Flight)
 
 
+runFlightsT :: Monad m
+            => IORef (Map FlightNo Flight)
+            -> FlightsT m a -> m a
+
+
 
 
 
