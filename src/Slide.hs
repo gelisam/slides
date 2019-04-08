@@ -4,14 +4,17 @@ import Control.Monad.Reader                                                     
 bookFlight :: FlightNo -> StripeCard -> Handler ()
 bookFlight flightNo stripeCard = do
   flightsRef <- view appFlightsRef
-  stripeCreds <- view appStripeCreds
-  runFlightsT flightsRef $ runPaymentT stripeCreds $ do
+  runFlightsT flightsRef $ do
+
     allFlights <- listAllFlights
     let flight = allFlights ! flightNo
 
     guard $ (not . flightFull) flight
 
-    chargeCard stripeCard (flightPrice flight)
+    stripeCreds <- lift $ view appStripeCreds
+    runPaymentT stripeCreds $ do
+      chargeCard stripeCard (flightPrice flight)
+
     increasePassengerCount flightNo
 
 
