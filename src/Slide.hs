@@ -11,6 +11,103 @@ type Handler = ReaderT App IO
 
 
 
+listAllFlights :: (MonadIO m, MonadReader App m)
+               => m (Map FlightNo Flight)
+listAllFlights = do
+  flightsRef <- view appFlightsRef
+  liftIO $ readIORef flightsRef
+
+increasePassengerCount :: (MonadIO m, MonadReader App m)
+                       => FlightNo -> m ()
+
+chargeCard :: (MonadIO m, MonadReader App m)
+           => StripeCard -> Price -> m ()
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+increasePassengerCount = undefined
+chargeCard stripeCard price = undefined
+
+
 listAvailableFlights :: Handler (Map FlightNo Flight)
 listAvailableFlights = do
   allFlights <- listAllFlights
@@ -25,104 +122,6 @@ bookFlight flightNo stripeCard = do
 
   chargeCard stripeCard (flightPrice flight)
   increasePassengerCount flightNo
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-listAllFlights
-  :: (MonadIO m, MonadReader App m)
-  => m (Map FlightNo Flight)
-listAllFlights = do
-  flightsRef <- view appFlightsRef
-  liftIO $ readIORef flightsRef
-
-increasePassengerCount
-  :: (MonadIO m, MonadReader App m)
-  => FlightNo -> m ()
-increasePassengerCount = undefined
-
-chargeCard :: (MonadIO m, MonadReader App m)
-           => StripeCard -> Price -> m ()
-chargeCard stripeCard price = undefined
 
 
 
