@@ -1,8 +1,32 @@
 module Slide where
 
--- manifesto: https://github.com/Simspace/range/pull/1004#issuecomment-369394852
--- doc:       https://github.com/Simspace/range/blob/dev/doc/places.md
--- tweet:     https://twitter.com/haskell_cat/status/1026825794545442816
+--------------------------------------------------------------------------------
+--                                                                            --
+--                                                                            --
+--                                                                            --
+--                                                                            --
+--                                                                            --
+--                            The Places Pattern                              --
+--                                                                            --
+--                                                                            --
+--                           1. the problem                                   --
+--                         > 2. the solution                                  --
+--                           3. how it could be better                        --
+--                                                                            --
+--                                                                            --
+--                                                                            --
+--                                                                            --
+--                                                                            --
+--                                                                            --
+--                                                                            --
+--                                                                            --
+--                                                                            --
+--                                                                            --
+--                                                                            --
+--                                                                            --
+--                                                                            --
+--                                                                            --
+--------------------------------------------------------------------------------
 
 
 
