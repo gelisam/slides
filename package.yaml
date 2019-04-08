@@ -1,0 +1,30 @@
+name: slides
+dependencies:
+  - base
+  - containers
+  - doctest
+  - lens
+  - mtl
+  - transformers
+executable:
+  main: Slide
+  source-dirs: src
+  default-extensions:
+    - ConstraintKinds
+    - DataKinds
+    - FlexibleContexts
+    - FlexibleInstances
+    - GeneralizedNewtypeDeriving
+    - GADTs
+    - InstanceSigs
+    - KindSignatures
+    - LambdaCase
+    - MultiParamTypeClasses
+    - OverloadedStrings
+    - RankNTypes
+    - RecordWildCards
+    - ScopedTypeVariables
+    - TemplateHaskell
+    - TupleSections
+    - TypeOperators
+    - ViewPatterns
