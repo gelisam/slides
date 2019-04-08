@@ -1,0 +1,33 @@
+name: slides
+dependencies:
+  - aeson
+  - base
+  - containers
+  - doctest
+  - lifted-base
+  - monad-control
+  - mtl
+  - transformers
+executable:
+  main: Slide
+  source-dirs: src
+  default-extensions:
+    - ConstraintKinds
+    - DataKinds
+    - FlexibleContexts
+    - FlexibleInstances
+    - GeneralizedNewtypeDeriving
+    - GADTs
+    - InstanceSigs
+    - KindSignatures
+    - LambdaCase
+    - MultiParamTypeClasses
+    - OverloadedStrings
+    - PackageImports
+    - RankNTypes
+    - RecordWildCards
+    - ScopedTypeVariables
+    - TemplateHaskell
+    - TupleSections
+    - TypeOperators
+    - ViewPatterns
