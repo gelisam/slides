@@ -20,6 +20,13 @@ bookFlight :: (MonadFlights m, MonadPayment m) => m ()
 bookFlight = do increasePassengerCount
                 chargeCard
 
+runBookFlight :: Monad m
+              => IORef (Map FlightNo Flight)
+              -> StripeCreds
+              -> m ()
+runBookFlight ref creds = flip runReaderT ref
+                        . flip runReaderT creds
+                        $ bookFlight  -- couldn't match StripeCreds with IOVar
 
 
 
@@ -87,10 +94,10 @@ bookFlight = do increasePassengerCount
 
 
 
-
-
-increasePassengerCount = undefined
-chargeCard = undefined
+increasePassengerCount = do
+  undefined
+chargeCard = do
+  undefined
 
 
 type FlightNo = Int
