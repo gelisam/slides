@@ -9,7 +9,7 @@ module Slide where
 --                            The Places Pattern                              --
 --                                                                            --
 --                                                                            --
---                           1. the problem                                   --
+--                         > 1. the problem                                   --
 --                           2. the solution                                  --
 --                           3. how it could be better                        --
 --                                                                            --
