@@ -8,7 +8,7 @@ data App = App
 
 type Handler = ReaderT App IO
 type ProdMonad = FlightsT (PaymentT Identity)
-type TestMonad = FlightsT Identity
+--type TestMonad = FlightsT Identity
 
 
 listAllFlights :: MonadFlights m
