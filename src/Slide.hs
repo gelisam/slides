@@ -7,20 +7,20 @@ data App = App
   }
 
 type Handler = ReaderT App IO
-type ProdMonad = Handler
-type TestMonad = ReaderT (IORef (Map FlightNo Flight)) IO
+type ProdMonad = FlightsT (PaymentT Identity)
+type TestMonad = FlightsT Identity
 
 
-listAllFlights :: (MonadIO m, MonadReader r m, HasFlightsRef r)
+listAllFlights :: MonadFlights m
                => m (Map FlightNo Flight)
-listAllFlights = do
-  flightsRef <- view flightsRefL
-  liftIO $ readIORef flightsRef
+listAllFlights = getAllFlights
 
-increasePassengerCount :: (MonadIO m, MonadReader r m, HasFlightsRef r)
+
+
+increasePassengerCount :: MonadFlights m
                        => FlightNo -> m ()
 
-chargeCard :: (MonadIO m, MonadReader r m, HasStripeCreds r)
+chargeCard :: MonadPayment m
            => StripeCard -> Price -> m ()
 
 
@@ -28,20 +28,26 @@ chargeCard :: (MonadIO m, MonadReader r m, HasStripeCreds r)
 
 
 
-class HasFlightsRef r where
-  flightsRefL :: Lens' r (IORef (Map FlightNo Flight))
+class Monad m => MonadFlights m where
+  getAllFlights :: m (Map FlightNo Flight)
 
-instance HasFlightsRef App where
-  flightsRefL = appFlightsRef
+instance MonadIO m => MonadFlights (ReaderT App m) where
+  getAllFlights = do
+    flightsRef <- view appFlightsRef
+    liftIO $ readIORef flightsRef
 
-
-class HasStripeCreds r where
-  stripeCredsL :: Lens' r StripeCreds
-
-instance HasStripeCreds App where
-  stripeCredsL = appStripeCreds
+newtype FlightsT m a = FlightsT
+  { unFlightsT :: ReaderT (IORef (Map FlightNo Flight)) m a }
 
 
+class Monad m => MonadPayment m where
+  getStripeCreds :: m StripeCreds
+
+instance Monad m => MonadPayment (ReaderT App m) where
+  getStripeCreds = view appStripeCreds
+
+newtype PaymentT m a = PaymentT
+  { unPaymentT :: ReaderT StripeCreds m a }
 
 
 
