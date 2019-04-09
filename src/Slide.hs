@@ -1,18 +1,31 @@
 module Slide where
 import Control.Monad.State                                                                                                    ; import Control.Applicative; import Control.Lens; import Data.Foldable; import Data.IORef; import Data.Map (Map, (!)); import qualified Data.Map as Map
 
-interpretOrg :: MonadState HardhatSpec m
+interpretOrg :: (MonadState s m, HasHardhatSpec s)
              => WizardForm -> m ()
 interpretOrg (WizardForm {..}) = do
   for_ _wizardFormOrgs $ \(OrgForm {..}) -> do
-    runCidrAllocationT _orgFormInternalDomainCidr $ do
+    spec <- use hardhatSpecL
+    let cidr = initCidrAllocation _orgFormInternalDomainCidr
+        s = HardhatSpecAndCidrAllocation spec cidr
+    spec' <- flip evalStateT s $ do
       interpretDmz   _orgFormDmz
       interpretInfra _orgFormInfra
       interpretTools _orgFormTools
+      use hardhatSpecL
+    hardhatSpecL .= spec'
 
 
+data HardhatSpecAndCidrAllocation = HardhatSpecAndCidrAllocation
+  { _hardhatSpec    :: HardhatSpec
+  , _cidrAllocation :: CidrAllocation
+  }
 
+instance HasHardhatSpec    HardhatSpecAndCidrAllocation where
+  hardhatSpecL = hardhatSpec
 
+instance HasCidrAllocation HardhatSpecAndCidrAllocation where
+  cidrAllocationL = cidrAllocation
 
 
 
@@ -86,11 +99,19 @@ interpretOrg (WizardForm {..}) = do
 
 
 
+class HasHardhatSpec s where
+  hardhatSpecL :: Lens' s HardhatSpec
 
+class HasCidrAllocation s where
+  cidrAllocationL :: Lens' s CidrAllocation
 
 
 data HardhatSpec
 data CidrBlock
+data CidrAllocation
+
+initCidrAllocation :: CidrBlock -> CidrAllocation
+initCidrAllocation = undefined
 
 data WizardForm = WizardForm
   { _wizardFormOrgs :: [OrgForm]
@@ -107,21 +128,18 @@ data DmzForm
 data InfraForm
 data ToolsForm
 
-interpretDmz   :: Monad m => DmzForm -> CidrAllocationT m ()
-interpretInfra :: Monad m => InfraForm -> CidrAllocationT m ()
-interpretTools :: Monad m => ToolsForm -> CidrAllocationT m ()
+interpretDmz   :: (MonadState s m, HasHardhatSpec s, HasCidrAllocation s) => DmzForm -> m ()
+interpretInfra :: (MonadState s m, HasHardhatSpec s, HasCidrAllocation s) => InfraForm -> m ()
+interpretTools :: (MonadState s m, HasHardhatSpec s, HasCidrAllocation s) => ToolsForm -> m ()
 interpretDmz   = undefined
 interpretInfra = undefined
 interpretTools = undefined
 
-newtype CidrAllocationT m a = CidrAllocationT
-  { unCidrAllocationT :: StateT () m a }
-  deriving (Functor, Applicative, Monad)
+hardhatSpec :: Lens' HardhatSpecAndCidrAllocation HardhatSpec
+hardhatSpec = lens _hardhatSpec (\s a -> s { _hardhatSpec = a })
 
-runCidrAllocationT :: Monad m
-                   => CidrBlock
-                   -> CidrAllocationT m a -> m a
-runCidrAllocationT = undefined
+cidrAllocation :: Lens' HardhatSpecAndCidrAllocation CidrAllocation
+cidrAllocation = lens _cidrAllocation (\s a -> s { _cidrAllocation = a })
 
 main :: IO ()
 main = putStrLn "typechecks."
