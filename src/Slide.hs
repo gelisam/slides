@@ -8,19 +8,19 @@ data App = App
 
 type Handler = ReaderT App IO
 type ProdMonad = Handler
-type TestMonad = Handler
+type TestMonad = ReaderT (IORef (Map FlightNo Flight)) IO
 
 
-listAllFlights :: (MonadIO m, MonadReader App m)
+listAllFlights :: (MonadIO m, MonadReader r m, HasFlightsRef r)
                => m (Map FlightNo Flight)
 listAllFlights = do
-  flightsRef <- view appFlightsRef
+  flightsRef <- view flightsRefL
   liftIO $ readIORef flightsRef
 
-increasePassengerCount :: (MonadIO m, MonadReader App m)
+increasePassengerCount :: (MonadIO m, MonadReader r m, HasFlightsRef r)
                        => FlightNo -> m ()
 
-chargeCard :: (MonadIO m, MonadReader App m)
+chargeCard :: (MonadIO m, MonadReader r m, HasStripeCreds r)
            => StripeCard -> Price -> m ()
 
 
@@ -28,9 +28,18 @@ chargeCard :: (MonadIO m, MonadReader App m)
 
 
 
+class HasFlightsRef r where
+  flightsRefL :: Lens' r (IORef (Map FlightNo Flight))
+
+instance HasFlightsRef App where
+  flightsRefL = appFlightsRef
 
 
+class HasStripeCreds r where
+  stripeCredsL :: Lens' r StripeCreds
 
+instance HasStripeCreds App where
+  stripeCredsL = appStripeCreds
 
 
 
