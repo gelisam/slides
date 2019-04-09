@@ -7,12 +7,11 @@ import Control.Monad.Reader                                                     
 
 
 
-
-
+type MonadFlights m = MonadReader (IORef (Map FlightNo Flight)) m
+type FlightsT m a = ReaderT (IORef (Map FlightNo Flight)) m a
 
 type MonadPayment m = MonadReader StripeCreds m
 type PaymentT m a = ReaderT StripeCreds m a
-
 
 
 
