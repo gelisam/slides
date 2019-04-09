@@ -1,37 +1,28 @@
+{-# LANGUAGE UndecidableInstances #-}
 module Slide where
+import Control.Monad.Reader                                                                                                    ; import Control.Applicative; import Control.Lens; import Data.IORef; import Data.Map (Map, (!)); import qualified Data.Map as Map
 
---------------------------------------------------------------------------------
---                                                                            --
---                                                                            --
---                                                                            --
---                                                                            --
---                                                                            --
---                            The Places Pattern                              --
---                                                                            --
---                                                                            --
---                           1. the problem                                   --
---                         v 2. the solution                                  --
---                             a. Eliminate constraints as early              --
---                                as possible, not in main                    --
---                             b. Provide an easy-to-call variant             --
---                                of runFooT dedicated for testing            --
---                           > c. Never use MonadReader                       --
---                           3. how it could be better                        --
---                                                                            --
---                                                                            --
---                                                                            --
---                                                                            --
---                                                                            --
---                                                                            --
---                                                                            --
---                                                                            --
---                                                                            --
---------------------------------------------------------------------------------
+class Monad m => MonadPayment m where
+  getStripeCreds :: m StripeCreds
 
+instance {-# OVERLAPPABLE #-} (Monad (t m), MonadTrans t, MonadPayment m)
+      => MonadPayment (t m) where
+  getStripeCreds = lift getStripeCreds
 
 
+newtype PaymentT m a = PaymentT
+    { unPaymentT :: ReaderT StripeCreds m a }
+    deriving (Functor, Applicative, Monad, MonadTrans)
 
+instance Monad m => MonadPayment (PaymentT m) where
+  getStripeCreds = PaymentT ask
 
+-- instance MonadReader m => MonadReader (PaymentT m)
+-- instance MonadState  m => MonadState  (PaymentT m)
+-- instance MonadWriter m => MonadWriter (PaymentT m)
+--
+-- instance MonadMask   m => MonadMask   (PaymentT m)
+-- ...
 
 
 
@@ -113,9 +104,10 @@ module Slide where
 
 
 
-
-
-
+data StripeCreds = StripeCreds
+  { _stripeUsername :: String
+  , _stripePassword :: String
+  }
 
 main :: IO ()
 main = putStrLn "typechecks."
