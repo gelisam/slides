@@ -11,7 +11,7 @@ module Slide where
 --                                                                            --
 --                           1. the problem                                   --
 --                         v 2. the solution                                  --
---                             a. Eliminate constraints as early              --
+--                           > a. Eliminate constraints as early              --
 --                                as possible, not in main                    --
 --                             b. Provide an easy-to-call variant             --
 --                                of runFooT dedicated for testing            --
