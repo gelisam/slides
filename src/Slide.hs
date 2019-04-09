@@ -7,8 +7,8 @@ data App = App
   }
 
 type Handler = ReaderT App IO
-
-
+type ProdMonad = Handler
+type TestMonad = Handler
 
 
 listAllFlights :: (MonadIO m, MonadReader App m)
