@@ -1,32 +1,11 @@
 module Slide where
+import Control.Monad.Reader                                                                                                    ; import Control.Applicative; import Control.Lens; import Data.IORef; import Data.Map (Map, (!)); import qualified Data.Map as Map
 
---------------------------------------------------------------------------------
---                                                                            --
---                                                                            --
---                                                                            --
---                                                                            --
---                                                                            --
---                            The Places Pattern                              --
---                                                                            --
---                                                                            --
---                           1. the problem                                   --
---                           2. the solution                                  --
---                         > 3. how it could be better                        --
---                                                                            --
---                                                                            --
---                                                                            --
---                                                                            --
---                                                                            --
---                                                                            --
---                                                                            --
---                                                                            --
---                                                                            --
---                                                                            --
---                                                                            --
---                                                                            --
---                                                                            --
---                                                                            --
---------------------------------------------------------------------------------
+-- * (MonadReader App m)               is too coarse-grained
+-- * (MonadReader r m, HasField1 r
+--                   , HasField2 r
+--                   , HasField3 r
+--                   , HasField4 r)    is too fine-grained
 
 
 
