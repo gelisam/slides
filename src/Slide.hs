@@ -8,8 +8,8 @@ module Slide where
 --                                                                            --
 --                               Effect Systems                               --
 --                                                                            --
---            > * higher-order effects                                        --
---              * other topics                                                --
+--              * higher-order effects                                        --
+--            > * other topics                                                --
 --                                                                            --
 --                                                                            --
 --                                                                            --
