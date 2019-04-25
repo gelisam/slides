@@ -14,13 +14,13 @@ module Slide where
 --                * what to do about them                                     --
 --                  * shuffle the effects around                              --
 --                    * recreate the layers                                   --
---                  > * MonadBaseControl                                      --
+--                  v * MonadBaseControl                                      --
+--                      * "silently" loses effects                            --
+--                      * saves LoC, not understanding                        --
 --                    * liftCodensityIO                                       --
 --                  * avoid fancy effects                                     --
 --                  * more typeclasses                                        --
 --              * other topics                                                --
---                                                                            --
---                                                                            --
 --                                                                            --
 --                                                                            --
 --                                                                            --
