@@ -12,7 +12,7 @@ runMyFileTest :: IO ()
 runMyFileTest = runGoldenTest $ do
   r <- ask
   s <- get
-  withFile "deployment-key.txt" $ \handle -> do
+  liftIO $ withFile "deployment-key.txt" $ \handle -> do
     runWriterT . flip runStateT s . flip runReaderT r $ do
       deploymentKey <- hGetContents handle
       sendPayload $ Aeson.object
