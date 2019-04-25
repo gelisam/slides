@@ -13,8 +13,8 @@ module Slide where
 --                * higher-order effects                                      --
 --                * what to do about them                                     --
 --                  * shuffle the effects around                              --
---                v * avoid fancy effects                                     --
---                    * style                                                 --
+--                  * avoid fancy effects                                     --
+--                  > * style                                                 --
 --                    * pure vs IO                                            --
 --                  * more typeclasses                                        --
 --              * other topics                                                --
