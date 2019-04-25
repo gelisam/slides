@@ -12,15 +12,15 @@ import qualified Data.Aeson as Aeson
 runMyFileTest :: IO ()
 runMyFileTest = runGoldenTest $ do
   -- StM m a
-  stM <- liftBaseWith $ \runInIO -> do
+  stM <- liftBaseWith $ \runInIO -> do                       -- 1
     liftIO $ withFile "deployment-key.txt" $ \handle -> do
-      runInIO $ do
+      runInIO $ do                                           -- 2
         deploymentKey <- hGetContents handle
         sendPayload $ Aeson.object
           [ "request"       .= Aeson.String "getPowerStates" 
           , "deploymentKey" .= deploymentKey
           ]
-  restoreM stM
+  restoreM stM                                               -- 3
 
 
 withFile :: FilePath
