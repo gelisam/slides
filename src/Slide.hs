@@ -2,8 +2,9 @@ module Slide where
 
 handleGetPowerStates :: Key Deployment -> Handler ()
 handleGetPowerStates deploymentKey = do
-  r <- getPowerStates deploymentKey
-  print r
+  forkIO $ do
+    r <- getPowerStates deploymentKey
+    print r
 
 
 
