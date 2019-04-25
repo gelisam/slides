@@ -19,8 +19,8 @@ runMyFileTest = runGoldenTest $ do
         [ "request"       .= Aeson.String "getPowerStates"
         , "deploymentKey" .= deploymentKey
         ]
-  pure ()
-
+  put s'
+  tell w
 
 withFile :: FilePath
          -> (Handle -> IO a)
