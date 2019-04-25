@@ -1,32 +1,21 @@
 module Slide where
 
---------------------------------------------------------------------------------
---                                                                            --
---                                                                            --
---                                                                            --
---                                                                            --
---                                                                            --
---                               Effect Systems                               --
---                                                                            --
---              * higher-order effects                                        --
---                * what happened?                                            --
---              > * higher-order effects                                      --
---                * what to do about them                                     --
---              * other topics                                                --
---                                                                            --
---                                                                            --
---                                                                            --
---                                                                            --
---                                                                            --
---                                                                            --
---                                                                            --
---                                                                            --
---                                                                            --
---                                                                            --
---                                                                            --
---                                                                            --
---                                                                            --
---------------------------------------------------------------------------------
+-- first-order effects
+
+killThread :: ThreadId -> IO ()
+
+readFile :: String -> IO String
+
+
+-- higher-order effects
+
+forkIO :: IO a -> IO ThreadId
+
+withFile :: FilePath
+         -> (Handle -> IO a)
+         -> IO a
+
+
 
 
 
