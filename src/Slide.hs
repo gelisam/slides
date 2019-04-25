@@ -12,28 +12,28 @@ import qualified Data.Aeson as Aeson
 
 runMyFileTest :: IO ()
 runMyFileTest = runGoldenTest $ do
-  -- StM m a
-  stM <- liftBaseWith $ \runInIO -> do
-    liftIO $ withFile "deployment-key.txt" $ \handle -> do
-      runInIO $ do
-        deploymentKey <- hGetContents handle
+
+  liftBaseWith $ \runInIO -> do
+    threadId <- liftIO $ forkIO $ do
+      stM <- runInIO $ do
+        deploymentKey <- hGetContents
         sendPayload $ Aeson.object
           [ "request"       .= Aeson.String "getPowerStates" 
           , "deploymentKey" .= deploymentKey
           ]
-  restoreM stM
+      pure ()
+    pure ()
+
+
+-- forkIO :: IO a -> IO a
 
 
 
-withFile :: FilePath
-         -> (Handle -> IO a)
-         -> IO a
 
-runGoldenTest :: ReaderT Connection
-                   (StateT [Aeson.Value]
-                     (WriterT [Aeson.Value]
-                       IO)) a
-              -> IO a
+
+
+
+
 
 
 
@@ -122,8 +122,8 @@ data Connection = Connection
 
 withFile _ body = body Handle
 
-hGetContents :: MonadIO m => Handle -> m String
-hGetContents Handle = pure "<file contents>"
+hGetContents :: MonadIO m => m String
+hGetContents = pure "<file contents>"
 
 sendPayload :: ( MonadReader Connection m
                , MonadState [Aeson.Value] m
@@ -135,6 +135,11 @@ sendPayload x = do
   modify (++ [x])
   tell [x]
 
+runGoldenTest :: ReaderT Connection
+                   (StateT [Aeson.Value]
+                     (WriterT [Aeson.Value]
+                       IO)) a
+              -> IO a
 runGoldenTest body = do
   ((a, s), w) <- runWriterT
                . flip runStateT []
