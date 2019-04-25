@@ -17,11 +17,11 @@ runMyFileTest = runGoldenTest $ do
       runInIO $ do
         deploymentKey <- hGetContents handle
         sendPayload $ Aeson.object
-          [ "request"       .= Aeson.String "getPowerStates"
+          [ "request"       .= Aeson.String "getPowerStates" 
           , "deploymentKey" .= deploymentKey
           ]
-  put s'
-  tell w
+  restoreM stM
+
 
 withFile :: FilePath
          -> (Handle -> IO a)
