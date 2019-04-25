@@ -4,7 +4,7 @@ import Control.Concurrent
 import Control.Monad.Reader
 import Control.Monad.State
 import Control.Monad.Writer
-import Control.Monad.Trans.Control
+import "lifted-base" Control.Concurrent.Lifted (fork)
 import Control.Monad.IO.Class
 import Data.Aeson ((.=))
 import qualified Data.Aeson as Aeson
@@ -13,19 +13,25 @@ import qualified Data.Aeson as Aeson
 runMyFileTest :: IO ()
 runMyFileTest = runGoldenTest $ do
 
-  liftBaseWith $ \runInIO -> do
-    threadId <- liftIO $ forkIO $ do
-      stM <- runInIO $ do
+
+  threadId <- fork $ do
+
         deploymentKey <- hGetContents
         sendPayload $ Aeson.object
           [ "request"       .= Aeson.String "getPowerStates" 
           , "deploymentKey" .= deploymentKey
           ]
-      pure ()
-    pure ()
-  --restoreM stM
 
--- forkIO :: IO a -> IO a
+  pure ()
+
+
+-- fork :: MonadBaseControl IO m => m a -> m a
+
+
+
+
+
+
 
 
 
