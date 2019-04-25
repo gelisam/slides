@@ -12,8 +12,8 @@ module Slide where
 --                * what happened?                                            --
 --                * higher-order effects                                      --
 --                * what to do about them                                     --
---                v * shuffle the effects around                              --
---                    * recreate the layers                                   --
+--                  * shuffle the effects around                              --
+--                  > * recreate the layers                                   --
 --                    * MonadBaseControl                                      --
 --                    * liftCodensityIO                                       --
 --                  * avoid fancy effects                                     --
