@@ -15,8 +15,8 @@ module Slide where
 --                  * shuffle the effects around                              --
 --                    * recreate the layers                                   --
 --                    * MonadBaseControl                                      --
---                    > * "silently" loses effects                            --
---                      * saves LoC, not understanding                        --
+--                      * "silently" loses effects                            --
+--                    > * saves LoC, not understanding <                      --
 --                    * liftCodensityIO                                       --
 --                  * avoid fancy effects                                     --
 --                  * more typeclasses                                        --
