@@ -12,13 +12,13 @@ module Slide where
 --                * what happened?                                            --
 --                * higher-order effects                                      --
 --                * what to do about them                                     --
---                v * shuffle the effects around                              --
---                    * recreate the layers                                   --
---                    * MonadBaseControl                                      --
---                    * liftCodensityIO                                       --
+--                > * shuffle the effects around                              --
 --                  * avoid fancy effects                                     --
 --                  * more typeclasses                                        --
 --              * other topics                                                --
+--                                                                            --
+--                                                                            --
+--                                                                            --
 --                                                                            --
 --                                                                            --
 --                                                                            --
