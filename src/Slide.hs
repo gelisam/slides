@@ -12,19 +12,19 @@ import qualified Data.Aeson as Aeson
 
 runMyFileTest :: IO ()
 runMyFileTest = runGoldenTest $ do
-
-  liftBaseWith $ \runInIO -> do
-    threadId <- liftIO $ forkIO $ do
-      stM <- runInIO $ do
+  r <- ask
+  s <- get
+  threadId <- liftIO $ forkIO $ do
+    ((threadId, s'), w) <- runWriterT . flip runStateT s . flip runReaderT r $ do
         deploymentKey <- hGetContents
         sendPayload $ Aeson.object
           [ "request"       .= Aeson.String "getPowerStates" 
           , "deploymentKey" .= deploymentKey
           ]
-      pure ()
     pure ()
-  --restoreM stM
-
+  pure ()
+  --put s'
+  --tell w
 
 runGoldenTest :: ReaderT Connection
                    (StateT [Aeson.Value]
