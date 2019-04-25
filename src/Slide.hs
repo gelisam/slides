@@ -11,15 +11,15 @@ import qualified Data.Aeson as Aeson
 
 runMyFileTest :: IO ()
 runMyFileTest = runGoldenTest $ do
-  r <- ask
-  s <- get
-  (((), s'), w) <- liftIO $ withFile "deployment-key.txt" $ \handle -> do
-    runWriterT . flip runStateT s . flip runReaderT r $ do
-      deploymentKey <- hGetContents handle
-      sendPayload $ Aeson.object
-        [ "request"       .= Aeson.String "getPowerStates"
-        , "deploymentKey" .= deploymentKey
-        ]
+  liftBaseWith $ \runInIO -> do
+
+    (((), s'), w) <- liftIO $ withFile "deployment-key.txt" $ \handle -> do
+      runWriterT . flip runStateT s . flip runReaderT r $ do
+        deploymentKey <- hGetContents handle
+        sendPayload $ Aeson.object
+          [ "request"       .= Aeson.String "getPowerStates"
+          , "deploymentKey" .= deploymentKey
+          ]
   put s'
   tell w
 
