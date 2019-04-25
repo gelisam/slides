@@ -12,14 +12,14 @@ runMyFileTest :: IO ()
 runMyFileTest = runGoldenTest $ do
   r <- ask
   s <- get
-  liftIO $ withFile "deployment-key.txt" $ \handle -> do
+  (((), s'), w) <- liftIO $ withFile "deployment-key.txt" $ \handle -> do
     runWriterT . flip runStateT s . flip runReaderT r $ do
       deploymentKey <- hGetContents handle
       sendPayload $ Aeson.object
         [ "request"       .= Aeson.String "getPowerStates"
         , "deploymentKey" .= deploymentKey
         ]
-
+  pure ()
 
 
 withFile :: FilePath
