@@ -10,8 +10,8 @@ module Slide where
 --                                                                            --
 --              * higher-order effects                                        --
 --                * what happened?                                            --
---                > * forking a thread                                        --
---                  * acquiring a resource                                    --
+--                  * forking a thread                                        --
+--                > * acquiring a resource                                    --
 --                * higher-order effects                                      --
 --                * what to do about them                                     --
 --              * other topics                                                --
