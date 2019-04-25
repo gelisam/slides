@@ -14,8 +14,8 @@ module Slide where
 --                * what to do about them                                     --
 --                  * shuffle the effects around                              --
 --                  * avoid fancy effects                                     --
---                  > * style                                                 --
---                    * pure vs IO                                            --
+--                    * style                                                 --
+--                  > * pure vs IO                                            --
 --                  * more typeclasses                                        --
 --              * other topics                                                --
 --                                                                            --
