@@ -14,7 +14,7 @@ runMyFileTest = runGoldenTest $ do
   liftBaseWith $ \runInIO -> do
 
     (((), s'), w) <- liftIO $ withFile "deployment-key.txt" $ \handle -> do
-      runWriterT . flip runStateT s . flip runReaderT r $ do
+      runInIO $ do
         deploymentKey <- hGetContents handle
         sendPayload $ Aeson.object
           [ "request"       .= Aeson.String "getPowerStates"
