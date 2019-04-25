@@ -10,17 +10,17 @@ import qualified Data.Aeson as Aeson
 
 runMyFileTest :: IO ()
 runMyFileTest = runGoldenTest $ do
-  r <- ask
-  s <- get
-  (((), s'), w) <- liftIO $ withFile "deployment-key.txt" $ \handle -> do
-    runWriterT . flip runStateT s . flip runReaderT r $ do
+  r <- ask                                                                 -- 1
+  s <- get                                                                 -- 2
+  (((), s'), w) <- liftIO $ withFile "deployment-key.txt" $ \handle -> do  -- 3
+    runWriterT . flip runStateT s . flip runReaderT r $ do                 -- 4
       deploymentKey <- hGetContents handle
       sendPayload $ Aeson.object
         [ "request"       .= Aeson.String "getPowerStates"
         , "deploymentKey" .= deploymentKey
         ]
-  put s'
-  tell w
+  put s'                                                                   -- 5
+  tell w                                                                   -- 6
 
 withFile :: FilePath
          -> (Handle -> IO a)
