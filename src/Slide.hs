@@ -12,8 +12,8 @@ module Slide where
 --                * what happened?                                            --
 --                * higher-order effects                                      --
 --                * what to do about them                                     --
---                > * shuffle the effects around                              --
---                  * avoid fancy effects                                     --
+--                  * shuffle the effects around                              --
+--                > * avoid fancy effects                                     --
 --                  * more typeclasses                                        --
 --              * other topics                                                --
 --                                                                            --
