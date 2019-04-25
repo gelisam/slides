@@ -26,12 +26,12 @@ runMyFileTest = runGoldenTest $ do
 
 
 -- fork :: MonadBaseControl IO m => m a -> m a
-
-
-
-
-
-
+--
+-- Generalized version of forkIO.
+--
+-- Note that, while the forked computation m () has access to the captured
+-- state, all its side-effects in m are discarded. It is run only for its
+-- side-effects in IO.
 
 
 
