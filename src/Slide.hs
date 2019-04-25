@@ -23,7 +23,7 @@ runMyFileTest = runGoldenTest $ do
           ]
       pure ()
     pure ()
-
+  --restoreM stM
 
 -- forkIO :: IO a -> IO a
 
