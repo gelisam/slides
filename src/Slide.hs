@@ -10,6 +10,8 @@ import qualified Data.Aeson as Aeson
 
 runMyFileTest :: IO ()
 runMyFileTest = runGoldenTest $ do
+  r <- ask
+  s <- get
   withFile "deployment-key.txt" $ \handle -> do
     runWriterT . flip runStateT s . flip runReaderT r $ do
       deploymentKey <- hGetContents handle
@@ -17,8 +19,6 @@ runMyFileTest = runGoldenTest $ do
         [ "request"       .= Aeson.String "getPowerStates"
         , "deploymentKey" .= deploymentKey
         ]
-
-
 
 
 
