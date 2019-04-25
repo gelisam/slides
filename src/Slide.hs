@@ -12,8 +12,8 @@ import qualified Data.Aeson as Aeson
 runMyFileTest :: IO ()
 runMyFileTest = runGoldenTest $ do
   liftBaseWith $ \runInIO -> do
-
-    (((), s'), w) <- liftIO $ withFile "deployment-key.txt" $ \handle -> do
+    -- StM m a
+    stM <- liftIO $ withFile "deployment-key.txt" $ \handle -> do
       runInIO $ do
         deploymentKey <- hGetContents handle
         sendPayload $ Aeson.object
