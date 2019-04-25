@@ -4,18 +4,18 @@ import Control.Concurrent
 import Control.Monad.Reader
 import Control.Monad.State
 import Control.Monad.Writer
-import Control.Monad.Trans.Control
 import Control.Monad.IO.Class
 import Data.Aeson ((.=))
+import Data.IORef
 import qualified Data.Aeson as Aeson
 
 
 runMyFileTest :: IO ()
 runMyFileTest = runGoldenTest $ do
   r <- ask
-  s <- get
+
   threadId <- liftIO $ forkIO $ do
-    ((threadId, s'), w) <- runWriterT . flip runStateT s . flip runReaderT r $ do
+    threadId <- flip runReaderT r $ do
         deploymentKey <- hGetContents
         sendPayload $ Aeson.object
           [ "request"       .= Aeson.String "getPowerStates" 
@@ -23,13 +23,14 @@ runMyFileTest = runGoldenTest $ do
           ]
     pure ()
   pure ()
-  --put s'
-  --tell w
 
-runGoldenTest :: ReaderT Connection
-                   (StateT [Aeson.Value]
-                     (WriterT [Aeson.Value]
-                       IO)) a
+
+
+runGoldenTest :: ReaderT ( Connection
+                         , IORef [Aeson.Value]
+                         , IORef [Aeson.Value]
+                         )
+                         IO a
               -> IO a
 
 
@@ -130,21 +131,23 @@ withFile _ body = body Handle
 hGetContents :: MonadIO m => m String
 hGetContents = pure "<file contents>"
 
-sendPayload :: ( MonadReader Connection m
-               , MonadState [Aeson.Value] m
-               , MonadWriter [Aeson.Value] m
-               )
-            => Aeson.Value
-            -> m ()
+sendPayload :: Aeson.Value
+            -> ReaderT ( Connection
+                       , IORef [Aeson.Value]
+                       , IORef [Aeson.Value]
+                       )
+                       IO ()
 sendPayload x = do
-  modify (++ [x])
-  tell [x]
+  (Connection, sRef, wRef) <- ask
+  liftIO $ modifyIORef sRef (++ [x])
+  liftIO $ modifyIORef wRef (++ [x])
 
 runGoldenTest body = do
-  ((a, s), w) <- runWriterT
-               . flip runStateT []
-               . flip runReaderT Connection
-               $ body
+  sRef <- newIORef []
+  wRef <- newIORef []
+  a <- flip runReaderT (Connection, sRef, wRef) body
+  s <- readIORef sRef
+  w <- readIORef wRef
   putStrLn $ "final state: " ++ show s
   putStrLn $ "final write: " ++ show w
   pure a
