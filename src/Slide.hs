@@ -1,32 +1,13 @@
 module Slide where
 
---------------------------------------------------------------------------------
---                                                                            --
---                                                                            --
---                                                                            --
---                                                                            --
---                                                                            --
---                               Effect Systems                               --
---                                                                            --
---              * higher-order effects                                        --
---                * what happened?                                            --
---                > * forking a thread                                        --
---                  * acquiring a resource                                    --
---                * higher-order effects                                      --
---                * what to do about them                                     --
---              * other topics                                                --
---                                                                            --
---                                                                            --
---                                                                            --
---                                                                            --
---                                                                            --
---                                                                            --
---                                                                            --
---                                                                            --
---                                                                            --
---                                                                            --
---                                                                            --
---------------------------------------------------------------------------------
+handleGetPowerStates :: Key Deployment -> Handler ()
+handleGetPowerStates deploymentKey = do
+  r <- getPowerStates deploymentKey
+  print r
+
+
+
+
 
 
 
