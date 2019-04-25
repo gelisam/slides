@@ -11,12 +11,12 @@ import qualified Data.Aeson as Aeson
 runMyFileTest :: IO ()
 runMyFileTest = runGoldenTest $ do
   withFile "deployment-key.txt" $ \handle -> do
-    deploymentKey <- hGetContents handle
-    sendPayload $ Aeson.object
-      [ "request"       .= Aeson.String "getPowerStates"
-      , "deploymentKey" .= deploymentKey
-      ]
-
+    runWriterT . flip runStateT s . flip runReaderT r $ do
+      deploymentKey <- hGetContents handle
+      sendPayload $ Aeson.object
+        [ "request"       .= Aeson.String "getPowerStates"
+        , "deploymentKey" .= deploymentKey
+        ]
 
 
 
@@ -118,7 +118,6 @@ data Handle = Handle
 data Connection = Connection
 
 withFile _ body = body Handle
-
 
 hGetContents :: MonadIO m => Handle -> m String
 hGetContents Handle = pure "<file contents>"
