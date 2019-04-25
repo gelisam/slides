@@ -9,6 +9,16 @@ runMyFileTest = runGoldenTest $ do
       , "deploymentKey" .= deploymentKey
       ]
 
+withFile :: FilePath
+         -> (Handle -> IO a)
+         -> IO a
+
+runGoldenTest :: ReaderT Connection
+                   (StateT [Aeson.Value]
+                     (WriterT [Aeson.Value]
+                       IO)) a
+              -> IO a
+
 
 
 
