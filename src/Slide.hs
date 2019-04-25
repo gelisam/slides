@@ -8,8 +8,9 @@ handleGetPowerStates deploymentKey = do
 
 forkIO :: IO a -> IO ThreadId
 
-getPowerStates :: ( MonadError Text m
-                  , MonadHypervisor m
+getPowerStates :: ( MonadDeployments m
+                  , MonadVmInstances m
+                  , MonadPowerStates m
                   )
                => Key Deployment -> m (Map VmInstanceKey PowerState)
 
