@@ -10,16 +10,16 @@ import qualified Data.Aeson as Aeson
 
 runMyFileTest :: IO ()
 runMyFileTest = runGoldenTest $ do
-  liftCodensityIO (withFile "deployment-key.txt") $ \handle -> do
+                                                            withFile "deployment-key.txt" (\handle -> do
+    --                                      <- handle
     deploymentKey <- hGetContents handle
     sendPayload $ Aeson.object
       [ "request"       .= Aeson.String "getPowerStates"
       , "deploymentKey" .= deploymentKey
       ]
-
-
-
-
+    --                                         () -> 
+                                                            )
+    --                                      <- ()
 
 
 withFile :: FilePath
@@ -110,6 +110,9 @@ liftCodensityIO :: MonadIO m
 
 
 
+liftCodensityIO :: MonadIO m
+                => ((a -> IO b) -> IO b)
+                -> ((a -> m  b) -> m  b)
 liftCodensityIO = undefined
 
 data Handle = Handle
