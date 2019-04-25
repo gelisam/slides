@@ -2,11 +2,12 @@ module Slide where
 
 runMyFileTest :: IO ()
 runMyFileTest = runGoldenTest $ do
-  sendPayload $ Aeson.object
-    [ "request"       .= Aeson.String "getPowerStates"
-    , "deploymentKey" .= "1234"
-    ]
-
+  withFile "deployment-key.txt" $ \handle -> do
+    deploymentKey <- hGetContents handle
+    sendPayload $ Aeson.object
+      [ "request"       .= Aeson.String "getPowerStates"
+      , "deploymentKey" .= deploymentKey
+      ]
 
 
 
