@@ -14,11 +14,11 @@ module Slide where
 --                * what to do about them                                     --
 --                  * shuffle the effects around                              --
 --                  * avoid fancy effects                                     --
---                    * style                                                 --
+--                  v * style                                                 --
 --                      * a -> IO b                                           --
 --                      * Handle pattern                                      --
 --                      * MonadUnliftIO                                       --
---                    > * ReaderT pattern <                                   --
+--                      * ReaderT pattern                                     --
 --                    * pure vs IO                                            --
 --                  * more typeclasses                                        --
 --              * other topics                                                --
