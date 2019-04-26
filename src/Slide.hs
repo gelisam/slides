@@ -17,8 +17,8 @@ module Slide where
 --                    * style                                                 --
 --                      * a -> IO b                                           --
 --                      * Handle pattern                                      --
---                    > * MonadUnliftIO <                                     --
---                      * ReaderT pattern                                     --
+--                      * MonadUnliftIO                                       --
+--                    > * ReaderT pattern <                                   --
 --                    * pure vs IO                                            --
 --                  * more typeclasses                                        --
 --              * other topics                                                --
