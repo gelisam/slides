@@ -15,6 +15,8 @@ data DataServerT m a = DataServerT
 runDataServerT :: DataServerT m a
                -> Url -> m a
 
+testDataServerT :: (MonadIO m, MonadMask m)
+                => DataServerT m a -> m a
 
 
 
