@@ -1,32 +1,18 @@
 module Slide where
 
---------------------------------------------------------------------------------
---                                                                            --
---                                                                            --
---                                                                            --
---                                                                            --
---                                                                            --
---                               Effect Systems                               --
---                                                                            --
---              * higher-order effects                                        --
---                * what happened?                                            --
---                * higher-order effects                                      --
---                * what to do about them                                     --
---                  * shuffle the effects around                              --
---                  * avoid fancy effects                                     --
---                    * style                                                 --
---                  > * pure vs IO                                            --
---                  * more typeclasses                                        --
---              * other topics                                                --
---                                                                            --
---                                                                            --
---                                                                            --
---                                                                            --
---                                                                            --
---                                                                            --
---                                                                            --
---                                                                            --
---------------------------------------------------------------------------------
+foo :: ( MonadReader A m         foo :: ReaderT (A, IORef B, IORef C) IO a
+       , MonadState  B m
+       , MonadWriter C m
+       , MonadIO m
+       ) a
+    -> m a
+
+bar :: ( MonadReader A m         bar :: Reader (A, IORef B, IORef C) a
+       , MonadState  B m         bar :: ReaderT (A, IORef B, IORef C) IO a
+       , MonadWriter C m
+       ) a
+    -> m a
+
 
 
 
