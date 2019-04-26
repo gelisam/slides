@@ -1,24 +1,32 @@
 module Slide where
 
-                                 fork :: MonadBaseControl m
-forkIO :: IO a -> IO ThreadId         => m a -> m ThreadId
-
-
-                                 withFile :: MonadBaseControl m
-withFile :: FilePath                      => FilePath
-         -> (Handle -> IO a)              -> (Handle -> m a)
-         -> IO a                          -> m a
-
-
-
-                                 traverse :: Applicative f
-fmap :: (a -> b)                          => (a -> f b)
-     -> [a] -> [b]                        -> [a] -> f [b]
-
-                                 
-                                 unfoldrM :: Monad m
-unfoldr :: (a -> Maybe (b, a))            => (a -> m (Maybe (b, a)))
-        -> a -> [b]                       -> a -> m [b]
+--------------------------------------------------------------------------------
+--                                                                            --
+--                                                                            --
+--                                                                            --
+--                                                                            --
+--                                                                            --
+--                               Effect Systems                               --
+--                                                                            --
+--              * higher-order effects                                        --
+--                * what happened?                                            --
+--                * higher-order effects                                      --
+--                * what to do about them                                     --
+--                  * shuffle the effects around                              --
+--                  * avoid fancy effects                                     --
+--                    * style                                                 --
+--                    * pure vs IO                                            --
+--                      * threads                                             --
+--                      * exceptions                                          --
+--                    > * higher-order effects                                --
+--                  * more typeclasses                                        --
+--              * other topics                                                --
+--                                                                            --
+--                                                                            --
+--                                                                            --
+--                                                                            --
+--                                                                            --
+--------------------------------------------------------------------------------
 
 
 
