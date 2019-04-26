@@ -11,10 +11,10 @@ module Slide where
 --              * higher-order effects                                        --
 --              * other topics                                                --
 --                * abstraction bitrot                                        --
---              > * single-implementation vs multiple-implementations         --
---                                                                            --
---                                                                            --
---                                                                            --
+--              v * single-implementation vs multiple-implementations         --
+--                  * implementation-based vs semantic-based                  --
+--                  * cost/benefit                                            --
+--                  * concrete vs abstract                                    --
 --                                                                            --
 --                                                                            --
 --                                                                            --
