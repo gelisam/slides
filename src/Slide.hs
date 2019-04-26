@@ -27,7 +27,7 @@ withFile :: FilePath
          -> (Handle -> IO r)
          -> IO r
 
-liftCodensityIO :: MonadBaseControl IO m
+liftBaseOp      :: MonadBaseControl IO m
                 => ((a -> IO r) -> IO r)
                 -> ((a -> m  r) -> m  r)
 
