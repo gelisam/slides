@@ -11,10 +11,10 @@ module Slide where
 --              * higher-order effects                                        --
 --                * what happened?                                            --
 --                * higher-order effects                                      --
---                * what to do about them                                     --
+--              v * what to do about them                                     --
 --                  * shuffle the effects around                              --
 --                  * avoid fancy effects                                     --
---                > * more typeclasses                                        --
+--                  * more typeclasses                                        --
 --              * other topics                                                --
 --                                                                            --
 --                                                                            --
