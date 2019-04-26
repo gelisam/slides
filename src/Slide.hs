@@ -10,8 +10,8 @@ module Slide where
 --                                                                            --
 --              * higher-order effects                                        --
 --              * other topics                                                --
---              > * abstraction bitrot                                        --
---                * single-implementation vs multiple-implementations         --
+--                * abstraction bitrot                                        --
+--              > * single-implementation vs multiple-implementations         --
 --                                                                            --
 --                                                                            --
 --                                                                            --
