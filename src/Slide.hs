@@ -13,7 +13,10 @@ data DataServerT m a = DataServerT
   }
 instance MonadDataServer (DataServerT m)
 
-
+data MockDataServerT m a = MockDataServerT
+  { unMockDataServerT :: ReaderT (IORef (Map (Key Spec) Spec)) m a
+  }
+instance MonadDataServer (MockDataServerT m)
 
 
 
