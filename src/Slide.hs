@@ -1,11 +1,11 @@
 module Slide where
 
-                                 fork :: MonadBaseControl m
+                                 fork :: MonadUnliftIO m
 forkIO :: IO a -> IO ThreadId         => m a -> m ThreadId
+                     --MonadUnliftIO-->
 
-                     --MonadBaseControl-->
-
-                                 withFile :: MonadBaseControl m
+                  --(MonadIO, MonadMask)-->
+                                 withFile :: (MonadIO m, MonadMask m)
 withFile :: FilePath                      => FilePath
          -> (Handle -> IO a)              -> (Handle -> m a)
          -> IO a                          -> m a
