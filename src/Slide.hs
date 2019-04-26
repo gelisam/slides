@@ -18,8 +18,8 @@ module Slide where
 --                    * pure vs IO                                            --
 --                      * threads                                             --
 --                      * exceptions                                          --
---                    > * higher-order effects                                --
---                  * more typeclasses                                        --
+--                      * higher-order effects                                --
+--                > * more typeclasses                                        --
 --              * other topics                                                --
 --                                                                            --
 --                                                                            --
