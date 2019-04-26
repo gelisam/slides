@@ -13,8 +13,8 @@ module Slide where
 --                * abstraction bitrot                                        --
 --                * single-implementation vs multiple-implementations         --
 --                  * implementation-based vs semantic-based                  --
---                > * cost/benefit                                            --
---                  * concrete vs abstract                                    --
+--                  * cost/benefit                                            --
+--                > * concrete vs abstract                                    --
 --                  * testing                                                 --
 --                                                                            --
 --                                                                            --
