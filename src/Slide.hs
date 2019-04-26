@@ -15,8 +15,8 @@ module Slide where
 --                  * shuffle the effects around                              --
 --                  * avoid fancy effects                                     --
 --                    * style                                                 --
---                  v * pure vs IO                                            --
---                      * threads                                             --
+--                    * pure vs IO                                            --
+--                    > * threads <                                           --
 --                      * exceptions                                          --
 --                      * higher-order effects                                --
 --                  * more typeclasses                                        --
