@@ -15,12 +15,12 @@ module Slide where
 --                  * shuffle the effects around                              --
 --                  * avoid fancy effects                                     --
 --                    * style                                                 --
---                  > * pure vs IO                                            --
+--                  v * pure vs IO                                            --
+--                      * threads                                             --
+--                      * exceptions                                          --
+--                      * higher-order effects                                --
 --                  * more typeclasses                                        --
 --              * other topics                                                --
---                                                                            --
---                                                                            --
---                                                                            --
 --                                                                            --
 --                                                                            --
 --                                                                            --
