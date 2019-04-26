@@ -1,41 +1,13 @@
 module Slide where
 
---------------------------------------------------------------------------------
---                                                                            --
---                                                                            --
---                                                                            --
---                                                                            --
---                                                                            --
---                               Effect Systems                               --
---                                                                            --
---              * higher-order effects                                        --
---              * other topics                                                --
---                * abstraction bitrot                                        --
---                * single-implementation vs multiple-implementations         --
---                > * implementation-based vs semantic-based                  --
---                  * cost/benefit                                            --
---                  * concrete vs abstract                                    --
---                                                                            --
---                                                                            --
---                                                                            --
---                                                                            --
---                                                                            --
---                                                                            --
---                                                                            --
---                                                                            --
---                                                                            --
---                                                                            --
---                                                                            --
---------------------------------------------------------------------------------
+-- implementation-based
 
+class Monad m => MonadDataServer m where
+  getDataServerUrl :: m Url
 
-
-
-
-
-
-
-
+insertSpec   :: MonadDataServer m => Spec -> m (Key Spec)
+retrieveSpec :: MonadDataServer m => Key Spec -> m Spec
+-- ...
 
 
 
