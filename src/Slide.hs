@@ -8,11 +8,11 @@ module Slide where
 --                                                                            --
 --                               Effect Systems                               --
 --                                                                            --
---            v * higher-order effects                                        --
---                * what happened?                                            --
---                * higher-order effects                                      --
---                * what to do about them                                     --
+--            > * higher-order effects                                        --
 --              * other topics                                                --
+--                                                                            --
+--                                                                            --
+--                                                                            --
 --                                                                            --
 --                                                                            --
 --                                                                            --
