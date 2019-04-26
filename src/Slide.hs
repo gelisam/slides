@@ -14,8 +14,8 @@ module Slide where
 --                * what to do about them                                     --
 --                  * shuffle the effects around                              --
 --                  * avoid fancy effects                                     --
---                  v * style                                                 --
---                      * a -> IO b                                           --
+--                    * style                                                 --
+--                    > * a -> IO b <                                         --
 --                      * Handle pattern                                      --
 --                      * MonadUnliftIO                                       --
 --                      * ReaderT pattern                                     --
