@@ -11,14 +11,14 @@ withFile :: FilePath                      => FilePath
 
 
 
-
-fmap :: (a -> b)
-     -> [a] -> [b]
+                                 traverse :: Applicative f
+fmap :: (a -> b)                          => (a -> f b)
+     -> [a] -> [b]                        -> [a] -> f [b]
 
                                  
-
-unfoldr :: (a -> Maybe (b, a))
-        -> a -> [b]
+                                 unfoldrM :: Monad m
+unfoldr :: (a -> Maybe (b, a))            => (a -> m (Maybe (b, a)))
+        -> a -> [b]                       -> a -> m [b]
 
 
 
