@@ -13,11 +13,11 @@ module Slide where
 --                * abstraction bitrot                                        --
 --                * single-implementation vs multiple-implementations         --
 --                  * implementation-based vs semantic-based                  --
---                v * cost/benefit                                            --
---                    * api surface                                           --
---                    * cost of creating new abstractions                     --
+--                > * cost/benefit                                            --
 --                  * concrete vs abstract                                    --
 --                  * testing                                                 --
+--                                                                            --
+--                                                                            --
 --                                                                            --
 --                                                                            --
 --                                                                            --
