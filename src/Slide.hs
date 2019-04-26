@@ -14,8 +14,8 @@ module Slide where
 --                * single-implementation vs multiple-implementations         --
 --                  * implementation-based vs semantic-based                  --
 --                  * cost/benefit                                            --
---                  > * api surface <                                         --
---                    * cost of creating new abstractions                     --
+--                    * api surface                                           --
+--                  > * cost of creating new abstractions <                   --
 --                  * concrete vs abstract                                    --
 --                  * testing                                                 --
 --                                                                            --
