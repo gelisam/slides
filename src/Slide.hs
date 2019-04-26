@@ -8,6 +8,11 @@ class Monad m => MonadDataServer m where
   -- ...
 
 
+data DataServerT m a = DataServerT
+  { unDataServerT :: ReaderT Url m a
+  }
+instance MonadDataServer (DataServerT m)
+
 
 
 
