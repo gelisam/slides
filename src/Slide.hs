@@ -13,7 +13,7 @@ runMyFileTest = runGoldenTest $ do
                                                             withFile "deployment-key.txt" (\handle -> do
     --                                      <- handle
     deploymentKey <- hGetContents handle
-    sendPayload $ Aeson.object
+    sendPayload $ Aeson.object  -- what if an exception is thrown here?
       [ "request"       .= Aeson.String "getPowerStates"
       , "deploymentKey" .= deploymentKey
       ]
