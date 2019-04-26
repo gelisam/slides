@@ -10,6 +10,10 @@ retrieveSpec :: MonadDataServer m => Key Spec -> m Spec
 -- ...
 
 
+data DataServerT m a = DataServerT
+  { unDataServerT :: ReaderT Url m a
+  }
+instance MonadDataServer (DataServerT m)
 
 
 
