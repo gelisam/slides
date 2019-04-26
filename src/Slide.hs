@@ -12,6 +12,13 @@ withFile :: FilePath                      => FilePath
 
 
 
+fmap :: (a -> b)
+     -> [a] -> [b]
+
+                                 
+
+unfoldr :: (a -> Maybe (b, a))
+        -> a -> [b]
 
 
 
