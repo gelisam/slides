@@ -14,8 +14,8 @@ module Slide where
 --                * single-implementation vs multiple-implementations         --
 --                  * implementation-based vs semantic-based                  --
 --                  * cost/benefit                                            --
---                > * concrete vs abstract                                    --
---                  * testing                                                 --
+--                  * concrete vs abstract                                    --
+--                > * testing                                                 --
 --                                                                            --
 --                                                                            --
 --                                                                            --
