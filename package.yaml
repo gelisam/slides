@@ -1,0 +1,22 @@
+name: mixing-styles
+version: 0.1.0.0
+executables:
+  slides:
+    source-dirs: src
+    main: Slide.hs
+    dependencies:
+      - base
+      - doctest
+      - async
+      - containers
+      - free
+      - gloss
+      - lens
+      - mtl
+      - non-empty-zipper
+      - reactive-banana
+      - terminal
+      - time
+      - transformers
+      - vty
+    ghc-options: -O2 -W -Wall -threaded -with-rtsopts=-N -rtsopts
