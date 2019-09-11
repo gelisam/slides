@@ -7,8 +7,8 @@
 --                            * Mixing                                        --
 --                            * Multiple Styles                               --
 --                            * in the Same Haskell Program                   --
---                            > * terminal rendering API                      --
---                              * messaging API                               --
+--                              * terminal rendering API                      --
+--                            > * messaging API                               --
 --                              * chatbot API                                 --
 --                              * UI                                          --
 --                                                                            --
