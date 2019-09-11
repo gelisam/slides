@@ -6,8 +6,8 @@
 --                                                                            --
 --                            * Mixing                                        --
 --                            * Multiple Styles                               --
---                            v * monadic                                     --
---                                * monad transformer library (mtl)           --
+--                              * monadic                                     --
+--                              > * monad transformer library (mtl)           --
 --                                * transformers                              --
 --                                * record of functions (rof)                 --
 --                                * free monad (free)                         --
