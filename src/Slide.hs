@@ -4,8 +4,8 @@
 --                                                                            --
 --                                                                            --
 --                                                                            --
---                          > * Mixing                                        --
---                            * Multiple Styles                               --
+--                            * Mixing                                        --
+--                          > * Multiple Styles                               --
 --                            * in the Same Haskell Program                   --
 --                                                                            --
 --                                                                            --
