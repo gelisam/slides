@@ -4,11 +4,11 @@
 --                                                                            --
 --                                                                            --
 --                                                                            --
---                          v * Mixing                                        --
---                              * mtl tree                                    --
---                              * style tree                                  --
+--                          > * Mixing                                        --
 --                            * Multiple Styles                               --
 --                            * in the Same Haskell Program                   --
+--                                                                            --
+--                                                                            --
 --                                                                            --
 --                                                                            --
 --                                                                            --
