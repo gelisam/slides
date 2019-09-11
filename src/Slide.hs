@@ -7,14 +7,14 @@
 --                            * Mixing                                        --
 --                            * Multiple Styles                               --
 --                            * in the Same Haskell Program                   --
---                            v * terminal rendering API                      --
---                                * monadic                                   --
---                                * combo                                     --
---                                * combo in terms of monadic                 --
---                                * monadic in terms of combo                 --
+--                            > * terminal rendering API                      --
 --                              * messaging API                               --
 --                              * chatbot API                                 --
 --                              * UI                                          --
+--                                                                            --
+--                                                                            --
+--                                                                            --
+--                                                                            --
 --                                                                            --
 --                                                                            --
 --                                                                            --
