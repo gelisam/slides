@@ -1,13 +1,14 @@
-{-# LANGUAGE MultiWayIf #-}
-import Data.Foldable
 
-fizzbuzz :: IO ()
-fizzbuzz = do
-  for_ [1..100::Int] $ \i -> do
-    if | i `mod` 15 == 0 -> putStrLn "fizzbuzz"
-       | i `mod`  3 == 0 -> putStrLn "fizz"
-       | i `mod`  5 == 0 -> putStrLn "buzz"
-       | otherwise       -> print i
+fizzbuzz1 :: Int -> String
+fizzbuzz1 i | i `mod` 15 == 0 = "fizzbuzz"
+            | i `mod`  3 == 0 = "fizz"
+            | i `mod`  5 == 0 = "buzz"
+            | otherwise       = show i
+
+fizzbuzz100 :: IO ()
+fizzbuzz100 = do
+  let strings = fmap fizzbuzz1 [1..100]
+  mapM_ putStrLn strings
 
 
 
@@ -108,4 +109,4 @@ fizzbuzz = do
 
 
 main :: IO ()
-main = fizzbuzz
+main = fizzbuzz100
