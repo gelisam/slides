@@ -1,25 +1,25 @@
-
+import Data.IORef
 
 data FizzBuzzHandle = FizzBuzzHandle
   { fizz     :: IO ()
   , buzz     :: IO ()
   , fizzbuzz :: IO ()
   , number   :: Int -> IO ()
+  , printAll :: IO ()
   }
-
-
 
 newFizzBuzzHandle :: IO FizzBuzzHandle
 newFizzBuzzHandle = do
+  ref <- newIORef []
   pure $ FizzBuzzHandle
-    { fizz     = putStrLn "fizz"
-    , buzz     = putStrLn "buzz"
-    , fizzbuzz = putStrLn "buzzfizz"
-    , number   = print
+    { fizz     = modifyIORef ref (++ ["fizz"])
+    , buzz     = modifyIORef ref (++ ["buzz"])
+    , fizzbuzz = modifyIORef ref (++ ["buzzfizz"])
+    , number   = \i -> modifyIORef ref (++ [show i])
+    , printAll = do
+        strings <- readIORef ref
+        mapM_ putStrLn strings
     }
-
-
-
 
 --
 
@@ -38,7 +38,7 @@ main :: IO ()
 main = do
   h <- newFizzBuzzHandle
   fizzbuzz100 h
-
+  printAll h
 
 
 
