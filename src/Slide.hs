@@ -1,7 +1,7 @@
 {-# LANGUAGE GeneralizedNewtypeDeriving #-}
 import Control.Monad.Writer
 
-newtype FizzBuzz a = UnsafeFizzBuzz
+newtype FizzBuzz a = FizzBuzz
   { unFizzBuzz :: Writer [String] a }
   deriving (Functor, Applicative, Monad)
 
@@ -12,16 +12,16 @@ runFizzBuzz body = do
   pure a
 
 fizz :: FizzBuzz ()
-fizz = UnsafeFizzBuzz $ tell ["fizz"]
+fizz = FizzBuzz $ tell ["fizz"]
 
 buzz :: FizzBuzz ()
-buzz = UnsafeFizzBuzz $ tell ["buzz"]
+buzz = FizzBuzz $ tell ["buzz"]
 
 fizzbuzz :: FizzBuzz ()
-fizzbuzz = UnsafeFizzBuzz $ tell ["fizzbuzz"]
+fizzbuzz = FizzBuzz $ tell ["fizzbuzz"]
 
 number :: Int -> FizzBuzz ()
-number i = UnsafeFizzBuzz $ tell [show i]
+number i = FizzBuzz $ tell [show i]
 
 --
 
