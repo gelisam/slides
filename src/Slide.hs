@@ -1,7 +1,9 @@
 -- main: IO
--- |__ respondToHttpPost: IO
---     |__ update: MonadDatabase
---     |__ render: MonadAssets
+-- |__ server communication: rof
+-- |__ chatbots: rof + transformers
+-- |__ UI: frp
+--     |__ text input: free
+--     |__ terminal rendering: combo
 
 
 
