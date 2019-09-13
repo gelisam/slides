@@ -1,63 +1,3 @@
---------------------------------------------------------------------------------
---                                                                            --
---                                                                            --
---                                                                            --
---                                                                            --
---                                                                            --
---                            * Mixing                                        --
---                            * Multiple Styles                               --
---                            * in the Same Haskell Program                   --
---                              * terminal rendering API                      --
---                              > * monadic                                   --
---                                * combo                                     --
---                                * combo in terms of monadic                 --
---                                * monadic in terms of combo                 --
---                              * messaging API                               --
---                              * chatbot API                                 --
---                              * UI                                          --
---                                                                            --
---                                                                            --
---                                                                            --
---                                                                            --
---                                                                            --
---------------------------------------------------------------------------------
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 {-# LANGUAGE DeriveFunctor, FlexibleContexts, FlexibleInstances, FunctionalDependencies, GADTs, GeneralizedNewtypeDeriving, InstanceSigs, LambdaCase, MultiParamTypeClasses, NumericUnderscores, RankNTypes, RecordWildCards, RecursiveDo, ScopedTypeVariables, TupleSections, TypeApplications, TypeFamilies, UndecidableInstances #-}
 module Main where
 import qualified System.Terminal as Term                                                                                                   ; import Control.Monad; import Control.Monad.IO.Class
@@ -79,7 +19,7 @@ putMessage :: String -> String -> Terminal ()
 putMessage user msg = do
   putUsername user
   Term.putString ": "
-  Term.putString msg
+  Term.putStringLn msg
 
 main :: IO ()
 main = runTerminal $ do
@@ -96,11 +36,14 @@ main = runTerminal $ do
 
   Term.moveCursorUp 1
   Term.setCursorColumn 9
-  putMessage "human" "hello"
-
-  Term.moveCursorDown 1
+  putMessage "human" "hello echobot"
   Term.setCursorColumn 9
-  putMessage "echobot" "hello"
+  Term.putStringLn ", how are you?"
+
+  Term.setCursorColumn 9
+  putMessage "echobot" "hello echob"
+  Term.setCursorColumn 9
+  Term.putStringLn "ot, how are you?"
 
   Term.moveCursorDown 3
   Term.setCursorColumn 0
