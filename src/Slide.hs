@@ -1,7 +1,7 @@
-respondToHttpPost :: (MonadAssets m, MonadDatabase m) => m ()
+respondToHttpPost :: IO ()
 respondToHttpPost = do
-  update
-  render
+  runDatabaseT update
+  runAssetsT render  -- no (MonadDatabase IO) instance
 
 update :: MonadDatabase m => m ()
 update = do
@@ -10,16 +10,16 @@ update = do
 render :: (MonadAssets m, MonadDatabase m) => m ()
 render = do
   getAsset "myImage.jpg"
-  writeDb "oops" -- Ok
+  writeDb "oops"
 
 
-topLevel :: AssetsT (DatabaseT IO) ()
+topLevel :: IO ()
 topLevel = do
   respondToHttpPost
 
 main :: IO ()
 main = do
-  r <- runDatabaseT . runAssetsT $ topLevel
+  r <- topLevel
   print r
 
 
