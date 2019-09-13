@@ -11,8 +11,8 @@
 --                                * transformers                              --
 --                                * record of functions (rof)                 --
 --                                * free monad (free)                         --
---                            > * functional reactive programming (frp)       --
---                              * combinator library (combo)                  --
+--                              * functional reactive programming (frp)       --
+--                            > * combinator library (combo)                  --
 --                            * in the Same Haskell Program                   --
 --                                                                            --
 --                                                                            --
