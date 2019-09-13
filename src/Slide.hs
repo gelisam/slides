@@ -7,10 +7,10 @@ update :: MonadDatabase m => m ()
 update = do
   writeDb "updated value"
 
-render :: MonadAssets m => m ()
+render :: (MonadAssets m, MonadDatabase m) => m ()
 render = do
   getAsset "myImage.jpg"
-  writeDb "oops" -- Could not deduce (MonadDatabase m) from (MonadAssets m)
+  writeDb "oops" -- Ok
 
 
 topLevel :: AssetsT (DatabaseT IO) ()
