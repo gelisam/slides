@@ -9,8 +9,8 @@
 --                            * in the Same Haskell Program                   --
 --                              * terminal rendering API                      --
 --                                * monadic                                   --
---                              > * combo                                     --
---                                * combo in terms of monadic                 --
+--                                * combo                                     --
+--                              > * combo in terms of monadic                 --
 --                                * monadic in terms of combo                 --
 --                              * messaging API                               --
 --                              * chatbot API                                 --
