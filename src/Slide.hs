@@ -7,176 +7,6 @@ import Data.Foldable
 import qualified System.Terminal as Term
 
 
-putWrappedChar :: Char -> StateT Int Teletype ()
-putWrappedChar c = do
-  if c == '\n'
-  then do
-    lift $ putStringLn ""
-    put 0
-  else do
-    col <- get
-    if col >= 20
-    then do
-      lift $ putStringLn ""
-      put 0
-    else do
-      modify (+1)
-    lift $ putString [c]
-
-putWrappedString :: String -> StateT Int Teletype ()
-putWrappedString = mapM_ putWrappedChar
-
-putWrappedStringLn :: String -> StateT Int Teletype ()
-putWrappedStringLn s = putWrappedString s >> putWrappedChar '\n'
-
-putWrappedUsername :: String -> StateT Int Teletype ()
-putWrappedUsername name = do
-  lift $ setAttribute Bold
-  putWrappedString name
-  lift $ resetAttribute Bold
-
-putWrappedMessageLn :: String -> String -> StateT Int Teletype ()
-putWrappedMessageLn user msg = do
-  putWrappedUsername user
-  putWrappedString ": "
-  putWrappedStringLn msg
-
-putChannelLn :: Bool -> String -> Teletype ()
-putChannelLn active name = do
-  when active $ setAttribute Inverted
-  putStringLn name
-  when active $ resetAttribute Inverted
-
-execTeletype :: Teletype a -> Doc
-
-chat :: [String] -> String -> [(String, String)] -> Doc
-chat channels currentChannel messages
-    = execTeletype printChannels
-  .|. string "  "
-  .|. execTeletype printMessages
-  where
-    printChannels :: Teletype ()
-    printChannels = do
-      for_ channels $ \channelName -> do
-        putChannelLn (channelName == currentChannel) channelName
-
-    printMessages :: Teletype ()
-    printMessages = flip evalStateT 0 $ do
-      for_ messages $ \(user, msg) -> do
-        putWrappedMessageLn user msg
-
-main :: IO ()
-main = runTerminal $ do
-  liftIO $ Prelude.putStrLn ""
-  putDocLn $ chat ["general", "random"] "general"
-                  [ ("human",   "hello echobot, how are you?")
-                  , ("echobot", "hello echobot, how are you?")
-                  ]
-  liftIO $ Prelude.putStrLn ""
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 data TeletypeState = TeletypeState
   { _previousLines     :: Doc
   , _currentLine       :: Doc
@@ -199,6 +29,7 @@ newtype Teletype a = Teletype
 runTeletype :: Teletype a -> (a, Doc)
 runTeletype = over _2 runTeletypeState . flip runState initialTeletypeState . unTeletype
 
+execTeletype :: Teletype a -> Doc
 execTeletype = snd . runTeletype
 
 
@@ -624,3 +455,73 @@ currentlyBold = lens _currentlyBold (\s a -> s { _currentlyBold = a })
 
 currentlyInverted :: Lens' TeletypeState Bool
 currentlyInverted = lens _currentlyInverted (\s a -> s { _currentlyInverted = a })
+
+
+--
+
+
+putWrappedChar :: Char -> StateT Int Teletype ()
+putWrappedChar c = do
+  if c == '\n'
+  then do
+    lift $ putStringLn ""
+    put 0
+  else do
+    col <- get
+    if col >= 20
+    then do
+      lift $ putStringLn ""
+      put 0
+    else do
+      modify (+1)
+    lift $ putString [c]
+
+putWrappedString :: String -> StateT Int Teletype ()
+putWrappedString = mapM_ putWrappedChar
+
+putWrappedStringLn :: String -> StateT Int Teletype ()
+putWrappedStringLn s = putWrappedString s >> putWrappedChar '\n'
+
+putWrappedUsername :: String -> StateT Int Teletype ()
+putWrappedUsername name = do
+  lift $ setAttribute Bold
+  putWrappedString name
+  lift $ resetAttribute Bold
+
+putWrappedMessageLn :: String -> String -> StateT Int Teletype ()
+putWrappedMessageLn user msg = do
+  putWrappedUsername user
+  putWrappedString ": "
+  putWrappedStringLn msg
+
+putChannelLn :: Bool -> String -> Teletype ()
+putChannelLn active name = do
+  when active $ setAttribute Inverted
+  putStringLn name
+  when active $ resetAttribute Inverted
+
+
+chat :: [String] -> String -> [(String, String)] -> Doc
+chat channels currentChannel messages
+    = execTeletype printChannels
+  .|. string "  "
+  .|. execTeletype printMessages
+  where
+    printChannels :: Teletype ()
+    printChannels = do
+      for_ channels $ \channelName -> do
+        putChannelLn (channelName == currentChannel) channelName
+
+    printMessages :: Teletype ()
+    printMessages = flip evalStateT 0 $ do
+      for_ messages $ \(user, msg) -> do
+        putWrappedMessageLn user msg
+
+main :: IO ()
+main = runTerminal $ do
+  liftIO $ Prelude.putStrLn ""
+  putDocLn $ chat ["general", "random"] "general"
+                  [ ("human",   "hello echobot, how are you?")
+                  , ("echobot", "hello echobot, how are you?")
+                  ]
+  liftIO $ Prelude.putStrLn ""
