@@ -1,5 +1,5 @@
 module Main where
-import Control.Monad.State                                                                                                                                                                                                        ; import Control.Lens; import Data.Foldable as Seq (toList); import Data.Map (Map); import Data.Sequence (Seq); import qualified Data.Sequence as Seq
+import Control.Monad.State                                                                                                                                                                                                        ; import Control.Lens; import Data.Foldable as Seq (toList); import Data.Map (Map); import Data.Sequence (Seq); import qualified Data.Sequence as Seq; import qualified Data.Foldable as List; import qualified Data.Map as Map; import Data.Traversable
 
 -- transformer-based implementation
 
@@ -28,12 +28,19 @@ loadChannelMessages channel = do
     loadMessages
 
 
-listChannels :: State MultiChannelState (Map Channel Int)
-listChannels = do
+whiteboxListChannels :: State MultiChannelState (Map Channel Int)
+whiteboxListChannels = do
   multiState <- get
   pure (fmap Seq.length multiState)
 
-
+blackboxListChannels :: State MultiChannelState (Map Channel Int)
+blackboxListChannels = do
+  multiState <- get
+  pairs <- for (Map.keys multiState) $ \channel -> do
+    zoom (at channel . non Seq.empty) $ do
+      msgs <- loadMessages
+      pure (channel, List.length msgs)
+  pure (Map.fromList pairs)
 
 
 
