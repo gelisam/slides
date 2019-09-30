@@ -1,5 +1,5 @@
 module Main where
-
+import Data.IORef                                                                                                                                                                                                        ; import Data.Sequence ((|>)); import qualified Data.Sequence as Seq; import Data.Foldable as Seq (toList)
 
 -- ROF-based implementation
 
@@ -11,8 +11,13 @@ data ChannelROF = ChannelROF
   , loadMessages :: IO [Message]
   }
 
-localChannelROF :: IO ChannelROF
-remoteChannelROF :: URL -> IO ChannelROF
+localMessageROF :: IO ChannelROF
+localMessageROF = do
+  ref <- newIORef Seq.empty
+  pure $ ChannelROF
+    { sendMessage  = \msg -> modifyIORef ref (|> msg)
+    , loadMessages = Seq.toList <$> readIORef ref
+    }
 
 
 
@@ -126,11 +131,6 @@ remoteChannelROF :: URL -> IO ChannelROF
 
 
 
-
-type URL = ()
-
-localChannelROF = undefined
-remoteChannelROF = undefined
 
 
 data Message = Message
