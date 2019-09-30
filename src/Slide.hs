@@ -1,17 +1,17 @@
 module Main where
-import Control.Monad.State
+import Control.Monad.State                                                                                                                                                                                                        ; import Control.Lens; import Data.Sequence (Seq); import qualified Data.Foldable as Seq
 
 -- transformer-based implementation
 
 
-type ChannelState = [Message]
+type ChannelState = Seq Message
 
 loadMessages :: State ChannelState [Message]
-loadMessages = get
+loadMessages = Seq.toList <$> get
 
 sendMessage :: Message -> State ChannelState ()
 sendMessage msg = do
-  modify (++ [msg])
+  modify (|> msg)
 
 
 
