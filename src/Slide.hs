@@ -1,145 +1,116 @@
 module Main where
-import Data.Map (Map)
+import Control.Monad.State
+
+-- transformer-based implementation
+
+
+type ChannelState = [Message]
+
+loadMessages :: State ChannelState [Message]
+loadMessages = get
+
+sendMessage :: Message -> State ChannelState ()
+sendMessage msg = do
+  modify (++ [msg])
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 data Message = Message { author :: String, contents :: String }
-
-sendMessage  :: Message -> M ()
-loadMessages :: M [Message]
-
+  deriving Eq
 
 newtype Channel = Channel { channelName :: String }
+  deriving (Eq, Ord)
 
-sendChannelMessage  :: Channel -> Message -> M ()
-loadChannelMessages :: Channel -> M [Message]
-
--- number of messages in each channel
-listChannels :: M (Map Channel Int)
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-type M = IO
-
-sendMessage  = undefined
-loadMessages = undefined
-
-listChannels = undefined
-sendChannelMessage  = undefined
-loadChannelMessages = undefined
 
 
 
