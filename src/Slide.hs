@@ -9,8 +9,8 @@
 --                            * in the Same Haskell Program                   --
 --                              * terminal rendering API                      --
 --                              * messaging API                               --
---                            > * chatbot API                                 --
---                              * UI                                          --
+--                              * chatbot API                                 --
+--                            > * UI                                          --
 --                                                                            --
 --                                                                            --
 --                                                                            --
