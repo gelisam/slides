@@ -42,6 +42,10 @@ blackboxListChannels = do
       pure (channel, List.length msgs)
   pure (Map.fromList pairs)
 
+-- transformer-based implementation:
+-- * supports whitebox reuse
+-- but:
+-- * only one implementation
 
 
 
