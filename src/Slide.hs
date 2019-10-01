@@ -47,6 +47,10 @@ blackboxListChannels = do
 -- but:
 -- * only one implementation
 
+-- ROF-based implementation:
+-- * supports multiple implementations
+-- but:
+-- * no whitebox reuse
 
 
 
