@@ -8,8 +8,8 @@
 --                            * Multiple Styles                               --
 --                            * in the Same Haskell Program                   --
 --                              * terminal rendering API                      --
---                            > * messaging API                               --
---                              * chatbot API                                 --
+--                              * messaging API                               --
+--                            > * chatbot API                                 --
 --                              * UI                                          --
 --                                                                            --
 --                                                                            --
