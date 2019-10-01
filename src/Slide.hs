@@ -1,5 +1,5 @@
 module Main where
-import Control.Monad.State                                                                                                                                                                                                        ; import Control.Lens; import Data.Map (Map); import Data.Sequence (Seq); import qualified Data.Foldable as Seq
+import Control.Monad.State                                                                                                                                                                                                        ; import Control.Lens; import Data.Foldable as Seq; import Data.Map (Map); import Data.Sequence (Seq); import qualified Data.Sequence as Seq
 
 -- transformer-based implementation
 
@@ -16,16 +16,16 @@ sendMessage msg = do
 
 type MultiChannelState = Map Channel ChannelState
 
+sendChannelMessage :: Channel -> Message -> State MultiChannelState ()
+sendChannelMessage channel msg = do
+  zoom (at channel . non Seq.empty) $ do
+    -- now running in "State ChannelState"
+    sendMessage msg
 
-
-
-
-
-
-
-
-
-
+loadChannelMessages :: Channel -> State MultiChannelState [Message]
+loadChannelMessages channel = do
+  zoom (at channel . non Seq.empty) $ do
+    loadMessages
 
 
 
