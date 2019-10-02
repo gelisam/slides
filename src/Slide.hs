@@ -6,11 +6,11 @@
 --                                                                            --
 --                            * Mixing                                        --
 --                            * Multiple Styles                               --
---                          > * in the Same Haskell Program                   --
---                                                                            --
---                                                                            --
---                                                                            --
---                                                                            --
+--                          v * in the Same Haskell Program                   --
+--                              * terminal rendering API                      --
+--                              * messages API                                --
+--                              * chatbot API                                 --
+--                              * UI                                          --
 --                                                                            --
 --                                                                            --
 --                                                                            --
