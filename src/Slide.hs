@@ -17,7 +17,7 @@ registerCallbacks channelROF = do
       onKeyDown Enter = do
         buf <- getText bufferBox
         sendMessage channelROF (Message "human" buf)
-        setText msgBox ""
+        setText msgBox ""  -- should have been bufferBox
       onKeyDown Backspace = do
         buf <- getText bufferBox
         setText bufferBox $ take (length buf - 1) buf
