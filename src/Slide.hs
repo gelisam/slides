@@ -1,37 +1,29 @@
 module Main where
 
 
-registerCallbacks :: ChannelROF -> IO ()
-registerCallbacks channelROF = do
-  bufferBox <- newTextBox
-  msgBox <- newTextBox
+data UIState = UIState
+  { messages :: [Message]
+  , buffer   :: String
+  }
 
-  let onIdle :: IO ()
-      onIdle = do
-        msgs <- loadMessages channelROF
-        setText msgBox $ foldMap renderMessage msgs
-        setTimeout 5 onIdle
-  setTimeout 5 onIdle
+draw :: UIState -> Doc
 
-  let onKeyDown :: Key -> IO ()
-      onKeyDown Enter = do
-        buf <- getText bufferBox
-        sendMessage channelROF (Message "human" buf)
-        setText msgBox ""  -- should have been bufferBox
-      onKeyDown Backspace = do
-        buf <- getText bufferBox
-        setText bufferBox $ take (length buf - 1) buf
-      onKeyDown (Char c) = do
-        buf <- getText bufferBox
-        setText bufferBox $ buf ++ [c]
-      onKeyDown _ = do
-        pure ()
-  setOnKeyDown onKeyDown
+update :: Event -> UIState -> (UIState, [Request])
+update event s = case event of
+  Idle                -> (s, [LoadMessages])
 
+  MessagesLoaded msgs -> (s { messages = msgs }, [])
 
+  KeyDown Enter       -> let msg = Message "human" (buffer s)
+                         in (s { messages = [] }, [SendMessage msg])
+                                 -- ^ should have been buffer
 
+  KeyDown Backspace   -> let buf = buffer s
+                         in (s { buffer = take (length buf - 1) buf }, [])
 
+  KeyDown (Char c)    -> (s { buffer = buffer s ++ [c] }, [])
 
+  _                   -> (s, [])
 
 
 
@@ -125,39 +117,18 @@ registerCallbacks channelROF = do
 
 
 
+data Doc
+
+draw = undefined
+
+
+data Event = Idle | KeyDown Key | KeyUp Key | MessagesLoaded [Message]
 data Key = Enter | Backspace | Esc | Char Char
 
-setOnKeyDown :: (Key -> IO ()) -> IO ()
-setOnKeyDown = undefined
 
-setTimeout :: Int -> IO () -> IO ()
-setTimeout = undefined
-
-
-data TextBox
-
-newTextBox :: IO TextBox
-newTextBox = undefined
-
-getText :: TextBox -> IO String
-getText = undefined
-
-setText :: TextBox -> String -> IO ()
-setText = undefined
-
-
-
-data ChannelROF
 data Message = Message String String
+data Request = LoadMessages | SendMessage Message
 
-renderMessage :: Message -> String
-renderMessage = undefined
-
-loadMessages :: ChannelROF -> IO [Message]
-loadMessages = undefined
-
-sendMessage :: ChannelROF -> Message -> IO ()
-sendMessage = undefined
 
 
 main :: IO ()
