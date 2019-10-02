@@ -1,9 +1,34 @@
--- main: IO
--- |__ server communication: rof
--- |__ chatbots: rof + transformers
--- |__ UI: frp
---     |__ text input: free
---     |__ terminal rendering: combo
+--------------------------------------------------------------------------------
+--                                                                            --
+--                                                                            --
+--                                                                            --
+--                                                                            --
+--                                                                            --
+--                            * Mixing                                        --
+--                              * mtl tree                                    --
+--                            > * style tree                                  --
+--                            * Multiple Styles                               --
+--                            * in the Same Haskell Program                   --
+--                                                                            --
+--                                                                            --
+--                                                                            --
+--                                                                            --
+--                                                                            --
+--                                                                            --
+--                                                                            --
+--                                                                            --
+--                                                                            --
+--                                                                            --
+--                                                                            --
+--------------------------------------------------------------------------------
+
+
+
+
+
+
+
+
 
 
 
