@@ -11,8 +11,8 @@
 --                              * messaging API                               --
 --                              * chatbot API                                 --
 --                              * UI                                          --
---                              > * frp                                       --
---                                * frp + free                                --
+--                                * frp                                       --
+--                              > * frp + free                                --
 --                                                                            --
 --                                                                            --
 --                                                                            --
