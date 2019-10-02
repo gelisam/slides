@@ -1,6 +1,6 @@
-
+{-# LANGUAGE LambdaCase #-}
 module Main where
-import Data.Void                                                                                                                                                                                                        ; import Control.Monad; import Control.Monad.Free
+import Data.Void                                                                                                                                                                                                        ; import Control.Monad (forever); import Control.Monad.Free
 
 data Op a
   = WaitForKey (Key -> a)
@@ -8,23 +8,17 @@ data Op a
   | Get (String -> a)
   | Put String a
 
-maintainBuffer :: Free Op Void
-maintainBuffer = forever $ do
-  key <- waitForKey
-  case key of
-    Enter -> do
-      buf <- get
-      send (Message "human" buf)
-      put ""
-
-    Backspace -> do
-      modify (\buf -> take (length buf - 1) buf)
-
-    Char c -> do
-      modify (\buf -> buf ++ [c])
-
-    _ -> do
-      pure ()
+runUntilWait :: String
+             -> Free Op Void
+             -> (String, [Message], Key -> Free Op Void)
+runUntilWait = go []
+  where
+    go msgs s = \case
+      Pure void            -> absurd void
+      Free (WaitForKey cc) -> (s, msgs, cc)
+      Free (Send msg cc)   -> go (msgs ++ [msg]) s cc
+      Free (Get cc)        -> go msgs s (cc s)
+      Free (Put s' cc)     -> go msgs s' cc
   
 
 
@@ -60,6 +54,24 @@ maintainBuffer = forever $ do
 
 
 
+
+maintainBuffer :: Free Op Void
+maintainBuffer = forever $ do
+  key <- waitForKey
+  case key of
+    Enter -> do
+      buf <- get
+      send (Message "human" buf)
+      put ""
+
+    Backspace -> do
+      modify (\buf -> take (length buf - 1) buf)
+
+    Char c -> do
+      modify (\buf -> buf ++ [c])
+
+    _ -> do
+      pure ()
 
 
 instance Functor Op where
