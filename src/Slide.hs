@@ -10,8 +10,8 @@
 --                              * terminal rendering API                      --
 --                              * messaging API                               --
 --                              * chatbot API                                 --
---                            v * UI                                          --
---                                * frp                                       --
+--                              * UI                                          --
+--                              > * frp                                       --
 --                                * frp + free                                --
 --                                                                            --
 --                                                                            --
