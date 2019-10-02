@@ -1,53 +1,35 @@
 {-# LANGUAGE LambdaCase, RecursiveDo #-}
 module Main where
 
-import Reactive.Banana                                                                                                                                                                                                         as Frp (Behavior, accumB, unions, filterE, filterJust, (<@)); import qualified Reactive.Banana as Frp; import Reactive.Banana.Frameworks (MomentIO)
+import Reactive.Banana                                                                                                                                                                                                         as Frp (Behavior); import qualified Reactive.Banana as Frp; import Reactive.Banana.Frameworks (MomentIO); import Data.Foldable
 
-
-data UIState = UIState
-  { messages :: [Message]
-  , buffer   :: String
-  }
-
-draw :: UIState -> Doc
 
 ui :: Stream Event
    -> Frp (Behavior Doc, Stream [Request])
-ui eventS = mdo
-  let idleS      = filterS (== Idle)              eventS
-  let enterS     = filterS (== KeyDown Enter)     eventS
-  let backspaceS = filterS (== KeyDown Backspace) eventS
-  let charS          = flip mapMaybeS eventS $ \case
-                         KeyDown (Char c) -> Just c
-                         _                -> Nothing
-  let messagesLoaded = flip mapMaybeS eventS $ \case
-                         MessagesLoaded msgs -> Just msgs
-                         _                   -> Nothing
 
-  let sendMessagesS = (Message "message" <$> bufferB)
-                   <@ enterS
-  let requestS = ((\_   -> [LoadMessages])    <$> idleS)
-              <> ((\msg -> [SendMessage msg]) <$> sendMessagesS)
+registerCallbacks :: ChannelROF -> IO ()
+registerCallbacks channelROF = do
+  (eventS, sendEvent) <- newStream
+  (docB, requestS) <- runFrp (ui eventS)
 
-  messagesB <- accumB [] $ unions
-    [ const <$> messagesLoaded
-    , const [] <$ sendMessagesS  -- should be here instead
-    ]                            --             |
-                                 --             |
-  bufferB <- accumB "" $ unions  --             |
-    [ const [] <$ sendMessagesS  -- <-----------'
-    , (\buf -> take (length buf - 1) buf) <$ backspaceS
-    , (\c buf -> buf ++ [c]) <$> charS
-    ]
+  onBehaviourChange docB $ \doc -> do
+    clearScreen
+    putDocLn doc
 
-  let uiStateB :: Behavior UIState
-      uiStateB = UIState <$> messagesB <*> bufferB 
+  onStreamEmit requestS $ \requests -> do
+    for_ requests $ \case
+      LoadMessages -> do
+        msgs <- loadMessages channelROF
+        sendEvent (MessagesLoaded msgs)
+      SendMessage msg -> do
+        sendMessage channelROF msg
 
-  let docB :: Behavior Doc
-      docB = draw <$> uiStateB
-
-  pure (docB, requestS)
-  
+  let onIdle :: IO ()
+      onIdle = do
+        sendEvent Idle
+        setTimeout 5 onIdle
+  setTimeout 5 onIdle
+  setOnKeyDown (sendEvent . KeyDown)
 
 
 
@@ -84,22 +66,37 @@ ui eventS = mdo
 
 
 
+
+
+
+ui = undefined
 
 type Frp = MomentIO
 
+runFrp :: Frp a -> IO a
+runFrp = undefined
+
+
 type Stream a = Frp.Event a
 
-filterS :: (a -> Bool) -> Stream a -> Stream a
-filterS = filterE
+newStream :: IO (Stream a, a -> IO ())
+newStream = undefined
 
-mapMaybeS :: (a -> Maybe b) -> Stream a -> Stream b
-mapMaybeS f = filterJust . fmap f
+onBehaviourChange :: Behavior a -> (a -> IO ()) -> IO ()
+onBehaviourChange = undefined
+
+onStreamEmit :: Stream a -> (a -> IO ()) -> IO ()
+onStreamEmit = undefined
 
 
 
 data Doc
 
-draw = undefined
+clearScreen :: IO ()
+clearScreen = undefined
+
+putDocLn :: Doc -> IO ()
+putDocLn = undefined
 
 
 data Event = Idle | KeyDown Key | KeyUp Key | MessagesLoaded [Message]
@@ -107,12 +104,29 @@ data Event = Idle | KeyDown Key | KeyUp Key | MessagesLoaded [Message]
 data Key = Enter | Backspace | Esc | Char Char
   deriving Eq
 
+setOnKeyDown :: (Key -> IO ()) -> IO ()
+setOnKeyDown = undefined
+
+setTimeout :: Int -> IO () -> IO ()
+setTimeout = undefined
+
 
 data Message = Message String String
   deriving Eq
 data Request = LoadMessages | SendMessage Message
   deriving Eq
 
+
+data ChannelROF
+
+renderMessage :: Message -> String
+renderMessage = undefined
+
+loadMessages :: ChannelROF -> IO [Message]
+loadMessages = undefined
+
+sendMessage :: ChannelROF -> Message -> IO ()
+sendMessage = undefined
 
 
 main :: IO ()
