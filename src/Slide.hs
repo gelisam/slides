@@ -1,13 +1,13 @@
-respondToHttpPost :: AssetsT (DatabaseT IO) ()
+respondToHttpPost :: (MonadAssets m, MonadDatabase m) => m ()
 respondToHttpPost = do
   update
   render
 
-update :: AssetsT (DatabaseT IO) ()
+update :: MonadDatabase m => m ()
 update = do
   writeDb "updated value"
 
-render :: AssetsT (DatabaseT IO) ()
+render :: MonadAssets m => m ()
 render = do
   getAsset "myImage.jpg"
 
