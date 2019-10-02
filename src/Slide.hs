@@ -2,13 +2,13 @@
 module Main where
 import Data.Void                                                                                                                                                                                                        ; import Control.Monad; import Control.Monad.Free
 
+data Op a
+  = WaitForKey (Key -> a)
+  | Send Message a
+  | Get (String -> a)
+  | Put String a
 
-
-
-
-
-
-maintainBuffer :: M Void
+maintainBuffer :: Free Op Void
 maintainBuffer = forever $ do
   key <- waitForKey
   case key of
@@ -61,14 +61,6 @@ maintainBuffer = forever $ do
 
 
 
-
-type M = Free Op
-
-data Op a
-  = WaitForKey (Key -> a)
-  | Send Message a
-  | Get (String -> a)
-  | Put String a
 
 instance Functor Op where
   fmap f (WaitForKey cc) = WaitForKey (f . cc)
