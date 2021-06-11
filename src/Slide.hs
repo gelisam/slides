@@ -1,12 +1,12 @@
-{-# OPTIONS -fno-full-laziness -ddump-simpl-iterations -dsuppress-module-prefixes -dsuppress-uniques #-}
+{-# OPTIONS -ddump-simpl-iterations -dsuppress-module-prefixes -dsuppress-uniques  #-}
 module Slide where
 
 import Data.IORef
 import System.IO.Unsafe (unsafePerformIO)
 
-{-# NOINLINE mkUniqueState #-}
+
 mkUniqueState :: Int -> IORef Int
-mkUniqueState _ = unsafePerformIO (newIORef 0)
+mkUniqueState i = unsafePerformIO (i `seq` newIORef 0)
 
 -- |
 -- >>> main
