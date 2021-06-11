@@ -1,4 +1,4 @@
-{-# OPTIONS -fno-full-laziness #-}
+{-# OPTIONS -fno-full-laziness -ddump-simpl-iterations -dsuppress-module-prefixes -dsuppress-uniques #-}
 module Slide where
 
 import Data.IORef
@@ -10,8 +10,8 @@ mkUniqueState _ = unsafePerformIO (newIORef 0)
 
 -- |
 -- >>> main
--- 0            (not really)
--- 0
+-- 1            (but why??)
+-- 2
 main :: IO ()
 main = do
   modifyIORef (mkUniqueState 0) (+1)
