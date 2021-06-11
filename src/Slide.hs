@@ -14,7 +14,6 @@ data RealWorld = RealWorld
 
 
 
-
 -- |
 -- >>> main            >>> main
 -- 102          OR     102
@@ -23,9 +22,10 @@ main' :: RealWorld -> (RealWorld, ())
 main' rw0
   = case newIORef 0 rw0 of
       (rw1, ref) ->
-        case evaluate
+        let shared = modifyIORef ref (\x -> x + 100) RealWorld
+        in case evaluate
                (
-                    case modifyIORef ref (\x -> x + 100) RealWorld of
+                    case shared of
                       (rwB, ()) ->
                         case modifyIORef ref (\x -> x + 2) rwB of
                           (_rwC, ()) ->
@@ -35,7 +35,7 @@ main' rw0
             case (printReadIORef ref) rw2 of
               (rw3, ()) -> do
                 case evaluate (
-                                   case modifyIORef ref (\x -> x + 100) RealWorld of
+                                   case shared of
                                      (rwB', ()) ->
                                        case modifyIORef ref (\x -> x + 3) rwB' of
                                          (_rwC', ()) ->
