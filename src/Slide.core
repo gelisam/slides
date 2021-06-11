@@ -1,0 +1,9 @@
+slides> configure (exe)
+Configuring slides-0.0.0...
+slides> build (exe)
+Preprocessing executable 'slides' for slides-0.0.0..
+Building executable 'slides' for slides-0.0.0..
+[2 of 2] Compiling Slide
+Linking .stack-work/dist/x86_64-osx/Cabal-3.0.1.0/build/slides/slides ...
+slides> copy/register
+Installing executable slides in /Users/gelisam/working/slides/unsafe-perform-io/.stack-work/install/x86_64-osx/8ddbe57b9a3082d3e49c7cd5e1a1034b87ed53672289d7b756337936f834196d/8.8.4/bin

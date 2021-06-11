@@ -1,4 +1,4 @@
-
+{-# OPTIONS -fno-cse #-}
 module Slide where
 
 import Data.IORef
@@ -6,16 +6,16 @@ import System.IO.Unsafe (unsafePerformIO)
 
 
 
+
+
 -- |
 -- >>> main
--- 1            (in practice)
--- 2
+-- 0
+-- 0
 main :: IO ()
 main = do
-  let s = unsafePerformIO (newIORef 0)
+  modifyIORef (unsafePerformIO (newIORef 0)) (+1)
+  print =<< readIORef (unsafePerformIO (newIORef 0))
 
-  modifyIORef s (+1)
-  print =<< readIORef s
-
-  modifyIORef s (+1)
-  print =<< readIORef s
+  modifyIORef (unsafePerformIO (newIORef 0)) (+1)
+  print =<< readIORef (unsafePerformIO (newIORef 0))
