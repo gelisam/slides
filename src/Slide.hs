@@ -1,19 +1,21 @@
 
 module Slide where
 
+import Data.IORef
 import System.IO.Unsafe (unsafePerformIO)
 
 
-trace :: String -> a -> a
-trace s a = unsafePerformIO $ do
-  putStrLn s
-  pure a
+globalState :: IORef Int
+globalState = unsafePerformIO (newIORef 0)
 
 -- |
 -- >>> main
--- hello
--- world
+-- 1            (not really)
 -- 2
 main :: IO ()
 main = do
-  print (trace "hello" 1 + trace "world" 2 :: Int)
+  modifyIORef globalState (+1)
+  print =<< readIORef globalState
+
+  modifyIORef globalState (+1)
+  print =<< readIORef globalState
