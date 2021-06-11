@@ -1,12 +1,12 @@
-{-# OPTIONS -ddump-simpl -dsuppress-module-prefixes -dsuppress-uniques #-}
+
 module Slide where
 
 import Data.IORef
 import System.IO.Unsafe (unsafePerformIO)
 
 {-# NOINLINE mkUniqueState #-}
-mkUniqueState :: Int -> IORef Int
-mkUniqueState _ = unsafePerformIO (newIORef 0)
+globalState = unsafePerformIO (newIORef 0)
+mkUniqueState _ = globalState
 
 -- |
 -- >>> main
