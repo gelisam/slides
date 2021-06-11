@@ -4,16 +4,16 @@ module Slide where
 
 data RealWorld = RealWorld
 
--- INLINE, not NOINLINE!
-{-# INLINE increment #-}
-increment :: IORef Int -> Int -> ()
-increment ref i
-  = let rwA = RealWorld
-    in case modifyIORef ref (\x -> x + 100) rwA of
-         (rwB, ()) ->
-           case modifyIORef ref (\x -> x + i) rwB of
-             (_rwC, ()) ->
-               ()
+
+
+
+
+
+
+
+
+
+
 
 -- |
 -- >>> main            >>> main
@@ -23,11 +23,24 @@ main' :: RealWorld -> (RealWorld, ())
 main' rw0
   = case newIORef 0 rw0 of
       (rw1, ref) ->
-        case evaluate (increment ref 2) rw1 of
+        case evaluate
+               ( let rwA = RealWorld
+                 in case modifyIORef ref (\x -> x + 100) rwA of
+                      (rwB, ()) ->
+                        case modifyIORef ref (\x -> x + 2) rwB of
+                          (_rwC, ()) ->
+                            ()
+               ) rw1 of
           (rw2, ()) ->
             case (printReadIORef ref) rw2 of
               (rw3, ()) -> do
-                case evaluate (increment ref 3) rw3 of
+                case evaluate ( let rwA' = RealWorld
+                                in case modifyIORef ref (\x -> x + 100) rwA' of
+                                     (rwB', ()) ->
+                                       case modifyIORef ref (\x -> x + 3) rwB' of
+                                         (_rwC', ()) ->
+                                           ()
+                              ) rw3 of
                   (rw4, ()) ->
                     (printReadIORef ref) rw4
 
