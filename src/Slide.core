@@ -7,45 +7,10 @@ Building executable 'slides' for slides-0.0.0..
 
 ==================== Simplifier iteration=1 ====================
   ---- Simplifier counts for Simplifier iteration=1
-  Total ticks: 149
+  Total ticks: 194
   ---- End of simplifier counts for Simplifier iteration=1
 Result size of Simplifier iteration=1
-  = {terms: 143, types: 242, coercions: 31, joins: 0/2}
-
--- RHS size: {terms: 25, types: 70, coercions: 10, joins: 0/0}
-mkUniqueState [InlPrag=NOINLINE] :: Int -> IORef Int
-[LclIdX,
- Arity=1,
- Unf=Unf{Src=<vanilla>, TopLvl=True, Value=True, ConLike=True,
-         WorkFree=True, Expandable=True, Guidance=IF_ARGS [20] 95 0}]
-mkUniqueState
-  = \ (i :: Int) ->
-      case runRW#
-             @ ('TupleRep '[ 'TupleRep '[], 'LiftedRep])
-             @ (# State# RealWorld, IORef Int #)
-             (\ (s [OS=OneShot] :: State# RealWorld) ->
-                case noDuplicate# @ RealWorld s of s' { __DEFAULT ->
-                ((case i of { I# ipv ->
-                  (\ (s :: State# RealWorld) ->
-                     case newMutVar# @ Int @ RealWorld (I# 0#) s of { (# ipv, ipv1 #) ->
-                     (# ipv,
-                        (STRef @ RealWorld @ Int ipv1)
-                        `cast` (Sym (N:IORef[0]) <Int>_N
-                                :: STRef RealWorld Int ~R# IORef Int) #)
-                     })
-                  `cast` (Sym (N:IO[0] <IORef Int>_R)
-                          :: (State# RealWorld -> (# State# RealWorld, IORef Int #))
-                             ~R# IO (IORef Int))
-                  })
-                 `cast` (N:IO[0] <IORef Int>_R
-                         :: IO (IORef Int)
-                            ~R# (State# RealWorld -> (# State# RealWorld, IORef Int #))))
-                  s'
-                })
-      of
-      { (# ipv, ipv1 #) ->
-      ipv1
-      }
+  = {terms: 148, types: 272, coercions: 24, joins: 0/2}
 
 -- RHS size: {terms: 1, types: 0, coercions: 0, joins: 0/0}
 $trModule :: Addr#
@@ -81,6 +46,38 @@ $trModule :: Module
  Unf=Unf{Src=<vanilla>, TopLvl=True, Value=True, ConLike=True,
          WorkFree=True, Expandable=True, Guidance=IF_ARGS [] 10 30}]
 $trModule = Module $trModule $trModule
+
+-- RHS size: {terms: 30, types: 100, coercions: 3, joins: 0/0}
+mkUniqueState [InlPrag=NOINLINE] :: Int -> IORef Int
+[LclIdX,
+ Arity=1,
+ Unf=Unf{Src=<vanilla>, TopLvl=True, Value=True, ConLike=True,
+         WorkFree=True, Expandable=True, Guidance=IF_ARGS [0] 86 0}]
+mkUniqueState
+  = \ (i :: Int) ->
+      case runRW#
+             @ ('TupleRep '[ 'TupleRep '[], 'LiftedRep])
+             @ (# State# RealWorld, IORef Int #)
+             (\ (s [OS=OneShot] :: State# RealWorld) ->
+                case noDuplicate# @ RealWorld s of s' { __DEFAULT ->
+                case case newMutVar# @ Int @ RealWorld (I# 0#) s' of
+                     { (# ipv, ipv1 #) ->
+                     (# ipv,
+                        (STRef @ RealWorld @ Int ipv1)
+                        `cast` (Sym (N:IORef[0]) <Int>_N
+                                :: STRef RealWorld Int ~R# IORef Int) #)
+                     }
+                of
+                { (# ipv, ipv1 #) ->
+                case seq# @ Int @ RealWorld i ipv of { (# ipv, ipv1 #) ->
+                (# ipv, ipv1 #)
+                }
+                }
+                })
+      of
+      { (# ipv, ipv1 #) ->
+      ipv1
+      }
 
 -- RHS size: {terms: 95, types: 139, coercions: 12, joins: 0/2}
 main :: State# RealWorld -> (# State# RealWorld, () #)
@@ -217,50 +214,7 @@ main
   Total ticks: 12
   ---- End of simplifier counts for Simplifier iteration=1
 Result size of Simplifier iteration=1
-  = {terms: 137, types: 242, coercions: 27, joins: 0/0}
-
--- RHS size: {terms: 11, types: 29, coercions: 3, joins: 0/0}
-lvl :: State# RealWorld -> (# State# RealWorld, IORef Int #)
-[LclId,
- Arity=1,
- Unf=Unf{Src=<vanilla>, TopLvl=True, Value=True, ConLike=True,
-         WorkFree=True, Expandable=True, Guidance=IF_ARGS [0] 33 30}]
-lvl
-  = \ (s [OS=OneShot] :: State# RealWorld) ->
-      case newMutVar# @ Int @ RealWorld (I# 0#) s of { (# ipv, ipv1 #) ->
-      (# ipv,
-         (STRef @ RealWorld @ Int ipv1)
-         `cast` (Sym (N:IORef[0]) <Int>_N
-                 :: STRef RealWorld Int ~R# IORef Int) #)
-      }
-
--- RHS size: {terms: 23, types: 68, coercions: 3, joins: 0/0}
-mkUniqueState [InlPrag=NOINLINE] :: Int -> IORef Int
-[LclIdX,
- Arity=1,
- Unf=Unf{Src=<vanilla>, TopLvl=True, Value=True, ConLike=True,
-         WorkFree=True, Expandable=True, Guidance=IF_ARGS [20] 85 0}]
-mkUniqueState
-  = \ (i :: Int) ->
-      case runRW#
-             @ ('TupleRep '[ 'TupleRep '[], 'LiftedRep])
-             @ (# State# RealWorld, IORef Int #)
-             (\ (s [OS=OneShot] :: State# RealWorld) ->
-                case noDuplicate# @ RealWorld s of s' { __DEFAULT ->
-                case i of { I# ipv ->
-                case newMutVar# @ Int @ RealWorld (I# 0#) s' of
-                { (# ipv, ipv1 #) ->
-                (# ipv,
-                   (STRef @ RealWorld @ Int ipv1)
-                   `cast` (Sym (N:IORef[0]) <Int>_N
-                           :: STRef RealWorld Int ~R# IORef Int) #)
-                }
-                }
-                })
-      of
-      { (# ipv, ipv1 #) ->
-      ipv1
-      }
+  = {terms: 131, types: 217, coercions: 24, joins: 0/1}
 
 -- RHS size: {terms: 1, types: 0, coercions: 0, joins: 0/0}
 $trModule :: Addr#
@@ -296,6 +250,220 @@ $trModule :: Module
  Unf=Unf{Src=<vanilla>, TopLvl=True, Value=True, ConLike=True,
          WorkFree=True, Expandable=True, Guidance=IF_ARGS [] 10 30}]
 $trModule = Module $trModule $trModule
+
+-- RHS size: {terms: 2, types: 0, coercions: 0, joins: 0/0}
+lvl :: Int
+[LclId,
+ Unf=Unf{Src=<vanilla>, TopLvl=True, Value=True, ConLike=True,
+         WorkFree=True, Expandable=True, Guidance=IF_ARGS [] 10 20}]
+lvl = I# 0#
+
+-- RHS size: {terms: 26, types: 82, coercions: 3, joins: 0/1}
+mkUniqueState [InlPrag=NOINLINE] :: Int -> IORef Int
+[LclIdX,
+ Arity=1,
+ Unf=Unf{Src=<vanilla>, TopLvl=True, Value=True, ConLike=True,
+         WorkFree=True, Expandable=True, Guidance=IF_ARGS [0] 76 0}]
+mkUniqueState
+  = \ (i :: Int) ->
+      case runRW#
+             @ ('TupleRep '[ 'TupleRep '[], 'LiftedRep])
+             @ (# State# RealWorld, IORef Int #)
+             (\ (s [OS=OneShot] :: State# RealWorld) ->
+                case noDuplicate# @ RealWorld s of s' { __DEFAULT ->
+                case newMutVar# @ Int @ RealWorld lvl s' of { (# ipv, ipv1 #) ->
+                let {
+                  ipv1 :: STRef RealWorld Int
+                  [LclId,
+                   Unf=Unf{Src=<vanilla>, TopLvl=False, Value=True, ConLike=True,
+                           WorkFree=True, Expandable=True, Guidance=IF_ARGS [] 10 20}]
+                  ipv1 = STRef @ RealWorld @ Int ipv1 } in
+                case seq# @ Int @ RealWorld i ipv of { (# ipv, ipv1 #) ->
+                (# ipv,
+                   ipv1
+                   `cast` (Sym (N:IORef[0]) <Int>_N
+                           :: STRef RealWorld Int ~R# IORef Int) #)
+                }
+                }
+                })
+      of
+      { (# ipv, ipv1 #) ->
+      ipv1
+      }
+
+-- RHS size: {terms: 79, types: 101, coercions: 12, joins: 0/0}
+main :: State# RealWorld -> (# State# RealWorld, () #)
+[LclId,
+ Arity=1,
+ Unf=Unf{Src=<vanilla>, TopLvl=True, Value=True, ConLike=True,
+         WorkFree=True, Expandable=True, Guidance=IF_ARGS [0] 344 0}]
+main
+  = \ (s :: State# RealWorld) ->
+      case (mkUniqueState (I# 0#))
+           `cast` (N:IORef[0] <Int>_N :: IORef Int ~R# STRef RealWorld Int)
+      of
+      { STRef var# ->
+      case readMutVar# @ RealWorld @ Int var# s of { (# ipv, ipv1 #) ->
+      case writeMutVar#
+             @ RealWorld @ Int var# (case ipv1 of { I# x -> I# (+# x 1#) }) ipv
+      of s2#
+      { __DEFAULT ->
+      case (mkUniqueState (I# 1#))
+           `cast` (N:IORef[0] <Int>_N :: IORef Int ~R# STRef RealWorld Int)
+      of
+      { STRef var# ->
+      case readMutVar# @ RealWorld @ Int var# s2# of { (# ipv, ipv1 #) ->
+      case ((hPutStr' stdout ($fShowInt_$cshow ipv1) True)
+            `cast` (N:IO[0] <()>_R
+                    :: IO () ~R# (State# RealWorld -> (# State# RealWorld, () #))))
+             ipv
+      of
+      { (# ipv, ipv1 #) ->
+      case (mkUniqueState (I# 2#))
+           `cast` (N:IORef[0] <Int>_N :: IORef Int ~R# STRef RealWorld Int)
+      of
+      { STRef var# ->
+      case readMutVar# @ RealWorld @ Int var# ipv of { (# ipv, ipv1 #) ->
+      case writeMutVar#
+             @ RealWorld @ Int var# (case ipv1 of { I# x -> I# (+# x 1#) }) ipv
+      of s2#
+      { __DEFAULT ->
+      case (mkUniqueState (I# 3#))
+           `cast` (N:IORef[0] <Int>_N :: IORef Int ~R# STRef RealWorld Int)
+      of
+      { STRef var# ->
+      case readMutVar# @ RealWorld @ Int var# s2# of { (# ipv, ipv1 #) ->
+      ((hPutStr' stdout ($fShowInt_$cshow ipv1) True)
+       `cast` (N:IO[0] <()>_R
+               :: IO () ~R# (State# RealWorld -> (# State# RealWorld, () #))))
+        ipv
+      }
+      }
+      }
+      }
+      }
+      }
+      }
+      }
+      }
+      }
+      }
+
+-- RHS size: {terms: 1, types: 0, coercions: 3, joins: 0/0}
+main :: IO ()
+[LclIdX,
+ Arity=1,
+ Unf=Unf{Src=<vanilla>, TopLvl=True, Value=True, ConLike=True,
+         WorkFree=True, Expandable=True,
+         Guidance=ALWAYS_IF(arity=0,unsat_ok=True,boring_ok=True)}]
+main
+  = main
+    `cast` (Sym (N:IO[0] <()>_R)
+            :: (State# RealWorld -> (# State# RealWorld, () #)) ~R# IO ())
+
+-- RHS size: {terms: 2, types: 1, coercions: 3, joins: 0/0}
+main :: State# RealWorld -> (# State# RealWorld, () #)
+[LclId,
+ Arity=1,
+ Unf=Unf{Src=<vanilla>, TopLvl=True, Value=True, ConLike=True,
+         WorkFree=True, Expandable=True, Guidance=IF_ARGS [] 20 60}]
+main
+  = runMainIO1
+      @ ()
+      (main
+       `cast` (Sym (N:IO[0] <()>_R)
+               :: (State# RealWorld -> (# State# RealWorld, () #)) ~R# IO ()))
+
+-- RHS size: {terms: 1, types: 0, coercions: 3, joins: 0/0}
+main :: IO ()
+[LclIdX,
+ Arity=1,
+ Unf=Unf{Src=<vanilla>, TopLvl=True, Value=True, ConLike=True,
+         WorkFree=True, Expandable=True,
+         Guidance=ALWAYS_IF(arity=0,unsat_ok=True,boring_ok=True)}]
+main
+  = main
+    `cast` (Sym (N:IO[0] <()>_R)
+            :: (State# RealWorld -> (# State# RealWorld, () #)) ~R# IO ())
+
+
+
+
+==================== Simplifier iteration=2 ====================
+  ---- Simplifier counts for Simplifier iteration=2
+  Total ticks: 1
+  ---- End of simplifier counts for Simplifier iteration=2
+Result size of Simplifier iteration=2
+  = {terms: 129, types: 214, coercions: 24, joins: 0/0}
+
+-- RHS size: {terms: 1, types: 0, coercions: 0, joins: 0/0}
+$trModule :: Addr#
+[LclId,
+ Unf=Unf{Src=<vanilla>, TopLvl=True, Value=True, ConLike=True,
+         WorkFree=True, Expandable=True, Guidance=IF_ARGS [] 20 0}]
+$trModule = "main"#
+
+-- RHS size: {terms: 2, types: 0, coercions: 0, joins: 0/0}
+$trModule :: TrName
+[LclId,
+ Unf=Unf{Src=<vanilla>, TopLvl=True, Value=True, ConLike=True,
+         WorkFree=True, Expandable=True, Guidance=IF_ARGS [] 10 20}]
+$trModule = TrNameS $trModule
+
+-- RHS size: {terms: 1, types: 0, coercions: 0, joins: 0/0}
+$trModule :: Addr#
+[LclId,
+ Unf=Unf{Src=<vanilla>, TopLvl=True, Value=True, ConLike=True,
+         WorkFree=True, Expandable=True, Guidance=IF_ARGS [] 30 0}]
+$trModule = "Slide"#
+
+-- RHS size: {terms: 2, types: 0, coercions: 0, joins: 0/0}
+$trModule :: TrName
+[LclId,
+ Unf=Unf{Src=<vanilla>, TopLvl=True, Value=True, ConLike=True,
+         WorkFree=True, Expandable=True, Guidance=IF_ARGS [] 10 20}]
+$trModule = TrNameS $trModule
+
+-- RHS size: {terms: 3, types: 0, coercions: 0, joins: 0/0}
+$trModule :: Module
+[LclIdX,
+ Unf=Unf{Src=<vanilla>, TopLvl=True, Value=True, ConLike=True,
+         WorkFree=True, Expandable=True, Guidance=IF_ARGS [] 10 30}]
+$trModule = Module $trModule $trModule
+
+-- RHS size: {terms: 2, types: 0, coercions: 0, joins: 0/0}
+lvl :: Int
+[LclId,
+ Unf=Unf{Src=<vanilla>, TopLvl=True, Value=True, ConLike=True,
+         WorkFree=True, Expandable=True, Guidance=IF_ARGS [] 10 20}]
+lvl = I# 0#
+
+-- RHS size: {terms: 24, types: 79, coercions: 3, joins: 0/0}
+mkUniqueState [InlPrag=NOINLINE] :: Int -> IORef Int
+[LclIdX,
+ Arity=1,
+ Unf=Unf{Src=<vanilla>, TopLvl=True, Value=True, ConLike=True,
+         WorkFree=True, Expandable=True, Guidance=IF_ARGS [0] 66 0}]
+mkUniqueState
+  = \ (i :: Int) ->
+      case runRW#
+             @ ('TupleRep '[ 'TupleRep '[], 'LiftedRep])
+             @ (# State# RealWorld, IORef Int #)
+             (\ (s [OS=OneShot] :: State# RealWorld) ->
+                case noDuplicate# @ RealWorld s of s' { __DEFAULT ->
+                case newMutVar# @ Int @ RealWorld lvl s' of { (# ipv, ipv1 #) ->
+                case seq# @ Int @ RealWorld i ipv of { (# ipv, ipv1 #) ->
+                (# ipv,
+                   (STRef @ RealWorld @ Int ipv1)
+                   `cast` (Sym (N:IORef[0]) <Int>_N
+                           :: STRef RealWorld Int ~R# IORef Int) #)
+                }
+                }
+                })
+      of
+      { (# ipv, ipv1 #) ->
+      ipv1
+      }
 
 -- RHS size: {terms: 79, types: 101, coercions: 12, joins: 0/0}
 main :: State# RealWorld -> (# State# RealWorld, () #)
@@ -397,51 +565,10 @@ main
 
 ==================== Simplifier iteration=1 ====================
   ---- Simplifier counts for Simplifier iteration=1
-  Total ticks: 20
+  Total ticks: 1
   ---- End of simplifier counts for Simplifier iteration=1
 Result size of Simplifier iteration=1
-  = {terms: 125, types: 206, coercions: 24, joins: 0/0}
-
--- RHS size: {terms: 20, types: 66, coercions: 3, joins: 0/0}
-$wmkUniqueState [InlPrag=NOINLINE] :: Void# -> IORef Int
-[LclId,
- Arity=1,
- Str=<L,U>,
- Unf=Unf{Src=<vanilla>, TopLvl=True, Value=True, ConLike=True,
-         WorkFree=True, Expandable=True, Guidance=IF_ARGS [0] 75 0}]
-$wmkUniqueState
-  = \ _ [Occ=Dead] ->
-      case runRW#
-             @ ('TupleRep '[ 'TupleRep '[], 'LiftedRep])
-             @ (# State# RealWorld, IORef Int #)
-             (\ (s [OS=OneShot] :: State# RealWorld) ->
-                case noDuplicate# @ RealWorld s of s' { __DEFAULT ->
-                case newMutVar# @ Int @ RealWorld (I# 0#) s' of
-                { (# ipv, ipv1 #) ->
-                (# ipv,
-                   (STRef @ RealWorld @ Int ipv1)
-                   `cast` (Sym (N:IORef[0]) <Int>_N
-                           :: STRef RealWorld Int ~R# IORef Int) #)
-                }
-                })
-      of
-      { (# ipv [Dmd=<L,A>], ipv1 [Dmd=<S,U(U)>] #) ->
-      ipv1
-      }
-
--- RHS size: {terms: 6, types: 3, coercions: 0, joins: 0/0}
-mkUniqueState [InlPrag=NOUSERINLINE[0]] :: Int -> IORef Int
-[LclIdX,
- Arity=1,
- Str=<S,H>,
- Unf=Unf{Src=InlineStable, TopLvl=True, Value=True, ConLike=True,
-         WorkFree=True, Expandable=True,
-         Guidance=ALWAYS_IF(arity=1,unsat_ok=True,boring_ok=False)
-         Tmpl= \ (w [Occ=Once!] :: Int) ->
-                 case w of { I# _ [Occ=Dead, Dmd=<L,A>] -> $wmkUniqueState void# }}]
-mkUniqueState
-  = \ (w :: Int) ->
-      case w of { I# ww [Dmd=<L,A>] -> $wmkUniqueState void# }
+  = {terms: 134, types: 217, coercions: 24, joins: 0/0}
 
 -- RHS size: {terms: 1, types: 0, coercions: 0, joins: 0/0}
 $trModule :: Addr#
@@ -480,6 +607,64 @@ $trModule :: Module
  Unf=Unf{Src=<vanilla>, TopLvl=True, Value=True, ConLike=True,
          WorkFree=True, Expandable=True, Guidance=IF_ARGS [] 10 30}]
 $trModule = Module $trModule $trModule
+
+-- RHS size: {terms: 2, types: 0, coercions: 0, joins: 0/0}
+lvl :: Int
+[LclId,
+ Str=m,
+ Unf=Unf{Src=<vanilla>, TopLvl=True, Value=True, ConLike=True,
+         WorkFree=True, Expandable=True, Guidance=IF_ARGS [] 10 20}]
+lvl = I# 0#
+
+-- RHS size: {terms: 24, types: 79, coercions: 3, joins: 0/0}
+mkUniqueState [InlPrag=NOINLINE] :: Int -> IORef Int
+[LclIdX,
+ Arity=1,
+ Str=<L,U>,
+ Unf=Unf{Src=<vanilla>, TopLvl=True, Value=True, ConLike=True,
+         WorkFree=True, Expandable=True, Guidance=IF_ARGS [0] 66 0}]
+mkUniqueState
+  = \ (i :: Int) ->
+      case runRW#
+             @ ('TupleRep '[ 'TupleRep '[], 'LiftedRep])
+             @ (# State# RealWorld, IORef Int #)
+             (\ (s [OS=OneShot] :: State# RealWorld) ->
+                case noDuplicate# @ RealWorld s of s' { __DEFAULT ->
+                case newMutVar# @ Int @ RealWorld lvl s' of { (# ipv, ipv1 #) ->
+                case seq# @ Int @ RealWorld i ipv of
+                { (# ipv, ipv1 [Dmd=<L,A>] #) ->
+                (# ipv,
+                   (STRef @ RealWorld @ Int ipv1)
+                   `cast` (Sym (N:IORef[0]) <Int>_N
+                           :: STRef RealWorld Int ~R# IORef Int) #)
+                }
+                }
+                })
+      of
+      { (# ipv [Dmd=<L,A>], ipv1 [Dmd=<S,U(U)>] #) ->
+      ipv1
+      }
+
+-- RHS size: {terms: 2, types: 0, coercions: 0, joins: 0/0}
+lvl :: Int
+[LclId,
+ Unf=Unf{Src=<vanilla>, TopLvl=True, Value=True, ConLike=True,
+         WorkFree=True, Expandable=True, Guidance=IF_ARGS [] 10 20}]
+lvl = I# 3#
+
+-- RHS size: {terms: 2, types: 0, coercions: 0, joins: 0/0}
+lvl :: Int
+[LclId,
+ Unf=Unf{Src=<vanilla>, TopLvl=True, Value=True, ConLike=True,
+         WorkFree=True, Expandable=True, Guidance=IF_ARGS [] 10 20}]
+lvl = I# 2#
+
+-- RHS size: {terms: 2, types: 0, coercions: 0, joins: 0/0}
+lvl :: Int
+[LclId,
+ Unf=Unf{Src=<vanilla>, TopLvl=True, Value=True, ConLike=True,
+         WorkFree=True, Expandable=True, Guidance=IF_ARGS [] 10 20}]
+lvl = I# 1#
 
 -- RHS size: {terms: 75, types: 101, coercions: 12, joins: 0/0}
 main :: State# RealWorld -> (# State# RealWorld, () #)
@@ -490,7 +675,7 @@ main :: State# RealWorld -> (# State# RealWorld, () #)
          WorkFree=True, Expandable=True, Guidance=IF_ARGS [0] 304 0}]
 main
   = \ (s :: State# RealWorld) ->
-      case ($wmkUniqueState void#)
+      case (mkUniqueState lvl)
            `cast` (N:IORef[0] <Int>_N :: IORef Int ~R# STRef RealWorld Int)
       of
       { STRef var# ->
@@ -500,7 +685,7 @@ main
              @ RealWorld @ Int var# (case ipv1 of { I# x -> I# (+# x 1#) }) ipv
       of s2#
       { __DEFAULT ->
-      case ($wmkUniqueState void#)
+      case (mkUniqueState lvl)
            `cast` (N:IORef[0] <Int>_N :: IORef Int ~R# STRef RealWorld Int)
       of
       { STRef var# ->
@@ -512,7 +697,7 @@ main
              ipv
       of
       { (# ipv, ipv1 [Dmd=<L,A>] #) ->
-      case ($wmkUniqueState void#)
+      case (mkUniqueState lvl)
            `cast` (N:IORef[0] <Int>_N :: IORef Int ~R# STRef RealWorld Int)
       of
       { STRef var# ->
@@ -522,7 +707,7 @@ main
              @ RealWorld @ Int var# (case ipv1 of { I# x -> I# (+# x 1#) }) ipv
       of s2#
       { __DEFAULT ->
-      case ($wmkUniqueState void#)
+      case (mkUniqueState lvl)
            `cast` (N:IORef[0] <Int>_N :: IORef Int ~R# STRef RealWorld Int)
       of
       { STRef var# ->
@@ -535,208 +720,6 @@ main
       }
       }
       }
-      }
-      }
-      }
-      }
-      }
-      }
-      }
-      }
-
--- RHS size: {terms: 1, types: 0, coercions: 3, joins: 0/0}
-main :: IO ()
-[LclIdX,
- Arity=1,
- Str=<L,U>,
- Unf=Unf{Src=InlineStable, TopLvl=True, Value=True, ConLike=True,
-         WorkFree=True, Expandable=True,
-         Guidance=ALWAYS_IF(arity=0,unsat_ok=True,boring_ok=True)
-         Tmpl= main
-               `cast` (Sym (N:IO[0] <()>_R)
-                       :: (State# RealWorld -> (# State# RealWorld, () #)) ~R# IO ())}]
-main
-  = main
-    `cast` (Sym (N:IO[0] <()>_R)
-            :: (State# RealWorld -> (# State# RealWorld, () #)) ~R# IO ())
-
--- RHS size: {terms: 2, types: 1, coercions: 3, joins: 0/0}
-main :: State# RealWorld -> (# State# RealWorld, () #)
-[LclId,
- Arity=1,
- Unf=Unf{Src=<vanilla>, TopLvl=True, Value=True, ConLike=True,
-         WorkFree=True, Expandable=True, Guidance=IF_ARGS [] 20 60}]
-main
-  = runMainIO1
-      @ ()
-      (main
-       `cast` (Sym (N:IO[0] <()>_R)
-               :: (State# RealWorld -> (# State# RealWorld, () #)) ~R# IO ()))
-
--- RHS size: {terms: 1, types: 0, coercions: 3, joins: 0/0}
-main :: IO ()
-[LclIdX,
- Arity=1,
- Unf=Unf{Src=InlineStable, TopLvl=True, Value=True, ConLike=True,
-         WorkFree=True, Expandable=True,
-         Guidance=ALWAYS_IF(arity=0,unsat_ok=True,boring_ok=True)
-         Tmpl= main
-               `cast` (Sym (N:IO[0] <()>_R)
-                       :: (State# RealWorld -> (# State# RealWorld, () #)) ~R# IO ())}]
-main
-  = main
-    `cast` (Sym (N:IO[0] <()>_R)
-            :: (State# RealWorld -> (# State# RealWorld, () #)) ~R# IO ())
-
-
-
-
-==================== Simplifier iteration=1 ====================
-  ---- Simplifier counts for Simplifier iteration=1
-  Total ticks: 9
-  ---- End of simplifier counts for Simplifier iteration=1
-Result size of Simplifier iteration=1
-  = {terms: 118, types: 202, coercions: 18, joins: 0/0}
-
--- RHS size: {terms: 2, types: 0, coercions: 0, joins: 0/0}
-lvl :: Int
-[LclId,
- Unf=Unf{Src=<vanilla>, TopLvl=True, Value=True, ConLike=True,
-         WorkFree=True, Expandable=True, Guidance=IF_ARGS [] 10 20}]
-lvl = I# 0#
-
--- RHS size: {terms: 14, types: 32, coercions: 3, joins: 0/0}
-lvl :: State# RealWorld -> (# State# RealWorld, IORef Int #)
-[LclId,
- Arity=1,
- Unf=Unf{Src=<vanilla>, TopLvl=True, Value=True, ConLike=True,
-         WorkFree=True, Expandable=True, Guidance=IF_ARGS [0] 35 30}]
-lvl
-  = \ (s [OS=OneShot] :: State# RealWorld) ->
-      case noDuplicate# @ RealWorld s of s' { __DEFAULT ->
-      case newMutVar# @ Int @ RealWorld lvl s' of { (# ipv, ipv1 #) ->
-      (# ipv,
-         (STRef @ RealWorld @ Int ipv1)
-         `cast` (Sym (N:IORef[0]) <Int>_N
-                 :: STRef RealWorld Int ~R# IORef Int) #)
-      }
-      }
-
--- RHS size: {terms: 6, types: 34, coercions: 0, joins: 0/0}
-$wmkUniqueState [InlPrag=NOINLINE] :: Void# -> IORef Int
-[LclId,
- Arity=1,
- Str=<L,U>,
- Unf=Unf{Src=<vanilla>, TopLvl=True, Value=True, ConLike=True,
-         WorkFree=True, Expandable=True, Guidance=IF_ARGS [0] 30 0}]
-$wmkUniqueState
-  = \ _ [Occ=Dead] ->
-      case runRW#
-             @ ('TupleRep '[ 'TupleRep '[], 'LiftedRep])
-             @ (# State# RealWorld, IORef Int #)
-             lvl
-      of
-      { (# ipv [Dmd=<L,A>], ipv1 [Dmd=<S,U(U)>] #) ->
-      ipv1
-      }
-
--- RHS size: {terms: 2, types: 0, coercions: 0, joins: 0/0}
-lvl :: IORef Int
-[LclId,
- Unf=Unf{Src=<vanilla>, TopLvl=True, Value=False, ConLike=False,
-         WorkFree=False, Expandable=False, Guidance=IF_ARGS [] 20 0}]
-lvl = $wmkUniqueState void#
-
--- RHS size: {terms: 5, types: 3, coercions: 0, joins: 0/0}
-mkUniqueState [InlPrag=NOUSERINLINE[0]] :: Int -> IORef Int
-[LclIdX,
- Arity=1,
- Str=<S,H>,
- Unf=Unf{Src=InlineStable, TopLvl=True, Value=True, ConLike=True,
-         WorkFree=True, Expandable=True,
-         Guidance=ALWAYS_IF(arity=1,unsat_ok=True,boring_ok=False)
-         Tmpl= \ (w [Occ=Once!] :: Int) ->
-                 case w of { I# _ [Occ=Dead, Dmd=<L,A>] -> $wmkUniqueState void# }}]
-mkUniqueState
-  = \ (w :: Int) -> case w of { I# ww [Dmd=<L,A>] -> lvl }
-
--- RHS size: {terms: 1, types: 0, coercions: 0, joins: 0/0}
-$trModule :: Addr#
-[LclId,
- Unf=Unf{Src=<vanilla>, TopLvl=True, Value=True, ConLike=True,
-         WorkFree=True, Expandable=True, Guidance=IF_ARGS [] 20 0}]
-$trModule = "main"#
-
--- RHS size: {terms: 2, types: 0, coercions: 0, joins: 0/0}
-$trModule :: TrName
-[LclId,
- Str=m1,
- Unf=Unf{Src=<vanilla>, TopLvl=True, Value=True, ConLike=True,
-         WorkFree=True, Expandable=True, Guidance=IF_ARGS [] 10 20}]
-$trModule = TrNameS $trModule
-
--- RHS size: {terms: 1, types: 0, coercions: 0, joins: 0/0}
-$trModule :: Addr#
-[LclId,
- Unf=Unf{Src=<vanilla>, TopLvl=True, Value=True, ConLike=True,
-         WorkFree=True, Expandable=True, Guidance=IF_ARGS [] 30 0}]
-$trModule = "Slide"#
-
--- RHS size: {terms: 2, types: 0, coercions: 0, joins: 0/0}
-$trModule :: TrName
-[LclId,
- Str=m1,
- Unf=Unf{Src=<vanilla>, TopLvl=True, Value=True, ConLike=True,
-         WorkFree=True, Expandable=True, Guidance=IF_ARGS [] 10 20}]
-$trModule = TrNameS $trModule
-
--- RHS size: {terms: 3, types: 0, coercions: 0, joins: 0/0}
-$trModule :: Module
-[LclIdX,
- Str=m,
- Unf=Unf{Src=<vanilla>, TopLvl=True, Value=True, ConLike=True,
-         WorkFree=True, Expandable=True, Guidance=IF_ARGS [] 10 30}]
-$trModule = Module $trModule $trModule
-
--- RHS size: {terms: 62, types: 83, coercions: 6, joins: 0/0}
-main :: State# RealWorld -> (# State# RealWorld, () #)
-[LclId,
- Arity=1,
- Str=<L,U>,
- Unf=Unf{Src=<vanilla>, TopLvl=True, Value=True, ConLike=True,
-         WorkFree=True, Expandable=True, Guidance=IF_ARGS [0] 194 0}]
-main
-  = \ (s :: State# RealWorld) ->
-      case lvl
-           `cast` (N:IORef[0] <Int>_N :: IORef Int ~R# STRef RealWorld Int)
-      of wild
-      { STRef var# ->
-      case readMutVar# @ RealWorld @ Int var# s of
-      { (# ipv, ipv1 [Dmd=<L,U(U)>] #) ->
-      case writeMutVar#
-             @ RealWorld @ Int var# (case ipv1 of { I# x -> I# (+# x 1#) }) ipv
-      of s2#
-      { __DEFAULT ->
-      case readMutVar# @ RealWorld @ Int var# s2# of
-      { (# ipv, ipv1 [Dmd=<L,U(U)>] #) ->
-      case ((hPutStr' stdout ($fShowInt_$cshow ipv1) True)
-            `cast` (N:IO[0] <()>_R
-                    :: IO () ~R# (State# RealWorld -> (# State# RealWorld, () #))))
-             ipv
-      of
-      { (# ipv, ipv1 [Dmd=<L,A>] #) ->
-      case readMutVar# @ RealWorld @ Int var# ipv of
-      { (# ipv, ipv1 [Dmd=<L,U(U)>] #) ->
-      case writeMutVar#
-             @ RealWorld @ Int var# (case ipv1 of { I# x -> I# (+# x 1#) }) ipv
-      of s2#
-      { __DEFAULT ->
-      case readMutVar# @ RealWorld @ Int var# s2# of
-      { (# ipv, ipv1 [Dmd=<L,U(U)>] #) ->
-      ((hPutStr' stdout ($fShowInt_$cshow ipv1) True)
-       `cast` (N:IO[0] <()>_R
-               :: IO () ~R# (State# RealWorld -> (# State# RealWorld, () #))))
-        ipv
       }
       }
       }
