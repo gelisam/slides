@@ -4,6 +4,182 @@ slides> build (exe)
 Preprocessing executable 'slides' for slides-0.0.0..
 Building executable 'slides' for slides-0.0.0..
 [2 of 2] Compiling Slide
+
+==================== Tidy Core ====================
+Result size of Tidy Core
+  = {terms: 110, types: 186, coercions: 18, joins: 0/0}
+
+-- RHS size: {terms: 20, types: 66, coercions: 3, joins: 0/0}
+$wmkUniqueState [InlPrag=NOINLINE] :: Void# -> IORef Int
+[GblId, Arity=1, Caf=NoCafRefs, Str=<L,A>, Unf=OtherCon []]
+$wmkUniqueState
+  = \ _ [Occ=Dead] ->
+      case runRW#
+             @ ('TupleRep '[ 'TupleRep '[], 'LiftedRep])
+             @ (# State# RealWorld, IORef Int #)
+             (\ (s [OS=OneShot] :: State# RealWorld) ->
+                case noDuplicate# @ RealWorld s of s' { __DEFAULT ->
+                case newMutVar# @ Int @ RealWorld (I# 0#) s' of
+                { (# ipv, ipv1 #) ->
+                (# ipv,
+                   (STRef @ RealWorld @ Int ipv1)
+                   `cast` (Sym (N:IORef[0]) <Int>_N
+                           :: STRef RealWorld Int ~R# IORef Int) #)
+                }
+                })
+      of
+      { (# ipv, ipv1 #) ->
+      ipv1
+      }
+
+-- RHS size: {terms: 3, types: 1, coercions: 0, joins: 0/0}
+mkUniqueState [InlPrag=NOUSERINLINE[0]] :: Int -> IORef Int
+[GblId,
+ Arity=1,
+ Caf=NoCafRefs,
+ Str=<L,A>,
+ Unf=Unf{Src=InlineStable, TopLvl=True, Value=True, ConLike=True,
+         WorkFree=True, Expandable=True,
+         Guidance=ALWAYS_IF(arity=1,unsat_ok=True,boring_ok=True)
+         Tmpl= \ _ [Occ=Dead] -> $wmkUniqueState void#}]
+mkUniqueState = \ _ [Occ=Dead] -> $wmkUniqueState void#
+
+-- RHS size: {terms: 1, types: 0, coercions: 0, joins: 0/0}
+$trModule4 :: Addr#
+[GblId,
+ Caf=NoCafRefs,
+ Unf=Unf{Src=<vanilla>, TopLvl=True, Value=True, ConLike=True,
+         WorkFree=True, Expandable=True, Guidance=IF_ARGS [] 20 0}]
+$trModule4 = "main"#
+
+-- RHS size: {terms: 2, types: 0, coercions: 0, joins: 0/0}
+$trModule3 :: TrName
+[GblId,
+ Caf=NoCafRefs,
+ Str=m1,
+ Unf=Unf{Src=<vanilla>, TopLvl=True, Value=True, ConLike=True,
+         WorkFree=True, Expandable=True, Guidance=IF_ARGS [] 10 20}]
+$trModule3 = TrNameS $trModule4
+
+-- RHS size: {terms: 1, types: 0, coercions: 0, joins: 0/0}
+$trModule2 :: Addr#
+[GblId,
+ Caf=NoCafRefs,
+ Unf=Unf{Src=<vanilla>, TopLvl=True, Value=True, ConLike=True,
+         WorkFree=True, Expandable=True, Guidance=IF_ARGS [] 30 0}]
+$trModule2 = "Slide"#
+
+-- RHS size: {terms: 2, types: 0, coercions: 0, joins: 0/0}
+$trModule1 :: TrName
+[GblId,
+ Caf=NoCafRefs,
+ Str=m1,
+ Unf=Unf{Src=<vanilla>, TopLvl=True, Value=True, ConLike=True,
+         WorkFree=True, Expandable=True, Guidance=IF_ARGS [] 10 20}]
+$trModule1 = TrNameS $trModule2
+
+-- RHS size: {terms: 3, types: 0, coercions: 0, joins: 0/0}
+$trModule :: Module
+[GblId,
+ Caf=NoCafRefs,
+ Str=m,
+ Unf=Unf{Src=<vanilla>, TopLvl=True, Value=True, ConLike=True,
+         WorkFree=True, Expandable=True, Guidance=IF_ARGS [] 10 30}]
+$trModule = Module $trModule3 $trModule1
+
+-- RHS size: {terms: 63, types: 83, coercions: 6, joins: 0/0}
+main1 :: State# RealWorld -> (# State# RealWorld, () #)
+[GblId,
+ Arity=1,
+ Str=<L,U>,
+ Unf=Unf{Src=<vanilla>, TopLvl=True, Value=True, ConLike=True,
+         WorkFree=True, Expandable=True, Guidance=IF_ARGS [0] 214 0}]
+main1
+  = \ (s :: State# RealWorld) ->
+      case ($wmkUniqueState void#)
+           `cast` (N:IORef[0] <Int>_N :: IORef Int ~R# STRef RealWorld Int)
+      of
+      { STRef var# ->
+      case readMutVar# @ RealWorld @ Int var# s of { (# ipv, ipv1 #) ->
+      case writeMutVar#
+             @ RealWorld @ Int var# (case ipv1 of { I# x -> I# (+# x 1#) }) ipv
+      of s2#
+      { __DEFAULT ->
+      case readMutVar# @ RealWorld @ Int var# s2# of
+      { (# ipv2, ipv3 #) ->
+      case ((hPutStr' stdout ($fShowInt_$cshow ipv3) True)
+            `cast` (N:IO[0] <()>_R
+                    :: IO () ~R# (State# RealWorld -> (# State# RealWorld, () #))))
+             ipv2
+      of
+      { (# ipv4, ipv5 #) ->
+      case readMutVar# @ RealWorld @ Int var# ipv4 of
+      { (# ipv6, ipv7 #) ->
+      case writeMutVar#
+             @ RealWorld @ Int var# (case ipv7 of { I# x -> I# (+# x 1#) }) ipv6
+      of s2#1
+      { __DEFAULT ->
+      case readMutVar# @ RealWorld @ Int var# s2#1 of
+      { (# ipv8, ipv9 #) ->
+      ((hPutStr' stdout ($fShowInt_$cshow ipv9) True)
+       `cast` (N:IO[0] <()>_R
+               :: IO () ~R# (State# RealWorld -> (# State# RealWorld, () #))))
+        ipv8
+      }
+      }
+      }
+      }
+      }
+      }
+      }
+      }
+
+-- RHS size: {terms: 1, types: 0, coercions: 3, joins: 0/0}
+main :: IO ()
+[GblId,
+ Arity=1,
+ Str=<L,U>,
+ Unf=Unf{Src=InlineStable, TopLvl=True, Value=True, ConLike=True,
+         WorkFree=True, Expandable=True,
+         Guidance=ALWAYS_IF(arity=0,unsat_ok=True,boring_ok=True)
+         Tmpl= main1
+               `cast` (Sym (N:IO[0] <()>_R)
+                       :: (State# RealWorld -> (# State# RealWorld, () #)) ~R# IO ())}]
+main
+  = main1
+    `cast` (Sym (N:IO[0] <()>_R)
+            :: (State# RealWorld -> (# State# RealWorld, () #)) ~R# IO ())
+
+-- RHS size: {terms: 2, types: 1, coercions: 3, joins: 0/0}
+main2 :: State# RealWorld -> (# State# RealWorld, () #)
+[GblId,
+ Arity=1,
+ Unf=Unf{Src=<vanilla>, TopLvl=True, Value=True, ConLike=True,
+         WorkFree=True, Expandable=True, Guidance=IF_ARGS [] 20 60}]
+main2
+  = runMainIO1
+      @ ()
+      (main1
+       `cast` (Sym (N:IO[0] <()>_R)
+               :: (State# RealWorld -> (# State# RealWorld, () #)) ~R# IO ()))
+
+-- RHS size: {terms: 1, types: 0, coercions: 3, joins: 0/0}
+main :: IO ()
+[GblId,
+ Arity=1,
+ Unf=Unf{Src=InlineStable, TopLvl=True, Value=True, ConLike=True,
+         WorkFree=True, Expandable=True,
+         Guidance=ALWAYS_IF(arity=0,unsat_ok=True,boring_ok=True)
+         Tmpl= main2
+               `cast` (Sym (N:IO[0] <()>_R)
+                       :: (State# RealWorld -> (# State# RealWorld, () #)) ~R# IO ())}]
+main
+  = main2
+    `cast` (Sym (N:IO[0] <()>_R)
+            :: (State# RealWorld -> (# State# RealWorld, () #)) ~R# IO ())
+
+
+
 Linking .stack-work/dist/x86_64-osx/Cabal-3.0.1.0/build/slides/slides ...
 slides> copy/register
 Installing executable slides in /Users/gelisam/working/slides/unsafe-perform-io/.stack-work/install/x86_64-osx/8ddbe57b9a3082d3e49c7cd5e1a1034b87ed53672289d7b756337936f834196d/8.8.4/bin

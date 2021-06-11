@@ -1,17 +1,17 @@
-
+{-# OPTIONS -fno-full-laziness #-}
 module Slide where
 
 import Data.IORef
 import System.IO.Unsafe (unsafePerformIO)
 
 {-# NOINLINE mkUniqueState #-}
-globalState = unsafePerformIO (newIORef 0)
-mkUniqueState _ = globalState
+mkUniqueState :: Int -> IORef Int
+mkUniqueState _ = unsafePerformIO (newIORef 0)
 
 -- |
 -- >>> main
--- 1            (in practice)
--- 2
+-- 0            (not really)
+-- 0
 main :: IO ()
 main = do
   modifyIORef (mkUniqueState 0) (+1)
