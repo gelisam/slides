@@ -5,11 +5,11 @@ import Control.Concurrent.Async (concurrently_)
 import Control.Exception (evaluate)
 import Data.Foldable (forM_)
 import Data.IORef
-import System.IO.Unsafe (unsafeDupablePerformIO)
+import System.IO.Unsafe (unsafePerformIO)
 
 {-# NOINLINE doNothing #-}
 doNothing :: Int -> IORef Int -> ()
-doNothing i ref = unsafeDupablePerformIO $ do
+doNothing i ref = unsafePerformIO $ do
   atomicModifyIORef' ref (\x -> (x + 1, ()))
   atomicModifyIORef' ref (\x -> (x - 1, ()))
   evaluate i
@@ -17,7 +17,7 @@ doNothing i ref = unsafeDupablePerformIO $ do
 
 -- |
 -- >>> main
--- 0     OR     <non-zero>
+-- 0
 main :: IO ()
 main = do
   ref <- newIORef 0
