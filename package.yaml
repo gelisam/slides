@@ -1,0 +1,8 @@
+name: slides
+dependencies:
+  - async
+  - base
+  - bytestring
+executable:
+  main: Slide
+  source-dirs: src
