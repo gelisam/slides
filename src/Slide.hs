@@ -24,8 +24,8 @@ main' rw0
   = case newIORef 0 rw0 of
       (rw1, ref) ->
         case evaluate
-               ( let rwA = RealWorld
-                 in case modifyIORef ref (\x -> x + 100) rwA of
+               (
+                    case modifyIORef ref (\x -> x + 100) RealWorld of
                       (rwB, ()) ->
                         case modifyIORef ref (\x -> x + 2) rwB of
                           (_rwC, ()) ->
@@ -34,8 +34,8 @@ main' rw0
           (rw2, ()) ->
             case (printReadIORef ref) rw2 of
               (rw3, ()) -> do
-                case evaluate ( let rwA' = RealWorld
-                                in case modifyIORef ref (\x -> x + 100) rwA' of
+                case evaluate (
+                                   case modifyIORef ref (\x -> x + 100) RealWorld of
                                      (rwB', ()) ->
                                        case modifyIORef ref (\x -> x + 3) rwB' of
                                          (_rwC', ()) ->
