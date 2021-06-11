@@ -4,18 +4,18 @@ module Slide where
 import Data.IORef
 import System.IO.Unsafe (unsafePerformIO)
 
-{-# NOINLINE globalState #-}
-globalState :: IORef Int
-globalState = unsafePerformIO (newIORef 0)
+
+
+
 
 -- |
 -- >>> main
--- 1
--- 2
+-- 0            (not really)
+-- 0
 main :: IO ()
 main = do
-  modifyIORef globalState (+1)
-  print =<< readIORef globalState
+  modifyIORef (unsafePerformIO (newIORef 0)) (+1)
+  print =<< readIORef (unsafePerformIO (newIORef 0))
 
-  modifyIORef globalState (+1)
-  print =<< readIORef globalState
+  modifyIORef (unsafePerformIO (newIORef 0)) (+1)
+  print =<< readIORef (unsafePerformIO (newIORef 0))
