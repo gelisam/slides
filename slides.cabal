@@ -1,0 +1,19 @@
+cabal-version:      2.4
+name:               slides
+version:            0.1.0.0
+
+executable run-slide
+  main-is:          Main.hs
+  default-extensions: TypeApplications
+                    , ScopedTypeVariables
+  other-modules:    Doc
+                  , Ersatz.Simple
+                  , Hasktorch.Simple
+                  , Hasktorch.Typed.Simple
+  build-depends:    base
+                  , containers
+                  , ersatz
+                  , hasktorch
+                  , transformers
+  hs-source-dirs:   src
+  ghc-options: -W -Wall

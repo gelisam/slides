@@ -1,0 +1,46 @@
+packages:
+    slides.cabal
+    /home/gelisam/working/haskell/hasktorch/codegen/*.cabal
+    /home/gelisam/working/haskell/hasktorch/libtorch-ffi/*.cabal
+    /home/gelisam/working/haskell/hasktorch/libtorch-ffi-helper/*.cabal
+    /home/gelisam/working/haskell/hasktorch/hasktorch/*.cabal
+    /home/gelisam/working/haskell/hasktorch/examples/*.cabal
+    /home/gelisam/working/haskell/hasktorch/experimental/*/*.cabal
+
+source-repository-package
+    type: git
+    location: https://github.com/hasktorch/tokenizers
+    tag: 9d25f0ba303193e97f8b22b9c93cbc84725886c3
+    --sha256: 03nm9kd1j6v5ygxiyc86gbr4sjzj4l9xibmpccyws49vwzf02p2k
+    subdir: bindings/haskell/tokenizers-haskell
+
+source-repository-package
+    type: git
+    location: https://github.com/hasktorch/typelevel-rewrite-rules
+    --sha256: 122fy4d2wsy7lbbgqzmwgjq1nvl32bkjda1m3sml0avy3dslncg3
+    tag: 1262d69e7e16705c1a85832125ce0b5b82a41278
+
+source-repository-package
+    type: git
+    location: https://github.com/hasktorch/pipes-text
+    --sha256: 0yp3zr4hlswqzl8axkgnfapclx764q402dv5qmcvpm6aphzkavyx
+    tag: d4805e84327e266daa730d23982db3172f226cac
+
+write-ghc-environment-files: always
+tests: true
+documentation: false
+
+package tokenizers
+  extra-lib-dirs: /home/gelisam/working/haskell/hasktorch/deps/libtokenizers/lib
+
+package libtorch-ffi
+  extra-include-dirs: /home/gelisam/working/haskell/hasktorch/deps/libtorch/include, /home/gelisam/working/haskell/hasktorch/deps/libtorch/include/torch/csrc/api/include
+  extra-lib-dirs: /home/gelisam/working/haskell/hasktorch/deps/libtorch/lib
+
+extra-lib-dirs:
+  /home/gelisam/working/haskell/hasktorch/deps/libtokenizers/lib
+  /home/gelisam/working/haskell/hasktorch/deps/libtorch/lib
+
+package hasktorch-gradually-typed
+  flags: +disable-doctest
+  extra-lib-dirs: /home/gelisam/working/haskell/hasktorch/deps/libtokenizers/lib
