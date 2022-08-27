@@ -10,7 +10,7 @@
 --                         1.3. Verify the program                           --
 --                         1.4. GOTO 1.1 (learn a better model)              --
 --                       2. How to scale?                                    --
---                       > 2.1. Learn BIGGER models                          --
+--                       > 2.1. Learn BIGGER models (✓)                      --
 --                         2.2. Convert BIGGER models to BIGGER programs     --
 --                         2.3. Verify BIGGER programs                       --
 --                         2.4. GOTO 2.1 (which is BIGGER than 1.1)          --
