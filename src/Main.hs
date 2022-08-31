@@ -7,8 +7,8 @@
 --                       1. Toy example                                      --
 --                         1.1. Learn a model                                --
 --                         1.2. Convert model to program                     --
---                       > 1.3. Verify the program                           --
---                         1.4. GOTO 1.1 (learn a better model)              --
+--                         1.3. Verify the program                           --
+--                       > 1.4. GOTO 1.1 (learn a better model)              --
 --                       2. How to scale?                                    --
 --                       A. Klister                                          --
 --                                                                           --
