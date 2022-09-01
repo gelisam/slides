@@ -1,85 +1,33 @@
 -------------------------------------------------------------------------------
 -- 1.3. Verify the program                                                   --
 -------------------------------------------------------------------------------
-import Text.Printf
+import Prelude hiding (not, (||), (/=))
+import Ersatz.Simple
 
--- xorFloat 0 0 = 0.01409471
--- xorFloat 0 1 = 0.99294860
--- xorFloat 1 0 = 0.99424964
--- xorFloat 1 1 = 1.66050580
-
-generateCode :: Model -> [String]
-generateCode model
-  = [ "xor :: Boolean b"
-    , "    => b -> b -> b"
-    , "xor x y = choose"
-    , printf "  (choose %s %s y)" (f 0 0) (f 0 1)
-    , printf "  (choose %s %s y)" (f 1 0) (f 1 1)
-    , printf "  x"
-    ]
-  where
-    f :: Float -> Float -> String
-    f x y = if runModel model [x,y] >= 0.5 then "true" else "false"
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-type Model = ()
-
-runModel :: Model -> [Float] -> Float
-runModel () [0,0] = 0.01409471
-runModel () [0,1] = 0.99294860
-runModel () [1,0] = 0.99424964
-runModel () [1,1] = 1.66050580
-runModel () input = error $ "no samples for input " ++ show input
+expr :: MonadSAT s m => m Expr
+expr = do
+  x <- namedBit "x"
+  y <- namedBit "y"
+  let f = Func2 "xor" xor
+  pure $ (f false false /= false)
+      || (f (not x) y /= not (f x y))
+      || (f x (not y) /= not (f x y))
 
 main :: IO ()
-main = do
-  mapM_ putStrLn (generateCode ())
+main = findAssignment expr
+
+
+
+
+
+
+
+
+
+
+xor :: Boolean b
+    => b -> b -> b
+xor x y = choose
+  (choose false true y)
+  (choose true true y)
+  x
