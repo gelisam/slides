@@ -1,23 +1,85 @@
 -------------------------------------------------------------------------------
--- 1.1. Learn a model                                                        --
+-- 1.2. Convert model to program                                             --
 -------------------------------------------------------------------------------
-import Hasktorch.Simple
+import Text.Printf
 
-architecture :: [Layer]
-architecture = [Input 2, FullyConnected 2, FullyConnected 1]
+-- xorFloat 0 0 = 0.00954694
+-- xorFloat 0 1 = 0.99141490
+-- xorFloat 1 0 = 0.99134970
+-- xorFloat 1 1 = 0.01244128
 
-trainingData :: [ ([Float], Float) ]
-trainingData
-  = [ ([0,0], 0)
-    , ([0,1], 1)
-    , ([1,0], 1)
-    , ([1,1], 0)
+generateCode :: Model -> [String]
+generateCode model
+  = [ "xor :: Boolean b"
+    , "    => b -> b -> b"
+    , "xor x y = choose"
+    , printf "  (choose %s %s y)" (f 0 0) (f 0 1)
+    , printf "  (choose %s %s y)" (f 1 0) (f 1 1)
+    , printf "  x"
     ]
+  where
+    f :: Float -> Float -> String
+    f x y = if runModel model [x,y] >= 0.5 then "true" else "false"
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+type Model = ()
+
+runModel :: Model -> [Float] -> Float
+runModel () [0,0] = 0.00954694
+runModel () [0,1] = 0.99141490
+runModel () [1,0] = 0.99134970
+runModel () [1,1] = 0.01244128
+runModel () input = error $ "no samples for input " ++ show input
 
 main :: IO ()
 main = do
-  model <- train architecture trainingData
-  printf "xorFloat 0 0 = %.8f\n" (runModel model [0,0])
-  printf "xorFloat 0 1 = %.8f\n" (runModel model [0,1])
-  printf "xorFloat 1 0 = %.8f\n" (runModel model [1,0])
-  printf "xorFloat 1 1 = %.8f\n" (runModel model [1,1])
+  mapM_ putStrLn (generateCode ())
