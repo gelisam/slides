@@ -10,16 +10,16 @@ import Text.Printf
 
 generateCode :: Model -> [String]
 generateCode model
-  = "xor"
-  : "  :: Bool -> Bool -> Bool"
-  : [ printf "xor %-5s %-5s = %s" (show x) (show y) (show r)
-    | x <- [False, True]
-    , y <- [False, True]
-    , let xFloat = if x then 1 else 0
-    , let yFloat = if y then 1 else 0
-    , let rFloat = runModel model [xFloat, yFloat]
-    , let r = if rFloat >= 0.5 then True else False
+  = [ "xor :: Boolean b"
+    , "    => b -> b -> b"
+    , "xor x y = choose"
+    , printf "  (choose %s %s y)" (f 0 0) (f 0 1)
+    , printf "  (choose %s %s y)" (f 1 0) (f 1 1)
+    , printf "  x"
     ]
+  where
+    f :: Float -> Float -> String
+    f x y = if runModel model [x,y] >= 0.5 then "true" else "false"
 
 
 
