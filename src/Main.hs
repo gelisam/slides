@@ -1,33 +1,43 @@
 -------------------------------------------------------------------------------
--- 1.3. Verify the program                                                   --
+--                                                                           --
+--                            Can we Prove Facts                             --
+--                       about Machine-Learning Models                       --
+--                            via Code synthesis?                            --
+--                                                                           --
+--                       1. Toy example                                      --
+--                         1.1. Learn a model                                --
+--                         1.2. Convert model to program                     --
+--                       > 1.3. Verify the program                           --
+--                         1.4. GOTO 1.1 (learn a better model)              --
+--                       2. How to scale?                                    --
+--                       A. Klister                                          --
+--                                                                           --
+--                                                                           --
+--                                                                           --
+--                                                                           --
+--                                                                           --
+--                                                                           --
+--                                                                           --
+--                                                                           --
+--                                                                           --
 -------------------------------------------------------------------------------
-import Prelude hiding (not, (||), (/=))
-import Ersatz.Simple
 
-expr :: MonadSAT s m => m Expr
-expr = do
-  x <- namedBit "x"
-  y <- namedBit "y"
-  let f = Func2 "xor" xor
-  pure $ (f false false /= false)
-      || (f (not x) y /= not (f x y))
-      || (f x (not y) /= not (f x y))
+
+
+
+
+
+
+
+
+
 
 main :: IO ()
-main = findAssignment expr
-
-
-
-
-
-
-
-
-
-
-xor :: Boolean b
-    => b -> b -> b
-xor x y = choose
-  (choose false true y)
-  (choose true false y)
-  x
+main = do
+  putStrLn "-------------------------"
+  putStrLn "--                     --"
+  putStrLn "--                     --"
+  putStrLn "--     typechecks.     --"
+  putStrLn "--                     --"
+  putStrLn "--                     --"
+  putStrLn "-------------------------"
