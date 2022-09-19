@@ -16,11 +16,11 @@ codeTranslator :: JavaScript -> Python
 codeTranslator = (...) runModel openAiCodex (...)
 
 
-
-
+myModel :: Model
+myModel = transfer openAiCodex myData
 
 modelTranslator :: Model -> Python
-
+modelTranslator = (...) runModel myModel (...)
 
 
 
@@ -40,8 +40,8 @@ gpt3 = undefined
 githubRepos :: TrainingData
 githubRepos = undefined
 
-
-
+myData :: TrainingData
+myData = undefined
 
 type JavaScript = ()
 type Python = ()
@@ -51,7 +51,7 @@ transfer model0 trainingData = unsafePerformIO $ do
   Hasktorch.Simple.transferIO trainingData model0
 
 
-modelTranslator = undefined
+
 
 
 main :: IO ()
