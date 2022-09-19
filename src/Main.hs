@@ -3,10 +3,10 @@
 -------------------------------------------------------------------------------
 import Hasktorch.Simple
 
+transfer :: Model -> TrainingData -> Model
 
-
-
-
+train :: TrainingData -> Model
+train = transfer randomWeights
 
 
 addTrainingData :: TrainingData
@@ -20,7 +20,7 @@ orTrainingData :: TrainingData
 orTrainingData = [ ([0,0], 0), ([0,1], 1), ([1,0], 1), ([1,1], 1) ]
 
 orModel :: Model
-orModel = train orTrainingData
+orModel = transfer addModel orTrainingData
 
 
 
@@ -50,12 +50,12 @@ orModel = train orTrainingData
 architecture :: [Layer]
 architecture = [Input 2 , FullyConnected 2, FullyConnected 1]
 
-transfer :: Model -> TrainingData -> Model
+
 transfer model0 trainingData = unsafePerformIO $ do
   Hasktorch.Simple.transferIO trainingData model0
 
-train :: TrainingData -> Model
-train = transfer randomWeights
+
+
 
 randomWeights :: Model
 randomWeights = unsafePerformIO $ do
