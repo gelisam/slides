@@ -1,6 +1,7 @@
 -------------------------------------------------------------------------------
 -- 2.2.2. Using it to generate programs                                      --
 -------------------------------------------------------------------------------
+import Hasktorch.Simple
 
 
 
@@ -8,11 +9,11 @@
 
 
 
-
-
-
+openAiCodex :: Model
+openAiCodex = transfer gpt3 githubRepos
 
 codeTranslator :: JavaScript -> Python
+codeTranslator = (...) runModel openAiCodex (...)
 
 
 
@@ -29,17 +30,14 @@ codeTranslator :: JavaScript -> Python
 
 
 
+gpt3 :: Model
+gpt3 = undefined
 
+(...) :: a
+(...) = undefined
 
-
-
-
-
-
-
-
-
-
+githubRepos :: TrainingData
+githubRepos = undefined
 
 
 
@@ -47,23 +45,13 @@ codeTranslator :: JavaScript -> Python
 type JavaScript = ()
 type Python = ()
 
+transfer :: Model -> TrainingData -> Model
+transfer model0 trainingData = unsafePerformIO $ do
+  Hasktorch.Simple.transferIO trainingData model0
 
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-codeTranslator = undefined
 
 main :: IO ()
 main = do
