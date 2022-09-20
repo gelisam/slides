@@ -1,25 +1,26 @@
 -------------------------------------------------------------------------------
--- 2.2.3. Obtaining the data                                                 --
+--                                                                           --
+--                            Can we Prove Facts                             --
+--                       about Machine-Learning Models                       --
+--                            via Code synthesis?                            --
+--                                                                           --
+--                       1. Toy example                                      --
+--                       2. How to scale?                                    --
+--                         2.1. Learn BIGGER models (✓)                      --
+--                         2.2. Convert BIGGER models to BIGGER programs     --
+--                           2.2.1. Transfer Learning                        --
+--                           2.2.2. Using it to generate programs            --
+--                         > 2.2.3. Obtaining the data                       --
+--                         2.3. Verify BIGGER programs                       --
+--                         2.4. GOTO 2.1 (which is BIGGER than 1.1)          --
+--                       A. Klister                                          --
+--                                                                           --
+--                                                                           --
+--                                             presented by Samuel Gélineau  --
+--                                                       at Galois           --
+--                                                       on 2022-09-26       --
+--                                                                           --
 -------------------------------------------------------------------------------
-import Hasktorch.Typed.Simple
-
-asModel :: (AsFloats a, AsFloats b)
-        => [a] -> (a -> b) -> Model a b
-asModel xs f = train [ (x, f x) | x <- xs ]
-
-inverse :: forall a b. (AsFloats a, AsFloats b)
-        => [a] -> (a -> b) -> (b -> a)
-inverse xs f = runModel model
-  where
-    model :: Model b a
-    model = train [ (f x, x) | x <- xs ]
-
-modelTranslator :: forall a b. (AsFloats a, AsFloats b)
-                => [JSFun a b] -> [a] -> Model a b -> JSFun a b
-modelTranslator jsFuns xs = inverse jsFuns codeToModel
-  where
-    codeToModel :: JSFun a b -> Model a b
-    codeToModel = asModel xs . runJS
 
 
 
@@ -29,54 +30,10 @@ modelTranslator jsFuns xs = inverse jsFuns codeToModel
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-data JSFun a b = JSFun
-
-instance AsFloats (JSFun a b) where
-  encode = undefined
-  decode = undefined
-
-runJS :: JSFun a b -> a -> b
-runJS = undefined
-
-architecture :: [Layer]
-architecture = [Input 2 , FullyConnected 2, FullyConnected 1]
-
-train :: (AsFloats a, AsFloats b)
-      => TrainingData a b -> Model a b
-train trainingData = unsafePerformIO $ do
-  trainIO architecture trainingData
 
 
 main :: IO ()
 main = do
-  let _jsFun = JSFun
-  let _asModel = asModel :: [[Float]] -> ([Float] -> Float) -> Model [Float] Float
-  let _inverse = inverse :: [[Float]] -> ([Float] -> Float) -> (Float -> [Float])
-  let _modelTranslator = modelTranslator :: [JSFun [Float] Float] -> [[Float]] -> Model [Float] Float -> JSFun [Float] Float
   putStrLn "-------------------------"
   putStrLn "--                     --"
   putStrLn "--                     --"
