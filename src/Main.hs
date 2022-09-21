@@ -5,21 +5,22 @@
 -------------                               -------------
 -- Haskell --                               -- Klister --
 -------------                               -------------
+import Prelude hiding (Monoid(mempty))
 
+class Monoid a where
+  mempty :: a
 
+instance Monoid () where
+  mempty = ()
 
-
-
-
-
-
-
-
+instance Monoid b => Monoid (a -> b) where
+  mempty = \_ -> mempty
 
 example :: Bool -> Bool -> ()               -- (the (-> Bool Bool Unit)
 example = mempty                            --      (mempty))
 
                                             -- $ klister run mempty.kl      
+
 
 
 
