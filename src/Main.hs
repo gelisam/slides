@@ -2,15 +2,15 @@
 -- A. Klister (with David Christiansen and Langston Barrett)                 --
 -------------------------------------------------------------------------------
 
------------
--- Scala --
------------
+-----------                               -------------
+-- Scala --                               -- Klister --
+-----------                               -------------
 
--- import scala.language
---             .implicitConversions;
---
--- implicit val strlen
---   : String => Int
+-- import scala.language                  -- #lang "implicit-conversion.kl"
+--             .implicitConversions;      --
+--                                        --
+-- implicit val strlen                    -- (let-implicit string-length
+--   : String => Int                      --   (+ 1 "foo"))
 --   = (s: String) => s.length();
 --
 -- 1 + "foo"   // returns 4
