@@ -1,26 +1,26 @@
 -------------------------------------------------------------------------------
--- A. Klister (with David Christiansen and Langston Barrett)                 --
+--                                                                           --
+--                            Can we Prove Facts                             --
+--                       about Machine-Learning Models                       --
+--                            via Code synthesis?                            --
+--                                                                           --
+--                       1. Toy example                                      --
+--                       2. How to scale?                                    --
+--                       A. Klister                                          --
+--                       > A.1. Old Stuff                                    --
+--                         A.2. New Stuff                                    --
+--                                                                           --
+--                                                                           --
+--                                                                           --
+--                                                                           --
+--                                                                           --
+--                                                                           --
+--                                                                           --
+--                                             presented by Samuel Gélineau  --
+--                                                       at Galois           --
+--                                                       on 2022-09-26       --
+--                                                                           --
 -------------------------------------------------------------------------------
-
--------------                               -------------
--- Haskell --                               -- Klister --
--------------                               -------------
-import Prelude hiding (Monoid(mempty))
-
-class Monoid a where                        -- (define-macro (mempty)
-  mempty :: a                               --   ...
-                                            --   (type-case result-type
-instance Monoid () where                    --     [(-> _ _)
-  mempty = ()                               --      (pure '(lambda (_)
-                                            --               (mempty)))]
-instance Monoid b => Monoid (a -> b) where  --     [(Unit)
-  mempty = \_ -> mempty                     --      (pure '(unit))]))
-                                            --
-example :: Bool -> Bool -> ()               -- (the (-> Bool Bool Unit)
-example = mempty                            --      (mempty))
-
-                                            -- $ klister run mempty.kl      
-
 
 
 
@@ -34,7 +34,6 @@ example = mempty                            --      (mempty))
 
 main :: IO ()
 main = do
-  let _example = example
   putStrLn "-------------------------"
   putStrLn "--                     --"
   putStrLn "--                     --"
