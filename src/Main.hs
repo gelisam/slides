@@ -1,26 +1,26 @@
 -------------------------------------------------------------------------------
---                                                                           --
---                            Can we Prove Facts                             --
---                       about Machine-Learning Models                       --
---                            via Code synthesis?                            --
---                                                                           --
---                       1. Toy example                                      --
---                         1.1. Learn a model                                --
---                         1.2. Convert model to program                     --
---                         1.3. Verify the program                           --
---                         1.4. GOTO 1.1 (learn a better model)              --
---                       2. How to scale?                                    --
---                         2.1. Learn BIGGER models (✓)                      --
---                         2.2. Convert BIGGER models to BIGGER programs     --
---                         > 2.2.1. Transfer Learning                        --
---                           2.2.2. Using it to generate programs            --
---                           2.2.3. Obtaining the data                       --
---                         2.3. Verify BIGGER programs                       --
---                         2.4. GOTO 2.1 (which is BIGGER than 1.1)          --
---                       A. Klister                                          --
---                                                                           --
---                                                                           --
+-- 2.2.1. Transfer Learning                                                  --
 -------------------------------------------------------------------------------
+import Hasktorch.Simple
+
+
+
+
+
+
+
+addTrainingData :: TrainingData
+addTrainingData = [ ([0,0], 0), ([0,1], 1), ([1,0], 1), ([1,1], 2) ]
+
+addModel :: Model
+addModel = train addTrainingData
+
+
+orTrainingData :: TrainingData
+orTrainingData = [ ([0,0], 0), ([0,1], 1), ([1,0], 1), ([1,1], 1) ]
+
+orModel :: Model
+orModel = train orTrainingData
 
 
 
@@ -30,14 +30,52 @@
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+architecture :: [Layer]
+architecture = [Input 2 , FullyConnected 2, FullyConnected 1]
+
+transfer :: Model -> TrainingData -> Model
+transfer model0 trainingData = unsafePerformIO $ do
+  Hasktorch.Simple.transferIO trainingData model0
+
+train :: TrainingData -> Model
+train = transfer randomWeights
+
+randomWeights :: Model
+randomWeights = unsafePerformIO $ do
+  randomWeightsIO architecture
 
 
 main :: IO ()
 main = do
-  putStrLn "-------------------------"
-  putStrLn "--                     --"
-  putStrLn "--                     --"
-  putStrLn "--     typechecks.     --"
-  putStrLn "--                     --"
-  putStrLn "--                     --"
-  putStrLn "-------------------------"
+  putStrLn "train addModel"
+  _ <- evaluate addModel
+
+  printf "add 0 0 = %.8f\n" (runModel addModel [0,0])
+  printf "add 0 1 = %.8f\n" (runModel addModel [0,1])
+  printf "add 1 0 = %.8f\n" (runModel addModel [1,0])
+  printf "add 1 1 = %.8f\n" (runModel addModel [1,1])
+
+  putStrLn ""
+  putStrLn "train orModel"
+  _ <- evaluate orModel
+  printf "or 0 0 = %.8f\n" (runModel orModel [0,0])
+  printf "or 0 1 = %.8f\n" (runModel orModel [0,1])
+  printf "or 1 0 = %.8f\n" (runModel orModel [1,0])
+  printf "or 1 1 = %.8f\n" (runModel orModel [1,1])
