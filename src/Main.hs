@@ -12,9 +12,8 @@
 -- implicit val strlen                    -- (let-implicit string-length
 --   : String => Int                      --   (+ 1 "foo"))
 --   = (s: String) => s.length();
---
+--                                        -- $ klister run implicit.kl   
 -- 1 + "foo"   // returns 4
-
 
 
 
