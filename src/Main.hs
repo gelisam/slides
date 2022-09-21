@@ -1,29 +1,26 @@
 -------------------------------------------------------------------------------
--- A. Klister (with David Christiansen and Langston Barrett)                 --
+--   Can we Prove Facts about Machine-Learning Models via Code synthesis?    --
+--                                                                           --
+--                       1. Toy example                                      --
+--                         1.1. Learn a model                                --
+--                         1.2. Convert model to program                     --
+--                         1.3. Verify the program                           --
+--                         1.4. GOTO 1.1 (learn a better model)              --
+--                       2. How to scale?                                    --
+--                         2.1. Learn BIGGER models                          --
+--                         2.2. Convert BIGGER models to BIGGER programs     --
+--                           2.2.1. Transfer Learning                        --
+--                           2.2.2. Using it to generate programs            --
+--                           2.2.3. Obtaining the data                       --
+--                         2.3. Verify BIGGER programs                       --
+--                           2.3.1. Fuzzy specs?                             --
+--                           2.3.2. Restrictive program constraints?         --
+--                           2.3.3. BIGGER inputs?                           --
+--                         2.4. GOTO 2.1 (which is BIGGER than 1.1)          --
+--                       A. Klister                                          --
+--                         A.1. Type-driven macros                           --
+--                         A.2. Implicit conversions                         --
 -------------------------------------------------------------------------------
-
--------------                           --------------------------
--- Klister --                           -- Klister (simplified) --
--- Haskell --                           --------------------------
--------------                                                                
-import Control.Monad.Trans.Reader       -- (define-macro (#%app f e1 e2 ...)
-                                        --   (pure `(,f <$> (convert ,e1)
--- (let-implicit string-length          --              <*> (convert ,e2)
---   (+ 1 "foo"))                       --              <*> ...)))
-example :: Int                          -- 
-example = do                            -- (define-macro (convert e)
-  flip runReader length $ do            --   ...
-    (+) <$> pure 1                      --   (type-case (pair e-type
-        <*> reader (\len -> len "foo")  --                    result-type)
-                                        --     [(pair String
-                                        --            (Reader (-> String Int)
-                                        --                    Int))
-                                        --      (pure `(reader (\len -> ,e)))]
-                                        --     ...))
-
-
-
-
 
 
 
@@ -37,4 +34,10 @@ example = do                            -- (define-macro (convert e)
 
 main :: IO ()
 main = do
-  print example
+  putStrLn "-------------------------"
+  putStrLn "--                     --"
+  putStrLn "--                     --"
+  putStrLn "--     typechecks.     --"
+  putStrLn "--                     --"
+  putStrLn "--                     --"
+  putStrLn "-------------------------"
