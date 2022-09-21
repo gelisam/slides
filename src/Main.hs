@@ -2,9 +2,9 @@
 -- A. Klister (with David Christiansen and Langston Barrett)                 --
 -------------------------------------------------------------------------------
 
-                                            -------------
-                                            -- Klister --
-                                            -------------
+-------------                               -------------
+-- Haskell --                               -- Klister --
+-------------                               -------------
 
 
 
@@ -16,8 +16,8 @@
 
 
 
-                                            -- (the (-> Bool Bool Unit)
-                                            --      (mempty))
+example :: Bool -> Bool -> ()               -- (the (-> Bool Bool Unit)
+example = mempty                            --      (mempty))
 
 
 
@@ -32,6 +32,7 @@
 
 main :: IO ()
 main = do
+  let _example = example
   putStrLn "-------------------------"
   putStrLn "--                     --"
   putStrLn "--                     --"
