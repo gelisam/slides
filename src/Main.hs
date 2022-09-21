@@ -7,8 +7,8 @@
 --                       1. Toy example                                      --
 --                       2. How to scale?                                    --
 --                       A. Klister                                          --
---                       > A.1. Old Stuff                                    --
---                         A.2. New Stuff                                    --
+--                         A.1. Old Stuff                                    --
+--                       > A.2. New Stuff                                    --
 --                                                                           --
 --                                                                           --
 --                                                                           --
