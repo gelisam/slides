@@ -2,18 +2,21 @@
 -- A. Klister (with David Christiansen and Langston Barrett)                 --
 -------------------------------------------------------------------------------
 
------------                               -------------
--- Scala --                               -- Klister --
------------                               -------------
+-------------
+-- Klister --
+-- Haskell --
+-------------
+import Control.Monad.Trans.Reader
 
--- import scala.language                  -- #lang "implicit-conversion.kl"
---             .implicitConversions;      --
---                                        --
--- implicit val strlen                    -- (let-implicit string-length
---   : String => Int                      --   (+ 1 "foo"))
---   = (s: String) => s.length();
---                                        -- $ klister run implicit.kl   
--- 1 + "foo"   // returns 4
+-- (let-implicit string-length
+--   (+ 1 "foo"))
+example :: Int
+example = do
+  flip runReader length $ do
+    (+) <$> pure 1
+        <*> reader (\len -> len "foo")
+
+
 
 
 
@@ -31,10 +34,4 @@
 
 main :: IO ()
 main = do
-  putStrLn "-------------------------"
-  putStrLn "--                     --"
-  putStrLn "--                     --"
-  putStrLn "--     typechecks.     --"
-  putStrLn "--                     --"
-  putStrLn "--                     --"
-  putStrLn "-------------------------"
+  print example
