@@ -7,15 +7,15 @@
 -------------                               -------------
 import Prelude hiding (Monoid(mempty))
 
-class Monoid a where
-  mempty :: a
-
-instance Monoid () where
-  mempty = ()
-
-instance Monoid b => Monoid (a -> b) where
-  mempty = \_ -> mempty
-
+class Monoid a where                        -- (define-macro (mempty)
+  mempty :: a                               --   ...
+                                            --   (type-case result-type
+instance Monoid () where                    --     [(-> _ _)
+  mempty = ()                               --      (pure '(lambda (_)
+                                            --               (mempty)))]
+instance Monoid b => Monoid (a -> b) where  --     [(Unit)
+  mempty = \_ -> mempty                     --      (pure '(unit))]))
+                                            --
 example :: Bool -> Bool -> ()               -- (the (-> Bool Bool Unit)
 example = mempty                            --      (mempty))
 
