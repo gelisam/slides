@@ -19,6 +19,7 @@
 example :: Bool -> Bool -> ()               -- (the (-> Bool Bool Unit)
 example = mempty                            --      (mempty))
 
+                                            -- $ klister run mempty.kl      
 
 
 
