@@ -1,0 +1,43 @@
+#lang "implicit-conversion.kl"
+
+(example
+  (let-implicit string-length
+    (+ 1 "foo")))
+-- =>
+-- (example
+--   (let-implicit string-length
+--     (#%app +
+--            (#%integer-literal 1)
+--            (#%string-literal "foo"))))
+-- =>
+-- (my-example
+--   (let-implicit my-string-length
+--     (my-app my-+
+--             (my-integer-literal 1)
+--             (my-string-literal "foo"))))
+-- =>
+-- (example
+--   (run-reader
+--     (local (lambda (implicits)
+--              (pair string-length implicits))
+--       ((pick-reader-ap-variant) ((pick-reader-ap-variant) (reader-pure +)
+--                                                           (reader-pure 1))
+--                                 (reader-pure "foo")))
+--     (unit)))
+-- =>
+-- (example
+--   (run-reader
+--     (reader-ap-with (lambda (...) string-length)
+--                     (reader-ap (reader-pure +)
+--                                (reader-pure 1))
+--                     (reader-pure "foo"))
+--     (pair string-length (unit)))
+-- =>
+-- (example
+--   (+ 1 (string-length "foo")))
+-- =>
+-- (example
+--   (+ 1 3))
+-- =>
+-- (example
+--   4)

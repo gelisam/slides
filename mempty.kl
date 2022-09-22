@@ -1,0 +1,25 @@
+#lang "prelude.kl"
+
+(import (shift "prelude.kl" 1))
+(import "define-syntax-rule.kl")
+
+
+-- (the (-> Bool Bool Unit)
+--      (mempty))
+-- =>
+-- (the (-> Bool Bool Unit)
+--      (lambda (_ _) unit))
+(define-macro (mempty)
+  (>>= (which-problem)
+       (lambda (prob)
+          (case prob
+            [(expression t)
+             (type-case t
+               [(-> _ _)
+                (pure '(lambda (_)
+                         (mempty)))]
+               [(Unit)
+                (pure '(unit))])]))))
+
+(example (the (-> Bool Bool Unit)
+              (mempty)))
