@@ -4,7 +4,7 @@
 --                       about Machine-Learning Models                       --
 --                            via Code synthesis?                            --
 --                                                                           --
---                       1. Toy example                                      --
+--                     > 1. Toy example                                      --
 --                       2. How to scale?                                    --
 --                       A. Klister                                          --
 --                                                                           --
