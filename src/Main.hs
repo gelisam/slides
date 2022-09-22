@@ -9,8 +9,8 @@
 --                        | Haskell           ***** |                        --
 --                        | Agda              ***   |                        --
 --                        | Type Theory       ***   |                        --
---                        | Machine Learning  **    |                        --
---                        | Formal Methods    *     |                        --
+--                        | Machine Learning  ** <-----+--- this talk        --
+--                        | Formal Methods    *  <-----'                     --
 --                        +-------------------------+                        --
 --                        |     Hi! My name is      | (aka gelisam,          --
 --                        |     Samuel Gélineau     |  aka haskell_cat)      --
