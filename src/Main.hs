@@ -3,12 +3,12 @@
 -------------------------------------------------------------------------------
 import Ersatz.Simple
 
+xor :: Bool -> Bool -> Bool
+xor = _
 
 
-
-
-
-
+                                  
+                                  
 xor1 :: Bool -> Bool -> Bool
 xor1 False False = False
 xor1 False True  = True
@@ -33,6 +33,7 @@ xor2 x y = choose
 
 main :: IO ()
 main = do
+  let _xor = xor
   let _xor1 = xor1
   let _xor2 = xor2 :: Bool -> Bool -> Bool
   putStrLn "-------------------------"
