@@ -3,6 +3,8 @@
 -------------------------------------------------------------------------------
 openAiCodex :: Model
 
+-- suggest code completions from code so far
+githubCopilot :: [LineOfCode] -> [LineOfCode]
 
 
 
@@ -36,14 +38,20 @@ openAiCodex :: Model
 
 
 
+
+
+type LineOfCode = ()
 
 type Model = [Float]
 
 openAiCodex = undefined
 
+githubCopilot = undefined
+
 main :: IO ()
 main = do
   let _openAiCodex = openAiCodex
+  let _githubCopilot = githubCopilot
   putStrLn "-------------------------"
   putStrLn "--                     --"
   putStrLn "--                     --"
