@@ -14,6 +14,8 @@ testCode :: [LineOfCode] -> [LineOfCode]
 
 codeTranslator :: JavaScript -> Python
 
+explainCode :: [LineOfCode] -> Text
+
 
 
 
@@ -60,6 +62,7 @@ openAiCodex = undefined
 githubCopilot = undefined
 codexJavascriptSandbox = undefined
 testCode = undefined
+explainCode = undefined
 codeTranslator = undefined
 
 main :: IO ()
@@ -68,6 +71,7 @@ main = do
   let _githubCopilot = githubCopilot
   let _codexJavascriptSandbox = codexJavascriptSandbox
   let _testCode = testCode
+  let _explainCode = explainCode
   let _codeTranslator = codeTranslator
   putStrLn "-------------------------"
   putStrLn "--                     --"
