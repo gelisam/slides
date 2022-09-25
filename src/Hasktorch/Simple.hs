@@ -4,20 +4,13 @@
 {-# LANGUAGE FunctionalDependencies #-}
 {-# LANGUAGE RecordWildCards #-}
 {-# LANGUAGE ScopedTypeVariables #-}
-{-# LANGUAGE TypeApplications #-}
 {-# OPTIONS -Wno-name-shadowing #-}
 module Hasktorch.Simple
   ( Model
-  , TrainingData
   , Layer(..)
-  , randomWeightsIO
-  , trainIO
-  , transferIO
+  , train
   , runModel
   , printf
-
-  , evaluate
-  , unsafePerformIO
   ) where
 
 import Control.Monad (when)
@@ -26,9 +19,6 @@ import Data.List (foldl', intersperse, scanl')
 import Text.Printf
 import GHC.Generics (Generic)
 import Torch
-
-import Control.Exception (evaluate)
-import System.IO.Unsafe (unsafePerformIO)
 
 
 --------------------------------------------------------------------------------
@@ -69,7 +59,7 @@ mlp MLP {..} input = foldl' revApply input $ intersperse nonlinearity $ map line
 --------------------------------------------------------------------------------
 
 targetLoss :: Float
-targetLoss = 0.05
+targetLoss = 1e-4
 
 runMLP :: MLP -> Tensor -> Tensor
 runMLP params t = mlp params t
@@ -79,18 +69,23 @@ data Layer
   | FullyConnected Int
   deriving Show
 
-_runLayer :: Layer -> Int
-_runLayer (Input n)
+runLayer :: Layer -> Int
+runLayer (Input n)
   = n
-_runLayer (FullyConnected n)
+runLayer (FullyConnected n)
   = n
 
 type Model = MLP
-type TrainingData = [([Float], Float)]
 
-transferIO :: TrainingData -> Model -> IO Model
-transferIO trainingData weights0 = do
-  flip fix (0::Int, weights0) $ \loop (i, weights) -> do
+train :: [Layer] -> [([Float], Float)] -> IO Model
+train architecture trainingData = do
+  init <-
+    sample $
+      MLPSpec
+        { feature_counts = fmap runLayer architecture
+        , nonlinearitySpec = Torch.tanh
+        }
+  flip fix (0::Int, init) $ \loop (i, weights) -> do
     let input = asTensor (fmap fst trainingData)
     let expected = asTensor (fmap snd trainingData)
     let actual = squeezeAll $ runMLP weights input
@@ -104,38 +99,6 @@ transferIO trainingData weights0 = do
       else do
         (weights', _) <- runStep weights GD loss 1e-1
         loop (i+1,weights')
-
-randomWeightsIO :: [Layer] -> IO Model
-randomWeightsIO _architecture = do
-  -- hardcode one sample which happens to show off the difference in training
-  -- time very well
-  w1 <- makeIndependent $ asTensor @[[Float]]
-          [ [ 0.3343   ,  0.2637   ]
-          , [-0.4220   , -0.6361   ]
-          ]
-  b1 <- makeIndependent $ asTensor @[Float]
-          [-0.6269     , -0.5477   ]
-  w2 <- makeIndependent $ asTensor @[[Float]]
-          [ [-0.5724   , -0.1877   ]
-          ]
-  b2 <- makeIndependent $ asTensor @[Float]
-          [-0.6204]
-  pure $ MLP
-    { layers = [Linear w1 b1, Linear w2 b2]
-    , nonlinearity = Torch.tanh
-    }
-  --r <- sample $
-  --  MLPSpec
-  --    { feature_counts = fmap _runLayer _architecture
-  --    , nonlinearitySpec = Torch.tanh
-  --    }
-  --print $ layers r
-  --pure r
-
-trainIO :: [Layer] -> TrainingData -> IO Model
-trainIO architecture trainingData = do
-  weights0 <- randomWeightsIO architecture
-  transferIO trainingData weights0
 
 runModel :: Model -> [Float] -> Float
 runModel model = asValue . runMLP model . asTensor

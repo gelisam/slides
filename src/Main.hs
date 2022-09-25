@@ -1,54 +1,32 @@
 -------------------------------------------------------------------------------
--- 2.2.2. Using it to generate programs                                      --
+--                                                                           --
+--                            Can we Prove Facts                             --
+--                       about Machine-Learning Models                       --
+--                            via Code synthesis?                            --
+--                                                                           --
+--                       1. Toy example                                      --
+--                       2. How to scale?                                    --
+--                         2.1. Learn BIGGER models (✓)                      --
+--                         2.2. Convert BIGGER models to BIGGER programs     --
+--                           2.2.1. Transfer Learning                        --
+--                         > 2.2.2. Using it to generate programs            --
+--                           2.2.3. Obtaining the data                       --
+--                         2.3. Verify BIGGER programs                       --
+--                         2.4. GOTO 2.1 (which is BIGGER than 1.1)          --
+--                       A. Klister                                          --
+--                                                                           --
+--                                                                           --
+--                                             presented by Samuel Gélineau  --
+--                                                       at Galois           --
+--                                                       on 2022-09-26       --
+--                                                                           --
 -------------------------------------------------------------------------------
-import Hasktorch.Simple
-
-gpt3 :: Model
-
-answerQuestion :: Text -> Text
-answerQuestion = (...) runModel gpt3 (...)
-
-
-openAiCodex :: Model
-openAiCodex = transfer gpt3 githubRepos
-
-codeTranslator :: JavaScript -> Python
-codeTranslator = (...) runModel openAiCodex (...)
-
-
-myModel :: Model
-myModel = transfer openAiCodex myData
-
-modelTranslator :: Model -> Python
-modelTranslator = (...) runModel myModel (...)
 
 
 
 
 
 
-
-
-
-type Text = ()
-
-gpt3 = undefined
-
-(...) :: a
-(...) = undefined
-
-githubRepos :: TrainingData
-githubRepos = undefined
-
-myData :: TrainingData
-myData = undefined
-
-type JavaScript = ()
-type Python = ()
-
-transfer :: Model -> TrainingData -> Model
-transfer model0 trainingData = unsafePerformIO $ do
-  Hasktorch.Simple.transferIO trainingData model0
 
 
 
@@ -56,9 +34,6 @@ transfer model0 trainingData = unsafePerformIO $ do
 
 main :: IO ()
 main = do
-  let _answerQuestion = answerQuestion
-  let _codeTranslator = codeTranslator
-  let _modelTranslator = modelTranslator
   putStrLn "-------------------------"
   putStrLn "--                     --"
   putStrLn "--                     --"
