@@ -10,11 +10,11 @@ labelImage :: Image -> Text   -- exists pixels. (labelImage x == labelImage y)
                               -- 256*256 * 3     =   196 608 integers
                               -- 256*256 * 3 * 8 = 1 572 864 bits
 
-
-
-
-
-
+                                             ------------------------
+                                             -- Which other formal --
+                                             -- method tools would --
+                                             -- scale better?      --
+                                             ------------------------
 
 
 
