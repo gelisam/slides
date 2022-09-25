@@ -3,10 +3,10 @@
 -------------------------------------------------------------------------------
 import Hasktorch.Simple
 
+gpt3 :: Model
 
-
-
-
+answerQuestion :: Text -> Text
+answerQuestion = (...) runModel gpt3 (...)
 
 
 openAiCodex :: Model
@@ -30,7 +30,8 @@ codeTranslator = (...) runModel openAiCodex (...)
 
 
 
-gpt3 :: Model
+type Text = ()
+
 gpt3 = undefined
 
 (...) :: a
@@ -52,9 +53,9 @@ transfer model0 trainingData = unsafePerformIO $ do
 
 
 
-
 main :: IO ()
 main = do
+  let _answerQuestion = answerQuestion
   let _codeTranslator = codeTranslator
   putStrLn "-------------------------"
   putStrLn "--                     --"
