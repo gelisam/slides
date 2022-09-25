@@ -12,7 +12,7 @@ codexJavascriptSandbox :: [Text] -> JavaScript
 -- generate test cases from the code to be tested
 testCode :: [LineOfCode] -> [LineOfCode]
 
-
+codeTranslator :: JavaScript -> Python
 
 
 
@@ -51,6 +51,7 @@ type LineOfCode = ()
 type Text = ()
 
 type JavaScript = [Float]
+type Python = [Float]
 
 type Model = [Float]
 
@@ -59,6 +60,7 @@ openAiCodex = undefined
 githubCopilot = undefined
 codexJavascriptSandbox = undefined
 testCode = undefined
+codeTranslator = undefined
 
 main :: IO ()
 main = do
@@ -66,6 +68,7 @@ main = do
   let _githubCopilot = githubCopilot
   let _codexJavascriptSandbox = codexJavascriptSandbox
   let _testCode = testCode
+  let _codeTranslator = codeTranslator
   putStrLn "-------------------------"
   putStrLn "--                     --"
   putStrLn "--                     --"
