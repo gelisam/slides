@@ -14,12 +14,12 @@ xor1 False False = False          --
 xor1 False True  = True           -- 4. \x y -> (x && not y) || (not x && y)
 xor1 True  False = True           --
 xor1 True  True  = False          -- ...
-
-xor2 :: Boolean b
-     => b -> b -> b
-xor2 x y = choose
-  (choose false true y)
-  (choose true false y)
+                                             ----------------------------
+xor2 :: Boolean b                            -- Is there enough Ersatz --
+     => b -> b -> b                          -- code on GitHub?        --
+xor2 x y = choose                            -- Is there even enough   --
+  (choose false true y)                      -- Haskell code?          --
+  (choose true false y)                      ----------------------------
   x
 
 
