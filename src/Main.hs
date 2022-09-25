@@ -7,14 +7,14 @@ import Hasktorch.Typed.Simple
 inverse :: forall a b. (AsFloats a, AsFloats b)
         => [a] -> (a -> b) -> (b -> a)
 
+increaseResolution :: Image -> Image
+increaseResolution = inverse images scaleDown
 
+interpolate :: [Image] -> [Image]
+interpolate = inverse videos dropFrames
 
-
-
-
-
-
-
+outpainting :: Image -> Image
+outpainting = inverse images crop
 
 fillBlanks :: Text -> Text
 fillBlanks = inverse texts maskWords
@@ -33,17 +33,17 @@ type Image = [Float]
 images :: [Image]
 images = undefined
 
+scaleDown :: Image -> Image
+scaleDown = undefined
 
+videos :: [[Image]]
+videos = undefined
 
+dropFrames :: [Image] -> [Image]
+dropFrames = undefined
 
-
-
-
-
-
-
-
-
+crop :: Image -> Image
+crop = undefined
 
 addNoise :: Image -> Image
 addNoise = undefined
@@ -71,6 +71,9 @@ train trainingData = unsafePerformIO $ do
 
 main :: IO ()
 main = do
+  let _increaseResolution = increaseResolution
+  let _interpolate = interpolate
+  let _outpainting = outpainting
   let _fillBlanks = fillBlanks
   let _denoise = denoise
   putStrLn "-------------------------"
