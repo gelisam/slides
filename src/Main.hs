@@ -16,13 +16,10 @@
 
 
 
-gpt3 :: Text -> Text
+fillBlanks :: Text -> Text
 
 
-dallE :: Text -> Image
-
-
-
+denoise :: Image -> Image
 
 
 
@@ -31,9 +28,12 @@ dallE :: Text -> Image
 
 
 
-gpt3 = undefined
 
-dallE = undefined
+
+
+fillBlanks = undefined
+
+denoise = undefined
 
 
 type Image = [Float]
@@ -82,8 +82,8 @@ type Text = [Float]
 
 main :: IO ()
 main = do
-  let _gpt3 = gpt3
-  let _dallE = dallE
+  let _fillBlanks = fillBlanks
+  let _denoise = denoise
   putStrLn "-------------------------"
   putStrLn "--                     --"
   putStrLn "--                     --"
