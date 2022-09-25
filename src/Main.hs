@@ -19,7 +19,7 @@ codeTranslator = (...) runModel openAiCodex (...)
 
 
 
-
+modelTranslator :: Model -> Python
 
 
 
@@ -51,12 +51,14 @@ transfer model0 trainingData = unsafePerformIO $ do
   Hasktorch.Simple.transferIO trainingData model0
 
 
+modelTranslator = undefined
 
 
 main :: IO ()
 main = do
   let _answerQuestion = answerQuestion
   let _codeTranslator = codeTranslator
+  let _modelTranslator = modelTranslator
   putStrLn "-------------------------"
   putStrLn "--                     --"
   putStrLn "--                     --"
