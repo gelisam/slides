@@ -3,7 +3,7 @@
 -------------------------------------------------------------------------------
 import Hasktorch.Typed.Simple
 
-
+-- spec: f . inverse images f = id
 inverse :: forall a b. (AsFloats a, AsFloats b)
         => [a] -> (a -> b) -> (b -> a)
 
