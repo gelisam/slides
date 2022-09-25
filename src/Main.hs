@@ -5,6 +5,8 @@
 xor :: Bool -> Bool -> Bool   -- exists x y. xor (not x) y /= not (xor x y)
                               -- 2 bits
 
+labelImage :: Image -> Text   -- exists pixels. (labelImage x == labelImage y)
+                              --             && (distance x y < 0.1)
 
 
 
@@ -20,17 +22,17 @@ xor :: Bool -> Bool -> Bool   -- exists x y. xor (not x) y /= not (xor x y)
 
 
 
-
-
-
-
+type Image = ()
+type Text = ()
 
 xor = undefined
 
+labelImage = undefined
 
 main :: IO ()
 main = do
   let _xor = xor
+  let _labelImage = labelImage
   putStrLn "-------------------------"
   putStrLn "--                     --"
   putStrLn "--                     --"
