@@ -9,6 +9,10 @@ githubCopilot :: [LineOfCode] -> [LineOfCode]
 -- gradually create e.g. a web game via natural language commands
 codexJavascriptSandbox :: [Text] -> JavaScript
 
+-- generate test cases from the code to be tested
+testCode :: [LineOfCode] -> [LineOfCode]
+
+
 
 
 
@@ -54,12 +58,14 @@ openAiCodex = undefined
 
 githubCopilot = undefined
 codexJavascriptSandbox = undefined
+testCode = undefined
 
 main :: IO ()
 main = do
   let _openAiCodex = openAiCodex
   let _githubCopilot = githubCopilot
   let _codexJavascriptSandbox = codexJavascriptSandbox
+  let _testCode = testCode
   putStrLn "-------------------------"
   putStrLn "--                     --"
   putStrLn "--                     --"
