@@ -2,26 +2,26 @@
 -- 2.3.2. Restrictive program constraints?                                   --
 -------------------------------------------------------------------------------
 import Ersatz.Simple
+                                  -- 1. \x y -> choose
+xor :: Bool -> Bool -> Bool       --              (choose false true y)
+xor = go @Bool where              --              (choose true false y)
+  go :: Boolean b                 --              x
+     => b -> b -> b               --
+  go = _                          -- 2. \x y -> choose y (not y) x
                                   --
-xor :: Bool -> Bool -> Bool       --
-xor = _                           --
-                                  --
-                                  --
-                                  --
-                                  --
-xor1 :: Bool -> Bool -> Bool      --
+xor1 :: Bool -> Bool -> Bool      -- 3. \x y -> x /== y
 xor1 False False = False          --
-xor1 False True  = True           --
+xor1 False True  = True           -- 4. \x y -> (x && not y) || (not x && y)
 xor1 True  False = True           --
-xor1 True  True  = False          --
-                                  --
-xor2 :: Boolean b                 --
-     => b -> b -> b               -- 3. \x y -> choose
-xor2 x y = choose                 --              (choose false true y)
-  (choose false true y)           --              (choose true false y)
-  (choose true false y)           --              x
+xor1 True  True  = False          -- ...
+
+xor2 :: Boolean b
+     => b -> b -> b
+xor2 x y = choose
+  (choose false true y)
+  (choose true false y)
   x
-  
+
 
 
 
