@@ -1,0 +1,243 @@
+#lang "prelude.kl"
+
+(import (shift "prelude.kl" 2))
+(import (shift "list.kl" 2))
+(import (shift "prelude.kl" 1))
+(import (shift "define-syntax-rule.kl" 1))
+(import (shift "do.kl" 1))
+(import "define-syntax-rule.kl")
+
+
+-- Re-export all of prelude.kl, plus a few more imports, so that the slide
+-- doesn't have to waste space with its own imports.
+-- This file file is called klister.kl so that the top of the slide reads
+--
+--     #lang "klister.kl"
+--
+-- which clarifies that the slide contains Klister code.
+
+-- "prelude.kl"
+(export -- primitive module macros
+        #%module
+
+        -- primitive declaration macros
+        define
+        datatype
+        define-macros
+        example
+        run
+        import
+        export
+        meta
+        group
+
+        -- primitive types
+        Syntax open-syntax close-syntax
+        ->
+        Integer + - * / abs negate > >= < <= = /= integer->string
+        Macro
+        Type
+        String string-append substring string-length
+               string=? string/=? string<? string<=? string>? string>=?
+               string-upcase string-downcase string-titlecase string-foldcase
+        IO pure-IO bind-IO
+
+        -- primitive datatypes
+        ScopeAction flip add remove
+        Unit unit
+        Bool true false
+        Problem module declaration type expression pattern type-pattern
+        Maybe nothing just
+        List nil ::
+        Syntax-Contents list-contents integer-contents string-contents identifier-contents
+
+        -- primitive expression macros
+        error
+        the
+        let
+        flet
+        lambda
+        #%app
+        #%integer-literal
+        #%string-literal
+        pure
+        >>=
+        syntax-error
+        bound-identifier=?
+        free-identifier=?
+        quote
+        ident-syntax
+        empty-list-syntax
+        cons-list-syntax
+        list-syntax
+        integer-syntax
+        string-syntax
+        replace-loc
+        syntax-case
+        let-syntax
+        log
+        make-introducer
+        which-problem
+        case
+        type-case
+
+        -- primitive patterns
+        else
+
+        -- primitive universal macros
+        with-unknown-type
+
+        -- non-primitive declaration macros
+        defun
+
+        -- non-primitive expression macros
+        unquote
+        quasiquote
+        quasiquote/loc
+
+        -- non-primitive expressions
+        if
+        id
+        const
+        compose
+        
+        -- IO primitives
+        Output-Port
+        stdout
+        write)
+
+-- (shift "prelude.kl" 1)
+(export (shift 1
+        -- primitive module macros
+        #%module
+
+        -- primitive declaration macros
+        define
+        datatype
+        define-macros
+        example
+        run
+        import
+        export
+        meta
+        group
+
+        -- primitive types
+        Syntax open-syntax close-syntax
+        ->
+        Integer + - * / abs negate > >= < <= = /= integer->string
+        Macro
+        Type
+        String string-append substring string-length
+               string=? string/=? string<? string<=? string>? string>=?
+               string-upcase string-downcase string-titlecase string-foldcase
+        IO pure-IO bind-IO
+
+        -- primitive datatypes
+        ScopeAction flip add remove
+        Unit unit
+        Bool true false
+        Problem module declaration type expression pattern type-pattern
+        Maybe nothing just
+        List nil ::
+        Syntax-Contents list-contents integer-contents string-contents identifier-contents
+
+        -- primitive expression macros
+        error
+        the
+        let
+        flet
+        lambda
+        #%app
+        #%integer-literal
+        #%string-literal
+        pure
+        >>=
+        syntax-error
+        bound-identifier=?
+        free-identifier=?
+        quote
+        ident-syntax
+        empty-list-syntax
+        cons-list-syntax
+        list-syntax
+        integer-syntax
+        string-syntax
+        replace-loc
+        syntax-case
+        let-syntax
+        log
+        make-introducer
+        which-problem
+        case
+        type-case
+
+        -- primitive patterns
+        else
+
+        -- primitive universal macros
+        with-unknown-type
+
+        -- non-primitive declaration macros
+        defun
+
+        -- non-primitive expression macros
+        unquote
+        quasiquote
+        quasiquote/loc
+
+        -- non-primitive expressions
+        if
+        id
+        const
+        compose
+        
+        -- IO primitives
+        Output-Port
+        stdout
+        write))
+
+-- (shift "do.kl" 1)
+(export (shift 1 do <-))
+
+-- "define-syntax-rule.kl"
+(export define-macro)
+
+
+-- helpers to make the slides even shorter
+
+(define ++ string-append)
+
+(export ++)
+
+
+(meta
+  (define-variadic-macro (Int stx)
+    (pure `Integer))
+
+  (define-variadic-macro (case-integer stx)
+    (case (open-syntax stx)
+      [(list-contents (list _ n-stx zero-case succ-case))
+       (case (open-syntax zero-case)
+         [(list-contents (list _zero zero-rhs))
+          (case (open-syntax succ-case)
+            [(list-contents (list succ-lhs succ-rhs))
+             (case (open-syntax succ-lhs)
+               [(list-contents (list _succ pred-stx))
+                (pure `(case (open-syntax ,n-stx)
+                         [(integer-contents n)
+                          (if (= n 0)
+                            ,zero-rhs
+                            (let [pred-n (- n 1)]
+                              (let [,pred-stx (close-syntax ,n-stx ,n-stx
+                                                (integer-contents pred-n))]
+                                ,succ-rhs)))]))])])])]))
+  
+  (define expected-type
+    (>>= (which-problem)
+      (lambda (problem)
+        (case problem
+          [(expression type)
+           (pure type)])))))
+
+(export (shift 1 Int case-integer expected-type))
