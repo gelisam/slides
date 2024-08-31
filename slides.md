@@ -1,5 +1,5 @@
 #lang "klister.kl"
--- Type-check first?                                                                                                                                           -- vim: set syntax=klister:
+-- Late-typed macros must be type-check after!                                                                                                                                           -- vim: set syntax=klister:
 
 --    parser               parser
 --       v                    v
@@ -17,5 +17,5 @@
 
 (example
   (+ 42                -- + : (-> Int Int Int)
-     (default))        -- 1 : Int
+     (default))        -- "!" : Int
 )
