@@ -1,9 +1,9 @@
 #lang "klister.kl"
 -- Straightforward approach: expand the macros in the expander phase                                                                                                          -- vim: set syntax=klister:
 
---   [parser]
+--    parser
 --       v
---   expander
+--  [expander]
 --       v
 --  typechecker
 --       v
