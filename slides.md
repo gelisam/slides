@@ -1,12 +1,13 @@
-#lang Beluga, Moebius
---       Late-typed code generation                                                                                                                     -- vim: set syntax=moebius:
--- vs [ Early-typed code generation ]
+#lang "klister.kl"
+--    [  Late-typed code generation ]                                                                                                                   -- vim: set syntax=klister:
+-- vs   Early-typed code generation
 
-power : int → ⌈ x:int ⊢ int ⌉
-power n =
-  if n = 0
-  then box(x. 1)
-  else let box(x. X_TO_THE_N_MINUS_ONE) = power (n - 1)
-    in box(x.
-         (X_TO_THE_N_MINUS_ONE with x) ++ x  -- expected string, got int
-       )  -- expected ⌈ x:int ⊢ int ⌉, got ⌈ x:int ⊢ string ⌉
+-- const : (-> Int Syntax (Macro Syntax))
+(define-macro (power n x)
+  (case-integer n
+    [zero       (pure `1)]
+    [(succ n-1) (pure `(*  ,x (power ,n-1 ,x)))]))
+
+(example
+  (power 8 2)
+)
