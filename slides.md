@@ -1,10 +1,20 @@
-# Klister
+#lang "klister.kl"
+--       Late-typed code generation                                                                                                                     -- vim: set syntax=klister:
 
-  1. The goal
-     1.1. Type-inference
-   > 1.2. Late-typed code generation
-     1.3. Type-driven code generation
-     1.4. Together
-  2. Straightforward but incorrect approach
-  3. Working but non-confluent approach
-  4. The solution
+-- (const* 3 "hello")
+-- =>
+-- (const (const (const "hello")))
+(define-macro (const* n r)
+  (case-integer n
+    [zero       (pure r)]
+    [(succ n-1) (pure `(const (const* ,n-1 ,r)))]))
+
+(example
+  (const* 0 "hello")  -- "hello"
+)
+(example
+  (const* 1 "hello")  -- (const "hello")
+)
+(example
+  (const* 2 "hello")  -- (const (const "hello"))
+)

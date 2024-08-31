@@ -241,3 +241,13 @@
            (pure type)])))))
 
 (export (shift 1 Int case-integer expected-type))
+
+
+-- definitions from previous slides
+
+-- const : (-> a Integer a)
+(defun const (r i)
+  (let [_ (the Integer i)]
+    r))
+
+(export const)
