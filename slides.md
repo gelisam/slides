@@ -7,7 +7,7 @@
 
 (example
   ((default)             -- (default)
-   (const* 0 "hello")))  -- "hello"
+   (const* 0 "hello")))  -- "hello" : String
 
 --(example
 --  ((default)           -- (default)
