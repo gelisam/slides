@@ -11,8 +11,8 @@
 
 (example
   ((const* 2 "hello")
-   1
-   2)
+   1                   -- 1 : Int
+   2)                  -- 1 : Int
 )
 
 (example
