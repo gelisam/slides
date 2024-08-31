@@ -1,15 +1,10 @@
-#lang "klister.kl"
--- Late-typed code generation + Type-driven code generation                                                                                                    -- vim: set syntax=klister:
+# Klister
 
-(example
-  ((const* 1 "hello")    -- (const "hello") : (-> Int String)
-   (default)))           -- 1 : Int
-
-(example
-  ((default)             -- (lambda (x) (++ x "!") : (-> String String)
-   (const* 0 "hello")))  -- "hello" : String
-
---(example               -- error: type is ambiguous
---  ((default)           -- (default) : (-> ?1 ?2)
---   (default))          -- (default) : ?1
---)
+  1. The goal
+     1.1. Type-inference
+     1.2. Late-typed code generation
+     1.3. Type-driven code generation
+   > 1.4. Together
+  2. Straightforward but incorrect approach
+  3. Working but non-confluent approach
+  4. The solution
