@@ -1,7 +1,7 @@
 #lang "klister.kl"
 -- Type-check first?                                                                                                                                           -- vim: set syntax=klister:
 
---    parser               parser
+--    parser              [parser]
 --       v                    v
 --   expander            typechecker
 --       v                    v
