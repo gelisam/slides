@@ -1,6 +1,8 @@
-# Klister
+#lang "klister.kl"
+-- Compiler phases                                                                                                                                             -- vim: set syntax=klister:
 
-  1. The goal
-> 2. Straightforward but incorrect approach
-  3. Working but non-confluent approach
-  4. The solution
+--    parser
+--       v
+--  typechecker
+--       v
+-- code generator
