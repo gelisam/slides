@@ -7,7 +7,7 @@
 --       v
 --  typechecker
 --       v
---[code generator]
+-- code generator
 
 (example
   ((const* 2 "hello")  -- (const (const "hello"))
