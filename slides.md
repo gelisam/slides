@@ -10,7 +10,7 @@
 -- code generator
 
 (example
-  ((const* 2 "hello")  -- (const* 2 "hello")
+  ((const* 2 "hello")  -- (const (const "hello"))
    1
    2)
 )
