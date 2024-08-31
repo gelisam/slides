@@ -1,10 +1,25 @@
-# Klister
+#lang "klister.kl"
+-- Type-driven code generation                                                                                                                                 -- vim: set syntax=klister:
 
-  1. The goal
-     1.1. Type-inference
-     1.2. Late-typed code generation
-   > 1.3. Type-driven code generation
-     1.4. Together
-  2. Straightforward but incorrect approach
-  3. Working but non-confluent approach
-  4. The solution
+-- default : (Macro Syntax)
+(define-macro (default)
+  (do (t <- (expected-type))
+      (type-case t
+        [Int      (pure `1)]
+        [String   (pure `"!")]
+        [(-> a b) (type-case a
+                    [Int    (pure `(lambda (x) (+ x 1)))]
+                    [String (pure `(lambda (x) (++ x "!")))])])))
+
+(example
+  (+ 42 (default))        -- (default)
+)                         --   : Int
+(example                  -- (default)
+  (++ "hello" (default))  --   : String
+)
+(example                  -- (default)
+  ((default) 42)          --   : (-> Int ?1)
+)
+(example                  -- (default)
+  ((default) "hello")     --   : (-> String ?2)
+)
