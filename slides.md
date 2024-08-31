@@ -6,7 +6,7 @@
    (default)))           -- 1 : Int
 
 (example
-  ((default)             -- (lambda (x) (++ x "!") : (-> String ?1)
+  ((default)             -- (lambda (x) (++ x "!") : (-> String String)
    (const* 0 "hello")))  -- "hello" : String
 
 --(example
