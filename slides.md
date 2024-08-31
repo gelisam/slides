@@ -11,10 +11,10 @@
 
 (example
   (const* 0 "hello")  -- "hello"
-)
+)                     --   : String
 (example
   (const* 1 "hello")  -- (const "hello")
-)
+)                     --   : (-> Int String)
 (example
   (const* 2 "hello")  -- (const (const "hello"))
-)
+)                     --   : (-> Int Int String)
