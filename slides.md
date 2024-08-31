@@ -1,10 +1,15 @@
-# Klister
+#lang "klister.kl"
+-- Late-typed code generation + Type-driven code generation                                                                                                    -- vim: set syntax=klister:
 
-  1. The goal
-     1.1. Type-inference
-     1.2. Late-typed code generation
-     1.3. Type-driven code generation
-   > 1.4. Together
-  2. Straightforward but incorrect approach
-  3. Working but non-confluent approach
-  4. The solution
+(example
+  ((const* 1 "hello")    -- (const* 1 "hello")
+   (default)))           -- (default)
+
+(example
+  ((default)             -- (default)
+   (const* 0 "hello")))  -- (const* 0 "hello")
+
+--(example
+--  ((default)           -- (default)
+--   (default))          -- (default)
+--)
