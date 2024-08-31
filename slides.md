@@ -1,24 +1,6 @@
-################################################################################
-#                                                                              #
-#                                                                              #
-#                                                                              #
-#                                                                              #
-#                                                                              #
-#                                    Klister:                                  #
-#                      type inference for type-driven macros                   #
-#                                                                              #
-#                                                                              #
-#                                                                              #
-#                                                                              #
-#                                                                              #
-#                                                                              #
-#                         presented by Samuel Gélineau                         #
-#                      at the COMEPLS Seminar on 2024-09-17                    #
-#                                                                              #
-#                                                                              #
-#                                                                              #
-#                                                                              #
-#                                                                              #
-#                                                                              #
-#                                                                              #
-################################################################################
+# Klister
+
+  1. The goal
+  2. Straightforward but incorrect approach
+  3. Working but non-confluent approach
+  4. The solution
