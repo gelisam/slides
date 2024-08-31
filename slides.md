@@ -14,3 +14,8 @@
    1                   --   : (-> Int Int String)
    2)  -- : String
 )
+
+(example
+  (+ 42
+     (default))
+)
