@@ -8,5 +8,5 @@ power n =
   then box(x. 1)
   else let box(x. X_TO_THE_N_MINUS_ONE) = power (n - 1)
     in box(x.
-         (X_TO_THE_N_MINUS_ONE with x) * x
-       )
+         (X_TO_THE_N_MINUS_ONE with x) ++ x  -- expected string, got int
+       )  -- expected ⌈ x:int ⊢ int ⌉, got ⌈ x:int ⊢ string ⌉
