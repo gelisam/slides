@@ -1,5 +1,5 @@
 #lang "klister.kl"
--- Straightforward approach: expand the macros in the expander phase                                                                                                          -- vim: set syntax=klister:
+-- Type-driven macros need type information!                                                                                                                   -- vim: set syntax=klister:
 
 --    parser
 --       v
@@ -17,5 +17,5 @@
 
 (example
   (+ 42
-     (default))        -- (default)
+     (default))        -- (default) : ?
 )
