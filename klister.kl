@@ -258,4 +258,13 @@
     [zero       (pure r)]
     [(succ n-1) (pure `(const (const* ,n-1 ,r)))]))
 
-(export const const*)
+(define-macro (default)
+  (do (t <- (expected-type))
+      (type-case t
+        [Integer  (pure `1)]
+        [String   (pure `"!")]
+        [(-> a b) (type-case a
+                    [Integer (pure `(lambda (x) (+ x 1)))]
+                    [String  (pure `(lambda (x) (string-append x "!")))])])))
+
+(export const const* default)
