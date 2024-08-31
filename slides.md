@@ -18,8 +18,8 @@
   (++ "hello" (default))  --   : String
 )
 (example                  -- (lambda (x) (+ x 1))
-  ((default) 42)          --   : (-> Int ?1)
+  ((default) 42)          --   : (-> Int Int)
 )
 (example                  -- (lambda (x) (++ x "!"))
-  ((default) "hello")     --   : (-> String ?2)
+  ((default) "hello")     --   : (-> String String)
 )
