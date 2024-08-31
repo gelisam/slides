@@ -16,6 +16,6 @@
 )
 
 (example
-  (+ 42
+  (+ 42                -- + : (-> Int Int Int)
      (default))
 )
