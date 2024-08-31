@@ -5,7 +5,7 @@
 --       v                    v
 --   expander            typechecker
 --       v                    v
---  typechecker          [expander]
+--  typechecker           expander
 --       v                    v
 -- code generator       code generator
 
