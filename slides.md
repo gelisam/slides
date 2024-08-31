@@ -1,13 +1,10 @@
-#lang "klister.kl"
---    [  Late-typed code generation ]                                                                                                                   -- vim: set syntax=klister:
--- vs   Early-typed code generation
+# Klister
 
--- power : (-> Int Syntax (Macro Syntax))
-(define-macro (power n x)
-  (case-integer n
-    [zero       (pure `1)]
-    [(succ n-1) (pure `(++ ,x (power ,n-1 ,x)))]))  -- typechecks!
-
-(example
-  (power 8 2)  -- expected String, got Int
-)
+  1. The goal
+     1.1. Type-inference
+   > 1.2. Late-typed code generation
+     1.3. Type-driven code generation
+     1.4. Together
+  2. Straightforward but incorrect approach
+  3. Working but non-confluent approach
+  4. The solution
