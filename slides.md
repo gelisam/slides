@@ -1,20 +1,12 @@
-#lang "klister.kl"
---       Late-typed code generation                                                                                                                     -- vim: set syntax=klister:
+#lang Beluga, Moebius
+--       Late-typed code generation                                                                                                                     -- vim: set syntax=moebius:
+-- vs [ Early-typed code generation ]
 
--- (const* 3 "hello")
--- =>
--- (const (const (const "hello")))
-(define-macro (const* n r)
-  (case-integer n
-    [zero       (pure r)]
-    [(succ n-1) (pure `(const (const* ,n-1 ,r)))]))
-
-(example
-  (const* 0 "hello")  -- "hello"
-)                     --   : String
-(example
-  (const* 1 "hello")  -- (const "hello")
-)                     --   : (-> Int String)
-(example
-  (const* 2 "hello")  -- (const (const "hello"))
-)                     --   : (-> Int Int String)
+power : int → ⌈ x:int ⊢ int ⌉
+power n =
+  if n = 0
+  then box(x. 1)
+  else let box(x. X_TO_THE_N_MINUS_ONE) = power (n - 1)
+    in box(x.
+         (X_TO_THE_N_MINUS_ONE with x) * x
+       )

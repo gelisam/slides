@@ -250,4 +250,12 @@
   (let [_ (the Integer i)]
     r))
 
-(export const)
+-- (const* 3 "hello")
+-- =>
+-- (const (const (const "hello")))
+(define-macro (const* n r)
+  (case-integer n
+    [zero       (pure r)]
+    [(succ n-1) (pure `(const (const* ,n-1 ,r)))]))
+
+(export const const*)
