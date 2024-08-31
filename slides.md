@@ -9,7 +9,7 @@
   ((default)             -- (lambda (x) (++ x "!") : (-> String String)
    (const* 0 "hello")))  -- "hello" : String
 
---(example
+--(example               -- error: type is ambiguous
 --  ((default)           -- (default) : (-> ?1 ?2)
 --   (default))          -- (default) : ?1
 --)
