@@ -1,5 +1,5 @@
 #lang "klister.kl"
--- Late-typed macros must be type-check after!                                                                                                                                           -- vim: set syntax=klister:
+-- The type-checker needs the final code to infer the full type!                                                                                                                        -- vim: set syntax=klister:
 
 --    parser               parser
 --       v                    v
@@ -10,7 +10,7 @@
 -- code generator       code generator
 
 (example
-  ((const* 2 "hello")  -- (const* 2 "hello") : (-> Int Int ?1)
+  ((const* 2 "hello")  -- ? : (-> Int Int ?1)
    1                   -- 1 : Int
    2)                  -- 1 : Int
 )
