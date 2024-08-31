@@ -1,9 +1,9 @@
 #lang "klister.kl"
 -- Late-typed macros must be type-check after!                                                                                                                                           -- vim: set syntax=klister:
 
---    parser              [parser]
+--    parser               parser
 --       v                    v
---   expander            typechecker
+--   expander           [typechecker]
 --       v                    v
 --  typechecker           expander
 --       v                    v
