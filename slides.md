@@ -10,6 +10,6 @@
    (const* 0 "hello")))  -- "hello" : String
 
 --(example
---  ((default)           -- (default)
---   (default))          -- (default)
+--  ((default)           -- (default) : (-> ?1 ?2)
+--   (default))          -- (default) : ?1
 --)
