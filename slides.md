@@ -1,21 +1,21 @@
 #lang "klister.kl"
--- Type-driven macros need type information!                                                                                                                   -- vim: set syntax=klister:
+-- Type-check first?                                                                                                                                           -- vim: set syntax=klister:
 
---    parser
---       v
---  [expander]
---       v
---  typechecker
---       v
--- code generator
+--    parser               parser
+--       v                    v
+--   expander            typechecker
+--       v                    v
+--  typechecker           expander
+--       v                    v
+-- code generator       code generator
 
 (example
-  ((const* 2 "hello")  -- (const (const "hello"))
-   1                   --   : (-> Int Int String)
-   2)  -- : String
+  ((const* 2 "hello")
+   1
+   2)
 )
 
 (example
   (+ 42
-     (default))        -- (default) : ?
+     (default))
 )
