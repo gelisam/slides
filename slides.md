@@ -11,6 +11,6 @@
 
 (example
   ((const* 2 "hello")  -- (const (const "hello"))
-   1
-   2)
+   1                   --   : (-> Int Int String)
+   2)  -- : String
 )
