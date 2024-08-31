@@ -7,7 +7,7 @@
 
 (example
   ((default)             -- (default)
-   (const* 0 "hello")))  -- (const* 0 "hello")
+   (const* 0 "hello")))  -- "hello"
 
 --(example
 --  ((default)           -- (default)
