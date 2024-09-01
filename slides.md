@@ -10,9 +10,9 @@
 -- code generator       code generator
 
 (example
-  ((const* 2 "hello")  -- ( _
-   1                   --   _
-   2)                  --   _ )
+  ((const* 2 "hello")  -- ((_ : (-> ?1 ?2 ?3))
+   1                   --  (_ : ?1)
+   2)                  --  (_ : ?2)) : ?3
 )
 
 (example
