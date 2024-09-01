@@ -17,5 +17,5 @@
 
 (example
   (+ 42
-     (default))        --   (default) : Int
+     (default))        --   1 : Int
 )
