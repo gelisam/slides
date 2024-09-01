@@ -15,7 +15,7 @@
    2)                  --  (2 : Int)) : String
 )
 
-(example               -- ( _
-  (+ 42                --   _
-     (default))        --   _ )
+(example               -- ((+ : (-> Int Int Int))
+  (+ 42                --  (42 : Int)
+     (default))        --  ((default) : Int))
 )
