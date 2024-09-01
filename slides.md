@@ -10,7 +10,7 @@
 -- code generator       code generator
 
 (example
-  ((const* 2 "hello")  --  (const (const "hello")) : (-> ?1 ?2 ?3)
+  ((const* 2 "hello")  --  (const (const "hello")) : (-> Int Int String)
    1
    2)
 )
