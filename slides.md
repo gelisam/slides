@@ -3,9 +3,9 @@
 
 --    parser               parser                    parser
 --       v                    v                         v
---   expander            typechecker          [expander + typechecker]
+--   expander            typechecker           expander + typechecker
 --       v                    v                         v
---  typechecker           expander                code generator
+--  typechecker           expander               [code generator]
 --       v                    v
 -- code generator       code generator
 
