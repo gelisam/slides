@@ -1,7 +1,7 @@
 #lang "klister.kl"
 -- Interleaving macro-expansion and type-checking                                                                                                                                       -- vim: set syntax=klister:
 
---    parser               parser                    parser
+--    parser               parser                   [parser]
 --       v                    v                         v
 --   expander            typechecker           expander + typechecker
 --       v                    v                         v
