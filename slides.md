@@ -2,7 +2,7 @@
 -- Late-typed code generation + Type-driven code generation                                                                                                    -- vim: set syntax=klister:
 
 (example
-  ((const* 1 "hello")    -- (const* 1 "hello")
+  ((const* 1 "hello")    -- (const "hello")
    (default)))           -- (default)
 
 (example
