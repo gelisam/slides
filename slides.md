@@ -12,14 +12,14 @@
                     [String (pure `(lambda (x) (++ x "!")))])])))
 
 (example
-  (+ 42 (default))        -- (default)
+  (+ 42 (default))        -- 1
 )                         --   : Int
-(example                  -- (default)
+(example                  -- "hello"
   (++ "hello" (default))  --   : String
 )
-(example                  -- (default)
+(example                  -- (lambda (x) (+ x 1))
   ((default) 42)          --   : (-> Int ?1)
 )
-(example                  -- (default)
+(example                  -- (lambda (x) (++ x "!"))
   ((default) "hello")     --   : (-> String ?2)
 )
