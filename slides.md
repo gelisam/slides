@@ -3,7 +3,7 @@
 
 (example
   ((const* 1 "hello")    -- (const "hello") : (-> Int String)
-   (default)))           -- (default)
+   (default)))           -- (default) : Int
 
 (example
   ((default)             -- (default)
