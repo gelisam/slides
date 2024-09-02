@@ -10,3 +10,8 @@
   (let [x (default)]  -- (default) : ?1
     (+ 42 x))
 )
+
+--(example            -- error: type is ambiguous
+--  ((default)        -- (default) : (-> ?1 ?2)
+--   (default))       -- (default) : ?1
+--)
