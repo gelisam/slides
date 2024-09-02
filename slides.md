@@ -6,7 +6,7 @@
      (default))       --  (1 : Int)) : Int
 )
 
-(example
+(example              -- error: type is ambiguous
   (let [x (default)]  -- (default) : ?1
     (+ 42 x))
 )
