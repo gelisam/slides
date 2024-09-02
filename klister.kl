@@ -7,7 +7,6 @@
 (import (shift "do.kl" 1))
 (import "define-syntax-rule.kl")
 
-
 -- Re-export all of prelude.kl, plus a few more imports, so that the slide
 -- doesn't have to waste space with its own imports.
 -- This file file is called klister.kl so that the top of the slide reads
@@ -170,7 +169,7 @@
         make-introducer
         which-problem
         case
-        type-case
+        -- type-case
 
         -- primitive patterns
         else

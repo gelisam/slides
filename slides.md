@@ -1,17 +1,9 @@
-#lang "klister.kl"
--- Fragile                                                                                                                                                     -- vim: set syntax=klister:
+# Klister
 
-(example              -- ((+ : (-> Int Int Int))
-  (+ 42               --  (42 : Int)
-     (default))       --  (1 : Int)) : Int
-)
-
-(example              -- error: type is ambiguous
-  (let [x (default)]  -- (default) : ?1
-    (+ 42 x))
-)
-
---(example            -- error: type is ambiguous
---  ((default)        -- (default) : (-> ?1 ?2)
---   (default))       -- (default) : ?1
---)
+  1. The goal
+  2. Straightforward but incorrect approach
+  3. Working but non-confluent approach
+     3.1. Interleaving macro-expansion and type-checking
+   > 3.2. Fragile
+     3.3. Non-confluent
+  4. The solution
