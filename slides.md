@@ -7,6 +7,6 @@
 )
 
 (example
-  (let [x (default)]
+  (let [x (default)]  -- (default) : ?1
     (+ 42 x))
 )
