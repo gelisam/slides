@@ -5,3 +5,8 @@
   (+ 42               --  (42 : Int)
      (default))       --  (1 : Int)) : Int
 )
+
+(example
+  (let [x (default)]
+    (+ 42 x))
+)
