@@ -5,6 +5,6 @@
                         -- then argument position   then function position
 
 (example                --
-  ((const* 1 "hello")   -- (const* 1 "hello")
+  ((const* 1 "hello")   -- (const "hello")
    (default))           --                          (default)
 )
