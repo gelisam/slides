@@ -8,3 +8,7 @@
   ((const* 1 "hello")   -- (const "hello")
    (default))           -- 1 : Int                  (default) : ?1
 )
+(example                -- error: type is ambiguous
+  ((default)            -- (default) : (-> ?1 ?2)   (lambda (x) (+ x 1))
+   (const* 0 "hello"))  --                          "hello"
+)
