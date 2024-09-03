@@ -6,5 +6,5 @@
 
 (example                --
   ((const* 1 "hello")   -- (const "hello")
-   (default))           --                          (default)
+   (default))           -- (default) : Int          (default)
 )
