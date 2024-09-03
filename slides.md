@@ -1,14 +1,9 @@
-#lang "klister.kl"
--- Non-confluence                                                                                                                                              -- vim: set syntax=klister:
+# Klister
 
-                        -- function position,       argument position,
-                        -- then argument position   then function position
-
-(example                --                          error: type is ambiguous
-  ((const* 1 "hello")   -- (const "hello")
-   (default))           -- 1 : Int                  (default) : ?1
-)
-(example                -- error: type is ambiguous
-  ((default)            -- (default) : (-> ?1 ?2)   (lambda (x) (+ x 1))
-   (const* 0 "hello"))  --                          "hello"
-)
+  1. The goal
+  2. Straightforward but incorrect approach
+  3. Working but non-confluent approach
+     3.1. Interleaving macro-expansion and type-checking
+     3.2. Fragile
+   > 3.3. Non-confluent
+  4. The solution
