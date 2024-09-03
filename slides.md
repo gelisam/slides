@@ -4,7 +4,7 @@
                         -- function position,       argument position,
                         -- then argument position   then function position
 
-(example                --
+(example                --                          error: type is ambiguous
   ((const* 1 "hello")   -- (const "hello")
-   (default))           -- 1 : Int                  (default)
+   (default))           -- 1 : Int                  (default) : ?1
 )
