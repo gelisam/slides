@@ -1,9 +1,10 @@
-# Klister
+#lang "klister.kl"
+-- Non-confluence                                                                                                                                              -- vim: set syntax=klister:
 
-  1. The goal
-  2. Straightforward but incorrect approach
-  3. Working but non-confluent approach
-     3.1. Interleaving macro-expansion and type-checking
-     3.2. Fragile
-   > 3.3. Non-confluent
-  4. The solution
+                        -- function position,       argument position,
+                        -- then argument position   then function position
+
+(example                --
+  ((const* 1 "hello")   --
+   (default))           --
+)
