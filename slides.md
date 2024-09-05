@@ -9,7 +9,7 @@
 
 -- TASK QUEUE
 --
--- > * expand + typecheck (const "hello") to !3 and (-> ?2 ?1)
+-- > * expand + typecheck (const "hello") to !3 and (-> Int String)
 --   * evaluate (type-case ?2
 --                [Int  (pure `1)]
 --                ...)              to !2 and ?2  [STUCK ON ?2]
