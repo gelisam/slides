@@ -11,4 +11,4 @@
 --
 --   * evaluate (type-case Int
 --                [Int  (pure `1)]
---                ...)              to !2 and Int [STUCK ON Int]
+--                ...)              to !2 and Int
