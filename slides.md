@@ -9,4 +9,4 @@
 
 -- TASK QUEUE
 --
--- > * evaluate (pure `1) to !2 and Int
+-- > * expand + typecheck 1 to !2 and Int
