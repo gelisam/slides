@@ -2,12 +2,12 @@
 -- Task queue                                                                                                                                                  -- vim: set syntax=klister:
 
 (example
-  ((const* 1 "hello")
-   (default))
+  !1
 )
+
 
 
 -- TASK QUEUE
 --
---   * expand + typecheck ((const* 1 "hello")
+--   * expand + typecheck ((const* 1 "hello") to !1 and ?1
 --                         (default))
