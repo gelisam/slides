@@ -1,14 +1,9 @@
-#lang "klister.kl"
--- Stuck macros                                                                                                                                                -- vim: set syntax=klister:
+# Klister
 
-
-
-
-(example                -- (type-case ?1
-  ((const* 1 "hello")   --   [Int         e1]  ---/-->  error: type is ambiguous
-   (default))           --   [(-> Int t2) e2])
-)
-(example                -- (type-case (-> ?1 ?2)
-  ((default)            --   [Int         e1]  ---/-->  error: type is ambiguous
-   (const* 0 "hello"))  --   [(-> Int t2) e2])
-)
+  1. The goal
+  2. Straightforward but incorrect approach
+  3. Working but non-confluent approach
+  4. The solution
+     4.1. Removing transitions
+   > 4.2. Stuck macros
+     4.3. Task queue
