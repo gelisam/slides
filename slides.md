@@ -3,7 +3,7 @@
 
 (example
   ((const "hello")
-   !2)
+   1)
 )
 
 
