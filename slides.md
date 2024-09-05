@@ -9,6 +9,4 @@
 
 -- TASK QUEUE
 --
--- > * evaluate (type-case Int
---                [Int  (pure `1)]
---                ...)              to !2 and Int
+-- > * evaluate (pure `1) to !2 and Int
