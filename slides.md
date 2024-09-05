@@ -10,4 +10,7 @@
 -- TASK QUEUE
 --
 --   * expand + typecheck (const* 1 "hello") to !3 and (-> ?2 ?1)
--- > * expand + typecheck (default) to !2 and ?2
+-- > * evaluate (do (t <- (expected-type))
+--                  (type-case t
+--                    [Int  (pure `1)]
+--                    ...))                to !2 and ?2
