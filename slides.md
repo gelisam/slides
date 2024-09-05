@@ -3,10 +3,10 @@
 
 (example
   ((const "hello")
-   1)
+   "!")
 )
 
 
 -- TASK QUEUE
 --
--- > * expand + typecheck 1 to !2 and Int
+-- > * expand + typecheck "!" to !2 and Int
