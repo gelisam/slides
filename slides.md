@@ -2,9 +2,12 @@
 -- Task queue                                                                                                                                                  -- vim: set syntax=klister:
 
 (example
-  ((const "hello")
-   1)
+  ((default)
+   (default))
 )
 
 
 -- TASK QUEUE
+--
+--   * [STUCK ON ?1]
+--   * [STUCK ON ?2]
